@@ -1,11 +1,8 @@
-# java keywords e.g. static etc
-
-yaml
-***
+---
 tags: [java, reference, keywords, cheatsheet]
 date: 2025-08-22
 topic: Java Keywords Overview
-***
+---
 
 ## Java Keywords: Quick Reference
 
@@ -109,9 +106,6 @@ public class Example {
 ***
 
 \#java/reference \#syntax \#cheatsheets
-<span style="display:none">[^1][^2][^4][^6][^7]</span>
-
-<div style="text-align: center">⁂</div>
 
 [^1]: https://www.w3schools.com/java/java_ref_keywords.asp
 
@@ -128,11 +122,6 @@ public class Example {
 [^7]: http://key.mkprog.com/en/java/
 
 
-***
-tags: [java, keywords, beginner, reference, cheatsheet]
-date: 2025-08-22
-topic: Java Keywords - Beginner-Friendly Guide
-***
 
 # Java Keywords: Complete Beginner's Guide
 
@@ -422,15 +411,28 @@ class Dog extends Animal {
 
 > [!WARNING]
 > **Don't do this:**
-> ```java > int class = 5;  // ERROR: 'class' is a keyword! > String public;  // ERROR: 'public' is a keyword! > ```
+> ```java
+> int class = 5;   // ERROR: 'class' is a keyword!
+> String public;   // ERROR: 'public' is a keyword!
+> ```
 
 > [!WARNING]
 > **Keywords are case-sensitive:**
-> ```java > Public class Test { }  // ERROR: Should be 'public' (lowercase) > ```
+> ```java
+> Public class Test { }  // ERROR: Should be 'public' (lowercase)
+> ```
 
 > [!WARNING]
 > **Static methods can't access non-static variables:**
-> ```java > class MyClass { >     int number = 5; >      >     static void printNumber() { >         System.out.println(number);  // ERROR: Can't access non-static from static >     } > } > ```
+> ```java
+> class MyClass {
+>     int number = 5;
+> 
+>     static void printNumber() {
+>         System.out.println(number);  // ERROR: Can't access non-static from static
+>     }
+> }
+> ```
 
 ***
 
@@ -465,9 +467,6 @@ class Dog extends Animal {
 ***
 
 \#java/basics \#java/keywords \#programming \#cheatsheets
-<span style="display:none">[^10][^11][^12][^13][^14][^5][^6][^7][^8][^9]</span>
-
-<div style="text-align: center">⁂</div>
 
 [^1]: https://www.youtube.com/watch?v=tfLZmZsRRxc
 

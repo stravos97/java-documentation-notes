@@ -1,11 +1,8 @@
-# how is a string an object?
-
-yaml
-***
+---
 tags: [java, strings, object, cheatsheet]
 date: 2025-08-22
 topic: Java String as Object
-***
+---
 
 ## How is a String an Object in Java?
 
@@ -92,9 +89,6 @@ System.out.println(name.toUpperCase());
 ***
 
 \#java/strings \#java/objects \#cheatsheets
-<span style="display:none">[^3][^7][^8][^9]</span>
-
-<div style="text-align: center">⁂</div>
 
 [^1]: https://docs.oracle.com/javase/7/docs/api/java/lang/String.html
 

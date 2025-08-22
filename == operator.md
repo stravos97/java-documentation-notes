@@ -1,11 +1,8 @@
-# java == operator
-
-
-***
+---
 tags: [java, operators, equality, cheatsheet]
 date: 2025-08-22
 topic: Java == Operator
-***
+---
 
 ## == Operator in Java
 
@@ -85,9 +82,6 @@ System.out.println(s1.equals(s3)); // true
 
 ## == Operator Table
 
-markdown
-
-
 | Scenario | Comparison | Example | Returns |
 | :-- | :-- | :-- | :-- |
 | Primitive vs Primitive | Value | `5 == 5` | true |
@@ -112,7 +106,9 @@ markdown
 
 > [!EXAMPLE]
 > When you want to check if a cached object is reused:
-> ```java > if (singletonInstance == anotherReference) { ... } > ```
+> ```java
+> if (singletonInstance == anotherReference) { /* ... */ }
+> ```
 
 > [!NOTE]
 > The `==` operator cannot be overridden in Java (unlike `equals()`).
@@ -152,9 +148,7 @@ System.out.println(o == s); // false, only works if compatible types
 ***
 
 \#java \#operators \#bestpractices \#cheatsheets
-<span style="display:none">[^1][^2][^3][^4][^5][^6][^7][^8][^9]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://stackoverflow.com/questions/7520432/what-is-the-difference-between-and-equals-in-java
 

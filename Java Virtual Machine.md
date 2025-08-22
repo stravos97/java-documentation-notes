@@ -1,8 +1,7 @@
-
+---
 tags: [java, jvm, basics]  
 date: 2025-08-21  
 topic: Java Virtual Machine Overview
-
 ---
 
 ## Java Virtual Machine (JVM)

@@ -84,7 +84,7 @@ public class WeatherAdvisor {
     
     // Entry point (required for execution)
     public static void main(String[] args) {
-        System.out.println("Today's advice: Bring an umbrella if it's    raining!");
+        System.out.println("Today's advice: Bring an umbrella if it's raining!");
         
         // Calling a helper method
         String advice = getWeatherAdvice("sunny");
@@ -115,7 +115,8 @@ class WeatherHelper {
     
     
 ```text
-    Today's advice: Bring an umbrella if it's raining! Wear sunscreen!
+Today's advice: Bring an umbrella if it's raining!
+Wear sunscreen!
 ```
     
 
@@ -145,24 +146,22 @@ class HelperClass {
 > [!TIP]  
 > For beginners, stick to one class per file initially—it simplifies learning. As you advance, experiment with multiple classes to see how Java handles them.
 
-<details> <summary>Advanced Example: Handling Compilation Errors</summary>
-
-If you encounter an error like "public class mismatch," fix it by:
-
-1. Renaming the file to match the public class.
-    
-2. Or, remove the `public` keyword if not needed.
-    
-
-Example fix:
-
-java
-
-`// Original (error-prone): File named WrongName.java public class CorrectName { }  // Error! // Fixed: Rename file to CorrectName.java`
-
-This is great for debugging in real projects—save this as a reminder!
-
-</details>
+> [!EXAMPLE]- Advanced: Handling Compilation Errors
+> If you encounter an error like "public class mismatch," fix it by:
+> 
+> 1. Renaming the file to match the public class.
+> 2. Or, remove the `public` keyword if not needed.
+> 
+> Example fix:
+> 
+> ```java
+> // Original (error-prone): File named WrongName.java
+> public class CorrectName { }  // Error!
+> 
+> // Fixed: Rename file to CorrectName.java
+> ```
+> 
+> Save this as a quick debug checklist for real projects.
 
 ## Comparisons: Public vs. Non-Public Classes
 

@@ -114,13 +114,26 @@ public class MultiInputExample {
 > [!TIP]  
 > Always validate input with try-catch for `InputMismatchException` to handle invalid types, e.g., entering text when expecting a number.[programiz+1](https://www.programiz.com/java-programming/scanner)
 
-<details> <summary>Click to expand: Error Handling Example</summary>
-
-java
-
-`import java.util.Scanner; import java.util.InputMismatchException; public class ErrorHandlingExample {     public static void main(String[] args) {        Scanner scanner = new Scanner(System.in);        try {            System.out.print("Enter an integer: ");            int number = scanner.nextInt();            System.out.println("You entered: " + number);        } catch (InputMismatchException e) {            System.out.println("Invalid input! Please enter an integer.");        } finally {            scanner.close();        }    } }`
-
-</details>
+> [!EXAMPLE]- Click to expand: Error Handling Example
+> ```java
+> import java.util.Scanner;
+> import java.util.InputMismatchException;
+> 
+> public class ErrorHandlingExample {
+>     public static void main(String[] args) {
+>         Scanner scanner = new Scanner(System.in);
+>         try {
+>             System.out.print("Enter an integer: ");
+>             int number = scanner.nextInt();
+>             System.out.println("You entered: " + number);
+>         } catch (InputMismatchException e) {
+>             System.out.println("Invalid input! Please enter an integer.");
+>         } finally {
+>             scanner.close();
+>         }
+>     }
+> }
+> ```
 
 #java #scanner #userinput #bestpractices #java/io
 

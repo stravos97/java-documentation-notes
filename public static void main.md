@@ -107,13 +107,6 @@ For deeper dives, explore overloading (not possible for `main` as entry point) o
 
 
 
----
-
-tags: [java, basics, main-method, command-line]  
-date: 2025-08-21  
-topic: Expanding on String[] args in Java Main Method
-
----
 
 ## String[] args in Java Main Method
 
