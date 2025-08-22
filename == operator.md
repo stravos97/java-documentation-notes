@@ -80,7 +80,7 @@ System.out.println(s1.equals(s3)); // true
 
 ***
 
-## == Operator Table
+## Operator Table
 
 | Scenario | Comparison | Example | Returns |
 | :-- | :-- | :-- | :-- |
