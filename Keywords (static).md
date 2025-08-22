@@ -9,8 +9,8 @@ topic: Java Keywords Overview
 \#java \#keywords \#syntax \#basics [[Java Syntax]]
 
 > [!NOTE]
-> ==Java keywords== are reserved words with special meaning in the Java language. They **cannot be used as identifiers** (like variable or method names).[^3][^5]
-> As of Java 21, there are 53 keywords, plus some reserved but unused and "literal" values.
+> ==Java keywords== are reserved words with special meaning in the Java language. They **cannot be used as identifiers** (like variable or method names). [w3schools+2](https://www.w3schools.com/java/java_ref_keywords.asp) [geeksforgeeks+1](https://www.geeksforgeeks.org/java/java-keywords/)
+> As of Java 21, there are 53 keywords, plus some reserved but unused and "literal" values. [wikipedia+2](https://en.wikipedia.org/wiki/List_of_Java_keywords)
 
 ***
 

@@ -2,7 +2,7 @@
 
 > [!INFO]  
 > While loops in Java are ideal for repeating code when the number of iterations is unknown upfront. They continue executing as long as a condition remains true. Syntax: `while (condition) { // code }`.  
-> This makes them perfect for interactive scenarios like games where user input determines when to stop.
+> This makes them perfect for interactive scenarios like games where user input determines when to stop. [oracle+2](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
 
 Let's build a simple **number guessing game** using a while loop. The program generates a random number between 1 and 100, and the user guesses until they get it right. We'll use `java.util.Random` for number generation and `java.util.Scanner` for input.
 
@@ -101,9 +101,13 @@ public class NumberGuessingGame {
 > [!NOTE]  
 > This example uses Java 8+ features. For older versions, import and usage remain similar.
 
-For more on loops, see [[Java Loops]].
+For more on loops, see [[Java Loops]]. [oracle+1](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html) [oracle+1](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) [oracle+1](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
 
 #java #loops #while-loop #games #programming-example
+
+1. [https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
+2. [https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+3. [https://docs.oracle.com/javase/8/docs/api/java/util/Random.html](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
 
 
 

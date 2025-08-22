@@ -13,7 +13,7 @@ topic: Java String as Object
 - **A Java `String` is an ==object== and not a primitive!**
 - Strings are instances of the `java.lang.String` class, which extends `Object`.
 - Every string literal (`"hello"`) is automatically created as a `String` object by the Java compiler and runtime.
-- The `String` class stores a sequence of characters and provides many built-in methods for text manipulation.[^1][^2][^4]
+- The `String` class stores a sequence of characters and provides many built-in methods for text manipulation. [oracle+2](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) [geeksforgeeks+1](https://www.geeksforgeeks.org/java/strings-in-java/)
 
 ***
 
@@ -26,7 +26,7 @@ public final class String extends Object
     implements Serializable, Comparable<String>, CharSequence
 ```
 
-This signature means every Java String has all the properties of a Java object, like methods (`equals()`, `hashCode()`, etc.), and can be passed around as objects.[^2][^1]
+This signature means every Java String has all the properties of a Java object, like methods (`equals()`, `hashCode()`, etc.), and can be passed around as objects. [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
 - **Creation:**
     - **String Literal:**
 
@@ -34,7 +34,7 @@ This signature means every Java String has all the properties of a Java object, 
 String s1 = "hello";
 ```
 
-The Java Virtual Machine (JVM) creates a `String` object and stores it in a special memory area called the ==String pool==.
+The Java Virtual Machine (JVM) creates a `String` object and stores it in a special memory area called the ==String pool==. [baeldung+1](https://www.baeldung.com/java-string-pool)
     - **Constructor:**
 
 ```java
@@ -52,7 +52,7 @@ Here, a new object is explicitly created in heap memory (not necessarily shared 
     - Stored in collections: `List<String>`, `Map<String, Integer>`
     - Used with all `Object` methods (`equals()`, `toString()`, etc.)
     - Passed by reference between methods
-- ==Immutability==: Once created, a String object's value cannot change. Any operation that appears to modify a string returns a new String object.[^5][^1][^4]
+- ==Immutability==: Once created, a String object's value cannot change. Any operation that appears to modify a string returns a new String object. [baeldung+1](https://www.baeldung.com/java-string-pool) [oracle+1](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
 
 ***
 

@@ -6,7 +6,7 @@ topic: Java == Operator
 
 ## == Operator in Java
 
-\#java \#operators \#equality [[Java Operators]]
+\#java \#operators \#equality [[Java Operators]] [oracle+3](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 
 ### Quick Reference
 
@@ -26,7 +26,7 @@ lhs == rhs
 
 ### === For Primitives ===
 
-- Compares ==actual values==
+- Compares ==actual values== [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 - Example:
 
 ```java
@@ -41,7 +41,7 @@ System.out.println(a == b); // true
 
 ### === For Objects ===
 
-- Compares ==references== (memory addresses)
+- Compares ==references== (memory addresses) [baeldung+1](https://www.baeldung.com/java-equals-method-operator-difference)
 - Returns `true` only if both references point to the ==exact same object==
 - Does NOT compare object contents/values
 
@@ -58,7 +58,7 @@ System.out.println(s1 == s3); // true
 
 ### === For Strings ===
 
-- Strings with equal contents may not be the same object:
+- Strings with equal contents may not be the same object: [oracle+2](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 
 ```java
 String s1 = "HELLO";

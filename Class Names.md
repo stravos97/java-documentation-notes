@@ -8,7 +8,7 @@ topic: Java Class and File Naming Conventions
 
 ## Java Class and File Naming Conventions
 
-Your statement about Java programs needing at least one class and matching filenames is mostly spot on, but let's refine it with precise details. This note serves as a quick reference for understanding these foundational rules—perfect for beginners building their first apps or experienced devs troubleshooting compilation issues. Feel free to explore the examples and expand your knowledge by experimenting in your IDE!
+Your statement about Java programs needing at least one class and matching filenames is mostly spot on, but let's refine it with precise details. This note serves as a quick reference for understanding these foundational rules—perfect for beginners building their first apps or experienced devs troubleshooting compilation issues. Feel free to explore the examples and expand your knowledge by experimenting in your IDE! [oracle+3](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) [geeksforgeeks+2](https://www.geeksforgeeks.org/g-fact-44-class-and-file-name-in-java/)
 
 ## Quick Reference: Key Rules
 
@@ -41,7 +41,7 @@ Your statement about Java programs needing at least one class and matching filen
         
 
 > [!WARNING]  
-> Ignoring naming conventions can lead to confusing bugs in larger codebases. Always prioritize clarity—it's a hallmark of Java [[bestpractices]].
+> Ignoring naming conventions can lead to confusing bugs in larger codebases. Always prioritize clarity—it's a hallmark of Java [[bestpractices]]. [oracle+1](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
 
 - **Performance Notes**: These are compile-time rules; they don't impact runtime speed, but good organization aids maintainability.
     
@@ -108,7 +108,7 @@ class WeatherHelper {
 
 ```
 
-- **How to Compile and Run**: Use `javac WeatherAdvisor.java` then `java WeatherAdvisor`.
+- **How to Compile and Run**: Use `javac WeatherAdvisor.java` then `java WeatherAdvisor`. [oracle](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html)
     
 - **Expected Output**:
     
@@ -161,7 +161,7 @@ class HelperClass {
 > // Fixed: Rename file to CorrectName.java
 > ```
 > 
-> Save this as a quick debug checklist for real projects.
+> Save this as a quick debug checklist for real projects. [oracle+1](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
 
 ## Comparisons: Public vs. Non-Public Classes
 
@@ -176,3 +176,8 @@ class HelperClass {
 > This table highlights why public classes enforce stricter rules—it's about accessibility and organization in larger apps.
 
  #java #java/basics #java/classes #bestpractices
+
+ 1. [https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html)
+ 2. [https://www.geeksforgeeks.org/g-fact-44-class-and-file-name-in-java/](https://www.geeksforgeeks.org/g-fact-44-class-and-file-name-in-java/)
+ 3. [https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
+ 4. [https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html)
