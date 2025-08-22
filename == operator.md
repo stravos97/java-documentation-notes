@@ -6,7 +6,7 @@ topic: Java == Operator
 
 ## == Operator in Java
 
-\#java \#operators \#equality [[Java Operators]] [oracle+3](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
+\#java \#operators \#equality [[Java Operators]] [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 
 ### Quick Reference
 
@@ -41,7 +41,7 @@ System.out.println(a == b); // true
 
 ### === For Objects ===
 
-- Compares ==references== (memory addresses) [baeldung+1](https://www.baeldung.com/java-equals-method-operator-difference)
+- Compares ==references== (memory addresses) [baeldung](https://www.baeldung.com/java-equals-method-operator-difference)
 - Returns `true` only if both references point to the ==exact same object==
 - Does NOT compare object contents/values
 
@@ -58,7 +58,7 @@ System.out.println(s1 == s3); // true
 
 ### === For Strings ===
 
-- Strings with equal contents may not be the same object: [oracle+2](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
+- Strings with equal contents may not be the same object: [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 
 ```java
 String s1 = "HELLO";
@@ -148,23 +148,4 @@ System.out.println(o == s); // false, only works if compatible types
 ***
 
 \#java \#operators \#bestpractices \#cheatsheets
-
-
-[^1]: https://stackoverflow.com/questions/7520432/what-is-the-difference-between-and-equals-in-java
-
-[^2]: https://www.geeksforgeeks.org/java/equality-operator-in-java-with-examples/
-
-[^3]: https://www.reddit.com/r/javahelp/comments/106qkg5/how_does_java_operator_check_equality_between/
-
-[^4]: https://www.w3schools.com/java/java_operators.asp
-
-[^5]: https://www.geeksforgeeks.org/java/difference-between-and-equals-method-in-java/
-
-[^6]: https://web.deu.edu.tr/doc/oreily/java/langref/ch04_09.htm
-
-[^7]: https://stackify.com/equality-in-java-operators-methods-and-what-to-use-when/
-
-[^8]: https://www.baeldung.com/java-equals-method-operator-difference
-
-[^9]: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html
 

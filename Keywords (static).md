@@ -3,82 +3,87 @@ tags: [java, reference, keywords, cheatsheet]
 date: 2025-08-22
 topic: Java Keywords Overview
 ---
+***
+tags: [java, reference, keywords, cheatsheet]
+date: 2025-08-22
+topic: Java Keywords Overview
+***
 
 ## Java Keywords: Quick Reference
 
 \#java \#keywords \#syntax \#basics [[Java Syntax]]
 
 > [!NOTE]
-> ==Java keywords== are reserved words with special meaning in the Java language. They **cannot be used as identifiers** (like variable or method names). [w3schools+2](https://www.w3schools.com/java/java_ref_keywords.asp) [geeksforgeeks+1](https://www.geeksforgeeks.org/java/java-keywords/)
-> As of Java 21, there are 53 keywords, plus some reserved but unused and "literal" values. [wikipedia+2](https://en.wikipedia.org/wiki/List_of_Java_keywords)
+> ==Java keywords== are reserved words with special meaning in the Java language. They **cannot be used as identifiers** (like variable or method names). [Oracle Java Language Specification](https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.9)
+> As of Java 21, there are 53 keywords, plus some reserved but unused and "literal" values.
 
 ***
 
 ## Table: Common Java Keywords and Their Use
 
-| Keyword      | Usage/purpose                                                               |
-| :----------- | :-------------------------------------------------------------------------- |
-| abstract     | Declare abstract classes or methods (no implementation, must be overridden) |
-| assert       | Test assumptions in code                                                    |
-| boolean      | Boolean data type (true/false)                                              |
-| break        | Exit a loop or switch                                                       |
-| byte         | 8-bit integer data type                                                     |
-| case         | Define branch in switch statement                                           |
-| catch        | Handle exceptions after try block                                           |
-| char         | 16-bit Unicode character                                                    |
-| class        | Declare a class                                                             |
-| const        | Reserved (not used)                                                         |
-| continue     | Skip to next iteration of loop                                              |
-| default      | Default branch in switch; default method in interface                       |
-| do           | Start of do-while loop                                                      |
-| double       | 64-bit floating point number                                                |
-| else         | Branch for if statement                                                     |
-| enum         | Create enumerations                                                         |
-| extends      | Inherit class or interface                                                  |
-| final        | Prevent override or change (variable, method, class)                        |
-| finally      | Always executes after try/catch                                             |
-| float        | 32-bit floating point number                                                |
-| for          | Loop structure                                                              |
-| goto         | Reserved (not used)                                                         |
-| if           | Conditional branch                                                          |
-| implements   | Declare that a class implements interfaces                                  |
-| import       | Include other Java classes/packages                                         |
-| instanceof   | Test object type                                                            |
-| int          | 32-bit integer data type                                                    |
-| interface    | Declare an interface                                                        |
-| long         | 64-bit integer data type                                                    |
-| native       | Method written in platform-native code                                      |
-| new          | Create new objects                                                          |
-| null         | Reference to no object                                                      |
-| package      | Specify namespace                                                           |
-| private      | Accessible only within class                                                |
-| protected    | Accessible within package and subclasses                                    |
-| public       | Accessible from anywhere                                                    |
-| return       | Return from a method                                                        |
-| short        | 16-bit integer data type                                                    |
-| static       | Belongs to class rather than instance                                       |
-| strictfp     | Restrict floating-point arithmetic for portability                          |
-| super        | Access parent class members                                                 |
-| switch       | Multi-branch selection                                                      |
-| synchronized | Thread-safe code blocks                                                     |
-| this         | Reference current object                                                    |
-| throw        | Raise an exception                                                          |
-| throws       | Declare exception(s) a method may throw                                     |
-| transient    | Not serializable                                                            |
-| try          | Start exception-handling block                                              |
-| void         | No return value                                                             |
-| volatile     | May be modified by multiple threads                                         |
-| while        | Begin while loop                                                            |
-| sealed       | Restricts which other classes may extend or implement this class/interface  |
-| permits      | Specifies which classes may extend a sealed class                           |
+| Keyword | Usage/purpose |
+| :-- | :-- |
+| abstract | Declare abstract classes or methods (no implementation, must be overridden) |
+| assert | Test assumptions in code |
+| boolean | Boolean data type (true/false) |
+| break | Exit a loop or switch |
+| byte | 8-bit integer data type |
+| case | Define branch in switch statement |
+| catch | Handle exceptions after try block |
+| char | 16-bit Unicode character |
+| class | Declare a class |
+| const | Reserved (not used) |
+| continue | Skip to next iteration of loop |
+| default | Default branch in switch; default method in interface |
+| do | Start of do-while loop |
+| double | 64-bit floating point number |
+| else | Branch for if statement |
+| enum | Create enumerations |
+| extends | Inherit class or interface |
+| final | Prevent override or change (variable, method, class) |
+| finally | Always executes after try/catch |
+| float | 32-bit floating point number |
+| for | Loop structure |
+| goto | Reserved (not used) |
+| if | Conditional branch |
+| implements | Declare that a class implements interfaces |
+| import | Include other Java classes/packages |
+| instanceof | Test object type |
+| int | 32-bit integer data type |
+| interface | Declare an interface |
+| long | 64-bit integer data type |
+| native | Method written in platform-native code |
+| new | Create new objects |
+| null | Reference to no object |
+| package | Specify namespace |
+| private | Accessible only within class |
+| protected | Accessible within package and subclasses |
+| public | Accessible from anywhere |
+| return | Return from a method |
+| short | 16-bit integer data type |
+| static | Belongs to class rather than instance |
+| strictfp | Restrict floating-point arithmetic for portability |
+| super | Access parent class members |
+| switch | Multi-branch selection |
+| synchronized | Thread-safe code blocks |
+| this | Reference current object |
+| throw | Raise an exception |
+| throws | Declare exception(s) a method may throw |
+| transient | Not serializable |
+| try | Start exception-handling block |
+| void | No return value |
+| volatile | May be modified by multiple threads |
+| while | Begin while loop |
+| sealed | Restricts which other classes may extend or implement this class/interface |
+| permits | Specifies which classes may extend a sealed class |
 
 
 ***
 
 ## Special Notes
 
-- **true, false, null:** Not keywords, but ==literals== (still can't use as identifiers).[^5][^3]
-- **const, goto:** Reserved, but not used.[^3][^5]
+- **true, false, null:** Not keywords, but ==literals== (still can't use as identifiers).
+- **const, goto:** Reserved, but not used.
 - **case-sensitive:** All keywords must be ==lowercase==.
 - **static:** Denotes static variables/methods (shared across all instances).
 
@@ -107,22 +112,6 @@ public class Example {
 
 \#java/reference \#syntax \#cheatsheets
 
-[^1]: https://www.w3schools.com/java/java_ref_keywords.asp
-
-[^2]: https://en.wikipedia.org/wiki/List_of_Java_keywords
-
-[^3]: https://www.geeksforgeeks.org/java/java-keywords/
-
-[^4]: https://data-flair.training/blogs/java-keywords/
-
-[^5]: https://www.codejava.net/java-core/the-java-language/java-keywords
-
-[^6]: https://www.programiz.com/java-programming/keywords-identifiers
-
-[^7]: http://key.mkprog.com/en/java/
-
-
-
 # Java Keywords: Complete Beginner's Guide
 
 \#java \#keywords \#basics \#beginners [[Java Syntax]]
@@ -145,7 +134,7 @@ Think of keywords as **the building blocks** of Java - they tell the computer ex
 
 ## Keywords by Category
 
-### 🏗️ **Class \& Object Keywords**
+###  **Class \& Object Keywords**
 
 #### `class`
 
@@ -211,7 +200,7 @@ class Dog extends Animal {
 
 #### `static`
 
-**What it does:** Makes something belong to the **class itself**, not individual objects.[^2][^3][^4]
+**What it does:** Makes something belong to the **class itself**, not individual objects.
 
 **Key Points:**
 
@@ -246,7 +235,7 @@ public static void main(String[] args) {
 
 ***
 
-### 🔄 **Control Flow Keywords**
+### **Control Flow Keywords**
 
 #### `if` and `else`
 
@@ -303,7 +292,7 @@ for (int i = 0; i < 10; i++) {
 
 ***
 
-### 📊 **Data Type Keywords**
+###  **Data Type Keywords**
 
 #### Primitive Types
 
@@ -319,7 +308,7 @@ char grade = 'A';       // Single character
 
 ***
 
-### 🔧 **Method \& Variable Keywords**
+### **Method \& Variable Keywords**
 
 #### `void`
 
@@ -355,7 +344,7 @@ MAX_STUDENTS = 40;  // ERROR! Cannot modify final variable
 
 ***
 
-### 🏛️ **Object-Oriented Keywords**
+###  **Object-Oriented Keywords**
 
 #### `extends`
 
@@ -411,28 +400,15 @@ class Dog extends Animal {
 
 > [!WARNING]
 > **Don't do this:**
-> ```java
-> int class = 5;   // ERROR: 'class' is a keyword!
-> String public;   // ERROR: 'public' is a keyword!
-> ```
+> ```java > int class = 5;   // ERROR: 'class' is a keyword! > String public;   // ERROR: 'public' is a keyword! > ```
 
 > [!WARNING]
 > **Keywords are case-sensitive:**
-> ```java
-> Public class Test { }  // ERROR: Should be 'public' (lowercase)
-> ```
+> ```java > Public class Test { }  // ERROR: Should be 'public' (lowercase) > ```
 
 > [!WARNING]
 > **Static methods can't access non-static variables:**
-> ```java
-> class MyClass {
->     int number = 5;
-> 
->     static void printNumber() {
->         System.out.println(number);  // ERROR: Can't access non-static from static
->     }
-> }
-> ```
+> ```java > class MyClass { >     int number = 5; >  >     static void printNumber() { >         System.out.println(number);  // ERROR: Can't access non-static from static >     } > } > ```
 
 ***
 
@@ -467,32 +443,3 @@ class Dog extends Animal {
 ***
 
 \#java/basics \#java/keywords \#programming \#cheatsheets
-
-[^1]: https://www.youtube.com/watch?v=tfLZmZsRRxc
-
-[^2]: https://www.geeksforgeeks.org/java/static-keyword-java/
-
-[^3]: https://www.w3schools.com/java/ref_keyword_static.asp
-
-[^4]: https://www.freecodecamp.org/news/java-static-keyword-explained/
-
-[^5]: https://www.youtube.com/watch?v=Zw4mAxm5pCA
-
-[^6]: https://www.baeldung.com/java-access-modifiers
-
-[^7]: https://www.geeksforgeeks.org/java/java-keywords/
-
-[^8]: https://www.geekster.in/articles/static-keyword-in-java/
-
-[^9]: https://www.simplilearn.com/tutorials/java-tutorial/access-modifiers
-
-[^10]: https://www.geeksforgeeks.org/java/public-vs-protected-vs-package-vs-private-access-modifier-in-java/
-
-[^11]: https://beginnersbook.com/2022/10/java-keywords-with-examples/
-
-[^12]: https://www.simplilearn.com/tutorials/java-tutorial/static-keyword-in-java
-
-[^13]: https://www.w3schools.com/java/java_modifiers.asp
-
-[^14]: https://www.youtube.com/watch?v=T632kAJ_9VA
-

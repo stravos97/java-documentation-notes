@@ -1,183 +1,234 @@
 ## Java While Loop: Number Guessing Game
 
-> [!INFO]  
-> While loops in Java are ideal for repeating code when the number of iterations is unknown upfront. They continue executing as long as a condition remains true. Syntax: `while (condition) { // code }`.  
-> This makes them perfect for interactive scenarios like games where user input determines when to stop. [oracle+2](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
+> [!INFO]
+> **While loops** in Java are ideal when the number of iterations is **unknown upfront**.
+> They continue executing as long as a condition is true.
+>
+> **Syntax**:
+> ```java
+> while (condition) {
+>     // code
+> }
+> ```
+
+> Use them for interactive scenarios like **games** where user input determines when to stop. [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
+
+
 
 Let's build a simple **number guessing game** using a while loop. The program generates a random number between 1 and 100, and the user guesses until they get it right. We'll use `java.util.Random` for number generation and `java.util.Scanner` for input.
 
-## Game Requirements
+***
 
-- Generate a random number (1-100).
-    
-- Prompt the user to guess.
-    
-- Provide feedback: "Too high", "Too low", or "Correct!".
-    
-- Count the number of attempts.
-    
-- Loop until the guess is correct.
-    
+### Game Requirements
 
-> [!TIP]  
-> Use while loops for user-driven interactions. Always include a way to exit the loop to avoid infinite loops.
+- Generate a random number (1–100)
+- Prompt the user to guess
+- Provide feedback:
+    - `"Too high"`
+    - `"Too low"`
+    - `"Correct!"`
+- Count number of attempts
+- Stop when the user guesses correctly
 
-## Code Example
+> [!TIP]
+> While loops are great for ==user-driven interactions==.
+> Always include an exit condition to avoid infinite loops.
+
+***
+
+### Code Example
 
 ```java
 import java.util.Random;
 import java.util.Scanner;
 
 public class NumberGuessingGame {
+    
     public static void main(String[] args) {
+        
         // Create Random and Scanner objects
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
         
-        // Generate random number between 1 and 100
-        int targetNumber = random.nextInt(100) + 1;
-        int guess = 0;  // Initialize guess variable
-        int attempts = 0;  // Track number of attempts
+        // Initialize game variables
+        int targetNumber = random.nextInt(100) + 1;  // Random number 1-100
+        int guess = 0;          // User's latest guess
+        int attempts = 0;       // Attempt counter
         
+        // Welcome message
         System.out.println("Welcome to the Number Guessing Game!");
         System.out.println("I've picked a number between 1 and 100. Try to guess it!");
         
-        // While loop: Continues until guess matches target
+        // Main game loop: continues until correct guess
         while (guess != targetNumber) {
-            System.out.print("Enter your guess: ");
-            guess = scanner.nextInt();  // Read user input
-            attempts++;  // Increment attempt counter
             
+            System.out.print("Enter your guess: ");
+            guess = scanner.nextInt(); 
+            attempts++;
+            
+            // Provide feedback based on guess
             if (guess < targetNumber) {
                 System.out.println("Too low! Try again.");
+                
             } else if (guess > targetNumber) {
                 System.out.println("Too high! Try again.");
+                
             } else {
-                System.out.println("Congratulations! You guessed it in " + attempts + " attempts.");
+                System.out.println("🎉 Correct! You guessed it in " + attempts + " attempts.");
             }
         }
         
-        // Close scanner to prevent resource leak
+        // Clean up resources
         scanner.close();
     }
 }
-
 ```
 
-> [!EXAMPLE]  
-> Sample Output:  
-> Welcome to the Number Guessing Game!  
-> I've picked a number between 1 and 100. Try to guess it!  
-> Enter your guess: 50  
-> Too low! Try again.  
-> Enter your guess: 75  
-> Too high! Try again.  
-> Enter your guess: 62  
-> Congratulations! You guessed it in 3 attempts.
+***
 
-## Explanation
+### Example Run
 
-- **Initialization**: We set up `Random` for the target number and `Scanner` for input.
-    
-- **While Loop**: The loop runs while `guess != targetNumber`. It reads input, checks the guess, and provides feedback.
-    
-- **Condition Check**: Inside the loop, if-else statements guide the user.
-    
-- **Exit**: The loop ends naturally when the guess is correct.
-    
+> [!EXAMPLE]
+> **Sample Output:**
+> ```
+> Welcome to the Number Guessing Game!
+> I've picked a number between 1 and 100. Try to guess it!
+> Enter your guess: 50
+> Too low! Try again.
+> Enter your guess: 75
+> Too high! Try again.
+> Enter your guess: 62
+> 🎉 Correct! You guessed it in 3 attempts.
+> ```
 
-> [!WARNING]  
+***
+
+### Explanation
+
+- **Initialization**: `Random` → number, `Scanner` → input
+- **While Loop**: continues until `guess == targetNumber`
+- **Condition Check**: feedback given using if-else
+- **Exit**: loop ends naturally when correct guess
+
+> [!WARNING]
+> To prevent `InputMismatchException`, check input with `scanner.hasNextInt()`.
+
+***
+
+### Enhancements
+
+- **Guess limits**:
+
+```java
+while (guess != targetNumber && attempts < 10) { ... }
+```
+
+- **Difficulty Levels**: Adjust random range based on user choice
+- **Extensions**: Pair with [[Java Switch Statement]] for menus
+- **Input Safety**: Use [[Java Exceptions]] for error handling
+
+> [!WARNING]
 > Always validate user input! In a real app, add checks for non-integer inputs using `scanner.hasNextInt()` to avoid exceptions.
 
 ## Enhancements and Variations
 
 - **Add Guess Limits**: Modify the condition to `while (guess != targetNumber && attempts < 10)` for a limited-attempts version.
-    
 - **Difficulty Levels**: Adjust the random range based on user choice.
-    
 - **Related Concepts**: Combine with [[Java Switch Statement]] for menu options or [[Java Exceptions]] for input handling.
-    
 
-> [!NOTE]  
+> [!NOTE]
 > This example uses Java 8+ features. For older versions, import and usage remain similar.
 
-For more on loops, see [[Java Loops]]. [oracle+1](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html) [oracle+1](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) [oracle+1](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
+For more on loops, see [[Java Loops]]. [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html) [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
 
-#java #loops #while-loop #games #programming-example
+\#java \#loops \#while-loop \#games \#programming-example
 
-1. [https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
-2. [https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
-3. [https://docs.oracle.com/javase/8/docs/api/java/util/Random.html](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
-
-
+***
 
 ## Java Program: Prime Number Finder Explained
 
-> [!INFO]  
-> This Java program finds and prints the first N prime numbers, where N is user-specified. It uses a `while` loop to iterate through numbers starting from 2, checking each for primality with an optimized `for` loop. This is a practical example of nested loops, conditional checks, and basic input handling in Java.
+> [!INFO]
+> Finds and prints the first **N prime numbers** (where `N` is user input).
+> Demonstrates: `while` + nested `for` loop, conditional logic, input handling.
+> Optimized by only testing divisors up to √n.
 
-The code demonstrates efficient prime checking by only testing divisors up to the square root of the number, reducing unnecessary computations. It's a great starting point for understanding number theory in programming.
+> [!NOTE]
+> Prime = number > 1 with no divisors except **1** and itself.
+> Smallest prime = **2**.
 
-> [!NOTE]  
-> Prime numbers are integers greater than 1 with no positive divisors other than 1 and themselves. This program starts from 2 (the smallest prime) and generates primes sequentially.
+***
 
-## Program Overview
+### Program Overview
 
-- **Purpose**: Generate and display the first `maxPrimes` prime numbers based on user input.
-    
-- **Key Concepts**: [[Java Loops]] (while and for), conditional statements, [[Java Math]] methods like `Math.sqrt()`, and user input via `Scanner`.
-    
-- **Efficiency**: The primality test is optimized to O(sqrt(n)) time complexity per number, making it suitable for small to moderate values of N.
-    
-- **When to Use**: Ideal for educational purposes, coding interviews, or as a building block for algorithms like the Sieve of Eratosthenes (for larger ranges).
-    
-- **Version Note**: Compatible with Java 8+; no version-specific features are used.
-    
+- **Goal**: Display first `maxPrimes` primes
+- **Concepts**: [[Java Loops]], conditional statements, [[Java Math]] (`Math.sqrt()`), input handling [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
+- **Efficiency**: O(√n) primality test, suitable for small–medium N
+- **Java Version**: Works with Java 8+, no special features
 
-> [!TIP]  
-> For larger prime generation, consider the ==Sieve of Eratosthenes== algorithm for better performance, as this trial division method scales poorly for big N.
+> [!TIP]
+> For generating many primes, use the ==Sieve of Eratosthenes==.
 
-## Code Breakdown
+***
 
-Let's dissect the code step by step. I'll include the full code first for reference, then explain each section.
+### Code Example
 
 ```java
 import java.util.Scanner;
 
 public class PrimeNumberFinder {
+    
     public static void main(String[] args) {
+        
+        // Initialize scanner for user input
         Scanner scanner = new Scanner(System.in);
-        int count = 0;
-        int number = 2;
-
+        
+        // Initialize counters and starting values
+        int count = 0;          // Number of primes found so far
+        int number = 2;         // Current number to test (start with first prime)
+        
+        // Get user input
         System.out.print("How many prime numbers do you want to find? ");
         int maxPrimes = scanner.nextInt();
-
-        System.out.println("First " + maxPrimes + " prime numbers:");
-
-        while (count < maxPrimes) {
-            boolean isPrime = true;
         
+        // Validate input
+        if (maxPrimes <= 0) {
+            System.out.println("Invalid input.");
+            return;
+        }
+        
+        // Display header
+        System.out.println("First " + maxPrimes + " prime numbers:");
+        
+        // Main loop: find primes until we have enough
+        while (count < maxPrimes) {
+            
+            boolean isPrime = true;
+            
+            // Test for divisors from 2 to sqrt(number)
             for (int i = 2; i <= Math.sqrt(number); i++) {
+                
                 if (number % i == 0) {
                     isPrime = false;
-                    break;
+                    break;  // Exit early if divisor found
                 }
             }
-        
+            
+            // If prime, print it and increment counter
             if (isPrime) {
                 System.out.print(number + " ");
                 count++;
             }
-        
+            
+            // Move to next candidate number
             number++;
         }
-
+        
+        // Clean up resources
         scanner.close();
     }
 }
-
 ```
+
 
 ## 1. Import Statement
 
@@ -186,9 +237,8 @@ import java.util.Scanner;
 ```
 
 - This imports the `Scanner` class from Java's utility package, allowing the program to read user input from the console (System.in).
-    
 - **Why?** Without this, you couldn't use `Scanner` for interactive input. Alternatives include `BufferedReader` for more advanced I/O, but `Scanner` is simpler for beginners.
-    
+
 
 ## 2. Class and Main Method
 
@@ -201,11 +251,9 @@ public class PrimeNumberFinder {
 ```
 
 - Defines a public class named `PrimeNumberFinder`. In Java, the file name should match the class name (PrimeNumberFinder.java).
-    
 - The `main` method is the entry point. `String[] args` allows command-line arguments (unused here).
-    
 - **Best Practice**: Always keep the main method clean; consider extracting logic to separate methods for larger programs.
-    
+
 
 ## 3. Initialization and User Input
 
@@ -222,19 +270,13 @@ System.out.println("First " + maxPrimes + " prime numbers:");
 ```
 
 - Creates a `Scanner` object to read from standard input.
-    
 - `count` tracks how many primes have been found (starts at 0).
-    
 - `number` starts at 2, the first prime, and will increment to check subsequent numbers.
-    
 - Prompts the user and reads an integer with `scanner.nextInt()` into `maxPrimes`.
-    
 - Prints a header message using string concatenation.
-    
 - **Common Pitfall**: If the user enters non-integer input, it throws an `InputMismatchException`. Add try-catch for robustness (see Enhancements below).
-    
 
-> [!WARNING]  
+> [!WARNING]
 > Avoid infinite loops by ensuring the loop condition (e.g., `count < maxPrimes`) can eventually become false. Here, `number++` and `count++` ensure progress.
 
 ## 4. The While Loop: Finding Primes
@@ -261,27 +303,17 @@ while (count < maxPrimes) {
 ```
 
 - **Outer While Loop**: Continues until `count` reaches `maxPrimes`. This is perfect for unknown iteration counts (we don't know how many numbers we'll check to find N primes).
-    
 - **Primality Check**:
-    
     - Assume `isPrime` is true initially.
-        
     - Inner `for` loop checks divisors from 2 up to `Math.sqrt(number)` (inclusive). `Math.sqrt()` returns a double, but the loop treats it as int via casting in the condition.
-        
     - If `number % i == 0`, it's not prime: set `isPrime = false` and `break` to exit early.
-        
 - **If Prime**:
-    
     - Print the number (with a space) and increment `count`.
-        
 - Always increment `number` to check the next candidate.
-    
 - **Optimization Note**: Checking up to sqrt(n) is efficient because if n has a factor larger than its sqrt, it must also have one smaller (already checked). For example, for 25, sqrt=5, and it checks 2-5.
-    
 - **Performance**: For small `maxPrimes` (e.g., 100), it's fast. For large values (e.g., 1,000,000), it could be slow—consider alternatives.
-    
 
-> [!TIP]  
+> [!TIP]
 > Use `int sqrtLimit = (int) Math.sqrt(number);` and loop `i <= sqrtLimit` for slight clarity and to avoid repeated sqrt calls, though modern JVMs optimize this.
 
 ## Why Start at 2?
@@ -291,6 +323,7 @@ while (count < maxPrimes) {
 - **Why not start at 0?** Division by 0 is undefined/causes an error
 - **Why not start at 1?** Every number is divisible by 1, so checking `number % 1` would always equal 0 and incorrectly mark all numbers as "not prime"
 - **Start at 2:** This is the first meaningful divisor to check. If a number is divisible by anything between 2 and √number, it's composite
+
 
 ## The Logic
 
@@ -310,7 +343,7 @@ scanner.close();
 ```
 
 - Releases system resources associated with the scanner. Good practice to prevent leaks, especially in larger apps.
-    
+
 
 ## How It Works: Step-by-Step Execution
 
@@ -318,11 +351,11 @@ Let's trace through finding the **first 3 prime numbers** (`maxPrimes = 3`):
 
 #### Initial State
 
-| Variable    | Value | Purpose                             |
-| :---------- | :---- | :---------------------------------- |
-| `count`     | 0     | No primes found yet                 |
-| `number`    | 2     | Starting with first prime candidate |
-| `maxPrimes` | 3     | User wants 3 primes                 |
+| Variable | Value | Purpose |
+| :-- | :-- | :-- |
+| `count` | 0 | No primes found yet |
+| `number` | 2 | Starting with first prime candidate |
+| `maxPrimes` | 3 | User wants 3 primes |
 
 > [!EXAMPLE]
 > **User Input:** 3
@@ -489,6 +522,14 @@ while (count < maxPrimes) {
 }
 ```
 
+Imagine listening to songs and counting how many are jazz:
+
+- `number` = which song you're on (goes up with every song: track 1, 2, 3, 4...)
+- `count` = how many jazz songs you've heard (only goes up when you hear jazz)
+- `maxPrimes` = how many jazz songs you need to find
+
+You listen to EVERY song in order, but only count the jazz ones. Stop when you've found enough jazz songs.
+
 > [!NOTE]
 > This pattern separates **progress tracking** (`count`) from **candidate iteration** (`number`). Essential for "find N items matching criteria" algorithms.
 
@@ -552,21 +593,13 @@ while (count < target) {
 ## Common Pitfalls and Improvements
 
 - **Pitfalls**:
-    
     - For number=1 or negatives: The code starts at 2, but add checks if needed.
-        
     - Large inputs: May run slowly or overflow `int` (primes up to ~2 billion fit in int).
-        
     - No handling for maxPrimes <=0: Add validation like `if (maxPrimes <= 0) { System.out.println("Invalid input"); return; }`.
-        
 - **Enhancements**:
-    
     - Handle exceptions: Wrap `nextInt()` in try-catch.
-        
     - Even number optimization: After 2, skip evens by incrementing number by 2.
-        
     - Make it a method: Extract primality check to a reusable function.
-        
 
 **Advanced Example: Optimized Primality Method**
 
@@ -585,6 +618,6 @@ public static boolean isPrime(int num) {
 
 This checks multiples of 6 for faster sieving.
 
-For more on number algorithms, see [[Java Math]] or [[Algorithms in Java]].
+For more on number algorithms, see [[Java Math]] or [[Algorithms in Java]]. [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
 
-#java #loops #prime-numbers #algorithms #programming-example
+\#java \#loops \#prime-numbers \#algorithms \#programming-example
