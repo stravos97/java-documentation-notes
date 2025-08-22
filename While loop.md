@@ -194,7 +194,6 @@ public class PrimeNumberFinder {
         // Code here
     }
 }
-
 ```
 
 - Defines a public class named `PrimeNumberFinder`. In Java, the file name should match the class name (PrimeNumberFinder.java).
@@ -281,6 +280,25 @@ while (count < maxPrimes) {
 > [!TIP]  
 > Use `int sqrtLimit = (int) Math.sqrt(number);` and loop `i <= sqrtLimit` for slight clarity and to avoid repeated sqrt calls, though modern JVMs optimize this.
 
+## Why Start at 2?
+
+**Prime Definition:** A prime number has exactly two divisors: 1 and itself.
+
+- **Why not start at 0?** Division by 0 is undefined/causes an error
+- **Why not start at 1?** Every number is divisible by 1, so checking `number % 1` would always equal 0 and incorrectly mark all numbers as "not prime"
+- **Start at 2:** This is the first meaningful divisor to check. If a number is divisible by anything between 2 and √number, it's composite
+
+## The Logic
+
+The algorithm essentially asks: "Does this number have any divisors OTHER than 1 and itself?"
+
+- Start checking at 2 (the smallest possible "other" divisor)
+- End at √number (mathematical optimization)
+- If we find any divisor in this range, the number is composite
+- If we find no divisors in this range, the number is prime
+
+Starting at `i = 2` ensures we only check meaningful divisors that actually determine primality.
+
 ## 5. Closing the Scanner
 
 ```java
@@ -292,27 +310,240 @@ scanner.close();
 
 ## How It Works: Step-by-Step Execution
 
-1. Program starts, asks for input (e.g., user enters 5).
-    
-2. Sets `maxPrimes=5`, prints header.
-    
-3. Enters while loop (count=0 < 5).
-    
-4. Checks if 2 is prime: For loop from 2 to sqrt(2)≈1.41 (loop doesn't run), so isPrime=true. Prints 2, count=1, number=3.
-    
-5. Repeats: 3 (prime), prints 3, count=2, number=4.
-    
-6. 4: Divisible by 2, isPrime=false, skips print, number=5.
-    
-7. Continues until 5 primes found (2,3,5,7,11 for maxPrimes=5).
-    
+Let's trace through finding the **first 3 prime numbers** (`maxPrimes = 3`):
 
-> [!EXAMPLE]  
-> Input: 3  
-> Output:  
-> How many prime numbers do you want to find? 3  
-> First 3 prime numbers:  
-> 2 3 5
+#### Initial State
+
+| Variable    | Value | Purpose                             |
+| :---------- | :---- | :---------------------------------- |
+| `count`     | 0     | No primes found yet                 |
+| `number`    | 2     | Starting with first prime candidate |
+| `maxPrimes` | 3     | User wants 3 primes                 |
+
+> [!EXAMPLE]
+> **User Input:** 3
+> **Expected Output:** 2 3 5
+
+#### Iteration-by-Iteration Analysis
+
+**Iteration 1: Testing number = 2**
+
+```java
+// Loop condition check
+while (count < maxPrimes)  // 0 < 3 → true, continue
+
+// Prime test for 2
+boolean isPrime = true;
+for (int i = 2; i <= Math.sqrt(2); i++) {  // i <= 1.4, loop doesn't run
+    // No iterations, isPrime stays true
+}
+
+if (isPrime) {  // true
+    System.out.print(2 + " ");  // Print: "2 "
+    count++;  // count becomes 1
+}
+number++;  // number becomes 3
+```
+
+**State after iteration 1:**
+
+- `count = 1`, `number = 3`
+- Output so far: `2 `
+
+When a number "skips" the for loop (the loop body never executes), it means **there are no possible divisors to check**, which by definition makes it prime.
+
+The loop skips when: `2 > Math.sqrt(number)`
+
+This happens when: `number < 4`
+
+So for numbers 2 and 3:
+
+- **Number = 2:** `Math.sqrt(2) ≈ 1.41`, condition `2 <= 1.41` is false → loop skips
+- **Number = 3:** `Math.sqrt(3) ≈ 1.73`, condition `2 <= 1.73` is false → loop skips
+
+The algorithm logic is: "If I can't find any divisor between 2 and √number, then the number is prime."
+
+For 2 and 3, there literally **aren't any numbers between 2 and √number to check**:
+
+- For 2: No integers exist between 2 and 1.41
+- For 3: No integers exist between 2 and 1.73
+
+The algorithm uses "**innocent until proven guilty**" logic:
+
+1. Start by assuming the number IS prime (`isPrime = true`)
+2. Try to find evidence it's NOT prime (find a divisor)
+3. If no evidence is found, the assumption stands
+
+***
+
+**Iteration 2: Testing number = 3**
+
+```java
+// Loop condition check
+while (count < maxPrimes)  // 1 < 3 → true, continue
+
+// Prime test for 3
+boolean isPrime = true;
+for (int i = 2; i <= Math.sqrt(3); i++) {  // i <= 1.7, loop doesn't run
+    // No iterations, isPrime stays true
+}
+
+if (isPrime) {  // true
+    System.out.print(3 + " ");  // Print: "3 "
+    count++;  // count becomes 2
+}
+number++;  // number becomes 4
+```
+
+**State after iteration 2:**
+
+- `count = 2`, `number = 4`
+- Output so far: `2 3 `
+
+***
+
+**Iteration 3: Testing number = 4**
+
+```java
+// Loop condition check
+while (count < maxPrimes)  // 2 < 3 → true, continue
+
+// Prime test for 4
+boolean isPrime = true;
+for (int i = 2; i <= Math.sqrt(4); i++) {  // i <= 2.0, i = 2
+    if (4 % 2 == 0) {  // 0, divisible!
+        isPrime = false;
+        break;  // Exit early
+    }
+}
+
+if (isPrime) {  // false, skip this block
+    // Nothing happens - no print, no count increment
+}
+number++;  // number becomes 5
+```
+
+**State after iteration 3:**
+
+- `count = 2` (unchanged), `number = 5`
+- Output so far: `2 3 ` (unchanged)
+
+> [!TIP]
+> Notice how `count` stays the same when a composite number is found, but `number` always increments. This ensures we test every candidate while only counting actual primes.
+
+***
+
+**Iteration 4: Testing number = 5**
+
+```java
+// Loop condition check
+while (count < maxPrimes)  // 2 < 3 → true, continue
+
+// Prime test for 5
+boolean isPrime = true;
+for (int i = 2; i <= Math.sqrt(5); i++) {  // i <= 2.2, i = 2
+    if (5 % 2 == 0) {  // 1, not divisible
+        // Condition false, continue loop
+    }
+    // Loop ends, isPrime remains true
+}
+
+if (isPrime) {  // true
+    System.out.print(5 + " ");  // Print: "5 "
+    count++;  // count becomes 3
+}
+number++;  // number becomes 6
+```
+
+**State after iteration 4:**
+
+- `count = 3`, `number = 6`
+- Output so far: `2 3 5 `
+
+***
+
+**Loop Termination Check**
+
+```java
+while (count < maxPrimes)  // 3 < 3 → false, exit loop
+```
+
+> [!SUCCESS]
+> **Final Output:** `2 3 5 ` (exactly 3 primes found)
+
+### Key Insights from the Walkthrough
+
+#### 1. Dual Counter Pattern
+
+```java
+while (count < maxPrimes) {
+    // Test current number
+    if (isPrime) {
+        count++;  // Only increments for primes
+    }
+    number++;     // Always increments
+}
+```
+
+> [!NOTE]
+> This pattern separates **progress tracking** (`count`) from **candidate iteration** (`number`). Essential for "find N items matching criteria" algorithms.
+
+#### 2. Optimization: Early Break
+
+```java
+for (int i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i == 0) {
+        isPrime = false;
+        break;  // No need to check further
+    }
+}
+```
+
+The `break` statement saves unnecessary iterations once we find a divisor.
+
+#### 3. Mathematical Efficiency
+
+Testing only up to `√number` is mathematically sound:
+
+- If `n = a × b` and both `a, b > √n`, then `a × b > n` (contradiction)
+- So at least one factor must be ≤ √n
+
+> [!WARNING]
+> **Common Mistake:** Forgetting to increment `number` leads to infinite loops testing the same candidate repeatedly.
+
+### Performance Analysis
+
+| Input Size | Time Complexity | Notes |
+| :-- | :-- | :-- |
+| Small (N ≤ 100) | Very fast | Suitable for interactive use |
+| Medium (N ≤ 1000) | Acceptable | May take a few seconds |
+| Large (N > 10000) | Slow | Consider [[Sieve of Eratosthenes]] |
+
+> [!TIP]
+> For finding many primes efficiently, pre-compute them using a sieve algorithm, then access by index.
+
+### Related Patterns
+
+This while loop pattern applies to many scenarios:
+
+- Finding N Fibonacci numbers
+- Collecting N valid user inputs
+- Searching for N files matching criteria
+- Generating N random unique values
+
+```java
+// General pattern
+int count = 0;
+int candidate = startValue;
+while (count < target) {
+    if (meetsCondition(candidate)) {
+        processItem(candidate);
+        count++;
+    }
+    candidate++;
+}
+```
+
 
 ## Common Pitfalls and Improvements
 
