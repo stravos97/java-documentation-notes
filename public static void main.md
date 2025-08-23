@@ -47,7 +47,7 @@ execution [GeeksforGeeks](https://www.geeksforgeeks.org/java/java-main-method-pu
 Let's dissect each part of `public static void main(String[] args)`:
 
 
-- **public**: Access modifier that makes the method accessible from anywhere, including the JVM which calls it from
+- **public**: Access modifier that makes the method accessible from anywhere, including the JVM, which calls it from
   outside the
   class [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
 - **static**: Allows the method to be called without instantiating the class (no need for `new`), as it's tied to the
@@ -77,8 +77,7 @@ found" [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-st
 - **Void**: No return value is needed, as the method's purpose is to kick off
   execution [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
 - **String[] args**: Enables external input, like running `java MyClass arg1 arg2`, where `args[0]` is "arg1" and
-  `args[1]` is "
-  arg2" [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
+  `args[1]` is "arg2" [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
 
 
 If you omit or alter it (e.g., non-static), the JVM can't find the entry
@@ -163,7 +162,7 @@ argument) [DigitalOcean](https://www.digitalocean.com/community/tutorials/public
 - **Command-Line Input**: When running a Java program via `java ClassName arg1 arg2`, the strings "arg1" and "arg2" are
   stored in `args` as `args[0]` and
   `args[1]` [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
-- **Common Applications**: Passing file paths, flags (e.g., "-verbose"), or parameters like user names for scripts,
+- **Common Applications**: Passing file paths, flags (e.g., "-verbose"), or parameters like usernames for scripts,
   tools, or batch processing. For example, a file processor might use `args[0]` as the input file
   name [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
 - **Performance Considerations**: Handling large numbers of arguments is fine, but very long arrays could impact memory;
@@ -234,7 +233,7 @@ public class ArgumentSum {
 **Output**: Sum of arguments: 30
 
 
-If run without args: No arguments provided. Usage: java ArgumentSum 1 2 3
+If run without args: No arguments are provided. Usage: java ArgumentSum 1 2 3
 
 > [!EXAMPLE]
 > In a real app like a greeting tool: `java Greeter Alice` outputs "Hello, Alice!" by using `args[0]`.
@@ -245,7 +244,7 @@ If run without args: No arguments provided. Usage: java ArgumentSum 1 2 3
 - **Multi-Word Arguments**: Enclose in quotes if spaces are needed, e.g., `java MyApp "Hello World"` stores "Hello
   World" as one
   argument [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
-- **IDE Usage**: In tools like Eclipse or IntelliJ, configure run settings to pass arguments without command
+- **IDE Usage**: In tools like Eclipse or IntelliJ, configure run settings to pass arguments without a command
   line [DigitalOcean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method).
 - **Related Concepts**: [[Java Arrays]], [[Varargs in Java]], [[Command-Line Parsing]]. For Java 17+, consider preview
   features like implicit main methods (JEP 463), which might simplify declarations in

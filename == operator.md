@@ -51,9 +51,7 @@ lhs ==rhs
 ```java
 int a = 5;
 int b = 5;
-System.out.
-
-println(a ==b); // true
+System.out.println(a == b); // true
 ```
 
 
@@ -70,16 +68,11 @@ println(a ==b); // true
 
 
 ```java
-String s1 = "hello";
+String s1 = new String("hello");
 String s2 = new String("hello");
-System.out.
-
-println(s1 ==s2); // false
-
+System.out.println(s1 == s2); // false
 String s3 = s1;
-System.out.
-
-println(s1 ==
+System.out.println(s1 == s3); // true
 ```
 
 
@@ -96,13 +89,9 @@ println(s1 ==
 ```java
 String s1 = "HELLO";
 String s2 = "HELLO";
-String s3 = "HELLO";
-System.out.
-
-println(s1 ==s2); // true (same reference, string pool)
-System.out.
-
-println(s1 ==s3); // false (different objects)
+String s3 = new String("HELLO");
+System.out.println(s1 == s2); // true (same reference, string pool)
+System.out.println(s1 == s3); // false (different objects)
 ```
 
 
@@ -165,9 +154,7 @@ System.out.println(s1.equals(s3)); // true
 ```java
 Object o = new Object();
 String s = "test";
-System.out.
-
-println(o ==s); // false, only works if compatible types
+System.out.println(o == s); // false, only works if compatible types
 ```
 
 

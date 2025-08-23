@@ -48,7 +48,7 @@ public final class String extends Object
 
 
 This signature means every Java String has all the properties of a Java object, like methods (`equals()`, `hashCode()`,
-etc.), and can be passed around as objects. [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
+etc.), and can be passed around as objects. [Oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
 
 
 - **Creation:**
@@ -61,7 +61,7 @@ String s1 = "hello";
 
 
 The Java Virtual Machine (JVM) creates a `String` object and stores it in a special memory area called the ==String
-pool==. [scaler](https://www.scaler.com/topics/java/string-pool-in-java/)
+pool==. [Scaler](https://www.scaler.com/topics/java/string-pool-in-java/)
 
 
 - **Constructor:**
@@ -73,7 +73,7 @@ String s2 = new String("hello");
 
 
 Here, a new object is explicitly created in heap memory (not necessarily shared with the
-pool). [javaguides](https://www.javaguides.net/2018/08/java-string-class-api-guide.html)
+pool). [Javaguides](https://www.javaguides.net/2018/08/java-string-class-api-guide.html)
 
 ***
 

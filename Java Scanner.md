@@ -1,10 +1,12 @@
 ---
 
-tags: [java, userinput, scanner]  
+tags: [java, userinput, scanner, bestpractices, java/io]  
 date: 2025-08-21  
 topic: Java User Input with Scanner
 
 ---
+
+## Java User Input with Scanner
 
 <!-- TOC -->
   * [Java User Input with Scanner](#java-user-input-with-scanner)
@@ -15,8 +17,6 @@ topic: Java User Input with Scanner
   * [Advanced Usage: Reading from Files or Strings](#advanced-usage-reading-from-files-or-strings)
   * [When to Use Scanner](#when-to-use-scanner)
 <!-- TOC -->
-
-## Java User Input with Scanner
 
 The **Scanner** class in Java, found in the `java.util` package, is used to read user input from various sources like
 the console, files, or strings. It parses primitive types and strings using methods like `nextLine()` for strings or
@@ -38,7 +38,8 @@ programs.[w3schools](https://www.w3schools.com/java/java_user_input.asp)
 
 > [!TIP]  
 > Use a single Scanner instance for multiple inputs in a program to avoid resource
-> leaks.[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)
+>
+leaks.[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)
 
 ## Common Scanner Methods
 
@@ -56,7 +57,7 @@ programs.[w3schools](https://www.w3schools.com/java/java_user_input.asp)
 > [!NOTE]  
 > Methods like `nextInt()` read until a delimiter (default is whitespace), while `nextLine()` reads until newline. For
 > Java 17+, these methods support enhanced pattern matching with regular
-> expressions.[oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+> expressions.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 ## Basic Example: Reading String Input
 
@@ -80,7 +81,7 @@ public class UserInputExample {
 ```
 
 
-**Output** (if user enters "Alice"):  
+**Output** (if the user enters "Alice"):  
 Hello, Alice![codecademy](https://www.codecademy.com/resources/docs/java/user-input)
 
 > [!EXAMPLE]  
@@ -132,7 +133,7 @@ public class MultiInputExample {
 
 > [!INFO]  
 > For performance in large inputs, consider BufferedReader as an alternative, but Scanner is simpler for beginners and
-> supports [[Java Regex]] for custom parsing.[oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+> supports [[Java Regex]] for custom parsing.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 ## When to Use Scanner
 
@@ -140,18 +141,18 @@ public class MultiInputExample {
 - **Use Cases**: Interactive CLI tools, simple games, or data entry
   forms.[stackoverflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)
 
-- **Alternatives**: For GUI apps, use `JOptionPane`; for high-performance, prefer
+- **Alternatives**: For GUI apps, use `JOptionPane`; for high performance, prefer
   `BufferedReader`.[baeldung](https://www.baeldung.com/java-scanner)
 
 - **Version Note**: Available since Java 5; Java 17+ adds better support for localized
-  input.[oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+  input.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 
 > [!TIP]  
 > Always validate input with try-catch for `InputMismatchException` to handle invalid types, e.g., entering text when
 > expecting a number.[programiz](https://www.programiz.com/java-programming/scanner)
 
-> [!EXAMPLE]- Click to expand: Error Handling Example
+> [!EXAMPLE]-Click to expand: Error Handling Example
 > ```java
 > import java.util.Scanner;
 > import java.util.InputMismatchException;

@@ -176,7 +176,7 @@ class HelperClass {
 > For beginners, stick to one class per file initially—it simplifies learning. As you advance, experiment with multiple
 > classes to see how Java handles them.
 
-> [!EXAMPLE]- Advanced: Handling Compilation Errors
+> [!EXAMPLE ]- Advanced: Handling Compilation Errors
 > If you encounter an error like "public class mismatch," fix it by:
 >
 > 1. Renaming the file to match the public class.
