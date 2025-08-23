@@ -1,20 +1,15 @@
 
 <!-- TOC -->
-
-
-- [== Operator in Java](#-operator-in-java)
-	- [Quick Reference](#quick-reference)
-- [How It Works](#how-it-works)
-	- [=== For Primitives ===](#-for-primitives-)
-	- [=== For Objects ===](#-for-objects-)
-	- [=== For Strings ===](#-for-strings-)
-- [Operator Table](#operator-table)
-- [Use Cases & Best Practices](#use-cases--best-practices)
-- [Common Pitfalls](#common-pitfalls)
-- [Performance](#performance)
-- [Related Concepts](#related-concepts)
-
-
+    * [Quick Reference](#quick-reference)
+  * [How It Works](#how-it-works)
+    * [=== For Primitives ===](#-for-primitives-)
+    * [=== For Objects ===](#-for-objects-)
+    * [=== For Strings ===](#-for-strings-)
+  * [Operator Table](#operator-table)
+  * [Use Cases & Best Practices](#use-cases--best-practices)
+  * [Common Pitfalls](#common-pitfalls)
+  * [Performance](#performance)
+  * [Related Concepts](#related-concepts)
 <!-- TOC -->
 
 ### Quick Reference

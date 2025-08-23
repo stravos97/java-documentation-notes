@@ -9,16 +9,12 @@ ______________________________________________________________________
 #java #strings #objects \[[Java Strings]\]
 
 <!-- TOC -->
-
-
-- [How is a String an Object in Java?](#how-is-a-string-an-object-in-java)
-	- [Quick Reference](#quick-reference)
-- [Why is String an Object?](#why-is-string-an-object)
-- [Internals and Objects](#internals-and-objects)
-- [Practical Examples](#practical-examples)
-- [When is This Important?](#when-is-this-important)
-
-
+  * [How is a String an Object in Java?](#how-is-a-string-an-object-in-java)
+    * [Quick Reference](#quick-reference)
+  * [Why is String an Object?](#why-is-string-an-object)
+  * [Internals and Objects](#internals-and-objects)
+  * [Practical Examples](#practical-examples)
+  * [When is This Important?](#when-is-this-important)
 <!-- TOC -->
 
 ### Quick Reference

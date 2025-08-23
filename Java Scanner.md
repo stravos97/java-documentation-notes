@@ -9,17 +9,13 @@ ______________________________________________________________________
 ## Java User Input with Scanner
 
 <!-- TOC -->
-
-
-- [Java User Input with Scanner](#java-user-input-with-scanner)
-- [Quick Reference: Importing and Creating Scanner](#quick-reference-importing-and-creating-scanner)
-- [Common Scanner Methods](#common-scanner-methods)
-- [Basic Example: Reading String Input](#basic-example-reading-string-input)
-- [Reading Multiple Inputs and Primitives](#reading-multiple-inputs-and-primitives)
-- [Advanced Usage: Reading from Files or Strings](#advanced-usage-reading-from-files-or-strings)
-- [When to Use Scanner](#when-to-use-scanner)
-
-
+  * [Java User Input with Scanner](#java-user-input-with-scanner)
+  * [Quick Reference: Importing and Creating Scanner](#quick-reference-importing-and-creating-scanner)
+  * [Common Scanner Methods](#common-scanner-methods)
+  * [Basic Example: Reading String Input](#basic-example-reading-string-input)
+  * [Reading Multiple Inputs and Primitives](#reading-multiple-inputs-and-primitives)
+  * [Advanced Usage: Reading from Files or Strings](#advanced-usage-reading-from-files-or-strings)
+  * [When to Use Scanner](#when-to-use-scanner)
 <!-- TOC -->
 
 The **Scanner** class in Java, found in the `java.util` package, is used to read user input from various sources like

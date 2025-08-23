@@ -1,23 +1,9 @@
-______________________________________________________________________
-
-## tags: [ java, jvm, basics ] date: 2025-08-21 topic: Java Virtual Machine Overview
-
-tags: [java, jvm, architecture, notes, bestpractices]\
-date: 2025-08-22\
-topic: Java Virtual Machine (JVM) Overview
-
-______________________________________________________________________
-
 <!-- TOC -->
-
-
-- [Java Virtual Machine (JVM)](#java-virtual-machine-jvm)
-- [Key Purpose and Role](#key-purpose-and-role)
-- [JVM Architecture Breakdown](#jvm-architecture-breakdown)
-- [How JVM Works: Step-by-Step](#how-jvm-works-step-by-step)
-- [Practical Considerations](#practical-considerations)
-
-
+  * [Java Virtual Machine (JVM)](#java-virtual-machine-jvm)
+  * [Key Purpose and Role](#key-purpose-and-role)
+  * [JVM Architecture Breakdown](#jvm-architecture-breakdown)
+  * [How JVM Works: Step-by-Step](#how-jvm-works-step-by-step)
+  * [Practical Considerations](#practical-considerations)
 <!-- TOC -->
 
 ## Java Virtual Machine (JVM)

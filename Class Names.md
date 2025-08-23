@@ -7,17 +7,13 @@ topic: Java Class and File Naming Conventions
 ______________________________________________________________________
 
 <!-- TOC -->
-
-
-- [Java Class and File Naming Conventions](#java-class-and-file-naming-conventions)
-- [Quick Reference: Key Rules](#quick-reference-key-rules)
-- [When and Why These Rules Matter](#when-and-why-these-rules-matter)
-- [Syntax and Examples](#syntax-and-examples)
-- [Basic Program Syntax](#basic-program-syntax)
-- [Multiple Classes in One File](#multiple-classes-in-one-file)
-- [Comparisons: Public vs. Non-Public Classes](#comparisons-public-vs-non-public-classes)
-
-
+  * [Java Class and File Naming Conventions](#java-class-and-file-naming-conventions)
+  * [Quick Reference: Key Rules](#quick-reference-key-rules)
+  * [When and Why These Rules Matter](#when-and-why-these-rules-matter)
+  * [Syntax and Examples](#syntax-and-examples)
+  * [Basic Program Syntax](#basic-program-syntax)
+  * [Multiple Classes in One File](#multiple-classes-in-one-file)
+  * [Comparisons: Public vs. Non-Public Classes](#comparisons-public-vs-non-public-classes)
 <!-- TOC -->
 
 ## Java Class and File Naming Conventions
