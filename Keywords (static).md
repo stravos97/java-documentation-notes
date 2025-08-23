@@ -50,8 +50,8 @@ ______________________________________________________________________
 <!-- TOC -->
 
 > [!NOTE]
-> ==Java keywords== are reserved words with special meaning in the Java language. They \*\*cannot be used as identifiers
-> \*\* (like variable or method
+> ==Java keywords== are reserved words with special meaning in the Java language. They cannot be used as identifiers
+> (like variable or method
 > names). [Oracle Java Language Specification](https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.9)
 > As of Java 21, there are 53 keywords, plus some reserved but unused and "literal" values.
 
@@ -273,12 +273,8 @@ class Counter {
 }
 
 // Usage:
-Counter.
-
-increment();  // No need to create object!
-System.out.
-
-println(Counter.count);  // Prints: 1
+Counter.increment();  // No need to create object!
+System.out.println(Counter.count);  // Prints: 1
 ```
 
 
@@ -306,14 +302,10 @@ ______________________________________________________________________
 
 ```java
 int age = 18;
-if(age >=18){
-        System.out.
-
-println("You can vote!");
-}else{
-        System.out.
-
-println("Too young to vote");
+if (age >= 18) {
+    System.out.println("You can vote!");
+} else {
+    System.out.println("Too young to vote");
 }
 ```
 
@@ -324,11 +316,8 @@ println("Too young to vote");
 
 
 ```java
-for(int i = 0;
-i< 5;i++){
-        System.out.
-
-println("Count: "+i);
+for (int i = 0; i < 5; i++) {
+    System.out.println("Count: " + i);
 }
 // Prints: Count: 0, Count: 1, Count: 2, Count: 3, Count: 4
 ```
@@ -341,13 +330,10 @@ println("Count: "+i);
 
 ```java
 int count = 0;
-while(count< 3){
-        System.out.
-
-println("Hello!");
-
-count++;
-        }
+while (count < 3) {
+    System.out.println("Hello!");
+    count++;
+}
 ```
 
 
@@ -357,13 +343,10 @@ count++;
 
 
 ```java
-for(int i = 0;
-i< 10;i++){
-        if(i ==3)continue;  // Skip when i is 3
-        if(i ==7)break;     // Stop the loop when i is 7
-        System.out.
-
-println(i);
+for (int i = 0; i < 10; i++) {
+    if (i == 3) continue;  // Skip when i is 3
+    if (i == 7) break;     // Stop the loop when i is 7
+    System.out.println(i);
 }
 // Prints: 0, 1, 2, 4, 5, 6
 ```
