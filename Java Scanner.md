@@ -10,6 +10,7 @@ ______________________________________________________________________
 
 <!-- TOC -->
 
+
 - [Java User Input with Scanner](#java-user-input-with-scanner)
 - [Quick Reference: Importing and Creating Scanner](#quick-reference-importing-and-creating-scanner)
 - [Common Scanner Methods](#common-scanner-methods)
@@ -17,6 +18,7 @@ ______________________________________________________________________
 - [Reading Multiple Inputs and Primitives](#reading-multiple-inputs-and-primitives)
 - [Advanced Usage: Reading from Files or Strings](#advanced-usage-reading-from-files-or-strings)
 - [When to Use Scanner](#when-to-use-scanner)
+
 
 <!-- TOC -->
 
@@ -27,6 +29,7 @@ programs.[w3schools](https://www.w3schools.com/java/java_user_input.asp)
 
 ## Quick Reference: Importing and Creating Scanner
 
+
 - **Import Statement**: `import java.util.Scanner;` (or `import java.util.*;` for broader
   access).[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)
 
@@ -36,6 +39,7 @@ programs.[w3schools](https://www.w3schools.com/java/java_user_input.asp)
 - **Closing Scanner**: Always close with `scanner.close();` to free resources, especially in larger
   applications.[programiz](https://www.programiz.com/java-programming/scanner)
 
+
 > [!TIP]  
 > Use a single Scanner instance for multiple inputs in a program to avoid resource
 
@@ -43,8 +47,9 @@ leaks.[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-S
 
 ## Common Scanner Methods
 
+
 | Method          | Description                       | Return Type | Example Usage                                                                                                                                                                                   |
-| --------------- | --------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------|-----------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `nextLine()`    | Reads a full line of text         | String      | `String name = scanner.nextLine();` [w3schools](https://www.w3schools.com/java/java_user_input.asp)                                                                                             |
 | `next()`        | Reads the next token (word)       | String      | `String word = scanner.next();` [theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)        |
 | `nextInt()`     | Reads the next integer            | int         | `int age = scanner.nextInt();` [stackoverflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)                                                                   |
@@ -52,12 +57,14 @@ leaks.[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-S
 | `nextBoolean()` | Reads the next boolean            | boolean     | `boolean flag = scanner.nextBoolean();` [programiz](https://www.programiz.com/java-programming/scanner)                                                                                         |
 | `hasNext()`     | Checks if more input is available | boolean     | `if (scanner.hasNext()) { ... }` [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)                                                                                     |
 
+
 > [!NOTE]  
 > Methods like `nextInt()` read until a delimiter (default is whitespace), while `nextLine()` reads until newline. For
 > Java 17+, these methods support enhanced pattern matching with regular
 > expressions.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 ## Basic Example: Reading String Input
+
 
 ```java
 import java.util.Scanner;  // Import Scanner class
@@ -77,6 +84,7 @@ public class UserInputExample {
 
 ```
 
+
 **Output** (if the user enters "Alice"):\
 Hello, Alice![codecademy](https://www.codecademy.com/resources/docs/java/user-input)
 
@@ -87,6 +95,7 @@ Hello, Alice![codecademy](https://www.codecademy.com/resources/docs/java/user-in
 
 Use a loop or sequential calls for multiple inputs. Handle mixed types carefully to avoid issues with leftover
 newlines.[baeldung](https://www.baeldung.com/java-scanner)
+
 
 ```java
 import java.util.Scanner;
@@ -111,11 +120,13 @@ public class MultiInputExample {
 
 ```
 
+
 > [!WARNING]  
 > Common pitfall: After `nextInt()`, a newline remains in the buffer, causing `nextLine()` to read an empty string. Fix
 > by adding `scanner.nextLine()` to consume it.[baeldung](https://www.baeldung.com/java-scanner)
 
 ## Advanced Usage: Reading from Files or Strings
+
 
 - **From File**:
   `Scanner fileScanner = new Scanner(new File("input.txt"));`.[programiz](https://www.programiz.com/java-programming/scanner)
@@ -123,11 +134,14 @@ public class MultiInputExample {
 - **From String**:
   `Scanner strScanner = new Scanner("Hello Java"); String word = strScanner.next();`.[programiz](https://www.programiz.com/java-programming/scanner)
 
+
 > [!INFO]  
 > For performance in large inputs, consider BufferedReader as an alternative, but Scanner is simpler for beginners and
-> supports \[[Java Regex]\] for custom parsing.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+> supports \[[Java Regex]\] for custom
+parsing.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 ## When to Use Scanner
+
 
 - **Use Cases**: Interactive CLI tools, simple games, or data entry
   forms.[stackoverflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)
@@ -137,6 +151,7 @@ public class MultiInputExample {
 
 - **Version Note**: Available since Java 5; Java 17+ adds better support for localized
   input.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+
 
 > [!TIP]  
 > Always validate input with try-catch for `InputMismatchException` to handle invalid types, e.g., entering text when

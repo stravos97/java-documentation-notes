@@ -8,6 +8,7 @@ ______________________________________________________________________
 
 <!-- TOC -->
 
+
 - [Java Class and File Naming Conventions](#java-class-and-file-naming-conventions)
 - [Quick Reference: Key Rules](#quick-reference-key-rules)
 - [When and Why These Rules Matter](#when-and-why-these-rules-matter)
@@ -15,6 +16,7 @@ ______________________________________________________________________
 - [Basic Program Syntax](#basic-program-syntax)
 - [Multiple Classes in One File](#multiple-classes-in-one-file)
 - [Comparisons: Public vs. Non-Public Classes](#comparisons-public-vs-non-public-classes)
+
 
 <!-- TOC -->
 
@@ -28,42 +30,49 @@ IDE! [oracle](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) 
 
 ## Quick Reference: Key Rules
 
+
 - **Minimum Requirement**: Every standalone Java program must have at least ==one class== with a
   `public static void main(String[] args)` method as the entry point.
 
 - **Filename Matching**:
 
-  - For `public` classes, the filename **must** match the class name exactly (case-sensitive, ending in `.java`).
+	- For `public` classes, the filename **must** match the class name exactly (case-sensitive, ending in `.java`).
 
-  - A single `.java` file can hold multiple classes, but only **one** can be `public`.
+	- A single `.java` file can hold multiple classes, but only **one** can be `public`.
 
-  - Non-public classes (default access) don't require filename matching.
+	- Non-public classes (default access) don't require filename matching.
 
 - **Best Practice**: Name files after the primary class to keep code organized and avoid errors.
+
 
 > [!TIP]  
 > Use an IDE like IntelliJ or Eclipse—it automatically enforces naming rules and flags mismatches early.
 
 ## When and Why These Rules Matter
 
+
 - **Real-World Use Cases**: Essential for compilation and execution. Mismatches prevent `javac` from building your code,
   which is common in projects involving packages or modules (\[[Java Modules]\]).
 
 - **Common Pitfalls**:
 
-  - Compilation error: "class X is public, should be declared in a file named X.java" if names don't match.
+	- Compilation error: "class X is public, should be declared in a file named X.java" if names don't match.
 
-  - No `main` method leads to runtime error: "Error: Main method not found in class...".
+	- No `main` method leads to runtime error: "Error: Main method not found in class...".
+
 
 > [!WARNING]  
 > Ignoring naming conventions can lead to confusing bugs in larger codebases. Always prioritize clarity—it's a hallmark
 > of Java \[[bestpractices]\]. [oracle](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
 
+
 - **Performance Notes**: These are compile-time rules; they don't impact runtime speed, but good organization aids
   maintainability.
 
-- **Related Concepts**: Explore \[[Java Packages]\] for grouping classes, or \[[Inner Classes]\] which don't need separate
+- **Related Concepts**: Explore \[[Java Packages]\] for grouping classes, or \[[Inner Classes]\] which don't need
+  separate
   files.
+
 
 > [!INFO]  
 > Java allows flexibility with non-public classes for utility code in the same file, reducing file clutter in small
@@ -74,6 +83,7 @@ IDE! [oracle](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) 
 For syntax questions, here's the exact structure first, followed by explanations.
 
 ## Basic Program Syntax
+
 
 ```java
 // Filename: ClassName.java (must match if class is public)
@@ -86,12 +96,15 @@ public class ClassName {
 
 ```
 
+
 - **Explanation**: The `public` keyword makes the class visible externally, tying it to the filename. The `main` method
   is the program's starting point.
+
 
 > [!EXAMPLE]  
 > Here's a practical example in a file named `WeatherAdvisor.java`. This demonstrates a simple weather app—try running
 > it to see the rules in action!
+
 
 ```java
 // WeatherAdvisor.java - Simple weather advice program
@@ -124,19 +137,23 @@ class WeatherHelper {
 
 ```
 
+
 - **How to Compile and Run**: Use `javac WeatherAdvisor.java` then
   `java WeatherAdvisor`. [oracle](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html)
 
 - **Expected Output**:
+
 
 ```text
 Today's advice: Bring an umbrella if it's raining!
 Wear sunscreen!
 ```
 
+
 ## Multiple Classes in One File
 
 If no public class, filename is flexible. Syntax:
+
 
 ```java
 // AnyFileName.java
@@ -153,7 +170,9 @@ class HelperClass {
 
 ```
 
+
 - **Run Command**: `java EntryClass` (specifies the class with `main`, not the file).
+
 
 > [!TIP]  
 > For beginners, stick to one class per file initially—it simplifies learning. As you advance, experiment with multiple
@@ -179,12 +198,14 @@ class HelperClass {
 
 ## Comparisons: Public vs. Non-Public Classes
 
+
 | Feature        | Public Class                   | Non-Public Class          |
-| -------------- | ------------------------------ | ------------------------- |
+|----------------|--------------------------------|---------------------------|
 | Filename Match | Required (exact match)         | Not required              |
 | Visibility     | Accessible from other packages | Limited to same package   |
 | Use Case       | Main entry points, APIs        | Helper or inner utilities |
 | Max per File   | Only one                       | Multiple allowed          |
+
 
 > [!NOTE]  
 > This table highlights why public classes enforce stricter rules—it's about accessibility and organization in larger

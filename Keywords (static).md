@@ -1,9 +1,5 @@
 ______________________________________________________________________
 
-## tags: [ java, reference, keywords, cheatsheet ] date: 2025-08-22 topic: Java Keywords Overview
-
-______________________________________________________________________
-
 tags: [java, reference, keywords, cheatsheet]
 date: 2025-08-22
 topic: Java Keywords Overview
@@ -16,38 +12,40 @@ ______________________________________________________________________
 
 <!-- TOC -->
 
+
 - [Java Keywords: Quick Reference](#java-keywords-quick-reference)
 - [Table: Common Java Keywords and Their Use](#table-common-java-keywords-and-their-use)
 - [Special Notes](#special-notes)
 - [Example Usage](#example-usage)
 - [Java Keywords: Complete Beginner's Guide](#java-keywords-complete-beginners-guide)
-  - [Why Keywords Matter](#why-keywords-matter)
-  - [Keywords by Category](#keywords-by-category)
-    - [**Class & Object Keywords**](#class--object-keywords)
-      - [`class`](#class)
-      - [`public`](#public)
-      - [`private`](#private)
-      - [`protected`](#protected)
-    - [**Static Keyword**](#static-keyword)
-      - [`static`](#static)
-    - [**Control Flow Keywords**](#control-flow-keywords)
-      - [`if` and `else`](#if-and-else)
-      - [`for`](#for)
-      - [`while`](#while)
-      - [`break` and `continue`](#break-and-continue)
-    - [**Data Type Keywords**](#data-type-keywords)
-      - [Primitive Types](#primitive-types)
-    - [**Method & Variable Keywords**](#method--variable-keywords)
-      - [`void`](#void)
-      - [`return`](#return)
-      - [`final`](#final)
-    - [**Object-Oriented Keywords**](#object-oriented-keywords)
-      - [`extends`](#extends)
-      - [`this`](#this)
-      - [`super`](#super)
-  - [Common Beginner Mistakes](#common-beginner-mistakes)
-  - [Quick Reference Table](#quick-reference-table)
-  - [Memory Tips](#memory-tips)
+	- [Why Keywords Matter](#why-keywords-matter)
+	- [Keywords by Category](#keywords-by-category)
+		- [**Class & Object Keywords**](#class--object-keywords)
+			- [`class`](#class)
+			- [`public`](#public)
+			- [`private`](#private)
+			- [`protected`](#protected)
+		- [**Static Keyword**](#static-keyword)
+			- [`static`](#static)
+		- [**Control Flow Keywords**](#control-flow-keywords)
+			- [`if` and `else`](#if-and-else)
+			- [`for`](#for)
+			- [`while`](#while)
+			- [`break` and `continue`](#break-and-continue)
+		- [**Data Type Keywords**](#data-type-keywords)
+			- [Primitive Types](#primitive-types)
+		- [**Method & Variable Keywords**](#method--variable-keywords)
+			- [`void`](#void)
+			- [`return`](#return)
+			- [`final`](#final)
+		- [**Object-Oriented Keywords**](#object-oriented-keywords)
+			- [`extends`](#extends)
+			- [`this`](#this)
+			- [`super`](#super)
+	- [Common Beginner Mistakes](#common-beginner-mistakes)
+	- [Quick Reference Table](#quick-reference-table)
+	- [Memory Tips](#memory-tips)
+
 
 <!-- TOC -->
 
@@ -61,8 +59,9 @@ ______________________________________________________________________
 
 ## Table: Common Java Keywords and Their Use
 
+
 | Keyword      | Usage/purpose                                                               |
-| :----------- | :-------------------------------------------------------------------------- |
+|:-------------|:----------------------------------------------------------------------------|
 | abstract     | Declare abstract classes or methods (no implementation, must be overridden) |
 | assert       | Test assumptions in code                                                    |
 | boolean      | Boolean data type (true/false)                                              |
@@ -117,14 +116,17 @@ ______________________________________________________________________
 | sealed       | Restricts which other classes may extend or implement this class/interface  |
 | permits      | Specifies which classes may extend a sealed class                           |
 
+
 ______________________________________________________________________
 
 ## Special Notes
+
 
 - **true, false, null:** Not keywords, but ==literals== (still can't use as identifiers).
 - **const, goto:** Reserved, but not used.
 - **case-sensitive:** All keywords must be ==lowercase==.
 - **static:** Denotes static variables/methods (shared across all instances).
+
 
 > [!TIP]
 > Use keywords for their intended purpose only. Using them otherwise results in compiler errors.
@@ -132,6 +134,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 ## Example Usage
+
 
 ```java
 public class Example {
@@ -144,6 +147,7 @@ public class Example {
     }
 }
 ```
+
 
 > Demonstrates use of: `public`, `class`, `final`, `int`, `for`, `if`, `continue`, `System`
 
@@ -166,10 +170,12 @@ ______________________________________________________________________
 Think of keywords as **the building blocks** of Java - they tell the computer exactly what you want to do. Every Java
 program uses keywords to:
 
+
 - Create classes (`class`)
 - Define methods (`public`, `static`, `void`)
 - Control program flow (`if`, `else`, `for`)
 - Manage data (`int`, `String`, `boolean`)
+
 
 ______________________________________________________________________
 
@@ -181,15 +187,18 @@ ______________________________________________________________________
 
 **What it does:** Creates a new class (like a blueprint for objects)
 
+
 ```java
 class MyClass {
     // Your code here
 }
 ```
 
+
 #### `public`
 
 **What it does:** Makes something accessible from anywhere
+
 
 ```java
 public class MyClass {        // Anyone can use this class
@@ -199,9 +208,11 @@ public class MyClass {        // Anyone can use this class
 }
 ```
 
+
 #### `private`
 
 **What it does:** Hides something - only the same class can access it
+
 
 ```java
 class BankAccount {
@@ -213,12 +224,14 @@ class BankAccount {
 }
 ```
 
+
 > [!TIP]
 > **Rule of thumb:** Use `private` for data you want to protect, `public` for things others need to use.
 
 #### `protected`
 
 **What it does:** Accessible within the same package OR by subclasses (child classes)
+
 
 ```java
 class Animal {
@@ -232,6 +245,7 @@ class Dog extends Animal {
 }
 ```
 
+
 ______________________________________________________________________
 
 ### **Static Keyword**
@@ -240,11 +254,14 @@ ______________________________________________________________________
 
 **What it does:** Makes something belong to the **class itself**, not individual objects.
 
+
 **Key Points:**
+
 
 - You can use static things **without creating objects**
 - All objects **share** the same static variable
 - Static methods **cannot** access non-static variables
+
 
 ```java
 class Counter {
@@ -256,17 +273,24 @@ class Counter {
 }
 
 // Usage:
-Counter.increment();  // No need to create object!
-System.out.println(Counter.count);  // Prints: 1
+Counter.
+
+increment();  // No need to create object!
+System.out.
+
+println(Counter.count);  // Prints: 1
 ```
 
+
 **Real Example:** The `main` method is always static!
+
 
 ```java
 public static void main(String[] args) {
     // Static so Java can run it without creating objects
 }
 ```
+
 
 > [!EXAMPLE]
 > **Math class:** `Math.abs(-5)`, `Math.max(3, 7)` - all static methods you can use directly!
@@ -279,50 +303,71 @@ ______________________________________________________________________
 
 **What they do:** Make decisions in your code
 
+
 ```java
 int age = 18;
-if (age >= 18) {
-    System.out.println("You can vote!");
-} else {
-    System.out.println("Too young to vote");
+if(age >=18){
+        System.out.
+
+println("You can vote!");
+}else{
+        System.out.
+
+println("Too young to vote");
 }
 ```
+
 
 #### `for`
 
 **What it does:** Repeats code a specific number of times
 
+
 ```java
-for (int i = 0; i < 5; i++) {
-    System.out.println("Count: " + i);
+for(int i = 0;
+i< 5;i++){
+        System.out.
+
+println("Count: "+i);
 }
 // Prints: Count: 0, Count: 1, Count: 2, Count: 3, Count: 4
 ```
+
 
 #### `while`
 
 **What it does:** Repeats code while a condition is true
 
+
 ```java
 int count = 0;
-while (count < 3) {
-    System.out.println("Hello!");
-    count++;
-}
+while(count< 3){
+        System.out.
+
+println("Hello!");
+
+count++;
+        }
 ```
+
 
 #### `break` and `continue`
 
 **What they do:** Control loops
 
+
 ```java
-for (int i = 0; i < 10; i++) {
-    if (i == 3) continue;  // Skip when i is 3
-    if (i == 7) break;     // Stop the loop when i is 7
-    System.out.println(i);
+for(int i = 0;
+i< 10;i++){
+        if(i ==3)continue;  // Skip when i is 3
+        if(i ==7)break;     // Stop the loop when i is 7
+        System.out.
+
+println(i);
 }
 // Prints: 0, 1, 2, 4, 5, 6
 ```
+
 
 ______________________________________________________________________
 
@@ -330,12 +375,14 @@ ______________________________________________________________________
 
 #### Primitive Types
 
+
 ```java
 int age = 25;           // Whole numbers
 double price = 19.99;   // Decimal numbers
 boolean isReady = true; // true or false only
 char grade = 'A';       // Single character
 ```
+
 
 > [!NOTE]
 > These are **not objects** - they store actual values, not references.
@@ -348,15 +395,18 @@ ______________________________________________________________________
 
 **What it does:** Method returns nothing
 
+
 ```java
 void printMessage() {  // No return value
     System.out.println("Hello!");
 }
 ```
 
+
 #### `return`
 
 **What it does:** Sends a value back from a method
+
 
 ```java
 int addNumbers(int a, int b) {
@@ -364,14 +414,17 @@ int addNumbers(int a, int b) {
 }
 ```
 
+
 #### `final`
 
 **What it does:** Makes something unchangeable
+
 
 ```java
 final int MAX_STUDENTS = 30;  // Cannot change this value
 MAX_STUDENTS =40;  // ERROR! Cannot modify final variable
 ```
+
 
 ______________________________________________________________________
 
@@ -380,6 +433,7 @@ ______________________________________________________________________
 #### `extends`
 
 **What it does:** Creates a child class (inheritance)
+
 
 ```java
 class Animal {
@@ -395,9 +449,11 @@ class Dog extends Animal {  // Dog inherits from Animal
 }
 ```
 
+
 #### `this`
 
 **What it does:** Refers to the current object
+
 
 ```java
 class Person {
@@ -409,9 +465,11 @@ class Person {
 }
 ```
 
+
 #### `super`
 
 **What it does:** Refers to the parent class
+
 
 ```java
 class Animal {
@@ -427,6 +485,7 @@ class Dog extends Animal {
     }
 }
 ```
+
 
 ______________________________________________________________________
 
@@ -464,8 +523,9 @@ ______________________________________________________________________
 
 ## Quick Reference Table
 
+
 | Keyword   | Purpose                      | Example                        |
-| :-------- | :--------------------------- | :----------------------------- |
+|:----------|:-----------------------------|:-------------------------------|
 | `public`  | Accessible everywhere        | `public void method()`         |
 | `private` | Only same class can access   | `private int value;`           |
 | `static`  | Belongs to class, not object | `static int count;`            |
@@ -476,6 +536,7 @@ ______________________________________________________________________
 | `return`  | Return value from method     | `return x + y;`                |
 | `this`    | Current object               | `this.name = name;`            |
 | `extends` | Inherit from parent class    | `class Dog extends Animal`     |
+
 
 ______________________________________________________________________
 

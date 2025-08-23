@@ -2,16 +2,17 @@
 
 <!-- TOC -->
 
+
 - [Java While Loop: Number Guessing Game](#java-while-loop-number-guessing-game)
-  - [Game Requirements](#game-requirements)
-  - [Code Example](#code-example)
-  - [Example Run](#example-run)
-  - [Explanation](#explanation)
-  - [Enhancements](#enhancements)
+	- [Game Requirements](#game-requirements)
+	- [Code Example](#code-example)
+	- [Example Run](#example-run)
+	- [Explanation](#explanation)
+	- [Enhancements](#enhancements)
 - [Enhancements and Variations](#enhancements-and-variations)
 - [Java Program: Prime Number Finder Explained](#java-program-prime-number-finder-explained)
-  - [Program Overview](#program-overview)
-  - [Code Example](#code-example-1)
+	- [Program Overview](#program-overview)
+	- [Code Example](#code-example-1)
 - [1. Import Statement](#1-import-statement)
 - [2. Class and Main Method](#2-class-and-main-method)
 - [3. Initialization and User Input](#3-initialization-and-user-input)
@@ -20,15 +21,16 @@
 - [The Logic](#the-logic)
 - [5. Closing the Scanner](#5-closing-the-scanner)
 - [How It Works: Step-by-Step Execution](#how-it-works-step-by-step-execution)
-  - [Initial State](#initial-state)
-  - [Iteration-by-Iteration Analysis](#iteration-by-iteration-analysis)
-  - [Key Insights from the Walkthrough](#key-insights-from-the-walkthrough)
-    - [1. Dual Counter Pattern](#1-dual-counter-pattern)
-    - [2. Optimization: Early Break](#2-optimization-early-break)
-    - [3. Mathematical Efficiency](#3-mathematical-efficiency)
-  - [Performance Analysis](#performance-analysis)
-  - [Related Patterns](#related-patterns)
+	- [Initial State](#initial-state)
+	- [Iteration-by-Iteration Analysis](#iteration-by-iteration-analysis)
+	- [Key Insights from the Walkthrough](#key-insights-from-the-walkthrough)
+		- [1. Dual Counter Pattern](#1-dual-counter-pattern)
+		- [2. Optimization: Early Break](#2-optimization-early-break)
+		- [3. Mathematical Efficiency](#3-mathematical-efficiency)
+	- [Performance Analysis](#performance-analysis)
+	- [Related Patterns](#related-patterns)
 - [Common Pitfalls and Improvements](#common-pitfalls-and-improvements)
+
 
 <!-- TOC -->
 
@@ -55,14 +57,16 @@ ______________________________________________________________________
 
 ### Game Requirements
 
+
 - Generate a random number (1–100)
 - Prompt the user to guess
 - Provide feedback:
-  - `"Too high"`
-  - `"Too low"`
-  - `"Correct!"`
+	- `"Too high"`
+	- `"Too low"`
+	- `"Correct!"`
 - Count number of attempts
 - Stop when the user guesses correctly
+
 
 > [!TIP]
 > While loops are great for ==user-driven interactions==.
@@ -71,6 +75,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 ### Code Example
+
 
 ```java
 import java.util.Random;
@@ -118,6 +123,7 @@ public class NumberGuessingGame {
 }
 ```
 
+
 ______________________________________________________________________
 
 ### Example Run
@@ -140,10 +146,12 @@ ______________________________________________________________________
 
 ### Explanation
 
+
 - **Initialization**: `Random` → number, `Scanner` → input
 - **While Loop**: continues until `guess == targetNumber`
 - **Condition Check**: feedback given using if-else
 - **Exit**: loop ends naturally when correct guess
+
 
 > [!WARNING]
 > To prevent `InputMismatchException`, check input with `scanner.hasNextInt()`.
@@ -152,15 +160,19 @@ ______________________________________________________________________
 
 ### Enhancements
 
+
 - **Guess limits**:
+
 
 ```java
 while(guess !=targetNumber &&attempts< 10){...}
 ```
 
+
 - **Difficulty Levels**: Adjust random range based on user choice
 - **Extensions**: Pair with \[[Java Switch Statement]\] for menus
 - **Input Safety**: Use \[[Java Exceptions]\] for error handling
+
 
 > [!WARNING]
 > Always validate user input! In a real app, add checks for non-integer inputs using `scanner.hasNextInt()` to avoid
@@ -168,17 +180,20 @@ while(guess !=targetNumber &&attempts< 10){...}
 
 ## Enhancements and Variations
 
+
 - **Add Guess Limits**: Modify the condition to `while (guess != targetNumber && attempts < 10)` for a limited-attempts
   version.
 - **Difficulty Levels**: Adjust the random range based on user choice.
 - **Related Concepts**: Combine with \[[Java Switch Statement]\] for menu options or \[[Java Exceptions]\] for input
   handling.
 
+
 > [!NOTE]
 > This example uses Java 8+ features. For older versions, import and usage remain similar.
 
 For more on loops,
 see \[[Java Loops]\]. [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html) [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
+
 
 #java #loops #while-loop #games #programming-example
 
@@ -199,11 +214,13 @@ ______________________________________________________________________
 
 ### Program Overview
 
+
 - **Goal**: Display first `maxPrimes` primes
 - **Concepts**: \[[Java Loops]\], conditional statements, \[[Java Math]\] (`Math.sqrt()`), input
   handling [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
 - **Efficiency**: O(√n) primality test, suitable for small–medium N
 - **Java Version**: Works with Java 8+, no special features
+
 
 > [!TIP]
 > For generating many primes, use the ==Sieve of Eratosthenes==.
@@ -211,6 +228,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 ### Code Example
+
 
 ```java
 import java.util.Scanner;
@@ -269,18 +287,23 @@ public class PrimeNumberFinder {
 }
 ```
 
+
 ## 1. Import Statement
+
 
 ```java
 import java.util.Scanner;
 ```
+
 
 - This imports the `Scanner` class from Java's utility package, allowing the program to read user input from the
   console (System.in).
 - **Why?** Without this, you couldn't use `Scanner` for interactive input. Alternatives include `BufferedReader` for
   more advanced I/O, but `Scanner` is simpler for beginners.
 
+
 ## 2. Class and Main Method
+
 
 ```java
 public class PrimeNumberFinder {
@@ -290,30 +313,29 @@ public class PrimeNumberFinder {
 }
 ```
 
+
 - Defines a public class named `PrimeNumberFinder`. In Java, the file name should match the class name (
   PrimeNumberFinder.java).
 - The `main` method is the entry point. `String[] args` allows command-line arguments (unused here).
 - **Best Practice**: Always keep the main method clean; consider extracting logic to separate methods for larger
   programs.
 
+
 ## 3. Initialization and User Input
+
 
 ```java
 Scanner scanner = new Scanner(System.in);
 int count = 0;
 int number = 2;
 
-System.out.
-
-print("How many prime numbers do you want to find? ");
-
+System.out.print("How many prime numbers do you want to find? ");
 int maxPrimes = scanner.nextInt();
 
-System.out.
-
-println("First "+maxPrimes +" prime numbers:");
+System.out.println("First " + maxPrimes + " prime numbers:");
 
 ```
+
 
 - Creates a `Scanner` object to read from standard input.
 - `count` tracks how many primes have been found (starts at 0).
@@ -323,56 +345,51 @@ println("First "+maxPrimes +" prime numbers:");
 - **Common Pitfall**: If the user enters non-integer input, it throws an `InputMismatchException`. Add try-catch for
   robustness (see Enhancements below).
 
+
 > [!WARNING]
 > Avoid infinite loops by ensuring the loop condition (e.g., `count < maxPrimes`) can eventually become false. Here,
 > `number++` and `count++` ensure progress.
 
 ## 4. The While Loop: Finding Primes
 
+
 ```java
-while(count<maxPrimes){
-boolean isPrime = true;
+while (count < maxPrimes) {
+    boolean isPrime = true;
     
-    for(
-int i = 2;
-i <=Math.
-
-sqrt(number);
-
-i++){
-        if(number %i ==0){
-isPrime =false;
-        break;
+    for (int i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i == 0) {
+            isPrime = false;
+            break;
         }
-        }
-
-        if(isPrime){
-        System.out.
-
-print(number +" ");
-
-count++;
-        }
-
-number++;
-        }
+    }
+    
+    if (isPrime) {
+        System.out.print(number + " ");
+        count++;
+    }
+    
+    number++;
+}
 
 ```
+
 
 - **Outer While Loop**: Continues until `count` reaches `maxPrimes`. This is perfect for unknown iteration counts (we
   don't know how many numbers we'll check to find N primes).
 - **Primality Check**:
-  - Assume `isPrime` is true initially.
-  - Inner `for` loop checks divisors from 2 up to `Math.sqrt(number)` (inclusive). `Math.sqrt()` returns a double, but
-    the loop treats it as int via casting in the condition.
-  - If `number % i == 0`, it's not prime: set `isPrime = false` and `break` to exit early.
+	- Assume `isPrime` is true initially.
+	- Inner `for` loop checks divisors from 2 up to `Math.sqrt(number)` (inclusive). `Math.sqrt()` returns a double, but
+	  the loop treats it as int via casting in the condition.
+	- If `number % i == 0`, it's not prime: set `isPrime = false` and `break` to exit early.
 - **If Prime**:
-  - Print the number (with a space) and increment `count`.
+	- Print the number (with a space) and increment `count`.
 - Always increment `number` to check the next candidate.
 - **Optimization Note**: Checking up to sqrt(n) is efficient because if n has a factor larger than its sqrt, it must
   also have one smaller (already checked). For example, for 25, sqrt=5, and it checks 2-5.
 - **Performance**: For small `maxPrimes` (e.g., 100), it's fast. For large values (e.g., 1,000,000), it could be
   slow—consider alternatives.
+
 
 > [!TIP]
 > Use `int sqrtLimit = (int) Math.sqrt(number);` and loop `i <= sqrtLimit` for slight clarity and to avoid repeated sqrt
@@ -382,30 +399,37 @@ number++;
 
 **Prime Definition:** A prime number has exactly two divisors: 1 and itself.
 
+
 - **Why not start at 0?** Division by 0 is undefined/causes an error
 - **Why not start at 1?** Every number is divisible by 1, so checking `number % 1` would always equal 0 and incorrectly
   mark all numbers as "not prime"
 - **Start at 2:** This is the first meaningful divisor to check. If a number is divisible by anything between 2 and
   √number, it's composite
 
+
 ## The Logic
 
 The algorithm essentially asks: "Does this number have any divisors OTHER than 1 and itself?"
+
 
 - Start checking at 2 (the smallest possible "other" divisor)
 - End at √number (mathematical optimization)
 - If we find any divisor in this range, the number is composite
 - If we find no divisors in this range, the number is prime
 
+
 Starting at `i = 2` ensures we only check meaningful divisors that actually determine primality.
 
 ## 5. Closing the Scanner
+
 
 ```java
 scanner.close();
 ```
 
+
 - Releases system resources associated with the scanner. Good practice to prevent leaks, especially in larger apps.
+
 
 ## How It Works: Step-by-Step Execution
 
@@ -413,11 +437,13 @@ Let's trace through finding the **first 3 prime numbers** (`maxPrimes = 3`):
 
 #### Initial State
 
+
 | Variable    | Value | Purpose                             |
-| :---------- | :---- | :---------------------------------- |
+|:------------|:------|:------------------------------------|
 | `count`     | 0     | No primes found yet                 |
 | `number`    | 2     | Starting with first prime candidate |
 | `maxPrimes` | 3     | User wants 3 primes                 |
+
 
 > [!EXAMPLE]
 > **User Input:** 3
@@ -427,65 +453,71 @@ Let's trace through finding the **first 3 prime numbers** (`maxPrimes = 3`):
 
 **Iteration 1: Testing number = 2**
 
+
 ```java
 // Loop condition check
 while(count<maxPrimes)  // 0 < 3 → true, continue
 
 // Prime test for 2
 boolean isPrime = true;
-for(
-int i = 2;
-i <=Math.
+for (int i = 2; i <= Math.sqrt(2); i++) {  // i <= 1.4, loop doesn't run
+    // No iterations, isPrime stays true
+}
 
-sqrt(2);
-
-i++){  // i <= 1.4, loop doesn't run
-        // No iterations, isPrime stays true
-        }
-
-        if(isPrime){  // true
-        System.out.
-
-print(2+" ");  // Print: "2 "
-
-count++;  // count becomes 1
-        }
+if (isPrime) {  // true
+    System.out.print(2 + " ");  // Print: "2 "
+    count++;  // count becomes 1
+}
 number++;  // number becomes 3
 ```
 
+
 **State after iteration 1:**
+
 
 - `count = 1`, `number = 3`
 - Output so far: `2 `
 
+
 When a number "skips" the for loop (the loop body never executes), it means **there are no possible divisors to check**,
 which by definition makes it prime.
 
+
 The loop skips when: `2 > Math.sqrt(number)`
+
 
 This happens when: `number < 4`
 
+
 So for numbers 2 and 3:
+
 
 - **Number = 2:** `Math.sqrt(2) ≈ 1.41`, condition `2 <= 1.41` is false → loop skips
 - **Number = 3:** `Math.sqrt(3) ≈ 1.73`, condition `2 <= 1.73` is false → loop skips
 
+
 The algorithm logic is: "If I can't find any divisor between 2 and √number, then the number is prime."
 
+
 For 2 and 3, there literally **aren't any numbers between 2 and √number to check**:
+
 
 - For 2: No integers exist between 2 and 1.41
 - For 3: No integers exist between 2 and 1.73
 
+
 The algorithm uses "**innocent until proven guilty**" logic:
+
 
 1. Start by assuming the number IS prime (`isPrime = true`)
 1. Try to find evidence it's NOT prime (find a divisor)
 1. If no evidence is found, the assumption stands
 
+
 ______________________________________________________________________
 
 **Iteration 2: Testing number = 3**
+
 
 ```java
 // Loop condition check
@@ -493,34 +525,29 @@ while(count<maxPrimes)  // 1 < 3 → true, continue
 
 // Prime test for 3
 boolean isPrime = true;
-for(
-int i = 2;
-i <=Math.
+for (int i = 2; i <= Math.sqrt(3); i++) {  // i <= 1.7, loop doesn't run
+    // No iterations, isPrime stays true
+}
 
-sqrt(3);
-
-i++){  // i <= 1.7, loop doesn't run
-        // No iterations, isPrime stays true
-        }
-
-        if(isPrime){  // true
-        System.out.
-
-print(3+" ");  // Print: "3 "
-
-count++;  // count becomes 2
-        }
+if (isPrime) {  // true
+    System.out.print(3 + " ");  // Print: "3 "
+    count++;  // count becomes 2
+}
 number++;  // number becomes 4
 ```
 
+
 **State after iteration 2:**
+
 
 - `count = 2`, `number = 4`
 - Output so far: `2 3 `
 
+
 ______________________________________________________________________
 
 **Iteration 3: Testing number = 4**
+
 
 ```java
 // Loop condition check
@@ -528,29 +555,26 @@ while(count<maxPrimes)  // 2 < 3 → true, continue
 
 // Prime test for 4
 boolean isPrime = true;
-for(
-int i = 2;
-i <=Math.
-
-sqrt(4);
-
-i++){  // i <= 2.0, i = 2
-        if(4%2==0){  // 0, divisible!
-isPrime =false;
+for (int i = 2; i <= Math.sqrt(4); i++) {  // i <= 2.0, i = 2
+    if (4 % 2 == 0) {  // 0, divisible!
+        isPrime = false;
         break;  // Exit early
-        }
-        }
+    }
+}
 
-        if(isPrime){  // false, skip this block
-        // Nothing happens - no print, no count increment
-        }
+if (isPrime) {  // false, skip this block
+    // Nothing happens - no print, no count increment
+}
 number++;  // number becomes 5
 ```
 
+
 **State after iteration 3:**
+
 
 - `count = 2` (unchanged), `number = 5`
 - Output so far: `2 3 ` (unchanged)
+
 
 > [!TIP]
 > Notice how `count` stays the same when a composite number is found, but `number` always increments. This ensures we
@@ -560,47 +584,44 @@ ______________________________________________________________________
 
 **Iteration 4: Testing number = 5**
 
+
 ```java
 // Loop condition check
 while(count<maxPrimes)  // 2 < 3 → true, continue
 
 // Prime test for 5
 boolean isPrime = true;
-for(
-int i = 2;
-i <=Math.
-
-sqrt(5);
-
-i++){  // i <= 2.2, i = 2
-        if(5%2==0){  // 1, not divisible
+for (int i = 2; i <= Math.sqrt(5); i++) {  // i <= 2.2, i = 2
+    if (5 % 2 == 0) {  // 1, not divisible
         // Condition false, continue loop
-        }
-        // Loop ends, isPrime remains true
-        }
+    }
+    // Loop ends, isPrime remains true
+}
 
-        if(isPrime){  // true
-        System.out.
-
-print(5+" ");  // Print: "5 "
-
-count++;  // count becomes 3
-        }
+if (isPrime) {  // true
+    System.out.print(5 + " ");  // Print: "5 "
+    count++;  // count becomes 3
+}
 number++;  // number becomes 6
 ```
 
+
 **State after iteration 4:**
+
 
 - `count = 3`, `number = 6`
 - Output so far: `2 3 5 `
+
 
 ______________________________________________________________________
 
 **Loop Termination Check**
 
+
 ```java
 while(count<maxPrimes)  // 3 < 3 → false, exit loop
 ```
+
 
 > [!SUCCESS]
 > **Final Output:** `2 3 5 ` (exactly 3 primes found)
@@ -609,21 +630,25 @@ while(count<maxPrimes)  // 3 < 3 → false, exit loop
 
 #### 1. Dual Counter Pattern
 
+
 ```java
-while(count<maxPrimes){
-        // Test current number
-        if(isPrime){
-count++;  // Only increments for primes
-        }
-number++;     // Always increments
-        }
+while (count < maxPrimes) {
+    // Test current number
+    if (isPrime) {
+        count++;  // Only increments for primes
+    }
+    number++;     // Always increments
+}
 ```
 
+
 Imagine listening to songs and counting how many are jazz:
+
 
 - `number`= which song you're on (goes up with every song: track 1, 2, 3, 4...)
 - `count`= how many jazz songs you've heard (only goes up when you hear jazz)
 - `maxPrimes`= how many jazz songs you need to find
+
 
 You listen to EVERY song in order, but only count the jazz ones. Stop when you've found enough jazz songs.
 
@@ -633,19 +658,16 @@ You listen to EVERY song in order, but only count the jazz ones. Stop when you'v
 
 #### 2. Optimization: Early Break
 
+
 ```java
-for(int i = 2;
-i <=Math.
-
-sqrt(number);
-
-i++){
-        if(number %i ==0){
-isPrime =false;
+for (int i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i == 0) {
+        isPrime = false;
         break;  // No need to check further
-        }
-        }
+    }
+}
 ```
+
 
 The `break` statement saves unnecessary iterations once we find a divisor.
 
@@ -653,19 +675,23 @@ The `break` statement saves unnecessary iterations once we find a divisor.
 
 Testing only up to `√number` is mathematically sound:
 
+
 - If `n = a × b` and both `a, b > √n`, then `a × b > n` (contradiction)
 - So at least one factor must be ≤ √n
+
 
 > [!WARNING]
 > **Common Mistake:** Forgetting to increment `number` leads to infinite loops testing the same candidate repeatedly.
 
 ### Performance Analysis
 
+
 | Input Size        | Time Complexity | Notes                                |
-| :---------------- | :-------------- | :----------------------------------- |
+|:------------------|:----------------|:-------------------------------------|
 | Small (N ≤ 100)   | Very fast       | Suitable for interactive use         |
 | Medium (N ≤ 1000) | Acceptable      | May take a few seconds               |
 | Large (N > 10000) | Slow            | Consider \[[Sieve of Eratosthenes]\] |
+
 
 > [!TIP]
 > For finding many primes efficiently, pre-compute them using a sieve algorithm, then access by index.
@@ -674,41 +700,43 @@ Testing only up to `√number` is mathematically sound:
 
 This while loop pattern applies to many scenarios:
 
+
 - Finding N Fibonacci numbers
 - Collecting N valid user inputs
 - Searching for N files matching criteria
 - Generating N random unique values
 
+
 ```java
 // General pattern
 int count = 0;
 int candidate = startValue;
-while(count<target){
-        if(
-
-meetsCondition(candidate)){
-
-processItem(candidate);
-
-count++;
-        }
-candidate++;
-        }
+while (count < target) {
+    if (meetsCondition(candidate)) {
+        processItem(candidate);
+        count++;
+    }
+    candidate++;
+}
 ```
+
 
 ## Common Pitfalls and Improvements
 
+
 - **Pitfalls**:
-  - For number=1 or negatives: The code starts at 2, but add checks if needed.
-  - Large inputs: May run slowly or overflow `int` (primes up to ~2 billion fit in int).
-  - No handling for maxPrimes \<=0: Add validation like
-    `if (maxPrimes <= 0) { System.out.println("Invalid input"); return; }`.
+	- For number=1 or negatives: The code starts at 2, but add checks if needed.
+	- Large inputs: May run slowly or overflow `int` (primes up to ~2 billion fit in int).
+	- No handling for maxPrimes \<=0: Add validation like
+	  `if (maxPrimes <= 0) { System.out.println("Invalid input"); return; }`.
 - **Enhancements**:
-  - Handle exceptions: Wrap `nextInt()` in try-catch.
-  - Even number optimization: After 2, skip evens by incrementing number by 2.
-  - Make it a method: Extract primality check to a reusable function.
+	- Handle exceptions: Wrap `nextInt()` in try-catch.
+	- Even number optimization: After 2, skip evens by incrementing number by 2.
+	- Make it a method: Extract primality check to a reusable function.
+
 
 **Advanced Example: Optimized Primality Method**
+
 
 ```java
 public static boolean isPrime(int num) {
@@ -723,9 +751,12 @@ public static boolean isPrime(int num) {
 
 ```
 
+
 This checks multiples of 6 for faster sieving.
+
 
 For more on number algorithms, see \[[Java Math]\]
 or \[[Algorithms in Java]\]. [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
+
 
 #java #loops #prime-numbers #algorithms #programming-example
