@@ -1,21 +1,20 @@
 
 <!-- TOC -->
-    * [Quick Reference](#quick-reference)
-  * [How It Works](#how-it-works)
-    * [=== For Primitives ===](#-for-primitives-)
-    * [=== For Objects ===](#-for-objects-)
-    * [=== For Strings ===](#-for-strings-)
-  * [Operator Table](#operator-table)
-  * [Use Cases & Best Practices](#use-cases--best-practices)
-  * [Common Pitfalls](#common-pitfalls)
-  * [Performance](#performance)
-  * [Related Concepts](#related-concepts)
+- [Quick Reference](#quick-reference)
+- [How It Works](#how-it-works)
+  - [For Primitives](#for-primitives)
+  - [For Objects](#for-objects)
+  - [For Strings](#for-strings)
+- [Operator Table](#operator-table)
+- [Use Cases & Best Practices](#use-cases-best-practices)
+- [Common Pitfalls](#common-pitfalls)
+- [Performance](#performance)
+- [Related Concepts](#related-concepts)
 <!-- TOC -->
+
 
 ### Quick Reference
 
-
-- **Purpose:** Tests if two operands are ==equal==
 - **Type:** Relational operator
 - **Result:** Returns a `boolean` (`true` or `false`)
 - **Syntax:**
@@ -30,7 +29,7 @@ ______________________________________________________________________
 
 ## How It Works
 
-### === For Primitives ===
+### For Primitives
 
 
 - Compares ==actual values== [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
@@ -48,7 +47,7 @@ System.out.println(a == b); // true
 - ==Best practice==: Always use `==` to compare primitive values
 
 
-### === For Objects ===
+### For Objects
 
 
 - Compares ==references== (memory addresses) [baeldung](https://www.baeldung.com/java-equals-method-operator-difference)
@@ -69,7 +68,7 @@ System.out.println(s1 ==s3); // true
 - ==Use cases==: Identity checks (is this literally the same object?)
 
 
-### === For Strings ===
+### For Strings
 
 
 - Strings with equal contents may not be the same
