@@ -113,15 +113,15 @@ String cityTrim = " Paris  ".trim();    // "Paris" (new String)
 
 ```java
 int[] scores = {90, 85, 78, 95};
-scores[^1] = 88;                          // Change the second value
-// scores = new int[^10];                 // You can assign a new array
-// scores[^4] = 100;                      // Error: ArrayIndexOutOfBoundsException
+scores[1] = 88;                          // Change the second value
+// scores = new int[10];                 // You can assign a new array
+// scores[4] = 100;                      // Error: ArrayIndexOutOfBoundsException
 
-String[] pets = new String[^4];
-pets[^0] = "cat";
-pets[^1] = "dog";                         // Rest are null (reference types)
-pets[^3] = "fish";
-pets[^2] = "bird";
+String[] pets = new String[4];
+pets[0] = "cat";
+pets[1] = "dog";                         // Rest are null (reference types)
+pets[3] = "fish";
+pets[2] = "bird";
 // Pets: ["cat", "dog", "bird", "fish"]
 ```
 
@@ -422,7 +422,7 @@ System.out.println(add(3, 4));
 | Wrapper Classes     | Object versions of primitives                    | `Integer.valueOf(5)`, `Boolean.TRUE`|
 | var                 | Local variable type inference (Java 10+)         | `var name = "Alice";`               |
 | String immutability | All modifications create new objects             | `s = s + "!";`                      |
-| Array mutability    | Elements are mutable, size is fixed              | `int[] a = {1,2,3}; a[^0] = 4;`      |
+| Array mutability    | Elements are mutable, size is fixed              | `int[] a = {1,2,3}; a[0] = 4;`       |
 | split / substring   | Split with regex, extract substrings             | `csv.split(",");`, `"abc".substr(1,2)`|
 | Regex delimiter     | Use regex for complex splits                     | `split("[ ,;]")`                    |
 | Enums               | Type-safe constants, can have methods            | `enum Day { MON, TUE }`             |

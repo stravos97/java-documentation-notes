@@ -174,8 +174,8 @@ class ReportService { void generateReport() { /* ... */ } }
 **Ideas for boundary testing**:
 
 - **Empty arrays/lists** (`[]`, `0` elements).
-- **Single-element arrays/lists** (``).
-- **First and last elements in a collection** (`arr`, `arr[arr.length-1]`).
+- **Single-element arrays/lists** ([1]).
+- **First and last elements in a collection** (`arr[0]`, `arr[arr.length-1]`).
 - **Minimum/maximum allowed values** (`Integer.MIN_VALUE`, `Integer.MAX_VALUE`).
 - **Null values** if allowed by the API.
 - **Excessive/very large inputs** (e.g., giant strings, huge collections).
@@ -277,7 +277,6 @@ switch (month) {
     // ...
 }
 ```
-
 
 ***
 
@@ -407,13 +406,12 @@ for (int i = 0; i < nums.length - 1; i++) {
 **Extended example**: Find minimum and maximum in one pass:
 
 ```java
-int min = nums[^0], max = nums[^0];
+int min = nums[0], max = nums[0];
 for (int i = 1; i < nums.length; i++) {
     if (nums[i] < min) min = nums[i];
     if (nums[i] > max) max = nums[i];
 }
 ```
-
 
 ***
 
@@ -422,8 +420,8 @@ for (int i = 1; i < nums.length; i++) {
 **Remember**: Java arrays are **zero-indexed**.
 
 | Declaration               | Valid Indices | Invalid Index                |
-|:--------------------------|:--------------|:-----------------------------|
-| `int[] arr = new int[^3]` | `0, 1, 2`     | `3`, `-1` (throws exception) |
+| :------------------------ | :------------ | :--------------------------- |
+| `int[] arr = new int[3]` | `0, 1, 2`     | `3`, `-1` (throws exception) |
 
 **Always check bounds** before direct access.
 
@@ -431,17 +429,16 @@ for (int i = 1; i < nums.length; i++) {
 
 ```java
 int[] arr = {100, 200, 300};
-System.out.println(arr[^2]); // 300
-// System.out.println(arr[^3]); // Throws ArrayIndexOutOfBoundsException
+System.out.println(arr[2]); // 300
+// System.out.println(arr[3]); // Throws ArrayIndexOutOfBoundsException
 ```
-
 
 ***
 
 ## Quick Reference Table (Expanded)
 
-| Topic                  | Key Point                                 | Tips \& Pitfalls               |
-|:-----------------------|:------------------------------------------|:-------------------------------|
+| Topic                  | Key Point                                 | Tips & Pitfalls                |
+| :--------------------- | :---------------------------------------- | :----------------------------- |
 | **Method Extraction**  | Select → Refactor → Extract in IDE        | Keep methods focused, reusable |
 | **POM File**           | Maven project configuration file          | Add dependencies, plugins here |
 | **Class Partitioning** | Split big classes by responsibility       | No “god classes”               |
@@ -452,7 +449,6 @@ System.out.println(arr[^2]); // 300
 | **++i**                | Pre-increment (rarely matters)            | Be consistent                  |
 | **Loop Breaks**        | Avoid excessive `break` in loops          | Use clear loop conditions      |
 | **Array Bounds**       | `0` to `length-1`                         | Invalid access crashes         |
-
 
 ***
 
@@ -467,7 +463,6 @@ graph TD
     E -->|Boundary| F[Edge Cases]
     F -->|Failure| G[Easy Debugging]
 ```
-
 
 ***
 
@@ -486,13 +481,19 @@ graph TD
 > **Nested ternary operators** are unreadable—use `if` for clarity.
 
 > [!EXAMPLE]
-> ```java > // Good: clear boundaries, avoids problems > for (int i = 0; i < arr.length; i++) { ... } > > // Bad: off-by-one risk, needs extra care > for (int i = 1; i <= arr.length; i++) { ... } > ```
+> ```java
+> // Good: clear boundaries, avoids problems
+> for (int i = 0; i < arr.length; i++) { ... }
+>
+> // Bad: off-by-one risk, needs extra care
+> for (int i = 1; i <= arr.length; i++) { ... }
+> ```
 
 ***
 
 ## Tags
 
-\#java \#ide \#maven \#gradle \#testing \#refactoring \#arrays \#loops \#control-flow \#bestpractices
+#java #ide #maven #gradle #testing #refactoring #arrays #loops #control-flow #bestpractices
 
 ***
 
@@ -504,7 +505,7 @@ This expanded cheatsheet gives you **better examples, explanations, and visual a
 
 ## See Also
 
-- [[Java Collections]]
-- [[Testing Strategies]]
-- [[Project Structure]]
-- [[Effective Java Practices]]
+- \[[Java Collections]\]
+- \[[Testing Strategies]\]
+- \[[Project Structure]\]
+- \[[Effective Java Practices]\]

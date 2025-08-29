@@ -39,7 +39,6 @@ Think of a car’s steering wheel—you know what it does (turns the car), but y
 - **Interfaces:**
   Define a **contract** that classes must follow (Java 8+ allows default/static methods).
 
-
 #### Examples
 
 **Abstract Class:**
@@ -107,7 +106,6 @@ A bank account—**balance** is private; you interact with it through **deposit*
 - **Private fields:** Hide state from the outside.
 - **Public methods (getters/setters):** Controlled access and validation.
 
-
 #### Example
 
 ```java
@@ -139,7 +137,12 @@ class BankAccount {
 
 > [!EXAMPLE]
 > **Validation in setters:**
-> ```java > public void setAge(int age) { >     if (age > 0 && age < 150) this.age = age; >     else throw new IllegalArgumentException("Invalid age"); > } > ```
+> ```java
+> public void setAge(int age) {
+>     if (age > 0 && age < 150) this.age = age;
+>     else throw new IllegalArgumentException("Invalid age");
+> }
+> ```
 
 ***
 
@@ -188,7 +191,6 @@ A USB port: Works with keyboard, mouse, or flash drive—same interface, differe
 - **Compile-time (overloading):** Same method name, different parameters.
 - **Runtime (overriding):** Subclass provides a new implementation for a method from its superclass.
 
-
 #### Examples
 
 **Compile-time (overloading):**
@@ -221,13 +223,13 @@ animal.makeSound(); // Calls Cat’s makeSound()
 
 ### Key Classes
 
-| Class | Purpose | Example |
-| :-- | :-- | :-- |
-| `LocalDate` | Date (year-month-day) | `2025-08-29` |
-| `LocalTime` | Time (hour-minute-second) | `14:30:15` |
-| `LocalDateTime` | Date + Time | `2025-08-29T14:30:15` |
-| `ZonedDateTime` | Date + Time + Timezone | `2025-08-29T14:30:15+01:00[Europe/London]` |
-| `Duration` / `Period` | Time spans | `Duration.ofHours(2)`, `Period.ofDays(7)` |
+| Class                 | Purpose                   | Example                                    |
+| :-------------------- | :------------------------ | :----------------------------------------- |
+| `LocalDate`           | Date (year-month-day)     | `2025-08-29`                               |
+| `LocalTime`           | Time (hour-minute-second) | `14:30:15`                                 |
+| `LocalDateTime`       | Date + Time               | `2025-08-29T14:30:15`                      |
+| `ZonedDateTime`       | Date + Time + Timezone    | `2025-08-29T14:30:15+01:00[Europe/London]` |
+| `Duration` / `Period` | Time spans                | `Duration.ofHours(2)`, `Period.ofDays(7)`  |
 
 #### Example Usage
 
@@ -271,7 +273,6 @@ class Point {
 Point p = new Point(3, 4); // Constructor returns a Point reference
 ```
 
-
 ### The `new` Keyword
 
 Allocates memory for the object and calls its constructor.
@@ -279,7 +280,6 @@ Allocates memory for the object and calls its constructor.
 ```java
 String s = new String("Hello"); // 'new' creates object, calls constructor
 ```
-
 
 ### Constructor Overloading
 
@@ -303,7 +303,6 @@ class Student {
 }
 ```
 
-
 ### Constructor Chaining
 
 **One constructor calls another** using `this(...)` for code reuse.
@@ -321,7 +320,6 @@ class Rectangle {
 }
 ```
 
-
 ### Default Constructor
 
 **If no constructor is defined**, Java provides a **public, no-arg default constructor**.
@@ -334,7 +332,6 @@ class NonEmpty {
     NonEmpty(String s) { } // No default constructor now
 }
 ```
-
 
 ***
 
@@ -351,7 +348,6 @@ class Account {
 }
 ```
 
-
 ### Default (Package-Private)
 
 **Accessible within the same package**.
@@ -362,7 +358,6 @@ class PackagePrivateClass {
     int packagePrivateField;
 }
 ```
-
 
 ### Protected
 
@@ -382,7 +377,6 @@ public class Lion extends animal.Animal {
 }
 ```
 
-
 ### Public
 
 **Accessible everywhere**.
@@ -395,26 +389,24 @@ public class Logger {
 }
 ```
 
-
 ***
 
 ## Quick Reference Table
 
-| Concept | Key Points | Example Use Case |
-| :-- | :-- | :-- |
-| **Abstraction** | Hide details, show essentials | Abstract classes, interfaces |
-| **Encapsulation** | Private fields + public methods | Bank account, user profile |
-| **Inheritance** | `extends`, code reuse, overriding | Dog, Cat extend Animal |
-| **Polymorphism** | Many forms, same interface | Overloading, overriding |
-| **Date/Time** | `java.time` (Java 8+) | LocalDate, LocalDateTime |
-| **Constructors** | No return type, object init | new Point(3, 4) |
-| **Overloading** | Multiple constructors/methods | Student(String), Student(int) |
-| **Chaining** | `this()` calls other constructor | Rectangle(width, height) |
-| **Default** | Java-provided no-arg constructor | If none defined |
-| **Private** | Class-only access | Hiding internal state |
-| **Protected** | Package + subclass access | Inherited field access |
-| **Public** | All access | API methods, utility classes |
-
+| Concept           | Key Points                        | Example Use Case              |
+| :---------------- | :-------------------------------- | :---------------------------- |
+| **Abstraction**   | Hide details, show essentials     | Abstract classes, interfaces  |
+| **Encapsulation** | Private fields + public methods   | Bank account, user profile    |
+| **Inheritance**   | `extends`, code reuse, overriding | Dog, Cat extend Animal        |
+| **Polymorphism**  | Many forms, same interface        | Overloading, overriding       |
+| **Date/Time**     | `java.time` (Java 8+)             | LocalDate, LocalDateTime      |
+| **Constructors**  | No return type, object init       | new Point(3, 4)               |
+| **Overloading**   | Multiple constructors/methods     | Student(String), Student(int) |
+| **Chaining**      | `this()` calls other constructor  | Rectangle(width, height)      |
+| **Default**       | Java-provided no-arg constructor  | If none defined               |
+| **Private**       | Class-only access                 | Hiding internal state         |
+| **Protected**     | Package + subclass access         | Inherited field access        |
+| **Public**        | All access                        | API methods, utility classes  |
 
 ***
 
@@ -453,7 +445,6 @@ car = new ElectricCar("Tesla");
 car.start(); // "Tesla starts silently."
 ```
 
-
 ***
 
 ## Callouts
@@ -471,14 +462,13 @@ car.start(); // "Tesla starts silently."
 
 ## Tags
 
-\#java \#oop \#abstraction \#encapsulation \#inheritance \#polymorphism \#constructors \#access-modifiers \#date-time \#bestpractices
+#java #oop #abstraction #encapsulation #inheritance #polymorphism #constructors #access-modifiers #date-time #bestpractices
 
 ***
 
 ## See Also
 
-- [[Java Collections]]
-- [[Object-Oriented Design Patterns]]
-- [[Effective Java Best Practices]]
-- [[Unit Testing in Java]]
-
+- \[[Java Collections]\]
+- \[[Object-Oriented Design Patterns]\]
+- \[[Effective Java Best Practices]\]
+- \[[Unit Testing in Java]\]

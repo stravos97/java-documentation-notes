@@ -112,7 +112,6 @@ Student s = new Student();
 System.out.println(s); // Prints: Student{name='null', id=0}
 ```
 
-
 ***
 
 #### getClass()
@@ -125,7 +124,6 @@ Object obj = "Hello";
 Class<?> clazz = obj.getClass();
 System.out.println(clazz.getName()); // java.lang.String
 ```
-
 
 ***
 
@@ -198,7 +196,6 @@ Animal a = new Cat();
 a.sound(); // Output: Meow
 ```
 
-
 ***
 
 ### Abstract Classes
@@ -221,13 +218,12 @@ class Circle extends Shape {
 }
 ```
 
-
 ***
 
 #### Concrete vs Abstract Methods
 
 | Type         | Definition                | Example                    |
-|:-------------|:--------------------------|:---------------------------|
+| :----------- | :------------------------ | :------------------------- |
 | **Concrete** | Complete method with body | `String getType() { ... }` |
 | **Abstract** | Only signature, no body   | `double area();`           |
 
@@ -249,7 +245,6 @@ Runnable task = new Runnable() {
 };
 new Thread(task).start();
 ```
-
 
 ***
 
@@ -276,13 +271,12 @@ class Circle extends Shape {
 }
 ```
 
-
 ***
 
 ### Interfaces vs Abstract Classes
 
 | Feature                  | Interface                             | Abstract Class                    |
-|:-------------------------|:--------------------------------------|:----------------------------------|
+| :----------------------- | :------------------------------------ | :-------------------------------- |
 | **Multiple Inheritance** | Yes (implements multiple)             | No (extends one only)             |
 | **Method Types**         | Abstract + default + static (Java 8+) | Abstract + concrete               |
 | **Fields**               | Only `public static final`            | Any access modifier               |
@@ -299,7 +293,7 @@ class Circle extends Shape {
 ### Quick Reference Table
 
 | Concept                  | Key Points                          | Example Use Case           |
-|:-------------------------|:------------------------------------|:---------------------------|
+| :----------------------- | :---------------------------------- | :------------------------- |
 | **Single Inheritance**   | Extend one class only               | `class Dog extends Animal` |
 | **Final Method**         | No overriding in subclasses         | Security, immutability     |
 | **Final Class**          | No subclassing                      | `String`, `Integer`        |
@@ -311,7 +305,6 @@ class Circle extends Shape {
 | **Dynamic Polymorphism** | Overriding (runtime)                | Frameworks, APIs           |
 | **Abstract Class**       | Partial implementation              | Template pattern           |
 | **Interface**            | Contract definition                 | Multiple capabilities      |
-
 
 ***
 
@@ -362,7 +355,6 @@ class Circle extends Shape {
 }
 ```
 
-
 ***
 
 ### Callouts
@@ -380,13 +372,13 @@ class Circle extends Shape {
 
 ### Tags
 
-\#java \#inheritance \#polymorphism \#final \#abstract-classes \#interfaces \#object-methods \#equals \#hashcode \#bestpractices
+#java #inheritance #polymorphism #final #abstract-classes #interfaces #object-methods #equals #hashcode #bestpractices
 
 ***
 
 ### See Also
 
-- [[Java Collections Framework]]
-- [[Object-Oriented Design]]
-- [[Functional Interfaces]]
-- [[Unit Testing Java]]
+- \[[Java Collections Framework]\]
+- \[[Object-Oriented Design]\]
+- \[[Functional Interfaces]\]
+- \[[Unit Testing Java]\]

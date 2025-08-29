@@ -107,7 +107,7 @@ public class Shop {
 **Strings are special** because Java tries to **reuse identical literals** for efficiency:
 
 | Creation Method    | Storage Location            | Behavior                  |
-|:-------------------|:----------------------------|:--------------------------|
+| :----------------- | :-------------------------- | :------------------------ |
 | **String Literal** | String Constant Pool (heap) | Reuses existing string    |
 | **`new String()`** | Regular Heap                | Always creates new object |
 
@@ -135,7 +135,7 @@ System.out.println(s3 == s4);    // false (different objects)
 ## Reference Types vs Value Types
 
 | Feature        | Value Type (Primitive)     | Reference Type (Object)             |
-|:---------------|:---------------------------|:------------------------------------|
+| :------------- | :------------------------- | :---------------------------------- |
 | **Storage**    | On stack                   | On heap (object), ref on stack      |
 | **Copy**       | Copies value               | Copies reference (pointer)          |
 | **Examples**   | `int`, `double`, `boolean` | `String`, `Object`, arrays, classes |
@@ -174,7 +174,6 @@ When a **reference goes out of scope** (e.g., method ends, local variable dies),
 - **Method exits:** Local references disappear, objects may become unreachable.
 - **Island of isolation:** Circular references with no external access.
 
-
 ### Example
 
 ```java
@@ -197,7 +196,7 @@ public void demoScope() {
 The **Garbage Collector (GC)** has three main jobs:
 
 | Step        | What Happens                                         | Purpose                    |
-|:------------|:-----------------------------------------------------|:---------------------------|
+| :---------- | :--------------------------------------------------- | :------------------------- |
 | **Mark**    | Finds all reachable objects (starting from GC roots) | Identify live objects      |
 | **Sweep**   | Deletes unreachable objects                          | Free memory                |
 | **Compact** | Moves objects to reduce fragmentation                | Improve future allocations |
@@ -208,7 +207,6 @@ The **Garbage Collector (GC)** has three main jobs:
 - **Static variables**
 - **Local variables in stack frames**
 - **JNI references**
-
 
 ### Example
 
@@ -235,7 +233,6 @@ public class GCExample {
 - **Objects with the same contents are still distinct** unless explicitly pooled (like string literals).
 - **`==` compares addresses**, **`.equals()` compares contents**.
 
-
 ### Example
 
 ```java
@@ -246,7 +243,6 @@ System.out.println(a.equals(b));      // true (same content)
 System.out.println(System.identityHashCode(a)); // Unique for each object
 System.out.println(System.identityHashCode(b)); // Unique for each object
 ```
-
 
 ***
 
@@ -276,7 +272,7 @@ STACK                                    HEAP
 ## Garbage Collection Algorithms
 
 | GC Type      | Use Case                    | Pause Time | Throughput | Notes                   |
-|:-------------|:----------------------------|:-----------|:-----------|:------------------------|
+| :----------- | :-------------------------- | :--------- | :--------- | :---------------------- |
 | **Serial**   | Small, single-core apps     | High       | Low        | Simple, single-threaded |
 | **Parallel** | Batch, multi-core           | Medium     | High       | Uses multiple threads   |
 | **CMS**      | Low-latency, interactive    | Low        | Medium     | Concurrent, phased      |
@@ -288,7 +284,7 @@ STACK                                    HEAP
 ## Quick Reference Table
 
 | Memory Area     | Contains                        | Cleanup Method          | Access Speed  | Max Size?        |
-|:----------------|:--------------------------------|:------------------------|:--------------|:-----------------|
+| :-------------- | :------------------------------ | :---------------------- | :------------ | :--------------- |
 | **Stack**       | Primitives, refs, method frames | Automatic (method exit) | Very Fast     | Limited (by JVM) |
 | **Heap**        | Objects, arrays, fields         | Garbage Collection      | Slower        | Up to JVM max    |
 | **String Pool** | String literals                 | Garbage Collection      | Fast (cached) | Part of heap     |
@@ -313,7 +309,14 @@ STACK                                    HEAP
 
 > [!EXAMPLE]
 > A **real-world leak pattern**:
-> ```java > public class Cache { >     private static Map<Long, Product> inventory = new HashMap<>(); >     public static void addProduct(Product p) { >         inventory.put(p.getId(), p); // Products never removed! >     } > } > ```
+> ```java
+> public class Cache {
+>     private static Map<Long, Product> inventory = new HashMap<>();
+>     public static void addProduct(Product p) {
+>         inventory.put(p.getId(), p); // Products never removed!
+>     }
+> }
+> ```
 > **Solution:** Implement a size limit or cache eviction policy.
 
 ***
@@ -328,13 +331,13 @@ STACK                                    HEAP
 
 ## Tags
 
-\#java \#memory \#stack \#heap \#garbage-collection \#string-pool \#reference-types \#value-types \#bestpractices \#cheatsheet
+#java #memory #stack #heap #garbage-collection #string-pool #reference-types #value-types #bestpractices #cheatsheet
 
 ***
 
 ## Related Topics
 
-- [[Java Performance Tuning]]
-- [[How the JVM Works]]
-- [[Java Collections Memory Impact]]
-- [[Effective Resource Management]]
+- \[[Java Performance Tuning]\]
+- \[[How the JVM Works]\]
+- \[[Java Collections Memory Impact]\]
+- \[[Effective Resource Management]\]
