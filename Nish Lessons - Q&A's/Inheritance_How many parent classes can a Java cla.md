@@ -6,24 +6,24 @@ topic: Java Inheritance, Polymorphism, and Object Methods
 
 # Inheritance
 
-How many parent classes can a Java class inherit from?
-What does the final keyword do in a method name?
-Can you inherit from classes marked with the final keyword?
-Object Methods
-When does it make sense to override toString()?
-What is getClass() useful for?
-What is hashCode() typically used for?
-How do equals() and hashCode() relate to each other?
-Polymorphism Types
-What is static polymorphism?
-What is compile-time vs runtime polymorphism?
-Abstract Classes and Interfaces
-What is the purpose of abstract classes?
-What are concrete vs abstract methods?
-What are anonymous classes?
-How do abstract methods work in derived classes?
-What happens when an abstract class implements an interface?
-How do interfaces differ from abstract classes?
+1. How many parent classes can a Java class inherit from?
+2. What does the final keyword do in a method name?
+3. Can you inherit from classes marked with the final keyword?
+4. Object Methods
+5. When does it make sense to override toString()?
+6. What is getClass() useful for?
+7. What is hashCode() typically used for?
+8. How do equals() and hashCode() relate to each other?
+9. Polymorphism Types
+10. What is static polymorphism?
+11. What is compile-time vs runtime polymorphism?
+12. Abstract Classes and Interfaces
+13. What is the purpose of abstract classes?
+14. What are concrete vs abstract methods?
+15. What are anonymous classes?
+16. How do abstract methods work in derived classes?
+17. What happens when an abstract class implements an interface?
+18. How do interfaces differ from abstract classes?
 
 ## Inheritance
 

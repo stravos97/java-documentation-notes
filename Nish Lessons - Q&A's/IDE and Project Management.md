@@ -6,21 +6,21 @@ topic: Java Fundamentals Quick Reference
 
 # IDE and Project Management
 
-How do you extract code into a separate method?
-What is the POM file responsible for?
-What is class partitioning?
-Testing
-Why should you always test boundary values?
-Why should you avoid loops in tests?
-Control Flow and Operators
-What are case statements used for?
-What are ternary operators?
-What does ++i mean?
-Why is using break in loops considered bad practice?
-What is fall-through in switch statements?
-Arrays and Loops
-What's the difference between i < nums.length and i < nums.length-1?
-What are the valid index positions for an array?
+1. How do you extract code into a separate method?
+2. What is the POM file responsible for?
+3. What is class partitioning?
+4. Testing
+5. Why should you always test boundary values?
+6. Why should you avoid loops in tests?
+7. Control Flow and Operators
+8. What are case statements used for?
+9. What are ternary operators?
+10. What does ++i mean?
+11. Why is using break in loops considered bad practice?
+12. What is fall-through in switch statements?
+13. Arrays and Loops
+14. What's the difference between i < nums.length and i < nums.length-1?
+15. What are the valid index positions for an array?
 
 ## IDE and Project Management
 

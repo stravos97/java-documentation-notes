@@ -6,13 +6,13 @@ topic: Java Memory Management and Object Lifecycle
 
 # Memory Management
 
-What is stored on the stack?
-What is stored on the heap?
-Where are strings stored in memory?
-What are reference types vs value types?
-What happens to objects when they go out of scope?
-What three things does the garbage collector do?
-How are memory addresses different for objects with the same values?
+1. What is stored on the stack?
+2. What is stored on the heap?
+3. Where are strings stored in memory?
+4. What are reference types vs value types?
+5. What happens to objects when they go out of scope?
+6. What three things does the garbage collector do?
+7. How are memory addresses different for objects with the same values?
 
 ## Memory Management
 

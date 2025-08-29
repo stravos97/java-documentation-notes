@@ -6,26 +6,24 @@ topic: Java Data Types, Wrapper Classes, and Basic Concepts
 
 # Data Types and Classes
 
-What are the Integer and Boolean wrapper classes?
-When and how do you use the var keyword?
-Strings and Arrays
-Are strings and arrays mutable or immutable?
-How do you use string split and substring?
-How can regex be used as a delimiter?
-Enums
-What are enums and when are they used?
-Why are enums similar to final constants?
-What is the naming convention for final constants?
-Object Creation
-How can you create objects without using the new keyword?
-Methods
-What are method interfaces?
-What is method overloading?
-What is method overriding?
-Can the main method be overloaded?
-Why should methods only return values and not contain System.out.println?
-
-Here’s a comprehensive, cheatsheet-style answer to your Java questions, formatted for clarity and quick reference in Obsidian:
+1. What are the Integer and Boolean wrapper classes?
+2. When and how do you use the var keyword?
+3. Strings and Arrays
+4. Are strings and arrays mutable or immutable?
+5. How do you use string split and substring?
+6. How can regex be used as a delimiter?
+7. Enums
+8. What are enums and when are they used?
+9. Why are enums similar to final constants?
+10. What is the naming convention for final constants?
+11. Object Creation
+12. How can you create objects without using the new keyword?
+13. Methods
+14. What are method interfaces?
+15. What is method overloading?
+16. What is method overriding?
+17. Can the main method be overloaded?
+18. Why should methods only return values and not contain System.out.println?
 
 ***
 
