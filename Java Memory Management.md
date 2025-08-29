@@ -681,11 +681,11 @@ graph TD
         s4["s4"]
     end
     
-    subgraph "Heap - String Pool"
+    subgraph StringPool["Heap - String Pool"]
         poolStr["'Hello' (Pool)"]
     end
     
-    subgraph "Heap - Regular"
+    subgraph RegularHeap["Heap - Regular"]
         heapStr["'Hello' (new String)"]
     end
     
@@ -695,8 +695,8 @@ graph TD
     s4 -.->|points to| poolStr
     
     style Stack fill:#e1f5fe
-    style "Heap - String Pool" fill:#c8e6c9
-    style "Heap - Regular" fill:#fff3e0
+    style StringPool fill:#c8e6c9
+    style RegularHeap fill:#fff3e0
 ```
 
 ---
