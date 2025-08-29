@@ -29,228 +29,443 @@ topic: Java Data Types, Wrapper Classes, and Basic Concepts
 
 ## Data Types and Classes
 
-### Integer and Boolean Wrapper Classes
+### Integer and Boolean Wrapper Classes (Expanded)
 
-- **Integer** wraps the primitive `int`. Use it when you need an integer as an object (e.g., in collections, generics, or APIs that require objects). Contains useful methods like `parseInt()`, `toString()`, and static constants like `Integer.MAX_VALUE`.[^1][^2]
-- **Boolean** wraps the primitive `boolean`. Required for Java generics (e.g., `List<Boolean>`) or when you need a boolean as an object. Static instances `Boolean.TRUE`/`FALSE` avoid object creation.[^3]
-
-```java
-Integer number = Integer.valueOf(42);   // Wrapping
-int unwrapped = number.intValue();      // Unwrapping
-
-Boolean flag = Boolean.valueOf(true);   // Wrapping
-boolean b = flag.booleanValue();        // Unwrapping
-```
-
-
-### Using the `var` Keyword
-
-- **Syntax:** `var variableName = initialValue;`
-- **Purpose:** Local variable type inference (compiler infers type from initializer).[^4][^5]
-- **Usage:** Best for complex or verbose generic types (e.g., `var list = new ArrayList<String>()`), or simple locals when type is obvious.
-- **Not usable:** For fields, method parameters, or return types.
-- **Java 10+** only.
+**Integer** wraps the primitive `int` so you can use an integer where objects are needed—for example, in [[Java Collections]] like `List<Integer>`. It also provides useful static methods (`parseInt`, `toString`, `max`, `min`, `sum`) and constants (`MIN_VALUE`, `MAX_VALUE`).
 
 ```java
-var message = "Hello, world";        // String
-var nums = List.of(1, 2, 3);         // List<Integer>
+Integer age = Integer.valueOf(17);      // Best practice: use valueOf()
+int unwrapped = age.intValue();          // Get the int back
+
+int parsed = Integer.parseInt("42");     // Convert a String to int
+String numStr = Integer.toString(123);   // Convert an int to String
+int bigger = Integer.max(5, 10);         // Returns 10
 ```
 
+**Boolean** wraps `boolean` and is required for collections like `List<Boolean>`. It also has factory methods (`valueOf`) and static constants (`TRUE`, `FALSE`).
+
+```java
+Boolean active = Boolean.valueOf(true);  // Factory method
+Boolean inactive = Boolean.FALSE;        // Use static constant
+boolean b = active.booleanValue();       // Unbox the boolean
+Boolean parsed = Boolean.valueOf("true");// Parse from string
+```
+
+> [!TIP]
+> Use `valueOf` instead of the constructor (e.g., `new Integer(5)`)—it’s more efficient and is the recommended way in modern Java.
+>
+> Avoid using wrapper classes unless you need their special features—primitives are more efficient for simple variables.
+
+> [!WARNING]
+> **Autoboxing/Unboxing** can slow down performance in loops (Java automatically converts between primitives and wrappers).
+>
+> **NullPointerException**: Wrappers can be `null`; primitives can’t.
 
 ***
 
-## Strings and Arrays
+## Using the `var` Keyword (Expanded)
 
-### Mutability
-
-- **Strings** are **immutable**: Once created, their value cannot change. Operations like `concat()` or `replace()` return new `String` objects.[^6]
-- **Arrays** are **mutable**: Their elements can be modified after creation. However, the array’s length and type are fixed.[^7][^8]
+**`var`** allows Java to infer the variable’s type from its initializer (local variable only). Introduced in Java 10.
 
 ```java
-String s = "Java";
-s = s.concat(" is cool");   // s now refers to a new String
-
-int[] arr = {1, 2, 3};
-arr[0] = 10;                // Modifies array contents
+var message = "Hello, world";           // Inferred as String
+var primes = List.of(2, 3, 5, 7);       // Inferred as List<Integer>
+var map = Map.of("key", 1);             // Inferred as Map<String, Integer>
 ```
 
+> [!TIP]
+> Use `var` for verbose generic types or when the type is obvious from the right side.
+>
+> Don’t use `var` if the type is unclear—readability is more important than brevity!
 
-### String `split()` and `substring()`
-
-- **`split(String regex)`**: Splits a string into an array using a regular expression as the delimiter. Returns an array of `String`.[^9][^10]
-- **`substring(int beginIndex)`**: Returns a new string from `beginIndex` (inclusive) to the end.
-- **`substring(int beginIndex, int endIndex)`**: Returns a new string from `beginIndex` (inclusive) to `endIndex` (exclusive).[^11][^12]
-
-```java
-String csv = "one,two,three";
-String[] parts = csv.split(",");           // ["one", "two", "three"]
-String middle = csv.substring(4, 7);       // "two"
-String end = csv.substring(5);             // "wo,three"
-```
-
-
-### Regex as Delimiter
-
-Use **regular expressions** in `split()` for complex delimiters. For multiple delimiters, specify them inside `[]`, e.g., `split("[ ,.-]")` splits on comma, space, period, or dash.[^13][^10]
+> [!WARNING]
+> **`var` cannot be used for field declarations, method parameters, or return types.**
+>
+> **You must provide an initializer:**
+> `var x; // Error – cannot use 'var' on variable without initializer`
 
 ***
 
-## Enums
+## Strings and Arrays (Expanded)
 
-### What Are Enums?
+### String Immutability (Expanded)
 
-- **Enums** define a fixed set of named constants, e.g., days of the week or status codes. They are type-safe and can have methods and fields.
-- **Usage:** When you have a predefined list of values that are meaningful and unlikely to change.
+**Strings are immutable**: Once created, their value cannot change. Operations like `concat`, `substring`, `replace`, or `trim` return **new** objects.
+
+```java
+String name = "Java";
+name = name.concat(" rules");   // name now points to a new String object: "Java rules"
+
+String city = "London";
+String sub = city.substring(0, 4);  // "Lond" (new String)
+String cityUpper = city.toUpperCase();  // "LONDON" (new String)
+String cityTrim = " Paris  ".trim();    // "Paris" (new String)
+```
+
+> [!WARNING]
+> String modification operations can be **expensive**—use `StringBuilder` or `StringBuffer` for heavy string manipulation.
+
+***
+
+### Array Mutable, Fixed Size (Expanded)
+
+**Arrays are mutable** and **fixed in size**. You can change the contents, but not the length or type.
+
+```java
+int[] scores = {90, 85, 78, 95};
+scores[^1] = 88;                          // Change the second value
+// scores = new int[^10];                 // You can assign a new array
+// scores[^4] = 100;                      // Error: ArrayIndexOutOfBoundsException
+
+String[] pets = new String[^4];
+pets[^0] = "cat";
+pets[^1] = "dog";                         // Rest are null (reference types)
+pets[^3] = "fish";
+pets[^2] = "bird";
+// Pets: ["cat", "dog", "bird", "fish"]
+```
+
+> [!TIP]
+> Use `Arrays.asList()` or `List.of()` to wrap arrays for use with Collections methods.
+
+***
+
+### String `split()` and `substring()` (Expanded)
+
+- **`split(String regex)`**: Splits a string into an array using the regex as a delimiter.
+- **`substring(int, int)`**: Returns a portion of the string from start (inclusive) to end (exclusive).
+- **`substring(int)`**: Returns from start to the end.
+
+```java
+String csv = "apple,banana,cherry,date";
+String[] fruits = csv.split(",");        // ["apple", "banana", "cherry", "date"]
+String banana = csv.substring(6, 12);    // "banana"
+String rest = csv.substring(7);          // "banana,cherry,date"
+
+String names = "Alice Bob Charlie";
+String[] parts = names.split(" ");       // ["Alice", "Bob", "Charlie"]
+String charlie = names.substring(10);    // "Charlie"
+```
+
+> [!INFO]
+> **`split()`** can be used with complex regular expressions.
+> **`substring()`** is used for text extraction.
+
+***
+
+### Using Regex as Delimiter (Expanded)
+
+Regular expressions let you split using multiple or complex delimiters.
+
+```java
+String data = "apple,banana;cherry orange";
+String[] items = data.split("[ ,;]");    // Split by comma, space, or semicolon
+
+String mixed = "abc123def456xyz";
+String[] letters = mixed.split("\\d+");  // Split by one or more digits: ["abc", "def", "xyz"]
+```
+
+> [!TIP]
+> **`[]`** in regex matches any character inside it.
+> **`\\d`** matches digits; **`+`** means “one or more.”
+
+***
+
+## Enums (Expanded)
+
+### Enum Definition and Usage
+
+**Enums** are type-safe, predefined sets of constants. Use them for fixed, meaningful values.
 
 ```java
 enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
+
+Day today = Day.MONDAY;
+
+// Method example: using enums in a switch
+switch(today) {
+    case MONDAY -> System.out.println("Start of the week!");
+    case FRIDAY -> System.out.println("Almost weekend!");
+    default -> System.out.println("Another day...");
+}
+
+// Iterate all values
+for (Day d : Day.values()) {
+    System.out.println(d);
+}
 ```
 
+
+***
+
+### Enums with Fields and Methods (Examples)
+
+Enums can have properties and methods.
+
+```java
+enum Planet {
+    EARTH(6371), MARS(3390), VENUS(6052);
+    private final int radius;  // in kilometers
+    Planet(int r) { radius = r; }
+    public int getRadius() { return radius; }
+}
+
+Planet earth = Planet.EARTH;
+System.out.println(earth.getRadius());  // 6371
+```
+
+> [!EXAMPLE]
+> Enums are like classes—you can add fields, constructors, and methods.
+
+***
 
 ### Enums vs. Final Constants
 
-- **Enums** are typesafe, support methods, and can be iterated.
-- **Final constants** (`static final int MONDAY = 0;`) are just values—no type safety, no iteration.
-- **Enums are superior** for representing a fixed set of related values.
-
-
-### Naming Convention for Final Constants
-
-- **Constants:** Use `ALL_CAPS` with underscores (e.g., `MAX_VALUE`).
-- **PascalCase** is for class, enum, and interface names.
-
-***
-
-## Object Creation
-
-### Create Objects Without `new`
-
-- **Factory Methods:** Use static factory methods provided by some classes (e.g., `Integer.valueOf(5)`, `Boolean.valueOf(true)`).
-- **Reflection:** Advanced—use `Class.forName(...).newInstance()`, but avoid unless necessary.
-- **Deserialization:** Read objects from files/streams.
-- **Clone:** Use `clone()` method (must implement `Cloneable`).
-- **No `new` for primitives:** Primitive types (e.g., `int`, `boolean`) are not objects and do not use `new`.
-
-***
-
-## Methods
-
-### Method Interfaces
-
-**Method interfaces** (functional interfaces) are interfaces with a single abstract method. Example: `Predicate<T>`, `Consumer<T>`. Used in lambdas and method references.
-
-### Method Overloading
-
-- **Overloading:** Multiple methods with the same name but different parameter lists (types or counts).
-- **Used** for convenience when similar operations are performed on different parameter sets.
+Using enums is **much better** than a bunch of `static final` constants or literals. Enums are **type-safe** and support **iteration**.
 
 ```java
-void print(int x) { ... }
-void print(String s) { ... }
-void print(int x, String s) { ... }
+// Old way (not recommended)
+public static final int MONDAY = 0;
+public static final int TUESDAY = 1;
+...
+// enum (recommended)
+enum Day { MONDAY, TUESDAY, ... }
 ```
 
 
+***
+
+### Naming Convention for Final Constants
+
+- **Constant** (`static final`) fields: `ALL_CAPS_WITH_UNDERSCORES`.
+- **Enum** names and values: `UPPER_CASE_WITH_UNDERSCORES`.
+- **Classes, enums, interfaces**: `PascalCase`.
+
+```java
+// Constants
+public static final int MAX_VALUE = 100;
+// Enums
+enum HttpStatus { OK, NOT_FOUND, SERVER_ERROR }
+```
+
+
+***
+
+## Object Creation (Expanded)
+
+You can create objects in Java **without using `new`** in several ways:
+
+- **Factory methods**: `Integer.valueOf(5)`, `Boolean.valueOf(true)`, `String.valueOf(...)`, `List.of(...)`, etc.
+- **Reflection**: `Class.forName(...).getConstructor().newInstance()` (advanced; usually not required).
+- **Deserialization**: Reading objects from files or streams (`ObjectInputStream.readObject()`).
+- **Cloning**: `object.clone()` (must implement `Cloneable`).
+- **Builder pattern**: Pattern for creating complex objects.
+
+```java
+// Factory methods
+Integer num = Integer.valueOf(5);
+Boolean flag = Boolean.TRUE;
+String str = String.valueOf(123);
+
+// List.of (Java 9+)
+List<String> colors = List.of("red", "green", "blue");
+
+// Builder pattern (example)
+public class Person {
+    public static class Builder {
+        private String name;
+        public Builder name(String name) { this.name = name; return this; }
+        public Person build() { return new Person(this); }
+    }
+    private final String name;
+    private Person(Builder builder) { this.name = builder.name; }
+}
+
+Person p = new Person.Builder().name("Alice").build();
+```
+
+> [!TIP]
+> Use **factory methods** whenever possible—they may be more efficient (`valueOf` often returns cached objects).
+
+> [!WARNING]
+> **Primitives** (e.g., `int`, `double`) are not objects and cannot be created with `new` or factory methods. They use literal syntax: `int x = 5;`
+
+***
+
+## Methods (Expanded)
+
+### Method Interfaces (Functional Interfaces)
+
+A **method interface** (functional interface) is an interface with **exactly one abstract method**. Used for **lambda expressions** and **method references**.
+
+```java
+// Built-in examples
+Runnable r = () -> System.out.println("Running!");
+Predicate<String> isEmpty = s -> s.isEmpty();
+Comparator<Integer> compare = (a, b) -> a - b;
+
+// Custom functional interface
+@FunctionalInterface
+interface Adder {
+    int add(int a, int b);
+}
+Adder adder = (a, b) -> a + b;  // lambda
+System.out.println(adder.add(3, 5));  // 8
+```
+
+> [!INFO]
+> Examples of built-in functional interfaces: `Predicate`, `Consumer`, `Supplier`, `Function`, `Comparator`, `Runnable`.
+
+***
+
+### Method Overloading
+
+**Overloading** means multiple methods with **the same name, but different parameters** (type, number, or order of parameters).
+
+```java
+void print(int x) { System.out.println("int: " + x); }
+void print(double x) { System.out.println("double: " + x); }
+void print(String s, int n) { System.out.println("String: " + s + ", int: " + n); }
+void print(boolean b) { System.out.println("boolean: " + b); }
+
+// All these are valid calls to print()
+print(5);
+print(3.14);
+print("Hello", 42);
+print(true);
+```
+
+> [!NOTE]
+> **Overloading** is different from **overriding** (a subclass redefining a method from its parent).
+
+***
+
 ### Method Overriding
 
-- **Overriding:** Subclass redefines a method already defined in its superclass.
-- **Used** to change behavior in subclasses (polymorphism).
+**Overriding** means a subclass provides a new implementation of a method defined in its superclass.
 
+```java
+class Animal {
+    void makeSound() { System.out.println("Generic animal sound"); }
+}
+class Cat extends Animal {
+    @Override
+    void makeSound() { System.out.println("Meow!"); }
+}
+Animal a = new Cat();
+a.makeSound();  // "Meow!" – Polymorphism in action!
+```
 
-### Can `main` Method Be Overloaded?
+> [!TIP]
+> Always use the `@Override` annotation when overriding, even though it’s not required.
 
-Yes, you can **overload** the `main` method—only `public static void main(String[] args)` is called automatically by the JVM. Other versions must be called explicitly.
+***
+
+### Can the `main` Method Be Overloaded?
+
+Yes! But only `public static void main(String[] args)` is called by the JVM to start your program. Overloaded versions must be called explicitly.
+
+```java
+public class MainDemo {
+    // Standard main called by JVM
+    public static void main(String[] args) {
+        System.out.println("Main method!");
+        main(42);
+    }
+    // Overloaded main – must be called manually
+    public static void main(int n) {
+        System.out.println("Number: " + n);
+    }
+}
+```
+
+> [!WARNING]
+> Overloaded `main` methods are **rarely useful**. Use a separate method if you need additional entry points.
+
+***
 
 ### Why Should Methods Only Return Values?
 
-- **Separation of concerns:** Methods should perform a single task.
-- **Reusability:** Methods that return values can be used in a variety of contexts (e.g., logged, displayed, or further processed).
-- **Testability:** Methods that only return values are easier to unit test.
-- **Avoid `System.out.println` in business logic:** Output should be handled by the caller, not the function itself.
+**Methods should not mix logic and output**. Return values instead of printing.
 
-***
+#### Bad (Mixed Concerns)
 
-## Quick Reference Table
+```java
+void addAndPrint(int a, int b) {
+    System.out.println(a + b);
+}
+```
 
-| Concept              | Key Details                                               |
-|:---------------------|:----------------------------------------------------------|
-| Integer/Boolean      | Object wrappers for primitive types, used in generics     |
-| `var`                | Local type inference (Java 10+), not for fields/methods   |
-| String mutability    | Immutable; operations return new String objects           |
-| Array mutability     | Mutable (elements can change; length/type fixed)          |
-| `split`/`substring`  | Split by regex; extract substrings with indexes           |
-| Regex delimiter      | Use regex in `split` for complex splitting                |
-| Enums                | Fixed, typesafe constants with methods                    |
-| Final constants      | Use `ALL_CAPS` for static final fields                    |
-| Object without `new` | Factory methods, reflection, deserialization, clone       |
-| Method overloading   | Same name, different parameters                           |
-| Method overriding    | Subclass redefines superclass method for polymorphism     |
-| `main` overloading   | Allowed, but only `main(String[])` is auto-called         |
-| Method return values | Prefer return values over direct output—better separation |
 
-***
+#### Good (Separation of Concerns)
+
+```java
+int add(int a, int b) {
+    return a + b;
+}
+```
+
+// Then, from the caller:
+System.out.println(add(3, 4));
+
+```
+
+> [!TIP]
+> **Separation of concerns** makes code more **testable**, **reusable**, and **maintainable**.
+
+---
+
+## Quick Reference Table (Enhanced)
+
+| Concept             | Key Details                                      | Example Code                        |
+|---------------------|--------------------------------------------------|-------------------------------------|
+| Wrapper Classes     | Object versions of primitives                    | `Integer.valueOf(5)`, `Boolean.TRUE`|
+| var                 | Local variable type inference (Java 10+)         | `var name = "Alice";`               |
+| String immutability | All modifications create new objects             | `s = s + "!";`                      |
+| Array mutability    | Elements are mutable, size is fixed              | `int[] a = {1,2,3}; a[^0] = 4;`      |
+| split / substring   | Split with regex, extract substrings             | `csv.split(",");`, `"abc".substr(1,2)`|
+| Regex delimiter     | Use regex for complex splits                     | `split("[ ,;]")`                    |
+| Enums               | Type-safe constants, can have methods            | `enum Day { MON, TUE }`             |
+| Final constants     | Use ALL_CAPS, static final                       | `static final int MAX = 100;`       |
+| Object w/o new      | Factory methods, reflection, deserialization     | `Integer.valueOf(5)`, `List.of()...`|
+| Method overloading  | Same name, diff. params                          | `void print(int)`, `print(String)`  |
+| Method overriding   | Subclass redefines parent method                 | `@Override void sound() { ... }`    |
+| main overloading    | Allowed, not auto-called                         | `main(String[])` auto, `main(int)` manual |
+| Return values       | Methods should return, not print                 | `int sum(int a, int b)`             |
+
+---
 
 ## Callouts
 
 > [!TIP]
-> Use factory methods (`valueOf`) for common objects instead of constructors—they may reuse instances.
+> Use factory methods (`valueOf`, `of`, `parse...`) instead of constructors—they’re often more efficient and readable.
 
 > [!WARNING]
-> String immutability means every modification creates a new object. For heavy string manipulation, consider `StringBuilder` or `StringBuffer`.
+> String immutability can hurt performance in loops—use `StringBuilder` or `StringBuffer` for heavy text operations.
 
 > [!EXAMPLE]
-> Enum with methods:
-> ```java
-> enum Planet {
->   EARTH(6371), MARS(3390);
->   private final int radius;
->   Planet(int r) { radius = r; }
->   public int getRadius() { return radius; }
+> Enums can have methods and state:
+> ```
+> enum HttpStatus {
+>     OK(200, "OK"),
+>     NOT_FOUND(404, "Not Found");
+>     HttpStatus(int code, String msg) { ... }
+>     public int getCode() { ... }
+>     public String getMessage() { ... }
 > }
 > ```
 
-***
+---
 
 # Tags
 
-\#java \#wrapper-classes \#enums \#methods \#strings \#arrays \#bestpractices \#cheatsheet
+#java #data-types #wrapper-classes #enums #methods #strings #arrays #bestpractices #cheatsheet #beginner
 
+---
 
-[^1]: https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html
+## Related Notes
 
-[^2]: https://www.geeksforgeeks.org/java/java-lang-integer-class-java/
-
-[^3]: https://www.geeksforgeeks.org/java/java-lang-boolean-class-java/
-
-[^4]: https://www.geeksforgeeks.org/java/var-keyword-in-java/
-
-[^5]: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/var-in-java-keyword-type-inferred-benefits-examples-final-scope-rules
-
-[^6]: https://www.baeldung.com/java-mutable-string
-
-[^7]: https://sebhastian.com/are-arrays-mutable-java/
-
-[^8]: https://stackoverflow.com/questions/16125616/are-string-arrays-mutable
-
-[^9]: https://www.w3schools.com/java/ref_string_split.asp
-
-[^10]: https://www.geeksforgeeks.org/java/split-string-java-examples/
-
-[^11]: https://beginnersbook.com/2013/12/java-string-substring-method-example/
-
-[^12]: https://www.digitalocean.com/community/tutorials/java-string-substring
-
-[^13]: https://beginnersbook.com/2022/09/split-string-by-multiple-delimiters-in-java/
-
-[^14]: https://www.w3schools.com/java/java_wrapper_classes.asp
-
-[^15]: https://runestone.academy/ns/books/published/csawesome/Unit2-Using-Objects/topic-2-8-IntegerDouble.html
-
-[^16]: https://www.codekru.com/java/integer-wrapper-class-in-java
-
-[^17]: https://selenium-by-arun.blogspot.com/2014/08/242-integer-wrapper-class.html
-
-[^18]: https://stackoverflow.com/questions/4890802/how-does-the-java-boolean-wrapper-class-get-instantiated
-
-[^19]: https://briebug.com/java-split-string/
-
+- [[Java Collections Framework]]
+- [[Design Patterns]]
+- [[Lambda and Streams]]
+- [[Error and Exception Handling]]
