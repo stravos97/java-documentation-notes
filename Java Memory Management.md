@@ -1,13 +1,9 @@
 
-### Metadata
-
-```markdown
 ---
 tags: [java, memory, value-types, reference-types, object-model, gc, cheatsheet]
 date: 2025-08-29
 topic: Java Memory Model — Value & Reference Types, Stack & Heap, Garbage Collection
 ---
-```
 
 
 ***
@@ -110,7 +106,7 @@ public static void main(String[] args) {
 }
 
 static void modifyArray(int[] a) {
-    a[^0] = 4; // modifies the original array
+    a[0] = 4; // modifies the original array
 }
 ```
 
@@ -176,9 +172,16 @@ This shows how objects can form a web of interconnected references and values.
 
 ```mermaid
 graph TD
-    Stack[Stack<br>local variables<br>primitives & references] --> Heap[Heap<br>Objects, arrays<br>actual data]
-    Heap -->|references| Stack
-    Stack -->|references| null[null]
+    Stack[Stack<br/>local variables<br/>primitives & references] 
+    Heap[Heap<br/>Objects, arrays<br/>actual data]
+    NullRef[null references]
+    
+    Stack -.->|points to| Heap
+    Stack -.->|can point to| NullRef
+    
+    style Stack fill:#e1f5fe
+    style Heap fill:#fff3e0
+    style NullRef fill:#ffcdd2
 ```
 
 
@@ -236,7 +239,7 @@ graph TD
 
 ### What is Garbage Collection?
 
-**Garbage collection (GC)** is Java's automatic process for managing heap memory. Its primary job is to reclaim memory occupied by objects that are no longer reachable by the program, preventing memory leaks and managing heap space efficiently.[^1]
+**Garbage collection (GC)** is Java's automatic process for managing heap memory. Its primary job is to reclaim memory occupied by objects that are no longer reachable by the program, preventing memory leaks and managing heap space efficiently.
 
 ***
 
@@ -247,7 +250,7 @@ The GC scans the heap to detect objects that are no longer referenced by any act
 2. **Free Memory**
 The memory occupied by those "dead" objects is released back to the system, making it available for new objects.
 3. **Heap Compaction**
-Optionally, the GC may move the remaining "live" objects closer together, reducing fragmentation and improving future allocation performance.[^1]
+Optionally, the GC may move the remaining "live" objects closer together, reducing fragmentation and improving future allocation performance.
 
 ***
 
@@ -296,8 +299,8 @@ Here, after `obj1 = obj2;`, the original object referenced by `obj1` is unreacha
 
 ### Further Reading
 
-- **Oracle’s Java Garbage Collection Basics** for detailed algorithms and tuning.
-- **Jon Skeet’s Java Pass-by-Value** for clarity on references and scope.[^1]
+- **Oracle's Java Garbage Collection Basics** for detailed algorithms and tuning.
+- **Jon Skeet's Java Pass-by-Value** for clarity on references and scope.
 
 ***
 
@@ -424,17 +427,15 @@ After declaring `age` and `name`:
 ```mermaid
 graph TB
     subgraph Stack["Stack Memory"]
-        subgraph MainFrame["main() frame"]
-            age["age = 25<br/>(primitive)"]
-            name["name (reference)"]
-        end
+        age["age = 25<br/>(primitive)"]
+        name["name (reference)"]
     end
     
     subgraph Heap["Heap Memory"]
-        str1["String: 'Alice'<br/>@1001"]
+        str1["String: 'Alice'"]
     end
     
-    name -.->|references| str1
+    name -.->|points to| str1
     
     style Stack fill:#e1f5fe
     style Heap fill:#fff3e0
@@ -451,20 +452,18 @@ graph TB
 ```mermaid
 graph TB
     subgraph Stack["Stack Memory"]
-        subgraph MainFrame["main() frame"]
-            age["age = 25"]
-            name["name"]
-            person["person"]
-        end
+        age["age = 25"]
+        name["name"]
+        person["person"]
     end
     
     subgraph Heap["Heap Memory"]
-        str1["String: 'Alice'<br/>@1001"]
-        p1["Person<br/>@2001<br/>name: @1001<br/>age: 25"]
+        str1["String: 'Alice'"]
+        p1["Person<br/>name: Alice<br/>age: 25"]
     end
     
-    name -.->|ref| str1
-    person -.->|ref| p1
+    name -.->|points to| str1
+    person -.->|points to| p1
     p1 -.->|name field| str1
     
     style Stack fill:#e1f5fe
@@ -478,29 +477,27 @@ graph TB
 ```mermaid
 graph TB
     subgraph Stack["Stack Memory"]
-        subgraph MainFrame["main() frame"]
-            age["age = 25"]
-            name["name"]
-            person["person"]
-            team["team"]
-        end
+        age["age = 25"]
+        name["name"]
+        person["person"]
+        team["team"]
     end
     
     subgraph Heap["Heap Memory"]
-        str1["String: 'Alice'<br/>@1001"]
-        str2["String: 'Bob'<br/>@1002"]
-        p1["Person<br/>@2001<br/>name: @1001<br/>age: 25"]
-        p2["Person<br/>@2002<br/>name: @1002<br/>age: 30"]
-        arr["Person[]<br/>@3001<br/>[0]: @2001<br/>[1]: @2002"]
+        str1["String: 'Alice'"]
+        str2["String: 'Bob'"]
+        p1["Person<br/>name: Alice<br/>age: 25"]
+        p2["Person<br/>name: Bob<br/>age: 30"]
+        arr["Person Array<br/>[0] [1]"]
     end
     
-    name -.->|ref| str1
-    person -.->|ref| p1
-    team -.->|ref| arr
-    arr -.->|[0]| p1
-    arr -.->|[1]| p2
-    p1 -.->|name| str1
-    p2 -.->|name| str2
+    name -.->|points to| str1
+    person -.->|points to| p1
+    team -.->|points to| arr
+    arr -.->|element 0| p1
+    arr -.->|element 1| p2
+    p1 -.->|name field| str1
+    p2 -.->|name field| str2
     
     style Stack fill:#e1f5fe
     style Heap fill:#fff3e0
@@ -513,36 +510,32 @@ graph TB
 ```mermaid
 graph TB
     subgraph Stack["Stack Memory"]
-        subgraph UpdateFrame["updateTeam() frame"]
+        subgraph Update["updateTeam() frame"]
             people["people"]
-            baseAge["baseAge = 25"]
-            newAge["newAge = 35"]
             localPerson["localPerson"]
         end
-        subgraph MainFrame["main() frame"]
-            age["age = 25"]
-            name["name"]
+        subgraph Main["main() frame"]
             person["person"]
             team["team"]
         end
     end
     
     subgraph Heap["Heap Memory"]
-        str1["String: 'Alice (Leader)'<br/>@1003"]
-        str2["String: 'Bob'<br/>@1002"]
-        str3["String: 'David'<br/>@1004"]
-        p1["Person<br/>@2001<br/>name: @1003<br/>age: 25"]
-        p2["Person<br/>@2002<br/>name: @1002<br/>age: 30<br/>(unreachable)"]
-        p3["Person<br/>@2003<br/>name: @1004<br/>age: 35"]
-        arr["Person[]<br/>@3001<br/>[0]: @2001<br/>[1]: @2003"]
+        str1["String: 'Alice (Leader)'"]
+        str2["String: 'Bob'"]
+        str3["String: 'David'"]
+        p1["Alice Person<br/>age: 25"]
+        p2["Bob Person (unreachable)<br/>age: 30"]
+        p3["David Person<br/>age: 35"]
+        arr["Person Array"]
     end
     
-    people -.->|ref| arr
-    localPerson -.->|ref| p3
-    team -.->|ref| arr
-    person -.->|ref| p1
-    arr -.->|[0]| p1
-    arr -.->|[1]| p3
+    people -.->|points to| arr
+    localPerson -.->|points to| p3
+    team -.->|points to| arr
+    person -.->|points to| p1
+    arr -.->|element 0| p1
+    arr -.->|element 1| p3
     p1 -.->|name| str1
     p2 -.->|name| str2
     p3 -.->|name| str3
@@ -552,7 +545,7 @@ graph TB
     style p2 fill:#ffcdd2
 ```
 
-> [!WARNING] The original "Bob" Person object (@2002) is now unreachable and eligible for garbage collection!
+> [!WARNING] The original "Bob" Person object is now unreachable and eligible for garbage collection!
 
 ---
 
@@ -561,31 +554,29 @@ graph TB
 ```mermaid
 graph TB
     subgraph Stack["Stack Memory"]
-        subgraph MainFrame["main() frame"]
-            age["age = 25"]
-            name["name"]
-            person["person"]
-            team["team"]
-            temp["temp"]
-        end
+        age["age = 25"]
+        name["name"]
+        person["person"]
+        team["team"]
+        temp["temp"]
     end
     
     subgraph Heap["Heap Memory"]
-        str1["String: 'Alice (Leader)'<br/>@1003"]
-        str3["String: 'David'<br/>@1004"]
-        str4["String: 'Charlie'<br/>@1005"]
-        p1["Person<br/>@2001<br/>name: @1003<br/>age: 25"]
-        p3["Person<br/>@2003<br/>name: @1004<br/>age: 35"]
-        p4["Person<br/>@2004<br/>name: @1005<br/>age: 35"]
-        arr["Person[]<br/>@3001<br/>[0]: @2001<br/>[1]: @2003"]
+        str1["String: 'Alice (Leader)'"]
+        str3["String: 'David'"]
+        str4["String: 'Charlie'"]
+        p1["Alice Person<br/>age: 25"]
+        p3["David Person<br/>age: 35"]
+        p4["Charlie Person<br/>age: 35"]
+        arr["Person Array"]
     end
     
-    name -.->|ref| str1
-    person -.->|ref| p1
-    team -.->|ref| arr
-    temp -.->|ref| p4
-    arr -.->|[0]| p1
-    arr -.->|[1]| p3
+    name -.->|points to| str1
+    person -.->|points to| p1
+    team -.->|points to| arr
+    temp -.->|points to| p4
+    arr -.->|element 0| p1
+    arr -.->|element 1| p3
     p1 -.->|name| str1
     p3 -.->|name| str3
     p4 -.->|name| str4
@@ -601,17 +592,17 @@ graph TB
 ```mermaid
 graph TB
     subgraph Stack["Stack Memory"]
-        empty["(Empty - Program Ended)"]
+        empty["Empty - Program Ended"]
     end
     
     subgraph Heap["Heap Memory - All Eligible for GC"]
-        str1["String: 'Alice (Leader)'<br/>@1003"]
-        str3["String: 'David'<br/>@1004"]
-        str4["String: 'Charlie'<br/>@1005"]
-        p1["Person<br/>@2001"]
-        p3["Person<br/>@2003"]
-        p4["Person<br/>@2004"]
-        arr["Person[]<br/>@3001"]
+        str1["String: 'Alice (Leader)'"]
+        str3["String: 'David'"]
+        str4["String: 'Charlie'"]
+        p1["Alice Person"]
+        p3["David Person"]
+        p4["Charlie Person"]
+        arr["Person Array"]
     end
     
     style Stack fill:#e1f5fe
@@ -691,17 +682,17 @@ graph TD
     end
     
     subgraph "Heap - String Pool"
-        poolStr["'Hello'<br/>@5001"]
+        poolStr["'Hello' (Pool)"]
     end
     
     subgraph "Heap - Regular"
-        heapStr["'Hello'<br/>@6001"]
+        heapStr["'Hello' (new String)"]
     end
     
-    s1 -.->|ref| poolStr
-    s2 -.->|ref| poolStr
-    s3 -.->|ref| heapStr
-    s4 -.->|ref| poolStr
+    s1 -.->|points to| poolStr
+    s2 -.->|points to| poolStr
+    s3 -.->|points to| heapStr
+    s4 -.->|points to| poolStr
     
     style Stack fill:#e1f5fe
     style "Heap - String Pool" fill:#c8e6c9
@@ -712,30 +703,29 @@ graph TD
 
 ## Memory Analysis Tools
 
-<details> <summary>Click to see JVM memory analysis commands</summary>
-
-```bash
-# Monitor heap usage
-jstat -gc <pid> 1000
-
-# Generate heap dump
-jmap -dump:format=b,file=heap.bin <pid>
-
-# Analyze heap dump
-jhat heap.bin
-
-# Set heap size
-java -Xms512m -Xmx2g MyApp
-
-# Enable GC logging
-java -XX:+PrintGCDetails -XX:+PrintGCDateStamps MyApp
-```
-
-</details>
+> [!INFO] JVM Memory Analysis Commands
+> 
+> ```bash
+> # Monitor heap usage
+> jstat -gc <pid> 1000
+> 
+> # Generate heap dump
+> jmap -dump:format=b,file=heap.bin <pid>
+> 
+> # Analyze heap dump
+> jhat heap.bin
+> 
+> # Set heap size
+> java -Xms512m -Xmx2g MyApp
+> 
+> # Enable GC logging
+> java -XX:+PrintGCDetails -XX:+PrintGCDateStamps MyApp
+> ```
 
 ---
 
 ## Quick Reference Card
+
 
 ```java
 // Stack allocation
