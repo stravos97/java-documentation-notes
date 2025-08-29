@@ -22,30 +22,34 @@ topic: Java Fundamentals Quick Reference
 14. What's the difference between i < nums.length and i < nums.length-1?
 15. What are the valid index positions for an array?
 
-## IDE and Project Management
+## Code Refactoring in the IDE
 
-### Extracting Code into a Separate Method
+### Extract Code into a Separate Method
 
-**Steps to extract method in IDE:**
+**Why** do this?
+To avoid repetition, improve readability, and make your code easier to maintain.
+**When** do this?
+Whenever you repeat the same logic in multiple places.
 
-1. **Select** the code block to extract
-2. **Right-click** → **Refactor** → **Extract Method**
-3. **Name** the method and adjust parameters
-4. **IDE automatically** replaces original code with method call
+**How** to do it manually?
+
 ```java
 // Before extraction
-public void processData() {
+public void calculate() {
     int a = 5, b = 10;
     int sum = a + b;
     System.out.println("Sum: " + sum);
-    
-    int x = 20, y = 30;  
-    int otherSum = x + y;
-    System.out.println("Sum: " + otherSum);
-}
 
-// After extracting printSum method
-public void processData() {
+    int x = 20, y = 30;
+    sum = x + y;
+    System.out.println("Sum: " + sum);
+}
+```
+
+**After extraction**:
+
+```java
+public void calculate() {
     printSum(5, 10);
     printSum(20, 30);
 }
@@ -56,310 +60,451 @@ private void printSum(int a, int b) {
 }
 ```
 
+**How** to do it in IntelliJ IDEA, Eclipse, or VS Code?
 
-### POM File Responsibility
+- **Select** the code block (e.g., the add-and-print logic).
+- **Right-click** → **Refactor** → **Extract Method** (or Ctrl+Alt+M in IDEA).
+- **IDE** will prompt you for a method name and handle parameter passing.
+- **Review** the extracted method: is it reusable? Does it have a clear name?
 
-**POM (Project Object Model)** `pom.xml` manages:
+> [!TIP]
+> Use **inline method** (Ctrl+Alt+N in IDEA) to reverse this if the method becomes too trivial.
 
-- **Project metadata** (name, version, description)
-- **Dependencies** (external libraries and versions)
-- **Build configuration** (plugins, goals, phases)
-- **Repository information** (where to download dependencies)
-- **Build lifecycle** (compile, test, package, deploy)
-
-
-### Class Partitioning
-
-**Definition:** Breaking large classes into smaller, focused classes following **Single Responsibility Principle**.
-
-**Benefits:**
-
-- Improved maintainability and testability
-- Better code organization
-- Easier to understand and modify
-
-```java
-// Before - "God class" doing everything
-class UserManager {
-    void authenticate(String user, String pass) { /*...*/ }
-    void updateProfile(User user, String bio) { /*...*/ }
-    void sendNotification(User user, String msg) { /*...*/ }
-    void generateReport(User user) { /*...*/ }
-}
-
-// After - Partitioned into focused classes
-class AuthService {
-    void authenticate(String user, String pass) { /*...*/ }
-}
-
-class ProfileService {
-    void updateProfile(User user, String bio) { /*...*/ }
-}
-
-class NotificationService {
-    void sendNotification(User user, String msg) { /*...*/ }
-}
-```
-
+> [!EXAMPLE]
+> Extracting a method can also help with **testing**: the logic is now isolated and can be tested independently.
 
 ***
 
-## Testing
+### Class Partitioning (Single Responsibility Principle)
+
+**Why** should you do this?
+Large classes (“god classes”) are hard to understand, test, and maintain.
+
+**Before partitioning** (painful to maintain):
+
+```java
+class UserOperations {
+    void login(String user, String pass) { /* ... */ }
+    void updateProfile(String bio) { /* ... */ }
+    void sendNotification(String message) { /* ... */ }
+    void generateReport() { /* ... */ }
+    // ...and more!
+}
+```
+
+**After partitioning**:
+
+```java
+class AuthService { void login(String user, String pass) { /* ... */ } }
+class ProfileService { void updateProfile(String bio) { /* ... */ } }
+class NotificationService { void sendNotification(String message) { /* ... */ } }
+class ReportService { void generateReport() { /* ... */ } }
+```
+
+**Benefits**:
+
+- **Easier to test**: Each class does one thing.
+- **Easier to change**: Only need to modify one class when requirements change.
+- **Looser coupling**: Classes depend less on each other.
+
+> [!WARNING]
+> **Too many tiny classes can make navigation harder**. Balance between separation and simplicity.
+
+***
+
+## Project Management (Maven POM)
+
+**What** is the `pom.xml` file in a Maven project?
+
+- **Defines project info**: Name, version, description.
+- **Manages dependencies**: Libraries your project needs.
+- **Controls build process**: Compile, test, package, install, deploy.
+- **Configures plugins**: For code quality, documentation, deployment, etc.
+
+**Example** (minimal `pom.xml`):
+
+```xml
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>my-app</artifactId>
+    <version>1.0.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+**Common Maven commands**:
+
+- `mvn compile`: Compiles the code.
+- `mvn test`: Runs unit tests.
+- `mvn package`: Creates a JAR/WAR file.
+- `mvn clean`: Cleans the `target` directory.
+- `mvn install`: Installs the artifact into your local repository.
+
+> [!INFO]
+> **Gradle** is an alternative to Maven, using a `build.gradle` file. Both are widely used.
+
+***
+
+## Testing in Java
 
 ### Why Test Boundary Values?
 
-**Boundary values** are **common sources of bugs**:
+**Boundary values** are points at the edges of input ranges—**where bugs often hide**.
 
-- **Off-by-one errors** (array indices, loop conditions)
-- **Edge cases** (empty collections, null values, maximum/minimum limits)
-- **Invalid inputs** (negative numbers where positive expected)
+**Ideas for boundary testing**:
 
-**Examples of boundaries to test:**
+- **Empty arrays/lists** (`[]`, `0` elements).
+- **Single-element arrays/lists** (``).
+- **First and last elements in a collection** (`arr`, `arr[arr.length-1]`).
+- **Minimum/maximum allowed values** (`Integer.MIN_VALUE`, `Integer.MAX_VALUE`).
+- **Null values** if allowed by the API.
+- **Excessive/very large inputs** (e.g., giant strings, huge collections).
+- **Invalid inputs** (negative numbers, malformed strings).
 
-- Array: `[0]`, `[length-1]`, `[length]` (invalid)
-- Numbers: `0`, `1`, `-1`, `Integer.MAX_VALUE`, `Integer.MIN_VALUE`
-- Strings: `""`, `null`, single character, very long strings
+**Example** for a sorting method:
 
+```java
+@Test void sort_EmptyArray() { sort(new int[]{}); }
+@Test void sort_SingleElement() { sort(new int[]{5}); }
+@Test void sort_NegativeNumbers() { sort(new int[]{-1, -3, 2}); }
+@Test void sort_LargeArray() { sort(generateLargeRandomArray()); }
+```
+
+> [!TIP]
+> **Don’t forget to test for invalid input and error handling!**
+
+***
 
 ### Why Avoid Loops in Tests?
 
-**Problems with loops in tests:**
+**Loops** in tests can **hide failures** and **make debugging hard**.
+**Prefer**: Multiple test methods, parameterized tests, or data providers.
 
-- **Mask failures** - one iteration fails but test continues
-- **Harder to debug** - unclear which iteration caused failure
-- **Poor test isolation** - multiple scenarios in one test
-- **Unclear test intent** - what exactly is being tested?
-
-**Better alternatives:**
+**Bad** – hidden failures:
 
 ```java
-// Bad - loop in test
-@Test
-public void testMultipleValues() {
-    int[] values = {1, 2, 3, 4, 5};
-    for (int value : values) {
-        assertTrue(isPositive(value)); // If one fails, hard to debug
+@Test void testAllPrimes() {
+    int[] primes = {2, 3, 5, 7, 11, 13};
+    for (int p : primes) {
+        assertTrue(isPrime(p)); // If one fails, which one?
     }
 }
-
-// Good - parameterized test
-@ParameterizedTest
-@ValueSource(ints = {1, 2, 3, 4, 5})
-public void testIsPositive(int value) {
-    assertTrue(isPositive(value)); // Clear which value failed
-}
-
-// Good - separate test methods
-@Test public void testIsPositive_1() { assertTrue(isPositive(1)); }
-@Test public void testIsPositive_2() { assertTrue(isPositive(2)); }
 ```
 
+**Good** – clear failures:
+
+```java
+@Test void testIsPrime_2() { assertTrue(isPrime(2)); }
+@Test void testIsPrime_3() { assertTrue(isPrime(3)); }
+// ...
+@Test void testIsPrime_13() { assertTrue(isPrime(13)); }
+```
+
+**Good** – parameterized (JUnit 5):
+
+```java
+@ParameterizedTest
+@ValueSource(ints = {2, 3, 5, 7, 11, 13})
+void testIsPrime(int number) {
+    assertTrue(isPrime(number));
+}
+```
+
+> [!WARNING]
+> **Avoid testing randomness** in loops. Instead, use a fixed seed or mock the random generator.
 
 ***
 
 ## Control Flow and Operators
 
-### Case Statements Usage
+### Case Statements (`switch`)
 
-**Case statements** in `switch` blocks direct program flow based on variable values:
+**When** to use `switch`?
+When there are **many possible values** for a single variable.
+
+**Example**:
 
 ```java
+String day;
 switch (dayOfWeek) {
-    case "MONDAY":
-        System.out.println("Start of work week");
+    case MONDAY -> day = "Start of work week";
+    case FRIDAY -> day = "TGIF!";
+    case SATURDAY, SUNDAY -> day = "Weekend";
+    default -> day = "Regular weekday";
+}
+```
+
+**Java 14+**: `switch` expressions
+
+```java
+String day = switch (dayOfWeek) {
+    case MONDAY -> "Start of work week";
+    case FRIDAY -> "TGIF!";
+    case SATURDAY, SUNDAY -> "Weekend";
+    default -> "Regular weekday";
+};
+```
+
+**Fall-through**:
+Traditionally, cases “fall through” to the next unless a `break` is present.
+Use this **rarely** and only with a comment!
+
+```java
+switch (month) {
+    case "DEC": case "JAN": case "FEB":
+        season = "Winter";
         break;
-    case "FRIDAY":
-        System.out.println("TGIF!");
-        break;
-    case "SATURDAY":
-    case "SUNDAY":
-        System.out.println("Weekend!");
-        break;
-    default:
-        System.out.println("Regular weekday");
+    // ...
 }
 ```
 
 
-### Ternary Operators
+***
 
-**Syntax:** `condition ? valueIfTrue : valueIfFalse`
+### Ternary Operator (`?:`)
 
-**Usage:** Simple conditional assignments
+**What** is it?
+A shortcut for simple `if-else` assignment statements.
+
+**Example**:
 
 ```java
-// Instead of if-else
 String result = (score >= 60) ? "Pass" : "Fail";
 int max = (a > b) ? a : b;
-String message = (user != null) ? user.getName() : "Guest";
+String username = (user != null) ? user.getName() : "Guest";
 ```
 
+**Where** to use it?
+For simple, clear assignments.
+**Avoid** nested or complex ternary expressions—they become hard to read.
 
-### What Does `++i` Mean?
+***
 
-**Pre-increment operator:**
+### Pre- and Post-Increment (`++i` vs `i++`)
 
-- **Increments** `i` by 1 **first**
-- **Returns** the new value
-- **Contrast** with `i++` (post-increment): returns old value, then increments
+**What** is the difference?
+
+- `++i`: **Pre-increment** (increments, then uses the value)
+- `i++`: **Post-increment** (uses the value, then increments)
+
+**Examples**:
 
 ```java
 int i = 5;
-int j = ++i;  // i becomes 6, j gets 6
-int k = i++;  // k gets 6, i becomes 7
-
-// In loops, ++i is slightly more efficient
-for (int x = 0; x < 10; ++x) { // Pre-increment
-    System.out.println(x);
-}
+int a = ++i; // a = 6, i = 6
+int b = i++; // b = 6, i = 7
 ```
 
+**In loops**:
+
+```java
+for (int j = 0; j < 10; ++j) { ... } // Either ++j or j++ is fine here
+```
+
+**Pre-increment** is **slightly more efficient** in loops, but **not enough to matter** in most cases.
+**Be consistent**: Use the same style across your project.
+
+***
 
 ### Why Avoid `break` in Loops?
 
-**Problems with excessive `break` usage:**
+**What** is the problem?
+Multiple `break` statements make control flow unpredictable and code harder to read.
 
-- **Unclear control flow** - multiple exit points confuse logic
-- **Harder to maintain** - need to track all possible exits
-- **Violates structured programming** principles
-
-**Better alternatives:**
+**Bad** (hard to follow):
 
 ```java
-// Poor - multiple breaks
 while (true) {
     if (condition1) break;
     doSomething();
     if (condition2) break;
     doMore();
 }
+```
 
-// Better - clear loop condition
-boolean shouldContinue = true;
-while (shouldContinue && !condition1) {
+**Better** (clear control flow):
+
+```java
+boolean keepGoing = true;
+while (keepGoing && !condition1) {
     doSomething();
-    if (!condition2) {
-        shouldContinue = false;
-    } else {
+    keepGoing = !condition2;
+    if (keepGoing) {
         doMore();
     }
 }
 ```
 
+**Alternatives**:
 
-### Fall-through in Switch Statements
+- Use **clear loop conditions**.
+- Consider **extracting the loop logic into a method** and use `return`.
 
-**Fall-through** occurs when a `case` lacks a `break` statement:
+***
 
-```java
-switch (grade) {
-    case 'A':
-        System.out.println("Excellent!");
-        // Fall-through to next case (usually unintended)
-    case 'B':
-        System.out.println("Good job!");
-        break;
-    case 'C':
-        System.out.println("Average");
-        break;
-}
-```
+### Fall-through in `switch` Statements
 
-**Intentional fall-through** (rare but valid):
+**What** is it?
+When a `case` has no `break`, execution “falls through” to the next `case`.
+
+**Intentionally rare**:
 
 ```java
 switch (month) {
-    case "DEC":
-    case "JAN": 
-    case "FEB":
+    case "DEC": case "JAN": case "FEB":
         season = "Winter";
-        break;
-    case "MAR":
-    case "APR":
-    case "MAY":
-        season = "Spring";
-        break;
+        break; // NOTICE: No fall-through!
+    // ...
 }
 ```
 
+**Unintentional fall-through**:
+**Mostly a bug**. Always check your `switch` blocks for missing `break`s.
 
 ***
 
 ## Arrays and Loops
 
-### `i < nums.length` vs `i < nums.length-1`
+### Array Loops: Bounds and Patterns
 
-| Condition           | Range             | Use Case                 | Example                     |
-|:--------------------|:------------------|:-------------------------|:----------------------------|
-| `i < nums.length`   | `0` to `length-1` | Process all elements     | Printing all values         |
-| `i < nums.length-1` | `0` to `length-2` | Stop before last element | Comparing adjacent elements |
+**Always use** `i < arr.length` to process all elements:
 
 ```java
-int[] nums = {10, 20, 30, 40, 50};
-
-// Access all elements (0 to 4)
+int[] nums = {10, 20, 30};
 for (int i = 0; i < nums.length; i++) {
-    System.out.println(nums[i]); // Prints all 5 elements
-}
-
-// Stop before last element (0 to 3) 
-for (int i = 0; i < nums.length - 1; i++) {
-    System.out.println(nums[i] + " vs " + nums[i + 1]); // Compare pairs
+    System.out.println(nums[i]);
 }
 ```
 
-
-### Valid Array Index Positions
-
-**Arrays are zero-indexed in Java:**
-
-| Array Declaration             | Valid Indices   | Invalid Indices  |
-|:------------------------------|:----------------|:-----------------|
-| `int[] arr = new int[5]`      | `0, 1, 2, 3, 4` | `5, -1, 6, etc.` |
-| `String[] names = {"A", "B"}` | `0, 1`          | `2, -1, 3, etc.` |
+**Use** `i < arr.length - 1` when you want to **compare adjacent elements**:
 
 ```java
-int[] numbers = {100, 200, 300};
+for (int i = 0; i < nums.length - 1; i++) {
+    System.out.println(nums[i] + " vs " + nums[i + 1]);
+}
+```
 
-// Valid access
-System.out.println(numbers[0]);    // 100
-System.out.println(numbers[1]);    // 200  
-System.out.println(numbers[2]);    // 300
+**Extended example**: Find minimum and maximum in one pass:
 
-// Invalid access - throws ArrayIndexOutOfBoundsException
-// System.out.println(numbers[3]);  // Runtime error!
-// System.out.println(numbers[-1]); // Runtime error!
+```java
+int min = nums[^0], max = nums[^0];
+for (int i = 1; i < nums.length; i++) {
+    if (nums[i] < min) min = nums[i];
+    if (nums[i] > max) max = nums[i];
+}
 ```
 
 
 ***
 
-## Quick Reference Summary
+### Valid Array Indices
 
-| Topic | Key Point | Remember |
-| :-- | :-- | :-- |
-| **Method Extraction** | Right-click → Refactor → Extract Method | Improves code reusability |
-| **POM File** | Maven configuration for dependencies and build | Central project management |
-| **Class Partitioning** | Split large classes by responsibility | Single Responsibility Principle |
-| **Boundary Testing** | Test edge cases, min/max values | Where most bugs hide |
-| **Test Loops** | Avoid - use parameterized tests instead | Better debugging and isolation |
-| **Switch Cases** | Control flow based on values | Remember `break` statements |
-| **Ternary Operator** | `condition ? true : false` | Concise conditional assignment |
-| **++i** | Pre-increment: increment first, return new | vs `i++`: return old, then increment |
-| **Loop Breaks** | Use sparingly, prefer clear conditions | Maintains structured flow |
-| **Array Bounds** | Valid: `0` to `length-1` | Invalid access throws exception |
+**Remember**: Java arrays are **zero-indexed**.
+
+| Declaration               | Valid Indices | Invalid Index                |
+|:--------------------------|:--------------|:-----------------------------|
+| `int[] arr = new int[^3]` | `0, 1, 2`     | `3`, `-1` (throws exception) |
+
+**Always check bounds** before direct access.
+
+**Example**:
+
+```java
+int[] arr = {100, 200, 300};
+System.out.println(arr[^2]); // 300
+// System.out.println(arr[^3]); // Throws ArrayIndexOutOfBoundsException
+```
 
 
 ***
+
+## Quick Reference Table (Expanded)
+
+| Topic                  | Key Point                                 | Tips \& Pitfalls               |
+|:-----------------------|:------------------------------------------|:-------------------------------|
+| **Method Extraction**  | Select → Refactor → Extract in IDE        | Keep methods focused, reusable |
+| **POM File**           | Maven project configuration file          | Add dependencies, plugins here |
+| **Class Partitioning** | Split big classes by responsibility       | No “god classes”               |
+| **Boundary Testing**   | Test min, max, empty, null, invalid input | Most bugs are on boundaries    |
+| **Test Loops**         | Use parameterized tests or multiple       | Single failure per test method |
+| **Switch Cases**       | For multiple equality branches            | Watch for missing `break`      |
+| **Ternary Operator**   | `condition ? true : false`                | Don’t nest or overuse          |
+| **++i**                | Pre-increment (rarely matters)            | Be consistent                  |
+| **Loop Breaks**        | Avoid excessive `break` in loops          | Use clear loop conditions      |
+| **Array Bounds**       | `0` to `length-1`                         | Invalid access crashes         |
+
+
+***
+
+## Visual Comparison
+
+```mermaid
+graph TD
+    A([Code]) -->|Refactor| B[Extracted Method]
+    B -->|Reuse| C{Multiple Places}
+    A -->|Responsibility| D[Smaller Classes]
+    D -->|Test| E[Independent Tests]
+    E -->|Boundary| F[Edge Cases]
+    F -->|Failure| G[Easy Debugging]
+```
+
+
+***
+
+## Callouts for Best Practices
 
 > [!TIP]
-> Use IDE refactoring tools extensively - they maintain code correctness while improving structure.
+> **Extract methods early**—avoid duplicated logic.
+>
+> **Test edge cases**—empty collections, nulls, min, max.
+>
+> **Never put logic in test loops**—use JUnit’s parameterized or repeated tests.
 
 > [!WARNING]
-> Always validate array indices before access to prevent `ArrayIndexOutOfBoundsException`.
+> **Invalid array access** will crash your program!
+>
+> **Nested ternary operators** are unreadable—use `if` for clarity.
 
-> [!NOTE]
-> Modern IDEs like IntelliJ IDEA and Eclipse provide excellent refactoring support for all these operations.
+> [!EXAMPLE]
+> ```java > // Good: clear boundaries, avoids problems > for (int i = 0; i < arr.length; i++) { ... } > > // Bad: off-by-one risk, needs extra care > for (int i = 1; i <= arr.length; i++) { ... } > ```
 
-\#java \#ide \#testing \#control-flow \#arrays \#loops \#refactoring \#bestpractices
+***
 
+## Tags
+
+\#java \#ide \#maven \#gradle \#testing \#refactoring \#arrays \#loops \#control-flow \#bestpractices
+
+***
+
+## Summary
+
+This expanded cheatsheet gives you **better examples, explanations, and visual aids** for Java project structure, IDE tools, testing, arrays, loops, and control flow. **Progressive depth** lets you start with quick answers and drill into details as needed. **Bookmark, tag, and extend** this note for your own projects!
+
+***
+
+## See Also
+
+- [[Java Collections]]
+- [[Testing Strategies]]
+- [[Project Structure]]
+- [[Effective Java Practices]]
