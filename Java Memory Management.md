@@ -1,24 +1,68 @@
 
----
-tags: [java, memory, value-types, reference-types, object-model, gc, cheatsheet]
-date: 2025-08-29
-topic: Java Memory Model — Value & Reference Types, Stack & Heap, Garbage Collection
----
 
-
-***
+<!-- TOC -->
+  * [Quick Reference Table](#quick-reference-table)
+  * [Key Concepts](#key-concepts)
+    * [Value Types](#value-types)
+    * [Reference Types](#reference-types)
+  * [Stack vs Heap](#stack-vs-heap)
+    * [Example: Stack \& Heap in Action](#example-stack--heap-in-action)
+  * [Garbage Collection](#garbage-collection)
+  * [Passing \& Modifying](#passing--modifying)
+    * [Example: Modifying Array (Reference Type)](#example-modifying-array-reference-type)
+  * [Why Two Types?](#why-two-types)
+  * [Common Pitfalls](#common-pitfalls)
+  * [Related Concepts](#related-concepts)
+  * [Practical Advice](#practical-advice)
+  * [Further Reading](#further-reading)
+  * [Example: Complex Object Graph](#example-complex-object-graph)
+  * [Visual: Stack \& Heap](#visual-stack--heap)
+  * [Tags for Obsidian](#tags-for-obsidian)
+  * [Callout Blocks](#callout-blocks)
+  * [Summary Table](#summary-table)
+  * [Cheatsheet Bullets](#cheatsheet-bullets)
+  * [Java Garbage Collection — Core Concepts](#java-garbage-collection--core-concepts)
+    * [What is Garbage Collection?](#what-is-garbage-collection)
+    * [How Garbage Collection Works](#how-garbage-collection-works)
+    * [When Does Garbage Collection Happen?](#when-does-garbage-collection-happen)
+    * [What Triggers GC?](#what-triggers-gc)
+    * [Key Points](#key-points)
+    * [Practical Example](#practical-example)
+    * [Further Reading](#further-reading-1)
+  * [Quick Reference Table](#quick-reference-table-1)
+  * [Tags for Obsidian](#tags-for-obsidian-1)
+  * [Callout Blocks](#callout-blocks-1)
+  * [Summary](#summary)
+  * [Java Stack & Heap Memory Model — Complete Interactive Example](#java-stack--heap-memory-model--complete-interactive-example)
+  * [The Complete Java Code](#the-complete-java-code)
+  * [Step-by-Step Memory State Diagrams](#step-by-step-memory-state-diagrams)
+    * [**Step 1: Initial Variables in main()**](#step-1-initial-variables-in-main)
+    * [**Step 2: After Creating Person Object**](#step-2-after-creating-person-object)
+    * [**Step 3: After Creating Team Array**](#step-3-after-creating-team-array)
+    * [**Step 4: Inside updateTeam() Method**](#step-4-inside-updateteam-method)
+    * [**Step 5: After updateTeam() Returns**](#step-5-after-updateteam-returns)
+    * [**Step 6: Program Termination**](#step-6-program-termination)
+  * [Key Memory Management Concepts](#key-memory-management-concepts)
+    * [**Stack Memory Characteristics**](#stack-memory-characteristics)
+    * [**Heap Memory Characteristics**](#heap-memory-characteristics)
+  * [Common Memory Pitfalls & Best Practices](#common-memory-pitfalls--best-practices)
+  * [Advanced Example: String Pool](#advanced-example-string-pool)
+  * [Memory Analysis Tools](#memory-analysis-tools)
+  * [Quick Reference Card](#quick-reference-card)
+    * [Tags for Obsidian](#tags-for-obsidian-2)
+    * [Related Topics](#related-topics)
+<!-- TOC -->
 
 ## Quick Reference Table
 
 | Concept          | Value Types                                | Reference Types                           |
-| :--------------- | :----------------------------------------- | :---------------------------------------- |
+|:-----------------|:-------------------------------------------|:------------------------------------------|
 | **Stored in**    | Stack (directly)                           | Heap (referenced from stack)              |
 | **Examples**     | `int`, `double`, `char`, `boolean`, `enum` | Objects, Arrays, Strings                  |
 | **Assignment**   | Copies value                               | Copies reference (address)                |
 | **Passing**      | Pass-by-value (copy)                       | Pass-by-value (reference copy)            |
 | **Modification** | Local to method                            | Visible to caller if object state changes |
 | **Null**         | Not applicable                             | Can be `null`                             |
-
 
 ***
 
@@ -208,15 +252,14 @@ graph TD
 
 ## Summary Table
 
-| Aspect | Value Types | Reference Types |
-| :-- | :-- | :-- |
-| Storage | Stack | Heap (via stack reference) |
-| Assignment | Copies value | Copies reference (address) |
-| Pass to Method | Copy of value | Copy of reference |
-| Modifiable? | Local to method | Visible to all references |
-| Nullable? | No | Yes |
-| GC Managed? | No | Yes |
-
+| Aspect         | Value Types     | Reference Types            |
+|:---------------|:----------------|:---------------------------|
+| Storage        | Stack           | Heap (via stack reference) |
+| Assignment     | Copies value    | Copies reference (address) |
+| Pass to Method | Copy of value   | Copy of reference          |
+| Modifiable?    | Local to method | Visible to all references  |
+| Nullable?      | No              | Yes                        |
+| GC Managed?    | No              | Yes                        |
 
 ***
 
@@ -306,14 +349,13 @@ Here, after `obj1 = obj2;`, the original object referenced by `obj1` is unreacha
 
 ## Quick Reference Table
 
-| Aspect | Details |
-| :-- | :-- |
-| **What is collected** | Unreachable objects on the heap |
-| **Managed by** | JVM (automatic) |
-| **Manual control?** | No (but `System.gc()` is a hint) |
-| **Key benefit** | Prevents memory leaks, manages heap |
-| **Pitfalls** | Memory leaks if objects remain referenced |
-
+| Aspect                | Details                                   |
+|:----------------------|:------------------------------------------|
+| **What is collected** | Unreachable objects on the heap           |
+| **Managed by**        | JVM (automatic)                           |
+| **Manual control?**   | No (but `System.gc()` is a hint)          |
+| **Key benefit**       | Prevents memory leaks, manages heap       |
+| **Pitfalls**          | Memory leaks if objects remain referenced |
 
 ***
 
@@ -618,23 +660,23 @@ graph TB
 
 ### **Stack Memory Characteristics**
 
-|Aspect|Description|
-|---|---|
-|**Storage**|Method parameters, local variables, return addresses|
-|**Access Speed**|Very fast (LIFO structure)|
-|**Size**|Limited (typically 1MB default)|
-|**Management**|Automatic - cleared when method exits|
-|**Thread Safety**|Each thread has its own stack|
+| Aspect            | Description                                          |
+|-------------------|------------------------------------------------------|
+| **Storage**       | Method parameters, local variables, return addresses |
+| **Access Speed**  | Very fast (LIFO structure)                           |
+| **Size**          | Limited (typically 1MB default)                      |
+| **Management**    | Automatic - cleared when method exits                |
+| **Thread Safety** | Each thread has its own stack                        |
 
 ### **Heap Memory Characteristics**
 
-|Aspect|Description|
-|---|---|
-|**Storage**|All objects and arrays|
-|**Access Speed**|Slower than stack|
-|**Size**|Much larger (configurable with -Xmx)|
-|**Management**|Garbage collector handles cleanup|
-|**Thread Safety**|Shared across all threads|
+| Aspect            | Description                          |
+|-------------------|--------------------------------------|
+| **Storage**       | All objects and arrays               |
+| **Access Speed**  | Slower than stack                    |
+| **Size**          | Much larger (configurable with -Xmx) |
+| **Management**    | Garbage collector handles cleanup    |
+| **Thread Safety** | Shared across all threads            |
 
 ---
 
