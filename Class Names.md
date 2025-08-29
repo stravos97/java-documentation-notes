@@ -1,10 +1,8 @@
-______________________________________________________________________
-
+---
 tags: [java, basics, classes, file-naming]\
 date: 2025-08-21\
 topic: Java Class and File Naming Conventions
-
-______________________________________________________________________
+---
 
 <!-- TOC -->
   * [Java Class and File Naming Conventions](#java-class-and-file-naming-conventions)

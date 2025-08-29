@@ -1,10 +1,8 @@
-______________________________________________________________________
-
-tags: [java, userinput, scanner, bestpractices, java/io]\
-date: 2025-08-21\
+---
+tags: [java, userinput, scanner, bestpractices, java.io]
+date: 2025-08-21
 topic: Java User Input with Scanner
-
-______________________________________________________________________
+---
 
 ## Java User Input with Scanner
 

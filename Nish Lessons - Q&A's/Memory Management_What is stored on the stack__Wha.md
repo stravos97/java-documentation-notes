@@ -1,3 +1,9 @@
+---
+tags: [java, memory-management, stack, heap, garbage-collection, reference-types, cheatsheet]
+date: 2025-08-29
+topic: Java Memory Management and Object Lifecycle
+---
+
 # Memory Management
 
 What is stored on the stack?
@@ -7,12 +13,6 @@ What are reference types vs value types?
 What happens to objects when they go out of scope?
 What three things does the garbage collector do?
 How are memory addresses different for objects with the same values?
-
----
-tags: [java, memory-management, stack, heap, garbage-collection, reference-types, cheatsheet]
-date: 2025-08-29
-topic: Java Memory Management and Object Lifecycle
----
 
 ## Memory Management
 

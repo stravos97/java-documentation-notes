@@ -1,10 +1,8 @@
-______________________________________________________________________
-
+---
 tags: [java, reference, keywords, cheatsheet]
 date: 2025-08-22
-topic: Java Keywords Overview
-
-______________________________________________________________________
+topic: Java, Keywords, Overview
+---
 
 ## Java Keywords: Quick Reference
 

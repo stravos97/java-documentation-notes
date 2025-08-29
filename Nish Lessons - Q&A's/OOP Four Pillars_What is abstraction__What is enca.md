@@ -1,3 +1,8 @@
+---
+tags: [java, oop, constructors, access-modifiers, date-time, cheatsheet]
+date: 2025-08-29
+topic: Java OOP, Constructors, and Access Control
+---
 
 # OOP Four Pillars
 
@@ -17,12 +22,6 @@ Access Modifiers
 What are private fields used for?
 What is a protected field?
 What are getters and setters used for?
-
----
-tags: [java, oop, constructors, access-modifiers, date-time, cheatsheet]
-date: 2025-08-29
-topic: Java OOP, Constructors, and Access Control
----
 
 ## OOP Four Pillars
 

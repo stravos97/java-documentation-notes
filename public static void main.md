@@ -1,8 +1,8 @@
+---
 tags: [java, basics, main-method]
 date: 2025-08-21
-topic: Java Main Method Explanation
-
-______________________________________________________________________
+topic: Java, Main-Method, Explanation
+---
 
 <!-- TOC -->
   * [Java Main Method: public static void main(String[] args)](#java-main-method-public-static-void-mainstring-args)

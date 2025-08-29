@@ -1,3 +1,9 @@
+---
+tags: [java, inheritance, polymorphism, abstract-classes, interfaces, object-methods, cheatsheet]
+date: 2025-08-29
+topic: Java Inheritance, Polymorphism, and Object Methods
+---
+
 # Inheritance
 
 How many parent classes can a Java class inherit from?
@@ -18,12 +24,6 @@ What are anonymous classes?
 How do abstract methods work in derived classes?
 What happens when an abstract class implements an interface?
 How do interfaces differ from abstract classes?
-
----
-tags: [java, inheritance, polymorphism, abstract-classes, interfaces, object-methods, cheatsheet]
-date: 2025-08-29
-topic: Java Inheritance, Polymorphism, and Object Methods
----
 
 ## Inheritance
 

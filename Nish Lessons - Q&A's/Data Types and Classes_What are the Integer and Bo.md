@@ -1,3 +1,8 @@
+---
+tags: [java, data-types, wrapper-classes, enums, methods, strings, arrays, cheatsheet]
+date: 2025-08-29
+topic: Java Data Types, Wrapper Classes, and Basic Concepts
+---
 
 # Data Types and Classes
 

@@ -1,3 +1,8 @@
+---
+tags: [java, ide, testing, control-flow, arrays, loops, cheatsheet]
+date: 2025-08-29
+topic: Java Fundamentals Quick Reference
+---
 
 # IDE and Project Management
 
@@ -16,14 +21,6 @@ What is fall-through in switch statements?
 Arrays and Loops
 What's the difference between i < nums.length and i < nums.length-1?
 What are the valid index positions for an array?
-
-I notice you've asked the same questions I answered earlier in our conversation. Let me provide a concise, cheatsheet-friendly summary of all these topics for your Java notes:
-
----
-tags: [java, ide, testing, control-flow, arrays, loops, cheatsheet]
-date: 2025-08-29
-topic: Java Fundamentals Quick Reference
----
 
 ## IDE and Project Management
 

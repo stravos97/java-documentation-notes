@@ -1,8 +1,8 @@
+---
 tags: [java, strings, object, cheatsheet]
 date: 2025-08-22
-topic: Java String as Object
-
-______________________________________________________________________
+topic: Java, Strings
+---
 
 ## How is a String an Object in Java?
 
