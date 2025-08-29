@@ -6,22 +6,22 @@ topic: Java OOP, Constructors, and Access Control
 
 # OOP Four Pillars
 
-What is abstraction?
-What is encapsulation?
-What is inheritance?
-What is polymorphism?
-Date/Time
-How do you work with date/time in Java?
-Constructors
-What does a constructor return?
-What does the new keyword do when creating objects?
-What is constructor overloading?
-What is constructor chaining?
-What is the default constructor?
-Access Modifiers
-What are private fields used for?
-What is a protected field?
-What are getters and setters used for?
+1. What is abstraction?
+2. What is encapsulation?
+3. What is inheritance?
+4. What is polymorphism?
+5. Date/Time
+6. How do you work with date/time in Java?
+7. Constructors
+8. What does a constructor return?
+9. What does the new keyword do when creating objects?
+10. What is constructor overloading?
+11. What is constructor chaining?
+12. What is the default constructor?
+13. Access Modifiers
+14. What are private fields used for?
+15. What is a protected field?
+16. What are getters and setters used for?
 
 ## OOP Four Pillars
 
