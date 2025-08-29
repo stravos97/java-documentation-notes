@@ -403,11 +403,9 @@ void addAndPrint(int a, int b) {
 int add(int a, int b) {
     return a + b;
 }
-```
 
 // Then, from the caller:
 System.out.println(add(3, 4));
-
 ```
 
 > [!TIP]
