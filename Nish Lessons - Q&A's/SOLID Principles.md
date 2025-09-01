@@ -680,6 +680,178 @@ flowchart TD
 > - If you need to check the type of an object before using it, you might be violating LSP
 > - Design your base classes carefully - they define the contract all subclasses must follow
 
+***
+
+## OCP vs LSP: Understanding the Key Differences
+
+Many developers confuse the **Open/Closed Principle** and **Liskov Substitution Principle** because both involve inheritance and interfaces. However, they solve fundamentally different problems in retail systems.
+
+### The Core Distinction
+
+**OCP is about EXTENSION** - How do we add new functionality without breaking existing code?
+**LSP is about SUBSTITUTION** - Do our existing object hierarchies work correctly together?
+
+Think of it this way:
+- **OCP** asks: "Can I add Apple Pay without changing my checkout system?"
+- **LSP** asks: "Do digital products work the same way as physical products in my shopping cart?"
+
+### Different Problems, Different Solutions
+
+#### OCP: The Extension Problem
+
+```java
+// OCP VIOLATION: Adding new payment requires modifying existing code
+public class PaymentProcessor {
+    public void process(String type, double amount) {
+        if (type.equals("CREDIT")) {
+            // Credit card logic
+        } else if (type.equals("PAYPAL")) {
+            // PayPal logic  
+        }
+        // To add Apple Pay, we must modify this method!
+    }
+}
+
+// OCP SOLUTION: Extension through interfaces
+public interface PaymentMethod {
+    void processPayment(double amount);
+}
+
+// Add new payment types WITHOUT modifying existing code
+public class ApplePayPayment implements PaymentMethod {
+    public void processPayment(double amount) {
+        // Apple Pay logic - no existing code changed!
+    }
+}
+```
+
+#### LSP: The Substitution Problem
+
+```java
+// LSP VIOLATION: Subclass breaks parent's contract
+public class Product {
+    public void addToCart(ShoppingCart cart) {
+        cart.addItem(this);
+        updateInventory(); // Parent expects this to work
+    }
+    
+    protected void updateInventory() {
+        // Reduce physical stock
+    }
+}
+
+public class DigitalProduct extends Product {
+    @Override
+    protected void updateInventory() {
+        throw new UnsupportedOperationException("Digital products don't have inventory!");
+        // BREAKS LSP - violates parent's contract!
+    }
+}
+
+// LSP SOLUTION: Proper abstraction that works for all subtypes
+public abstract class Product {
+    public abstract boolean isAvailable(int quantity);
+    public abstract void reserve(int quantity);
+    // Contract that ALL products can fulfill consistently
+}
+```
+
+### Visual Comparison: Extension vs Substitution
+
+```mermaid
+graph LR
+    subgraph "OCP: EXTENSION Focus"
+        A1[PaymentMethod Interface<br/>STABLE - Never Changes]
+        A2[CreditCardPayment<br/>Existing Implementation]
+        A3[PayPalPayment<br/>Existing Implementation]
+        A4[ApplePayPayment<br/>NEW - Added via Extension]
+        A5[GooglePayPayment<br/>FUTURE - Can add anytime]
+        A6[CheckoutSystem<br/>Uses PaymentMethod<br/>NEVER CHANGES]
+        
+        A1 -.-> A2
+        A1 -.-> A3
+        A1 -.-> A4
+        A1 -.-> A5
+        A6 --> A1
+        
+        style A4 fill:#e8f5e8,stroke:#4caf50,stroke-width:3px
+        style A5 fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
+        style A6 fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    end
+    
+    subgraph "LSP: SUBSTITUTION Focus"
+        B1[Product Base Class<br/>Defines Contract]
+        B2[PhysicalProduct<br/>Implementation A]
+        B3[DigitalProduct<br/>Implementation B]
+        B4[ShoppingCart<br/>Works with ANY Product<br/>No type checking needed]
+        
+        B1 --> B2
+        B1 --> B3
+        B4 --> B1
+        
+        B5[cart.addProduct ANY]
+        B6[product.isAvailable ANY]
+        B7[product.calculatePrice ANY]
+        
+        B4 -.-> B5
+        B4 -.-> B6
+        B4 -.-> B7
+        
+        style B2 fill:#ffebee,stroke:#f44336,stroke-width:2px
+        style B3 fill:#ffebee,stroke:#f44336,stroke-width:2px
+        style B4 fill:#e8f5e8,stroke:#4caf50,stroke-width:3px
+    end
+    
+    C1[OCP Goal:<br/>Add new payment methods<br/>without changing checkout]
+    C2[LSP Goal:<br/>Use different products<br/>interchangeably in cart]
+    
+    C1 -.-> A4
+    C2 -.-> B4
+```
+
+### When Each Principle Applies
+
+**Use OCP thinking when:**
+- Planning to add new features (payment methods, shipping providers)
+- Designing plugin architectures
+- Building systems that need frequent extensions
+- **Question**: "How do I add new functionality without breaking existing code?"
+
+**Use LSP thinking when:**
+- Designing inheritance hierarchies
+- Creating base classes and interfaces
+- Ensuring polymorphism works correctly
+- **Question**: "Can I substitute any subclass for the parent without breaking functionality?"
+
+### Comparison Table
+
+| Aspect | OCP (Open/Closed) | LSP (Liskov Substitution) |
+|:-------|:------------------|:---------------------------|
+| **Primary Goal** | Enable safe extension | Enable reliable substitution |
+| **Timeline Focus** | Future-oriented | Present-oriented |
+| **Code Changes** | Add new classes | Modify existing hierarchies |
+| **Violation Signs** | Modifying existing classes for new features | Type checking before method calls |
+| **Design Focus** | Interface design for extension | Contract design for substitution |
+| **Retail Example** | Adding new payment methods | Physical vs digital products in cart |
+| **Testing Strategy** | Test new implementations separately | Test all subtypes interchangeably |
+| **Risk When Violated** | Fragile code that breaks with new features | Unexpected runtime exceptions |
+
+### Practical Guidance
+
+> [!TIP] How to Apply Both Principles Together
+> 
+> 1. **Start with LSP**: Design solid inheritance hierarchies where subtypes work correctly
+> 2. **Add OCP**: Create interfaces that allow extension without modification
+> 3. **Test thoroughly**: Ensure new extensions (OCP) don't break substitution contracts (LSP)
+> 4. **Remember**: OCP helps you add features, LSP helps you use them reliably
+
+> [!WARNING] Common Confusion
+> 
+> **Don't mix up the problems:**
+> - If you're adding NEW functionality → Think OCP
+> - If you're fixing broken inheritance → Think LSP
+> - If you're doing both → Apply LSP first, then OCP
+
 ## Interface Segregation Principle (ISP)
 
 ### The Concept
