@@ -136,11 +136,29 @@ class BankAccount {
 > **Never expose fields directly as public** unless there’s a strong reason.
 
 > [!EXAMPLE]
-> **Validation in setters:**
+> **Input validation patterns:**
 > ```java
+> // Age validation with business rule (over 18)
 > public void setAge(int age) {
->     if (age > 0 && age < 150) this.age = age;
->     else throw new IllegalArgumentException("Invalid age");
+>     if (age < 18) throw new IllegalArgumentException("Must be over 18");
+>     if (age > 150) throw new IllegalArgumentException("Invalid age range");
+>     this.age = age;
+> }
+> 
+> // Input range validation
+> public void setScore(int score) {
+>     if (score < 0 || score > 100) {
+>         throw new IllegalArgumentException("Score must be 0-100");
+>     }
+>     this.score = score;
+> }
+> 
+> // Boundary value handling
+> public void processInput(String input) {
+>     if (input == null || input.trim().isEmpty()) {
+>         throw new IllegalArgumentException("Input cannot be null or empty");
+>     }
+>     // Process valid input
 > }
 > ```
 
@@ -320,6 +338,96 @@ class Rectangle {
 }
 ```
 
+### Constructor Chaining Patterns
+
+Here are the different ways constructors can chain together for code reuse and initialization:
+
+```mermaid
+flowchart TD
+    subgraph "this() Chaining (Same Class)"
+        T1["Rectangle()"] --> T2["calls this(1, 1)"]
+        T2 --> T3["Rectangle(int, int)"]
+        T3 --> T4["Sets width = 1, height = 1"]
+    end
+    
+    subgraph "super() Chaining (Parent Class)"
+        S1["Dog('Buddy', 'Golden')"] --> S2["calls super('Buddy')"]
+        S2 --> S3["Animal(String name)"]
+        S3 --> S4["Sets name = 'Buddy'"]
+        S4 --> S5["Returns to Dog constructor"]
+        S5 --> S6["Sets breed = 'Golden'"]
+    end
+    
+    subgraph "Complex Chaining (Both this & super)"
+        C1["Employee('John', 50000)"] --> C2["calls this('John', 50000, 'IT')"]
+        C2 --> C3["Employee(name, sal, dept)"] 
+        C3 --> C4["calls super(name)"]
+        C4 --> C5["Person(String name)"]
+        C5 --> C6["Sets name in Person"]
+        C6 --> C7["Return to Employee"]
+        C7 --> C8["Set salary & department"]
+    end
+    
+    style T1 fill:#e3f2fd
+    style S1 fill:#f3e5f5
+    style C1 fill:#fff3e0
+    style T4 fill:#d4edda
+    style S6 fill:#d4edda
+    style C8 fill:#d4edda
+```
+
+**Constructor Execution Order:**
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Employee
+    participant Person
+    
+    Note over Client: new Employee("Alice", 75000)
+    
+    Client->>Employee: Employee("Alice", 75000)
+    Note over Employee: Calls this("Alice", 75000, "Engineering")
+    
+    Employee->>Employee: Employee(name, salary, department)
+    Note over Employee: First line: super(name)
+    
+    Employee->>Person: Person("Alice")
+    Person-->>Employee: Person initialization complete
+    
+    Note over Employee: Initialize Employee fields
+    Employee-->>Client: Employee object created
+    
+    Note over Client,Person: Execution Order:<br/>1. super() or this() call (if any)<br/>2. Instance variable initialization<br/>3. Constructor body execution
+```
+
+**Constructor Chaining Rules and Examples:**
+
+```mermaid
+graph LR
+    subgraph "Chaining Rules"
+        RULE1["this() or super() must be<br/>FIRST statement in constructor"]
+        RULE2["Cannot use both this() and super()<br/>in same constructor"]
+        RULE3["If no explicit super() call,<br/>Java adds implicit super()"]
+        RULE4["this() chains within same class<br/>super() chains to parent class"]
+    end
+    
+    subgraph "Example: Valid Chaining"
+        V1["class Student extends Person {<br/>  Student() { this('Unknown', 0); }<br/>  Student(String n, int a) {<br/>    super(n); age = a;<br/>  }<br/>}"]
+    end
+    
+    subgraph "Example: Invalid Chaining"
+        I1["class Student {<br/>  Student() {<br/>    age = 18; // Error!<br/>    this('Unknown'); // Must be first<br/>  }<br/>}"]
+    end
+    
+    style V1 fill:#d4edda
+    style I1 fill:#ffcdd2
+    style RULE1 fill:#fff3e0
+    style RULE2 fill:#fff3e0
+    style RULE3 fill:#fff3e0
+    style RULE4 fill:#fff3e0
+```
+
 ### Default Constructor
 
 **If no constructor is defined**, Java provides a **public, no-arg default constructor**.
@@ -332,6 +440,101 @@ class NonEmpty {
     NonEmpty(String s) { } // No default constructor now
 }
 ```
+
+### Object Lifecycle Visualization
+
+Here's the complete lifecycle of a Java object from creation to garbage collection:
+
+```mermaid
+flowchart TD
+    subgraph "Class Loading Phase"
+        CL1["Class Loader loads .class file"] --> CL2["Static variables initialized"]
+        CL2 --> CL3["Static initialization blocks run"]
+    end
+    
+    subgraph "Object Creation Phase"
+        NEW["new Keyword Invoked"] --> MEM["JVM allocates memory on heap"]
+        MEM --> INIT["Initialize fields to default values<br/>(0, null, false)"]
+        INIT --> INSTANCE["Instance initializers run<br/>(init blocks, field initializers)"]
+        INSTANCE --> CONSTRUCTOR["Constructor execution"]
+        
+        CONSTRUCTOR --> CHAIN_CHECK{Constructor<br/>chaining?}
+        CHAIN_CHECK -->|Yes| PARENT_CONST["Call parent/this() constructor"]
+        CHAIN_CHECK -->|No| FIELD_INIT["Initialize instance fields"]
+        PARENT_CONST --> FIELD_INIT
+        FIELD_INIT --> CONST_BODY["Execute constructor body"]
+        CONST_BODY --> REF_RETURN["Return reference to object"]
+    end
+    
+    subgraph "Object Usage Phase"
+        REF_RETURN --> ASSIGNED["Reference assigned to variable"]
+        ASSIGNED --> METHOD_CALLS["Method calls & field access"]
+        METHOD_CALLS --> STATE_CHANGES["Object state changes"]
+        STATE_CHANGES --> MORE_REFS{More references<br/>created?}
+        MORE_REFS -->|Yes| ASSIGNED
+        MORE_REFS -->|No| USAGE_DONE["Usage complete"]
+    end
+    
+    subgraph "Reference Management"
+        USAGE_DONE --> SCOPE_END["References go out of scope"]
+        SCOPE_END --> NULL_ASSIGN["References set to null"]
+        NULL_ASSIGN --> NO_REFS["No active references remain"]
+    end
+    
+    subgraph "Garbage Collection Phase"
+        NO_REFS --> GC_ELIGIBLE["Object eligible for GC"]
+        GC_ELIGIBLE --> GC_TRIGGER["GC triggered by JVM"]
+        GC_TRIGGER --> MARK["Mark: Trace reachable objects"]
+        MARK --> UNREACHABLE{Object<br/>unreachable?}
+        UNREACHABLE -->|Yes| SWEEP["Sweep: Mark for deletion"]
+        UNREACHABLE -->|No| STAY_ALIVE["Object survives GC cycle"]
+        SWEEP --> FINALIZE["finalize() called (if overridden)"]
+        FINALIZE --> COMPACT["Compact: Defragment memory"]
+        COMPACT --> FREED["Memory freed and available"]
+        STAY_ALIVE --> NEXT_GC["Wait for next GC cycle"]
+    end
+    
+    CL3 --> NEW
+    
+    style NEW fill:#e3f2fd
+    style CONSTRUCTOR fill:#fff3e0
+    style REF_RETURN fill:#d4edda
+    style GC_ELIGIBLE fill:#ffcdd2
+    style FREED fill:#e0e0e0
+```
+
+**Constructor Chaining Flow:**
+
+```mermaid
+flowchart LR
+    subgraph "Constructor Call Chain"
+        CALL1["Student s = new Student('Alice');"] --> MATCH1["Matches: Student(String name)"]
+        MATCH1 --> THIS1["Calls: this('Alice', 18, 'UNKNOWN')"]
+        THIS1 --> MATCH2["Matches: Student(String, int)"]
+        MATCH2 --> THIS2["Calls: this('Alice', 18, 'UNKNOWN')"]
+        THIS2 --> MATCH3["Matches: Student(String, int, String)"]
+        MATCH3 --> EXEC["Executes final constructor:<br/>this.name = 'Alice'<br/>this.age = 18<br/>this.id = 'UNKNOWN'"]
+        EXEC --> COMPLETE["Object fully initialized"]
+    end
+    
+    style CALL1 fill:#e3f2fd
+    style MATCH1 fill:#fff3e0
+    style MATCH2 fill:#fff3e0
+    style MATCH3 fill:#fff3e0
+    style COMPLETE fill:#d4edda
+```
+
+**Object States Throughout Lifecycle:**
+
+| Phase | Object State | Memory Location | Reference Count | GC Eligible |
+|:------|:-------------|:---------------|:---------------|:------------|
+| **Creation** | Initializing | Heap (allocated) | 0 (being created) | No |
+| **Construction** | Constructing | Heap (partial) | 0 (in progress) | No |
+| **Active Use** | Fully initialized | Heap (complete) | 1+ | No |
+| **Reference Loss** | Orphaned | Heap (unreachable) | 0 | Yes |
+| **GC Marked** | Marked for deletion | Heap (flagged) | 0 | Yes |
+| **Finalized** | Being cleaned up | Heap (finalizing) | 0 | Yes |
+| **Freed** | Destroyed | Memory freed | N/A | N/A |
 
 ***
 
@@ -363,16 +566,94 @@ class PackagePrivateClass {
 
 **Accessible within the same package + subclasses (even in different packages)**.
 
+#### Comprehensive Protected Access Examples
+
+**Same Package Access:**
 ```java
 package animal;
+
 public class Animal {
     protected String species;
+    protected int age;
+    
+    protected void displayInfo() {
+        System.out.println("Species: " + species + ", Age: " + age);
+    }
 }
 
+class AnimalCaretaker {  // Same package, not a subclass
+    void careFor(Animal animal) {
+        animal.species = "Updated";  // ✓ Can access protected field
+        animal.displayInfo();        // ✓ Can access protected method
+    }
+}
+```
+
+**Subclass in Different Package:**
+```java
 package zoo;
-public class Lion extends animal.Animal {
+import animal.Animal;
+
+public class Lion extends Animal {
+    public Lion(String species, int age) {
+        this.species = species;  // ✓ Can access inherited protected field
+        this.age = age;          // ✓ Can access inherited protected field
+    }
+    
     void feed() {
-        System.out.println("Feeding " + species); // Access protected field
+        displayInfo();           // ✓ Can call inherited protected method
+        System.out.println("Feeding " + species);
+    }
+}
+```
+
+**Non-Subclass in Different Package (Access Denied):**
+```java
+package veterinary;
+import animal.Animal;
+import zoo.Lion;
+
+public class Vet {
+    void examine(Animal animal) {
+        // animal.species = "Cat";     // ✗ Compile error - not accessible
+        // animal.displayInfo();       // ✗ Compile error - not accessible
+    }
+    
+    void treatLion(Lion lion) {
+        // lion.species = "Big Cat";   // ✗ Compile error - can't access via object reference
+        // Must use public methods or getters instead
+    }
+}
+```
+
+**Real-World Framework Example:**
+```java
+package framework;
+
+public abstract class Component {
+    protected String name;
+    protected boolean enabled = true;
+    
+    protected void validate() {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalStateException("Component name is required");
+        }
+    }
+}
+
+package ui;
+import framework.Component;
+
+public class Button extends Component {
+    public Button(String buttonName) {
+        this.name = buttonName;     // ✓ Access inherited protected field
+        validate();                 // ✓ Call inherited protected method
+    }
+    
+    public void click() {
+        if (enabled) {              // ✓ Use inherited protected field
+            System.out.println("Button " + name + " clicked");
+        }
     }
 }
 ```
@@ -388,6 +669,144 @@ public class Logger {
     }
 }
 ```
+
+### Access Modifier Scope Visualization
+
+Here's how different access modifiers control visibility across packages and inheritance hierarchies:
+
+```mermaid
+graph TB
+    subgraph "Package A (com.example.base)"
+        subgraph "BaseClass"
+            PRIV["🔒 private field<br/>❌ Not accessible outside class"]
+            PKG["📦 package field<br/>✅ Same package only"]
+            PROT["🛡️ protected field<br/>✅ Same package + subclasses"]
+            PUB["🌐 public field<br/>✅ Accessible everywhere"]
+        end
+        
+        subgraph "SamePackageClass"
+            SP_PRIV["❌ Can't access private"]
+            SP_PKG["✅ Can access package"]
+            SP_PROT["✅ Can access protected"]
+            SP_PUB["✅ Can access public"]
+        end
+    end
+    
+    subgraph "Package B (com.example.other)"
+        subgraph "SubClass extends BaseClass"
+            SUB_PRIV["❌ Can't access private"]
+            SUB_PKG["❌ Can't access package"]
+            SUB_PROT["✅ Can access protected<br/>(inherited only)"]
+            SUB_PUB["✅ Can access public"]
+        end
+        
+        subgraph "UnrelatedClass"
+            UN_PRIV["❌ Can't access private"]
+            UN_PKG["❌ Can't access package"]
+            UN_PROT["❌ Can't access protected"]
+            UN_PUB["✅ Can access public"]
+        end
+    end
+    
+    %% Access relationships
+    PRIV -.->|No Access| SP_PRIV
+    PKG -.->|Same Package| SP_PKG
+    PROT -.->|Same Package| SP_PROT
+    PUB -.->|All Access| SP_PUB
+    
+    PRIV -.->|No Access| SUB_PRIV
+    PKG -.->|No Access| SUB_PKG
+    PROT -.->|Inheritance| SUB_PROT
+    PUB -.->|All Access| SUB_PUB
+    
+    PRIV -.->|No Access| UN_PRIV
+    PKG -.->|No Access| UN_PKG
+    PROT -.->|No Access| UN_PROT
+    PUB -.->|All Access| UN_PUB
+    
+    style PRIV fill:#ffcdd2
+    style PKG fill:#fff3e0
+    style PROT fill:#e1f5fe
+    style PUB fill:#c8e6c9
+```
+
+**Access Modifier Decision Matrix:**
+
+```mermaid
+flowchart TD
+    START["Choosing Access Modifier"] --> QUESTION1{Should this be accessible<br/>from outside the class?}
+    
+    QUESTION1 -->|No| PRIVATE["Use PRIVATE<br/>🔒 Maximum encapsulation"]
+    
+    QUESTION1 -->|Yes| QUESTION2{Should this be accessible<br/>from other packages?}
+    
+    QUESTION2 -->|No| QUESTION3{Should subclasses in<br/>other packages access this?}
+    QUESTION3 -->|No| PACKAGE["Use PACKAGE (default)<br/>📦 Same package only"]
+    QUESTION3 -->|Yes| PROTECTED["Use PROTECTED<br/>🛡️ Same package + subclasses"]
+    
+    QUESTION2 -->|Yes| PUBLIC["Use PUBLIC<br/>🌐 Universal access"]
+    
+    PRIVATE --> USE_CASE1["• Internal implementation<br/>• Sensitive data<br/>• Helper methods"]
+    PACKAGE --> USE_CASE2["• Package-internal utilities<br/>• Collaboration between classes<br/>• Internal APIs"]
+    PROTECTED --> USE_CASE3["• Framework extension points<br/>• Template method pattern<br/>• Inherited behavior"]
+    PUBLIC --> USE_CASE4["• Public APIs<br/>• Main functionality<br/>• Library interfaces"]
+    
+    style PRIVATE fill:#ffcdd2
+    style PACKAGE fill:#fff3e0
+    style PROTECTED fill:#e1f5fe
+    style PUBLIC fill:#c8e6c9
+```
+
+**Real-World Access Control Example:**
+
+```mermaid
+classDiagram
+    class BankAccount {
+        -double balance
+        -String accountNumber
+        #String branchCode
+        +String customerName
+        
+        -validateAmount(double) boolean
+        +deposit(double) void
+        +withdraw(double) void
+        #getBranchCode() String
+        +getBalance() double
+    }
+    
+    class SavingsAccount {
+        -double interestRate
+        +calculateInterest() double
+        +withdraw(double) void
+    }
+    
+    class BankingSystem {
+        +processTransaction() void
+        +generateReport() void
+    }
+    
+    class ExternalAuditor {
+        +auditAccount() void
+    }
+    
+    BankAccount <|-- SavingsAccount : extends
+    BankingSystem ..> BankAccount : same package
+    ExternalAuditor ..> BankAccount : different package
+    
+    note for BankAccount "Private: balance, accountNumber, validateAmount()<br/>Protected: branchCode, getBranchCode()<br/>Public: customerName, deposit(), withdraw(), getBalance()"
+    note for SavingsAccount "Can access protected branchCode<br/>Cannot access private balance directly"
+    note for BankingSystem "Can access package methods<br/>Same package privileges"
+    note for ExternalAuditor "Only public methods accessible<br/>Limited external access"
+```
+
+**Access Control Summary Table:**
+
+| Access Level | Same Class | Same Package | Subclass (Different Package) | Different Package (Unrelated) |
+|:-------------|:----------:|:------------:|:----------------------------:|:-----------------------------:|
+| `private` | ✅ Yes | ❌ No | ❌ No | ❌ No |
+| *default* (package) | ✅ Yes | ✅ Yes | ❌ No | ❌ No |
+| `protected` | ✅ Yes | ✅ Yes | ✅ Yes (inherited only) | ❌ No |
+| `public` | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
 
 ***
 

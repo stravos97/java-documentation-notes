@@ -196,6 +196,94 @@ Animal a = new Cat();
 a.sound(); // Output: Meow
 ```
 
+### Polymorphism Decision Flow
+
+Here's how Java determines which method to call in different polymorphic scenarios:
+
+```mermaid
+flowchart TD
+    START["Method Call: obj.methodName(args)"] --> COMPILE_TIME{Compile Time<br/>Analysis}
+    
+    COMPILE_TIME --> CHECK_OVERLOAD{Multiple methods<br/>with same name<br/>but different params?}
+    
+    CHECK_OVERLOAD -->|Yes| OVERLOAD_RESOLVE["Static Polymorphism<br/>(Method Overloading)"]
+    CHECK_OVERLOAD -->|No| SINGLE_METHOD["Single method signature"]
+    
+    OVERLOAD_RESOLVE --> PARAM_MATCH{Find exact<br/>parameter match?}
+    PARAM_MATCH -->|Yes| EXACT_MATCH["Use exact match"]
+    PARAM_MATCH -->|No| WIDENING["Apply widening conversions<br/>Find best match"]
+    WIDENING --> COMPILE_SUCCESS["Compile-time resolution complete"]
+    EXACT_MATCH --> COMPILE_SUCCESS
+    
+    SINGLE_METHOD --> COMPILE_SUCCESS
+    COMPILE_SUCCESS --> RUNTIME{"Runtime<br/>Execution"}
+    
+    RUNTIME --> INHERITANCE_CHECK{Method overridden<br/>in subclass?}
+    
+    INHERITANCE_CHECK -->|Yes| DYNAMIC_RESOLVE["Dynamic Polymorphism<br/>(Method Overriding)"]
+    INHERITANCE_CHECK -->|No| STATIC_CALL["Direct method call"]
+    
+    DYNAMIC_RESOLVE --> VTABLE["Check Virtual Method Table<br/>(V-Table)"]
+    VTABLE --> ACTUAL_TYPE["Find actual object type<br/>at runtime"]
+    ACTUAL_TYPE --> OVERRIDE_CALL["Call overridden method<br/>in actual class"]
+    
+    STATIC_CALL --> DIRECT_EXEC["Execute method directly"]
+    OVERRIDE_CALL --> DIRECT_EXEC
+    
+    style START fill:#e3f2fd
+    style OVERLOAD_RESOLVE fill:#fff3e0
+    style DYNAMIC_RESOLVE fill:#f3e5f5
+    style COMPILE_SUCCESS fill:#d4edda
+    style DIRECT_EXEC fill:#c8e6c9
+```
+
+**Method Resolution Examples:**
+
+```mermaid
+graph LR
+    subgraph "Overloading (Compile-Time)"
+        OL1["calc.add(5, 3)"] --> OL2["Compiler sees:<br/>add(int, int)"]
+        OL3["calc.add(5.0, 3.0)"] --> OL4["Compiler sees:<br/>add(double, double)"]
+        OL5["calc.add(5, 3, 2)"] --> OL6["Compiler sees:<br/>add(int, int, int)"]
+        
+        OL2 --> OL7["Returns: 8 (int)"]
+        OL4 --> OL8["Returns: 8.0 (double)"]
+        OL6 --> OL9["Returns: 10 (int)"]
+    end
+    
+    subgraph "Overriding (Runtime)"
+        OR1["Animal a = new Dog();<br/>a.sound();"] --> OR2["Compile: Checks Animal.sound()<br/>exists and is accessible"]
+        OR2 --> OR3["Runtime: JVM sees actual<br/>object is Dog instance"]
+        OR3 --> OR4["Calls Dog.sound()<br/>Output: 'Woof!'"]
+        
+        OR5["Animal a = new Cat();<br/>a.sound();"] --> OR6["Compile: Checks Animal.sound()<br/>exists and is accessible"]
+        OR6 --> OR7["Runtime: JVM sees actual<br/>object is Cat instance"]
+        OR7 --> OR8["Calls Cat.sound()<br/>Output: 'Meow!'"]
+    end
+    
+    style OL1 fill:#fff3e0
+    style OL3 fill:#fff3e0
+    style OL5 fill:#fff3e0
+    style OR1 fill:#f3e5f5
+    style OR5 fill:#f3e5f5
+    style OL7 fill:#d4edda
+    style OL8 fill:#d4edda
+    style OL9 fill:#d4edda
+    style OR4 fill:#d4edda
+    style OR8 fill:#d4edda
+```
+
+**Polymorphism Type Comparison:**
+
+| Aspect | Static Polymorphism (Overloading) | Dynamic Polymorphism (Overriding) |
+|:-------|:---------------------------------|:----------------------------------|
+| **Resolution Time** | Compile-time | Runtime |
+| **Based On** | Method signature (parameters) | Object's actual type |
+| **Inheritance Required** | No (same class) | Yes (inheritance hierarchy) |
+| **Performance** | Faster (no runtime lookup) | Slightly slower (v-table lookup) |
+| **Flexibility** | Limited to parameter variations | High (different implementations) |
+| **Example Keywords** | Multiple methods, same name | `@Override`, `extends` |
+
 ***
 
 ### Abstract Classes
@@ -353,6 +441,143 @@ class Circle extends Shape {
         return "Circle{radius=" + radius + ", color=" + color + "}";
     }
 }
+```
+
+### Visual Inheritance Hierarchy
+
+Here's how the complete inheritance hierarchy works with interfaces, abstract classes, and concrete implementations:
+
+```mermaid
+classDiagram
+    class Drawable {
+        <<interface>>
+        +draw() void
+    }
+    
+    class Shape {
+        <<abstract>>
+        #String color
+        +Shape(String color)
+        +getColor() String
+        +area()* double
+        +draw()* void
+    }
+    
+    class Circle {
+        -double radius
+        +Circle(double radius, String color)
+        +draw() void
+        +area() double
+        +toString() String
+    }
+    
+    class Rectangle {
+        -double width
+        -double height
+        +Rectangle(double w, double h, String color)
+        +draw() void
+        +area() double
+        +toString() String
+    }
+    
+    class Triangle {
+        -double base
+        -double height
+        +Triangle(double b, double h, String color)
+        +draw() void
+        +area() double
+        +toString() String
+    }
+    
+    %% Inheritance relationships
+    Drawable <|.. Shape : implements
+    Shape <|-- Circle : extends
+    Shape <|-- Rectangle : extends
+    Shape <|-- Triangle : extends
+    
+    %% Method overriding indicators
+    Circle : ⭐ Overrides draw()
+    Circle : ⭐ Implements area()
+    Rectangle : ⭐ Overrides draw()
+    Rectangle : ⭐ Implements area()
+    Triangle : ⭐ Overrides draw()
+    Triangle : ⭐ Implements area()
+```
+
+**Java Inheritance Types Diagram:**
+```mermaid
+graph TD
+    subgraph "Single Inheritance Model"
+        Object["java.lang.Object<br/>(Root of all classes)"]
+        
+        subgraph "Interface Layer"
+            I1["interface Serializable"]
+            I2["interface Comparable"]
+            I3["interface Drawable"]
+        end
+        
+        subgraph "Abstract Layer"
+            A1["abstract class Number"]
+            A2["abstract class Shape"]
+        end
+        
+        subgraph "Concrete Layer"
+            C1["class Integer"]
+            C2["class Double"]
+            C3["class Circle"]
+            C4["class Rectangle"]
+        end
+    end
+    
+    Object --> A1
+    Object --> A2
+    
+    A1 --> C1
+    A1 --> C2
+    A2 --> C3
+    A2 --> C4
+    
+    I1 -.->|implements| C1
+    I2 -.->|implements| C1
+    I3 -.->|implements| A2
+    
+    style Object fill:#e8f4fd
+    style A1 fill:#fff2cc
+    style A2 fill:#fff2cc
+    style C1 fill:#d4edda
+    style C2 fill:#d4edda
+    style C3 fill:#d4edda
+    style C4 fill:#d4edda
+    style I1 fill:#f8d7da
+    style I2 fill:#f8d7da
+    style I3 fill:#f8d7da
+```
+
+**Method Resolution at Runtime:**
+```mermaid
+flowchart TD
+    START["Animal animal = new Dog();"] --> CALL["animal.makeSound()"]
+    CALL --> CHECK["JVM checks actual object type"]
+    CHECK --> RUNTIME{"Runtime Type<br/>Determination"}
+    
+    RUNTIME -->|Dog instance| DOG_METHOD["Calls Dog.makeSound()<br/>Output: 'Woof!'"]
+    RUNTIME -->|Cat instance| CAT_METHOD["Calls Cat.makeSound()<br/>Output: 'Meow!'"]
+    RUNTIME -->|Bird instance| BIRD_METHOD["Calls Bird.makeSound()<br/>Output: 'Tweet!'"]
+    
+    subgraph "Compile Time"
+        COMPILE["Compiler sees Animal reference<br/>Verifies makeSound() exists in Animal"]
+    end
+    
+    subgraph "Runtime"
+        RESOLVE["JVM resolves to actual implementation<br/>Based on object's real type"]
+    end
+    
+    style START fill:#e3f2fd
+    style DOG_METHOD fill:#c8e6c9
+    style CAT_METHOD fill:#c8e6c9
+    style BIRD_METHOD fill:#c8e6c9
+    style COMPILE fill:#fff3e0
+    style RESOLVE fill:#f3e5f5
 ```
 
 ***

@@ -160,6 +160,47 @@ class ReportService { void generateReport() { /* ... */ } }
 - `mvn clean`: Cleans the `target` directory.
 - `mvn install`: Installs the artifact into your local repository.
 
+### Project Size Management with .gitignore
+
+**Why** use `.gitignore`?
+**POM manages dependencies**, but we `.gitignore` compiled files and externals to keep projects **smaller**. On project recreation, Maven automatically downloads dependencies.
+
+**Essential .gitignore patterns**:
+
+```gitignore
+# Maven compiled output
+target/
+*.jar
+*.war
+*.ear
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+*.eclipse
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Local configuration
+*.local.properties
+```
+
+**Benefits**:
+- **Smaller repositories**: No binaries or compiled files
+- **Team consistency**: Everyone downloads same dependency versions
+- **Clean deployments**: Fresh builds from source each time
+
+> [!TIP]
+> Always commit `pom.xml` but **never** commit `target/` directory or JAR files.
+
 > [!INFO]
 > **Gradle** is an alternative to Maven, using a `build.gradle` file. Both are widely used.
 
@@ -354,10 +395,56 @@ while (keepGoing && !condition1) {
 }
 ```
 
-**Alternatives**:
+**More Anti-Patterns** (avoid these):
 
-- Use **clear loop conditions**.
-- Consider **extracting the loop logic into a method** and use `return`.
+```java
+// Anti-pattern 1: Nested breaks make debugging nightmare
+for (int i = 0; i < items.length; i++) {
+    for (int j = 0; j < categories.length; j++) {
+        if (items[i].matches(categories[j])) {
+            if (specialCondition) break; // Which loop?
+            processItem(items[i]);
+            if (errorCondition) break;   // Confusing!
+        }
+    }
+}
+
+// Anti-pattern 2: Break with complex state tracking
+while (true) {
+    input = getNextInput();
+    if (input == null) break;
+    if (input.isInvalid()) break;
+    if (processedCount > MAX) break;
+    if (timeExpired()) break;
+    // Where does execution go? Hard to track!
+}
+```
+
+**Better Alternatives**:
+
+```java
+// Alternative 1: Clear loop conditions
+boolean continueProcessing = true;
+while (continueProcessing && input != null && processedCount <= MAX) {
+    input = getNextInput();
+    continueProcessing = processInput(input) && !timeExpired();
+}
+
+// Alternative 2: Extract to method with early returns
+private boolean processAllItems() {
+    for (Item item : items) {
+        if (!item.isValid()) return false;
+        if (!processItem(item)) return false;
+    }
+    return true;
+}
+```
+
+**Why breaks are problematic**:
+- **Debugging difficulty**: Hard to trace execution flow
+- **Testing complexity**: Multiple exit points to cover
+- **Maintenance issues**: Adding conditions becomes error-prone
+- **Readability**: Intent unclear - when does loop actually end?
 
 ***
 
