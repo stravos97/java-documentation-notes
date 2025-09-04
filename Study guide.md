@@ -1,115 +1,262 @@
-# Java Core Concepts Study Guide
 
-This study guide is designed to review your understanding of fundamental Java concepts, including object-oriented programming, memory management, operators, control flow, and basic class structures.
 
-## Quiz
+### **I. Core Java Concepts**
 
-Answer each question in 2-3 sentences.
+#### **A. OOP Fundamentals**
 
-1. Explain the primary difference in how the == operator works for primitive data types versus objects in Java.
-2. What is the purpose of constructor overloading, and how does it benefit object creation?
-3. Describe the key function of the public static void main(String[] args) method in a Java application.
-4. Why are Java String objects considered immutable, and what are the implications of this immutability?
-5. What is the significance of the static keyword when applied to a class field or method?
-6. Explain the core principle of encapsulation and how it is typically implemented in Java classes.
-7. What is the role of the this() keyword within a constructor in Java?
-8. Describe the difference between the stack and heap memory areas in Java regarding what they store and their lifecycle.
-9. Why is it considered a best practice to avoid using loops in unit tests?
-10. What is the contract between the equals() and hashCode() methods in Java, and why is it important to override them together?
+1. **Class Structure**
+    
+    - **Components: fields, methods, constructors, access modifiers.** A `class` acts as a blueprint or template for creating objects. Every standalone Java program must have at least one class.
+        - **Fields (Attributes)**: These represent the state or data of each object. They are typically declared as `private` to protect the data from outside access, a principle known as `encapsulation`.
+        - **Methods**: These define the behaviours or actions that objects can perform.
+        - **Constructors**: A special type of method used to initialize new objects. It shares the same name as the class and has no explicit return type. A class can have multiple constructors with different parameter lists, which is known as `constructor overloading`, offering flexible ways to create objects. The `this` keyword is used within a constructor to refer to the current object and distinguish between class attributes and constructor parameters when they have the same name.
+        - **Access Modifiers**: These keywords control the visibility and accessibility of classes, fields, and methods.
+            - `public`: Accessible from anywhere, including the Java Virtual Machine (JVM) and other packages.
+            - `private`: Accessible only within the same class, serving to hide internal state and enforce encapsulation.
+            - `protected`: Accessible within the same package and by subclasses, even if those subclasses are in different packages.
+            - `default` (package-private): If no modifier is specified, it's accessible only within the same package.
+        - **Keywords**: The `final` keyword prevents a variable, method, or class from being changed or overridden. When declaring constants, the `static final` keywords are used, and they follow the naming convention of `ALL_CAPS_WITH_UNDERSCORES`. `static` members belong to the class itself, not to any single object, meaning they can be accessed without creating an object.
+    - **Sources**: `Multiple Classes & Methods.md`, `Keywords (static).md`, `OOP Four Pillars.md`, `Class Names.md`, `Constructor Overloading.md`, `Data Types.md`, `Static Methods part 2.md`.
+2. **Inheritance & Polymorphism**
+    
+    - **Extending classes (`extends`), method overriding (`@Override`), concrete vs. abstract methods.**
+        - **Inheritance**: This OOP principle involves creating a new class (subclass/child) that is a modified version of an existing class (superclass/parent). In Java, a class can `extend` only one parent class directly, a concept known as `single inheritance`. This prevents the "diamond problem" of ambiguity that can arise with multiple class inheritance. The `final` keyword can be applied to a method to prevent it from being overridden by subclasses, or to a class to prevent it from being extended entirely.
+        - **Polymorphism**: Defined as the ability of a reference to behave differently based on the runtime object it points to. It allows for flexible, maintainable code by enabling changes in behavior without altering the interface.
+        - **Method Overriding**: This is a form of `dynamic polymorphism` or `runtime polymorphism`. It occurs when a subclass provides its own specific implementation for a method that is already defined in its superclass. The actual method called is determined at `runtime` based on the object's actual type. It is best practice to use the `@Override` annotation to explicitly indicate that a method is intended to override a superclass method, even though it's not strictly required.
+        - **Abstract Classes**: These are non-instantiable base types that provide a partial implementation for related types within the same inheritance tree, modeling an "is-a" relationship (e.g., Shape → Circle). An abstract class cannot be instantiated directly; only its concrete subclasses can be created. They can define fields, constructors, concrete methods, and abstract methods.
+            - **Abstract Methods**: These methods have only a signature (declaration) and no method body. Any class containing at least one abstract method must itself be declared `abstract`. Abstract methods cannot be `private`, `static`, or `final` as they are meant to be implemented and overridden by subclasses. They must be implemented by the first concrete (non-abstract) subclass.
+            - **Concrete Methods**: These are complete methods with a body.
+        - **Abstract Classes Implementing Interfaces**: An abstract class can implement an interface, and it can choose to implement some of the interface's methods while leaving others abstract for its subclasses to implement.
+    - **Sources**: `Inheritance.md`, `OOP Four Pillars.md`, `Abstract Classes.md`, `Data Types.md`, `Compile Time vs Runtime.md`.
+3. **Interfaces**
+    
+    - **Requirements for implementation (all methods must be `public`), default/static methods.** An `interface` models a `capability` or a "can do" contract, describing a set of behaviors a type can perform. When a class uses the `implements` keyword, it promises to fulfil this contract by providing method bodies for all the interface's abstract methods, unless the class itself is declared `abstract`.
+        - **Multiple Interface Implementation**: Unlike classes, a class can `implement` multiple interfaces, allowing it to accumulate various "can do" capabilities, which is how Java safely handles multiple inheritance of type.
+        - **Method Implementations**: All abstract methods in an interface must be implemented with `public` access.
+        - **Default Methods (Java 8+)**: These methods have a body and allow interfaces to evolve without breaking existing implementing classes. Implementors inherit them but can override them if needed.
+        - **Static Methods (Java 8+)**: These are utility methods associated with the interface itself, not with its implementing classes. They are called directly via the interface name (e.g., `InterfaceName.method()`).
+        - **Private Methods (Java 9+)**: These methods can encapsulate reusable code within the interface body, primarily for use by default and static methods.
+        - **Conflict Resolution**: If a class implements multiple interfaces that provide the same default method, Java has rules to resolve the ambiguity. In some cases, the class must explicitly override the method and choose which interface's default implementation to use (e.g., `InterfaceName.super.method()`).
+    - **Sources**: `Interfaces.md`, `Abstract Classes.md`, `OOP Four Pillars.md`.
+4. **Method Overloading vs. Overriding**
+    
+    - **Overloading: same name, different parameters (compile-time).**
+    - **Overriding: same signature in subclass (runtime, `@Override`).**
+        - **Method Overloading**: Also known as `static polymorphism`. It involves having multiple methods within the same class that share the same name but have different `parameter lists` (differing in type, number, or order of parameters). The correct overloaded method to call is chosen by the compiler at `compile time` based on the arguments provided. For example, `void print(int)` and `void print(String)`.
+        - **Method Overriding**: Also known as `dynamic polymorphism` or `runtime polymorphism`. This occurs when a subclass provides a new implementation for a method already defined in its superclass. The method call is resolved at `runtime` based on the actual type of the object. The `@Override` annotation is recommended for clarity.
+        - **`main` Method**: The `main` method can be overloaded, meaning you can have other methods named `main` with different parameter lists. However, only the `public static void main(String[] args)` signature is recognized and called by the JVM as the program's entry point.
+    - **Sources**: `Data Types.md`, `Compile Time vs Runtime.md`, `Inheritance.md`, `OOP Four Pillars.md`, `public static void main.md`.
+5. **`equals()` and `hashCode()`**
+    
+    - **Contract: consistent, symmetric, transitive; `hashCode()` must be consistent with `equals()`.**
+        - **`equals()`**: This method, typically overridden from the `Object` class, is used to determine if two objects are logically equal based on their `contents` or `values`, rather than their memory addresses.
+        - **`hashCode()`**: This method returns an integer hash code for an object. It is primarily used by hash-based collections (like `HashMap`, `HashSet`) for efficient storage and retrieval of objects.
+        - **The Contract**: A crucial contract exists between `equals()` and `hashCode()`: if two objects are considered equal by the `equals()` method, then their `hashCode()` methods _must_ produce the same integer value. It is therefore essential to always `override both methods together`, ensuring they use the `same fields` for comparison to maintain consistency. Failing to adhere to this contract can lead to difficult-to-find bugs in collections.
+        - **`==` Operator**: For objects, the `==` operator compares `references` (memory addresses), meaning it returns `true` only if both references point to the exact `same object` in memory. It does _not_ compare object contents. Unlike `equals()`, the `==` operator cannot be overridden in Java.
+    - **Sources**: `Inheritance.md`, `== operator.md`, `Memory Management.md`.
 
-## Quiz Answer Key
+#### **B. Data Types & Memory**
 
-1. For primitive data types (like int, boolean), the == operator compares their actual values. For objects (including String objects created with new), == compares their memory addresses or references, returning true only if both references point to the exact same object in memory.
-2. Constructor overloading allows a class to have multiple constructors with different parameter lists (signatures). This provides flexibility in object creation, enabling users to instantiate objects in various ways depending on the available information, and can improve code readability by preventing the need for placeholder arguments.
-3. The public static void main(String[] args) method serves as the entry point for any standalone Java application. The Java Virtual Machine (JVM) specifically looks for and executes this method to start the program, allowing command-line arguments to be passed into the application via the String[] args parameter.
-4. Java String objects are immutable because once created, their value cannot be changed; any operation that appears to modify a String actually returns a new String object. This immutability ensures thread safety and allows String literals to be efficiently cached in the String Constant Pool, but it can be expensive for heavy string manipulation, necessitating StringBuilder or StringBuffer.
-5. The static keyword indicates that a field or method belongs to the class itself, rather than to any specific instance of that class. This means static members can be accessed directly via the class name without creating an object, and all objects of that class share the same static variable.
-6. Encapsulation is the principle of bundling data (fields) and the methods that operate on that data into a single unit (a class), and controlling external access to the data using access modifiers. In Java, this is typically implemented by declaring fields as private and providing public getter and setter methods to access and modify them, allowing for controlled validation and data integrity.
-7. The this() keyword (with parameters) is used inside a constructor to call another constructor within the same class. This technique, known as constructor chaining, helps reuse initialization logic, reduces code duplication, and promotes a "one place to initialize everything" best practice.
-8. The stack is a fast, temporary memory area primarily storing primitive values, local variables, and method call frames in a Last-In-First-Out (LIFO) manner, with memory freed instantly when a method exits. The heap is a larger, more general-purpose memory area for all objects and instance variables, managed by the garbage collector, and objects persist until no longer referenced.
-9. Loops in unit tests are generally avoided because they can hide failures and make debugging difficult, as a single test method should ideally test one specific aspect and fail clearly if that aspect isn't met. Instead, best practices suggest using multiple specific test methods, parameterized tests (e.g., JUnit 5's @ParameterizedTest), or data providers to test various scenarios distinctly.
-10. The contract between equals() and hashCode() dictates that if two objects are considered equal by the equals() method, then their hashCode() methods must return the same integer value. It is crucial to override both methods together using the same fields to maintain this contract, especially when objects are used in hash-based collections like HashMap or HashSet, to ensure correct functionality and prevent hard-to-find bugs.
+1. **Primitive Types & Pass-by-Value**
+    
+    - **`int`, `double`, `boolean`, etc.; primitives are passed by value (copied).**
+        - **Primitive Types**: These are fundamental data types like `int`, `double`, `char`, `boolean`, `byte`, `short`, `long`, and `float`. They are `value types`, meaning they store their actual data directly in `stack memory`.
+        - **Pass-by-Value**: Java is _always_ `pass-by-value`. For primitive types, when a variable is passed to a method, a `copy of its actual value` is made. Any changes made to the parameter within the method will _not_ affect the original variable in the calling scope.
+        - **Comparison**: The `==` operator is always used to compare the `values` of primitive types. Primitive types cannot be `null`.
+    - **Sources**: `Java Memory Management.md`, `Memory Management.md`, `Keywords (static).md`.
+2. **Heap vs. Stack Memory**
+    
+    - **Heap: Objects, instance variables.**
+    - **Stack: Method calls, local variables (primitives, references).** Java manages memory using primarily two areas: the Stack and the Heap.
+        - **Stack Memory**:
+            - **Storage**: Contains `primitive values`, `local variables` (declared inside methods or blocks), `method call frames` (parameters, return addresses), and `object references` (pointers to objects on the heap).
+            - **Characteristics**: It's very `fast` to access due to its Last-In-First-Out (LIFO) structure. It has a `limited size` (typically 1MB by default). Memory is `automatically cleared` when a method exits and its stack frame is popped. Each thread in a Java application has its own stack.
+        - **Heap Memory**:
+            - **Storage**: Contains `all objects` (instances of classes), `arrays`, `instance variables` (fields inside objects), and `static variables`. String objects (except literals in the String Constant Pool before Java 7) are stored here.
+            - **Characteristics**: It is `slower` to access than the stack but can grow much `larger` (configurable with `-Xmx`). Memory is managed by the `Garbage Collector` (GC); objects live until they are no longer referenced. The heap is `shared across all threads`. Static variables, while conceptually class-level, reside in the Method Area, which is considered part of the heap in modern JVMs.
+    - **Sources**: `Java Memory Management.md`, `Memory Management.md`, `Static Methods part 2.md`.
+3. **String Pool**
+    
+    - **Interned strings in heap; `==` vs `.equals()` for comparison.**
+        - **String Creation and Storage**: `Strings` in Java are `objects`, instances of `java.lang.String`.
+            - **String Literals**: When you create a `String` using a literal (e.g., `"hello"`), the Java Virtual Machine (JVM) first checks a special area in the heap called the `String Constant Pool (SCP)`. If an identical string already exists in the pool, the existing one is `reused`, returning a reference to it. If not, a new `String` object is created and placed in the pool.
+            - **`new String()`**: When you create a `String` using the `new` keyword (e.g., `new String("hello")`), a `new object is *always* created in the regular heap memory`, regardless of whether an identical string exists in the SCP.
+        - **`String` Immutability**: `String` objects are `immutable`. Once a `String` object is created, its value cannot be changed. Any operation that appears to modify a `String` (like `concat()`, `substring()`, `replace()`) actually returns a `new String object`.
+        - **Comparison (`==` vs `.equals()`)**:
+            - `==` operator: For `String` objects, `==` compares their `memory addresses` (references). So, `"hello" == "hello"` would return `true` because of string pooling (they point to the same object), but `new String("hello") == "hello"` would return `false` because one is a new object on the heap, and the other is from the pool.
+            - `.equals()` method: This method compares the `actual content` (character sequence) of the `String` objects. So, `new String("hello").equals("hello")` would return `true`.
+        - **Best Practice**: For most applications, prefer using `String literals` to leverage the SCP for `memory efficiency`.
+    - **Sources**: `Memory Management.md`, `Strings.md`, `Java Memory Management.md`.
 
-## Essay Questions
+#### **C. Control Flow & Operators**
 
-1. Discuss the role of abstraction and polymorphism in designing flexible and maintainable Java applications. Provide examples of how abstract classes and interfaces contribute to abstraction, and distinguish between compile-time and runtime polymorphism with relevant scenarios.
-2. Compare and contrast the == operator with the equals() method for comparing objects in Java, particularly String objects. Explain the underlying memory concepts (heap, String Constant Pool, references) that influence their behavior and discuss best practices for object comparison.
-3. Detail the lifecycle of an object in Java, from its creation using the new keyword and constructors, through its residence in memory (stack vs. heap), to its eventual garbage collection. Explain how this() for constructor chaining and the concept of "unreachable objects" fit into this lifecycle.
-4. Analyze the static keyword in Java, explaining its purpose when applied to fields, methods, and the main method. Discuss the memory implications of static members and identify scenarios where static is beneficial, as well as potential pitfalls or situations where it should be avoided, particularly concerning object-oriented design principles.
-5. Explain Java's approach to class and file naming conventions, including the rules for public versus non-public classes. Discuss how these rules are enforced at compile-time and the implications for project organization, maintainability, and common compilation errors, relating it to the concept of a "driver class" with the main method.
+1. **Ternary Operator**
+    
+    - **Syntax: `condition ? expr1 : expr2`.** The `ternary operator` is a concise shortcut for simple `if-else` assignment statements.
+        - **Syntax**: `condition ? expressionIfTrue : expressionIfFalse`.
+        - **Usage**: It evaluates the `condition`. If `true`, `expressionIfTrue` is executed; otherwise, `expressionIfFalse` is executed. It's best used for clear, simple assignments to improve readability, but nesting or overusing it can make code harder to read.
+    - **Sources**: `IDE and Project Management.md`.
+2. **Increment Operators**
+    
+    - **Prefix (`++i`) vs. postfix (`i++`).** Java provides increment (`++`) and decrement (`--`) operators. The position of the operator affects when the increment/decrement takes place relative to the value's use in an expression.
+        - **Prefix Increment (`++i`)**: The variable is `incremented first`, and then its new value is used in the expression.
+        - **Postfix Increment (`i++`)**: The variable's `current value is used first` in the expression, and then it is incremented.
+        - **Efficiency**: In loops, prefix increment is `slightly more efficient`, but the difference is usually negligible for most use cases. Consistency in style across a project is often more important.
+    - **Sources**: `IDE and Project Management.md`.
+3. **Switch Statements**
+    
+    - **`switch` with `case`, `break`, `default`; supports `String`, enums (Java 7+).** The `switch` statement (`switch` keyword) is used when there are `many possible values` for a single variable, allowing for multi-branch selection.
+        - **Basic Structure**: It evaluates an expression, and then `case` statements (`case` keyword) match the expression's value. A `break` statement (`break` keyword) is typically used to exit the `switch` block after a match is found, preventing "fall-through". The `default` statement (`default` keyword) is an optional fallback that executes if no `case` matches.
+        - **Fall-Through**: Without a `break` statement, execution will "fall through" to the next `case` block. While sometimes intentional, unintentional fall-through is a common source of bugs. It is generally considered bad practice unless explicitly documented for a specific, rare use case.
+        - **Supported Types**: `switch` statements support primitive types (`byte`, `short`, `char`, `int`), their corresponding wrapper classes, `String` (since Java 7), and `enums`.
+        - **Java 14+ Enhancements**: Modern Java versions (14+) introduced `switch expressions`, which can return a value and often use an `arrow (->)` syntax, implicitly handling breaks.
+    - **Sources**: `IDE and Project Management.md`, `Keywords (static).md`.
 
-## Glossary of Key Terms
+#### **D. Arrays & Collections**
 
-- **Abstraction**: An OOP principle that involves hiding the complex implementation details and showing only the essential features of an object. In Java, this is achieved through abstract classes and interfaces.
-- **Access Modifiers**: Keywords (public, private, protected, default/package-private) that set the visibility and accessibility of classes, fields, constructors, and methods in Java.
-- **Autoboxing/Unboxing**: Automatic conversion between primitive types (e.g., int) and their corresponding wrapper class objects (e.g., Integer) by the Java compiler.
-- **break**: A control flow statement used to terminate loops (for, while, do-while) or switch statements, immediately transferring control to the statement following the loop/switch.
-- **Bytecode**: The intermediate, platform-independent code generated by the Java compiler (javac) from Java source code. This bytecode is executed by the JVM.
-- **Class**: A blueprint or template for creating objects, defining their attributes (fields) and behaviors (methods).
-- **Class Loader**: A component of the JVM responsible for dynamically loading Java classes into the JVM's memory during runtime.
-- **Class Partitioning**: The practice of breaking down large, complex classes into smaller, more focused classes, each with a single responsibility, to improve maintainability, readability, and testability.
-- **Compilation**: The process of translating human-readable source code (.java files) into machine-readable bytecode (.class files) using the Java compiler (javac).
-- **Concrete Method**: A method with a complete implementation (a method body).
-- **Constructor**: A special method used to initialize new objects of a class. It has the same name as the class and no return type.
-- **Constructor Chaining**: The practice of calling one constructor from another constructor within the same class using this(...) or from a superclass using super(...).
-- **Constructor Overloading**: Defining multiple constructors in a class with the same name but different parameter lists (signatures), allowing objects to be initialized in various ways.
-- **continue**: A control flow statement used inside loops to skip the rest of the current iteration and proceed to the next iteration.
-- **Default Constructor**: A public, no-argument constructor implicitly provided by Java if no explicit constructors are defined in a class.
-- **Default (Package-Private) Access**: The access level assigned when no access modifier is specified, making the member accessible only within its own package.
-- **Deserialization**: The process of converting a stream of bytes back into a Java object.
-- **dry (Don't Repeat Yourself)**: A software development principle aimed at reducing repetition of software patterns, replacing it with abstractions or data normalization.
-- **Encapsulation**: An OOP principle of bundling data (fields) and methods that operate on the data within a single unit (class), and restricting direct access to some of the object's components (data hiding).
-- **enum (Enumeration)**: A special data type that enables a variable to be a set of predefined constants, making code more readable and type-safe.
-- **equals() Method**: A method inherited from the Object class, used to compare the _contents_ or _values_ of two objects for equality. It should be overridden for custom class equality.
-- **Execution Engine**: A component of the JVM responsible for executing the bytecode. It includes an interpreter and a Just-In-Time (JIT) compiler.
-- **Factory Method**: A static method that returns an instance of the class (or a subclass) rather than directly using a constructor. Often more efficient (e.g., Integer.valueOf()).
-- **Fall-through**: In switch statements, when a case block executes without a break statement, and execution continues into the next case block.
-- **final Keyword**: A keyword used to declare that a variable, method, or class cannot be modified, overridden, or subclassed, respectively.
-- **Functional Interface**: An interface with exactly one abstract method, designed to be used with lambda expressions and method references.
-- **Garbage Collection (GC)**: An automatic memory management process in Java that reclaims memory occupied by objects that are no longer referenced by the program.
-- **getClass() Method**: A method inherited from Object that returns the runtime class of an object, useful for reflection and runtime type checking.
-- **hashCode() Method**: A method inherited from Object that returns an integer hash code value for the object. Used by hash-based collections (e.g., HashMap, HashSet) for efficient storage and retrieval.
-- **Heap Memory**: A large, runtime data area in the JVM where all objects, arrays, and instance variables are stored. It is managed by the garbage collector.
-- **Immutability**: The characteristic of an object whose state cannot be modified after it is created. String objects in Java are immutable.
-- **Inheritance**: An OOP principle where a new class (subclass/child) derives properties and behaviors from an existing class (superclass/parent), promoting code reuse and establishing "is-a" relationships.
-- **Instance Variable**: A variable declared within a class but outside any method, constructor, or block. Each object has its own copy of instance variables.
-- **Interface**: A blueprint of a class that can only contain abstract methods and static final fields (prior to Java 8, which added default and static methods). It defines a contract that implementing classes must adhere to.
-- **JIT Compilation (Just-In-Time)**: A component of the JVM's execution engine that compiles bytecode into native machine code at runtime, optimizing performance.
-- **JVM (Java Virtual Machine)**: A virtual machine that provides a runtime environment for executing Java bytecode, enabling platform independence ("Write Once, Run Anywhere").
-- **Keyword**: A reserved word in Java with a predefined meaning, which cannot be used as an identifier (e.g., variable name, method name).
-- **LIFO (Last-In-First-Out)**: A principle describing how data is stored and retrieved in a stack, where the last item added is the first one to be removed.
-- **main Method (public static void main(String[] args))**: The entry point for any standalone Java application, where the JVM begins program execution.
-- **Memory Leak**: A situation where memory is allocated but never freed, leading to a gradual reduction in available memory resources, typically due to unreachable objects still being referenced.
-- **Method Area**: A part of the JVM's memory (now part of the Heap called Metaspace in modern Java) that stores class metadata, static variables, and compiled code.
-- **Method Overloading**: Defining multiple methods in the same class with the same name but different parameter lists (signatures). This is a form of static polymorphism.
-- **Method Overriding**: A subclass providing its own specific implementation of a method that is already defined in its superclass. This is a form of dynamic polymorphism.
-- **new Keyword**: Used to create new objects (instances) of a class by allocating memory on the heap and invoking a constructor.
-- **null**: A literal value indicating that a reference variable does not point to any object.
-- **Object**: An instance of a class, representing a real-world entity.
-- **Object Identity**: Refers to whether two object references point to the exact same object in memory, typically checked using the == operator.
-- **package**: A mechanism in Java to organize classes and interfaces into logical groups, preventing naming conflicts and controlling access.
-- **pom.xml**: Project Object Model XML file in Maven projects, which contains configuration details, dependencies, and build instructions for the project.
-- **Polymorphism**: An OOP principle meaning "many forms," allowing objects of different classes to be treated as objects of a common superclass or interface. It can be static (overloading) or dynamic (overriding).
-- **Primitive Data Types**: Basic data types in Java that store actual values directly (e.g., int, boolean, char, float). They are not objects.
-- **private Keyword**: An access modifier that makes a class member accessible only within the class where it is declared, enforcing encapsulation.
-- **protected Keyword**: An access modifier that makes a class member accessible within its own package and by subclasses, even if they are in different packages.
-- **public Keyword**: An access modifier that makes a class member accessible from anywhere, by any other class.
-- **Reference Type**: A data type that stores a memory address (reference) to where the actual data (object) is stored on the heap. Examples include String, arrays, and custom classes.
-- **Reflection**: The ability of a Java program to examine or modify its own structure at runtime, including inspecting classes, fields, and methods.
-- **return Keyword**: Used to exit a method and, optionally, return a value to the caller.
-- **Scanner Class**: A utility class in java.util used to read user input from various sources like the console, files, or strings, parsing primitive types and strings.
-- **split() Method**: A String method that divides a string into an array of substrings based on a specified delimiter (often a regular expression).
-- **Stack Memory**: A fast, temporary memory area in the JVM where primitive values, local variables, and object references are stored. It operates on a LIFO principle.
-- **static Keyword**: A keyword that makes a field or method belong to the class itself rather than to any specific instance of the class. Static members can be accessed directly via the class name.
-- **Static Variable**: A field declared with the static keyword, belonging to the class and shared by all its instances. Stored in the Method Area.
-- **String Constant Pool (SCP)**: A special area within the heap memory where String literals are stored and reused to save memory.
-- **String Literal**: A sequence of characters enclosed in double quotes (e.g., "hello"), which the JVM automatically creates as a String object and potentially stores in the String Constant Pool.
-- **substring() Method**: A String method that extracts a portion of a string based on starting and (optionally) ending index.
-- **switch Statement**: A control flow statement that allows a variable to be tested for equality against a list of values (case statements).
-- **Ternary Operator (? :)**: A shorthand conditional operator (condition ? value_if_true : value_if_false) for simple if-else assignments.
-- **this Keyword**: A reference variable in Java that refers to the current object (the object whose method or constructor is being invoked).
-- **toString() Method**: A method inherited from Object that provides a string representation of an object, commonly overridden for debugging and logging.
-- **Type Inference (var)**: A feature introduced in Java 10 that allows the compiler to automatically determine the data type of a local variable from its initializer, using the var keyword.
-- **Value Type (Primitive)**: A data type that stores its actual value directly in memory (e.g., int, boolean).
-- **void Keyword**: Used in method declarations to indicate that the method does not return any value.
-- **Wrapper Classes**: Classes in the java.lang package (e.g., Integer, Boolean, Double) that provide object representations for primitive data types, allowing them to be used where objects are required (e.g., in collections).
+1. **Arrays**
+    
+    - **Declaration, initialization, iteration; fixed size.**
+        - **Definition**: Arrays are container objects that hold a `fixed number` of values of a single type.
+        - **Mutability**: The `contents` of an array are `mutable` (can be changed), but its `length` and `type` are `fixed` once created.
+        - **Memory**: Arrays are `reference types` and are stored on the `heap`.
+        - **Indexing**: Java arrays are `zero-indexed`, meaning the first element is at index `0`, and the last element is at index `length - 1`. Accessing an index outside this range will result in an `ArrayIndexOutOfBoundsException`.
+        - **Iteration**: When looping through an array, the condition `i < arr.length` is used to process all elements from `0` to `length - 1`. The condition `i < arr.length - 1` is used when you need to compare `adjacent elements` and want to stop before the very last element.
+    - **Sources**: `Data Types.md`, `IDE and Project Management.md`, `Java Memory Management.md`.
+2. **`String.split()`**
+    
+    - **Splits using regex delimiters (e.g., `split("\\s+")` for whitespace); counts words.**
+        - **Purpose**: The `split(String regex)` method of the `String` class is used to divide a string into an `array of substrings` based on a specified `regular expression` as a delimiter. For example, `String.split("\\s+")` splits a string by one or more whitespace characters.
+        - **Example Usage**: To count words in a sentence, you can split the string by whitespace and then get the `length` of the resulting array. For instance, `"Hello world".split("\\s+").length` would result in `2`.
+        - **Regular Expressions**: Regular expressions (regex) provide powerful and flexible ways to define complex delimiters for splitting strings, allowing for patterns like `"[ ,;]"` to split by space, comma, or semicolon.
+    - **Sources**: `Data Types.md`, `Strings.md`, `Concise Java and JUnit Study Guide`.
+
+#### **E. Exceptions**
+
+1. **Checked vs. Unchecked Exceptions**
+    
+    - **Checked: `Exception` subclasses (e.g., `IOException`); must be handled/declared.**
+    - **Unchecked: `RuntimeException` subclasses (e.g., `NullPointerException`); optional handling.** Exceptions are messages that indicate when something unexpected happens during program execution, helping to manage and recover from errors.
+        - **Checked Exceptions**:
+            - **Definition**: These are subclasses of `Exception` (but not `RuntimeException`). Examples include `IOException`, `FileNotFoundException`, and `SQLException`.
+            - **Handling Requirement**: Java `requires` these exceptions to be `handled` (caught in a `try-catch` block) or `declared` (using a `throws` clause in the method signature). If you don't handle or declare a checked exception, your code `will not compile`.
+            - **Use Cases**: Used for `recoverable errors` that are typically outside the immediate control of the program's logic, such as issues with file I/O or network connections.
+        - **Unchecked Exceptions**:
+            - **Definition**: These are subclasses of `RuntimeException`. Examples include `NullPointerException`, `ArrayIndexOutOfBoundsException`, and `ArithmeticException`.
+            - **Handling Requirement**: Java does `not require` these exceptions to be handled or declared for the code to compile.
+            - **Use Cases**: They are typically caused by `bugs` in the programmer's code, such as attempting to access an object via a `null` reference, dividing by zero, or accessing an array out of its bounds. The best practice is to `fix the underlying bug` rather than relying on catching these exceptions.
+        - **Hierarchy**: All exceptions inherit from `Throwable`, which branches into `Error` (system-level, unrecoverable) and `Exception` (recoverable). `RuntimeException` is a subclass of `Exception`.
+    - **Sources**: `Checked and Unchecked Exceptions.md`, `Exceptions Examples.md`, `Compile Time vs Runtime.md`.
+2. **General Exception Handling**
+    
+    - **`try`/`catch`/`finally`, `throws` clause.** Java provides structured mechanisms to handle exceptions gracefully, preventing programs from crashing unexpectedly.
+        - **`try` block**: Contains the code that might throw an exception.
+        - **`catch` block**: Follows a `try` block and specifies the type of exception it can handle. If an exception of that type (or a subclass) occurs in the `try` block, the `catch` block's code is executed.
+            - **Multi-catch**: You can have multiple `catch` blocks to handle different exception types. The order matters: `most specific exceptions should be caught first`, followed by more general ones, to avoid "unreachable code" compilation errors.
+        - **`finally` block**: This block always executes, regardless of whether an exception was thrown or caught in the `try` or `catch` blocks. It's ideal for `cleaning up resources` (e.g., closing files, database connections) to prevent resource leaks.
+        - **`throws` clause**: Used in a method signature to `declare` that the method might throw one or more specified `checked exceptions`. This shifts the responsibility of handling the exception to the caller of the method.
+        - **`throw` keyword**: Used to `explicitly throw` an exception from within your code.
+    - **Sources**: `Checked and Unchecked Exceptions.md`, `Exceptions Examples.md`, `Keywords (static).md`.
+
+#### **F. Advanced Topics**
+
+1. **Garbage Collector (GC)**
+    
+    - **3 Key Actions: (1) Identifies unreachable objects, (2) Reclaims memory, (3) Compacts heap to reduce fragmentation.** The `Garbage Collector (GC)` is Java's automatic process for managing `heap memory`. Its primary goal is to reclaim memory occupied by objects that are no longer reachable by the program, preventing memory leaks and managing heap space efficiently.
+        - **1. Mark Phase (Identify Dead Objects)**: The GC scans the heap starting from `GC roots` (e.g., stack variables, static variables, active threads) to trace and `identify all reachable ("live") objects`. Any object not reachable from a GC root is considered "dead".
+        - **2. Sweep Phase (Reclaim Memory)**: After marking, the GC deallocates the memory occupied by the `unmarked ("dead") objects`. This memory is then made available for future object allocations.
+        - **3. Compact Phase (Defragment Heap)**: Optionally, the GC may move the `remaining "live" objects` closer together to `eliminate fragmentation` within the heap. This creates larger contiguous blocks of free memory, improving future allocation performance and cache locality.
+        - **Triggering GC**: The JVM decides `when` to run GC, typically when memory is running low. It is an `automatic and periodic` process, not directly controlled by the programmer. While `System.gc()` is a hint, there's no guarantee the GC will run immediately.
+        - **Eligibility for GC**: An object becomes eligible for GC when it is `unreachable` (i.e., no active variables or objects refer to it). This can happen when a reference is set to `null`, a reference is `reassigned` to another object, or local references go `out of scope` (e.g., when a method ends). Only `heap-allocated objects` (reference types) are managed by GC; stack-allocated variables are cleared automatically when their scope ends.
+    - **Sources**: `Java Memory Management.md`, `Memory Management.md`.
+2. **Declaring Constants**
+    
+    - **`static final` variables (e.g., `public static final int MAX_SIZE = 100;`).**
+        - **Keywords**: Constants in Java are declared using the `static` and `final` keywords.
+            - `static`: This makes the constant belong to the `class itself`, rather than to any specific instance of the class. This means there's only one copy of the constant, shared across all objects of that class.
+            - `final`: This ensures that the value of the variable, once assigned, `cannot be changed`.
+        - **Naming Convention**: The standard naming convention for `static final` constants is `ALL_CAPS_WITH_UNDERSCORES` (e.g., `MAX_SIZE`, `PI`).
+        - **Usage**: Constants are ideal for values that do not change throughout the program's execution, such as mathematical constants, configuration settings, or fixed limits. They are also thread-safe due to their immutability.
+        - **Enums as an alternative**: While `static final` constants are useful, `enums` are often a more type-safe and powerful alternative for predefined sets of constants, especially when they need to have associated behavior or data.
+    - **Sources**: `Data Types.md`, `Keywords (static).md`, `Static Methods part 2.md`.
+3. **Parameterized Tests**
+    
+    - **JUnit 5: `@ParameterizedTest`, `@ValueSource`, `@CsvSource`.** `Parameterized tests` in JUnit 5 allow you to run the `same test method multiple times` with different sets of input data. This reduces code duplication and makes tests more efficient.
+        - **`@ParameterizedTest`**: This annotation marks a method as a parameterized test. It must be used in conjunction with one or more `parameter source annotations`.
+        - **`@ValueSource`**: Provides a `single source of arguments` for the parameterized test. It can be used for primitive types like `ints`, `strings`, `doubles`, and `booleans`. For example, `@ValueSource(strings = {"apple", "banana"})`.
+        - **`@CsvSource`**: Provides `multiple arguments` per test invocation using `comma-separated values`. Each string in the `@CsvSource` represents a line of comma-separated values, which are then mapped to the test method's parameters. For example, `@CsvSource({"John, 30", "Jane, 25"})`.
+        - **Parameter Mapping**: The parameters from the source (e.g., `@ValueSource`, `@CsvSource`) are mapped to the test method's arguments in order.
+    - **Sources**: `JUNIT Study guide.md`, `JUNIT.md`.
+
+---
+
+### **II. Testing (JUnit)**
+
+1. **Structure of a JUnit Test Case**
+    
+    - **`@Test`, assertions (`assertEquals`, `assertTrue`), setup/teardown (`@BeforeEach`, `@AfterEach`).** JUnit 5 provides a powerful framework for writing unit tests in Java.
+        - **`@Test`**: This is the fundamental annotation used to mark a method as a test case. A test method annotated with `@Test` must be `void` and take `no parameters`.
+        - **Test Lifecycle Annotations**: These annotations control when setup and teardown code is executed.
+            - `@BeforeAll`: A `static` method annotated with `@BeforeAll` runs `once before all test methods` in the current test class. It's used for expensive, class-level setup (e.g., database connections).
+            - `@AfterAll`: A `static` method annotated with `@AfterAll` runs `once after all test methods` in the current test class have completed. Used for class-level cleanup.
+            - `@BeforeEach`: A non-static (`instance`) method annotated with `@BeforeEach` runs `before each individual test method`. It's ideal for setting up a fresh state for each test, ensuring test isolation.
+            - `@AfterEach`: A non-static (`instance`) method annotated with `@AfterEach` runs `after each individual test method`. Used for cleaning up resources after each test.
+        - **Execution Order**: The typical execution order is: `@BeforeAll` (once), Constructor (per test), `@BeforeEach` (per test), `@Test` method, `@AfterEach` (per test), `@AfterAll` (once).
+        - **Assertions**: JUnit 5 provides standard assertion methods to verify expected outcomes. Common assertions include:
+            - `assertEquals(expected, actual)`: Checks if two values are equal.
+            - `assertTrue(condition)`: Checks if a condition is true.
+            - `assertNotNull(object)`: Checks if an object is not null.
+            - `assertThrows(ExceptionType.class, () -> methodCall())`: Checks if a method throws a specific exception.
+        - **`@DisplayName`**: Used to provide more readable and descriptive names for test classes and methods in test reports.
+        - **Best Practices**:
+            - `Test Boundary Values`: Always test the edge cases of input ranges (e.g., empty arrays, single elements, first/last elements, min/max allowed values, nulls, invalid inputs) as bugs often hide there.
+            - `Avoid Loops in Tests`: Loops within tests can hide failures and complicate debugging. Prefer multiple, focused test methods, parameterized tests, or data providers to test various scenarios cleanly.
+            - `Test Independence`: Generally, tests should be independent and not rely on the execution order of other tests. Use `@Order` sparingly, typically for integration tests.
+    - **Sources**: `JUNIT Study guide.md`, `JUNIT.md`, `IDE and Project Management.md`.
+2. **Creating Parameterized Tests**
+    
+    - **Annotations: `@ParameterizedTest`, data sources (`@ValueSource`, `@CsvFileSource`).**
+        - **`@ParameterizedTest`**: This annotation is key to running the same test logic with different input values. It must be paired with an annotation that provides the data source.
+        - **Data Sources**:
+            - **`@ValueSource`**: Used for tests requiring a `single parameter`. It supports primitive types like `ints`, `strings`, `doubles`, and `booleans`. For example, `@ValueSource(ints = {1, 2, 3})` would run the test method three times, once for each integer.
+            - **`@CsvSource`**: Used for tests requiring `multiple parameters`. Each string value provided to `@CsvSource` represents a line of `comma-separated values`, which JUnit then parses and maps to the corresponding method parameters of the parameterized test. For example, `@CsvSource({"input1, expected1", "input2, expected2"})`.
+            - `@CsvFileSource`: (Mentioned in the study guide as `@CsvFileSource`, though the notes primarily cover `@CsvSource` and `@ValueSource`) This would typically read data from a CSV file.
+        - **Mapping Parameters**: The values from the data source are mapped to the parameters of the test method in the order they are declared.
+    - **Sources**: `JUNIT Study guide.md`, `JUNIT.md`.
+
+---
+
+### **III. Coding Questions (4 Key Tasks)**
+
+The foundational concepts required to address these coding tasks are extensively covered in your notes.
+
+1. **Password Size Evaluator**
+    
+    - **Task**: Implement logic (using `if`/`else` or ternary) to check if a `String` password is: Too short (< 8 chars), Too long (> 20 chars), Valid (8–20 chars).
+    - **Hint**: Use `password.length()`.
+        - **Conditional Logic**: This task primarily relies on `if`/`else` statements (`if` and `else` keywords) or the `ternary operator` (`condition ? expr1 : expr2`). These constructs allow you to define different code paths based on whether the password's length meets the criteria.
+        - **String Length**: The `String` class, being an `object`, provides methods to manipulate and query its contents. The `length()` method is used to obtain the number of characters in the string. You would compare the result of `password.length()` against the specified bounds (8 and 20).
+    - **Sources**: `IDE and Project Management.md`, `Strings.md`, `Keywords (static).md`.
+2. **Implement an Interface**
+    
+    - **Task**: Create a class that implements an interface (e.g., `Validator`).
+    - **Key**: Must define **all** abstract methods from the interface.
+        - **Interface Implementation**: To implement an `interface`, a class uses the `implements` keyword. By doing so, the class commits to providing concrete `public implementations` for `all abstract methods` declared in that interface. If the class fails to implement all abstract methods, it must itself be declared `abstract`.
+        - **Contract**: Interfaces define a "can do" contract, outlining a set of behaviors without specifying their implementation. The implementing class fulfills this contract by providing the "how" for each behavior.
+    - **Sources**: `Interfaces.md`, `Keywords (static).md`, `Abstract Classes.md`.
+3. **Multiply Two Numbers in an Array**
+    
+    - **Task**: Method takes `int[] arr`, returns product of **two specific elements** (e.g., first and last).
+    - **Hint**: `arr * arr[arr.length - 1]`.
+        - **Arrays**: Arrays are fixed-size data structures where elements are stored in contiguous memory locations. They are `zero-indexed`, meaning the first element is at index `0` and the last is at `length - 1`.
+        - **Accessing Elements**: To access the first element, you would use `arr`. To access the last element, you would use `arr[arr.length - 1]`. The `length` property provides the total number of elements in the array.
+        - **Methods**: The task requires creating a `method` that takes the integer array as a parameter and returns an `integer` (the product). Methods define the behaviors objects can perform, and they can return values.
+    - **Sources**: `Data Types.md`, `IDE and Project Management.md`, `Multiple Classes & Methods.md`, `Data Types.md`.
+4. **Count Words Using `split()`**
+    
+    - **Task**: Split a `String` into words (using regex delimiter like `\\s+`) and return word count.
+    - **Example**: `"Hello world".split("\\s+").length` → `2`.
+        - **`String.split()` Method**: The `String` class, being an `object`, provides the `split(String regex)` method. This method takes a `regular expression` as a delimiter and returns a `String array` containing the substrings that result from splitting the original string.
+        - **Regular Expression for Whitespace**: The regular expression `\\s+` is commonly used to match `one or more whitespace characters` (spaces, tabs, newlines). This is effective for splitting a sentence into individual words.
+        - **Counting Words**: Once the `String` is split into an array, the `length` property of the resulting array will give you the total `word count`. For example, `"Hello world".split("\\s+").length` would produce `2`.
+    - **Sources**: `Data Types.md`, `Strings.md`, `Concise Java and JUnit Study Guide`.

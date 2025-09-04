@@ -595,3 +595,108 @@ class CalculatorTest {
 > - Avoid loops in tests (prefer parameterized tests)
 > - Ensure test independence (don't rely on execution order)
 > - Use descriptive test names with `@DisplayName`
+
+***
+
+## Coding Questions (4 Key Tasks)
+
+### Password Size Evaluator
+
+**Task:** Implement logic to check if a password string meets length requirements.
+
+```java
+public String evaluatePassword(String password) {
+    int length = password.length();
+    
+    if (length < 8) {
+        return "Too short";
+    } else if (length > 20) {
+        return "Too long";
+    } else {
+        return "Valid";
+    }
+    
+    // Using ternary operator (less readable for multiple conditions)
+    // return (length < 8) ? "Too short" : (length > 20) ? "Too long" : "Valid";
+}
+```
+
+> [!NOTE]
+> The ternary operator can be used for simple conditions, but for multiple conditions like this, if-else statements are more readable.
+
+### Implement an Interface
+
+**Task:** Create a class that implements an interface.
+
+```java
+// Interface definition
+public interface Validator {
+    boolean isValid(String input);
+    String getErrorMessage();
+}
+
+// Implementation
+public class PasswordValidator implements Validator {
+    private static final int MIN_LENGTH = 8;
+    private static final int MAX_LENGTH = 20;
+    
+    @Override
+    public boolean isValid(String password) {
+        return password != null && 
+               password.length() >= MIN_LENGTH && 
+               password.length() <= MAX_LENGTH;
+    }
+    
+    @Override
+    public String getErrorMessage() {
+        return "Password must be between " + MIN_LENGTH + " and " + MAX_LENGTH + " characters";
+    }
+}
+```
+
+> [!WARNING]
+> When implementing an interface, you must provide public implementations for all abstract methods, or declare the class as abstract.
+
+### Multiply Two Numbers in an Array
+
+**Task:** Method that returns the product of two specific elements in an array.
+
+```java
+public int multiplyFirstAndLast(int[] arr) {
+    if (arr == null || arr.length == 0) {
+        throw new IllegalArgumentException("Array cannot be null or empty");
+    }
+    
+    int first = arr[0];
+    int last = arr[arr.length - 1];
+    return first * last;
+}
+```
+
+> [!TIP]
+> Always validate input parameters to handle edge cases like null or empty arrays.
+
+### Count Words Using `split()`
+
+**Task:** Split a string into words and return the word count.
+
+```java
+public int countWords(String text) {
+    if (text == null || text.isEmpty()) {
+        return 0;
+    }
+    
+    // Split by one or more whitespace characters
+    String[] words = text.split("\\s+");
+    return words.length;
+}
+```
+
+> [!EXAMPLE]
+> ```java
+> String sentence = "Hello   world, how are  you?";
+> int count = countWords(sentence); // Returns 5
+> ```
+
+> [!NOTE]
+> The regex `\\s+` matches one or more whitespace characters, handling multiple spaces between words correctly.
