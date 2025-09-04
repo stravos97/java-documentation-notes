@@ -540,7 +540,7 @@ void testPerson(String name, int age) {
 
 ### Structure of a JUnit Test Case
 
-JUnit 5 provides annotations for test lifecycle management:
+JUnit 5 provides a powerful framework for writing unit tests in Java with a well-defined test lifecycle.
 
 ```java
 class CalculatorTest {
@@ -581,17 +581,281 @@ class CalculatorTest {
 }
 ```
 
-**Execution Order:**
-1. `@BeforeAll` (once)
+**Execution Order (MEMORIZE):**
+1. `@BeforeAll` (static, once)
 2. Constructor (per test)
 3. `@BeforeEach` (per test)
 4. `@Test` method
 5. `@AfterEach` (per test)
-6. `@AfterAll` (once)
+6. `@AfterAll` (static, once)
 
 > [!TIP]
-> Best practices for JUnit testing:
+> **Best practices for JUnit testing:**
 > - Test boundary values (empty arrays, single elements, min/max values)
 > - Avoid loops in tests (prefer parameterized tests)
 > - Ensure test independence (don't rely on execution order)
 > - Use descriptive test names with `@DisplayName`
+> - Apply the Arrange-Act-Assert (AAA) pattern:
+>   ```java
+>   @Test
+>   void calculateDiscount_ValidCustomer_ReturnsDiscountedPrice() {
+>       // Arrange - set up test data
+>       Customer customer = new Customer(true);
+>       Product product = new Product("Book", 20.00);
+>       
+>       // Act - execute the behavior
+>       double discountedPrice = calculator.applyDiscount(customer, product);
+>       
+>       // Assert - verify results
+>       assertEquals(18.00, discountedPrice);
+>   }
+>   ```
+
+### Hamcrest Matchers Integration
+
+Hamcrest provides more expressive and readable assertions compared to standard JUnit assertions.
+
+> [!WARNING]
+> **Essential Import Statement:**
+> ```java
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.*;
+> ```
+> JUnit 5 doesn't include its own `assertThat` method - you must use Hamcrest's.
+
+#### Basic Value Matching
+
+```java
+@Test
+void basicMatchers() {
+    String value = "Hello World";
+    
+    // Traditional JUnit
+    assertEquals("Hello World", value);
+    assertNotNull(value);
+    
+    // Hamcrest equivalents
+    assertThat(value, is("Hello World"));
+    assertThat(value, equalTo("Hello World"));
+    assertThat(value, not(emptyString()));
+    assertThat(value, notNullValue());
+}
+```
+
+> [!EXAMPLE]
+> ```java
+> // Traditional JUnit vs Hamcrest
+> assertTrue(result instanceof String);
+> assertEquals(5, list.size());
+> assertTrue(text.contains("expected"));
+> 
+> // Hamcrest - more expressive
+> assertThat(result, instanceOf(String.class));
+> assertThat(list, hasSize(5));
+> assertThat(text, containsString("expected"));
+> ```
+
+#### String Matchers
+
+```java
+@Test
+void stringMatchers() {
+    String text = "The quick brown fox jumps over the lazy dog";
+    
+    assertThat(text, startsWith("The"));
+    assertThat(text, endsWith("dog"));
+    assertThat(text, containsString("fox"));
+    assertThat(text, containsStringIgnoringCase("QUICK"));
+    assertThat(text, stringContainsInOrder("quick", "fox", "lazy"));
+}
+```
+
+#### Collection Matchers
+
+```java
+@Test
+void collectionMatchers() {
+    List<String> fruits = List.of("apple", "banana", "orange", "grape");
+    
+    assertThat(fruits, hasSize(4));
+    assertThat(fruits, hasItem("banana"));
+    assertThat(fruits, hasItems("apple", "orange"));
+    assertThat(fruits, containsInAnyOrder("grape", "apple", "orange", "banana"));
+    assertThat(fruits, not(hasItem("mango")));
+    assertThat(fruits, everyItem(notNullValue()));
+}
+```
+
+#### Combining Matchers
+
+```java
+@Test
+void combinedMatchers() {
+    String value = "JUnit Testing";
+    
+    // All conditions must be true
+    assertThat(value, allOf(
+        startsWith("JUnit"),
+        containsString("Test"),
+        not(endsWith("Framework"))
+    ));
+    
+    // Any condition can be true  
+    assertThat(value, anyOf(
+        equalTo("Testing"),
+        containsString("JUnit"),
+        startsWith("Unit")
+    ));
+}
+```
+
+> [!TIP]
+> **JUnit vs Hamcrest Comparison:**
+> 
+> | JUnit Assertion | Hamcrest Equivalent | Notes |
+> |:----------------|:--------------------|:------|
+> | `assertEquals(expected, actual)` | `assertThat(actual, equalTo(expected))` | Note parameter order difference |
+> | `assertTrue(condition)` | `assertThat(condition, is(true))` | More readable |
+> | `assertNotNull(object)` | `assertThat(object, notNullValue())` | Better error messages |
+> | `assertArrayEquals(expected, actual)` | `assertThat(actual, arrayContaining(expected))` | More flexible |
+
+### Creating Parameterized Tests
+
+JUnit 5 provides powerful parameterized testing capabilities to run the same test logic with different input values.
+
+```java
+@ParameterizedTest
+@ValueSource(ints = {2, 4, 6, 8})
+@DisplayName("Should return true for even numbers")
+void isEven_ReturnsTrue_ForEvenNumbers(int number) {
+    assertTrue(MathUtils.isEven(number));
+}
+```
+
+#### Data Sources
+
+**`@ValueSource`:** Used for tests requiring a single parameter:
+
+```java
+@ParameterizedTest
+@ValueSource(strings = {"hello", "world", "junit"})
+void shouldContainOnlyLetters(String word) {
+    assertTrue(word.matches("[a-zA-Z]+"));
+}
+```
+
+**`@CsvSource`:** Used for tests requiring multiple parameters:
+
+```java
+@ParameterizedTest
+@CsvSource({
+    "1, 1, 2",
+    "2, 3, 5", 
+    "5, 7, 12"
+})
+@DisplayName("Should calculate correct sum")
+void add_ReturnsCorrectSum(int a, int b, int expectedSum) {
+    assertEquals(expectedSum, calculator.add(a, b));
+}
+
+// Using text blocks (Java 15+)
+@ParameterizedTest
+@CsvSource(textBlock = """
+    Good morning!,    8
+    Good afternoon!, 15  
+    Good evening!,   21
+    """)
+void getGreeting_ReturnsAppropriateGreeting(String expected, int time) {
+    assertEquals(expected, TimeService.getGreeting(time));
+}
+```
+
+#### System Under Test (SUT) Pattern
+
+Your code demonstrates the SUT pattern effectively:
+
+```java
+class CalculatorTests {
+    private Calculator sut;  // System Under Test
+    
+    @BeforeEach
+    void setUp() {
+        sut = new Calculator(10, 5);
+    }
+    
+    @Test
+    void add_ReturnsCorrectSum() {
+        // Given - setup in @BeforeEach
+        
+        // When  
+        double result = sut.add();
+        
+        // Then
+        assertEquals(15.0, result);
+    }
+}
+```
+
+> [!WARNING]
+> **Test Execution Order with `@Order`:**
+> 
+> ```java
+> @TestMethodOrder(OrderAnnotation.class)
+> class OrderedIntegrationTests {
+>     
+>     @Test
+>     @Order(1)
+>     void createUser() {
+>         // Must run first
+>     }
+>     
+>     @Test  
+>     @Order(2)
+>     void updateUser() {
+>         // Runs second
+>     }
+>     
+>     @Test
+>     @Order(3) 
+>     void deleteUser() {
+>         // Runs last
+>     }
+> }
+> ```
+> 
+> **Important:** Tests should generally be independent and not rely on execution order. Use `@Order` sparingly, primarily for integration tests.
+
+### Exception Testing
+
+The modern JUnit 5 approach for exception testing using `assertThrows()`:
+
+```java
+@Test
+@DisplayName("Should throw IllegalArgumentException for negative age")
+void setAge_ThrowsException_WhenAgeIsNegative() {
+    Animal animal = new Animal();
+    
+    // Returns the thrown exception for further assertions
+    IllegalArgumentException exception = assertThrows(
+        IllegalArgumentException.class, 
+        () -> animal.setAge(-5)
+    );
+    
+    assertEquals("Age must not be negative: -5", exception.getMessage());
+}
+```
+
+**Key Points:**
+- Use lambda expressions `() -> methodCall()` for cleaner syntax
+- Always verify exception messages when meaningful
+- Test one exception per test method for clarity
+- `assertThrows()` returns the exception for additional assertions
+
+> [!WARNING]
+> **Common Exam Mistakes to Avoid:**
+> - Using `@BeforeEach` with static methods (compilation error!)
+> - Confusing expected vs actual in `assertEquals(actual, expected)` (should be `assertEquals(expected, actual)`)
+> - Forgetting lambda in `assertThrows`: `assertThrows(Exception.class, methodCall())` (should be `assertThrows(Exception.class, () -> methodCall())`)
+> - Using `@Test` instead of `@ParameterizedTest` with parameter sources
+> - Using wrong Hamcrest import: `import static org.junit.jupiter.api.Assertions.assertThat` (should be Hamcrest's)
+***
