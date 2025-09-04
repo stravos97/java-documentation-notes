@@ -79,28 +79,3 @@
 5. Standard execution order of: `@BeforeAll`, `@BeforeEach`, `@Test`, `@AfterEach`, `@AfterAll`.  
 6. Critical consideration for `@BeforeEach` with `static` methods?  
 7. Why must JUnit tests be independent (no execution-order reliance)?  
-
----
-
-### **Key Improvements Made:**  
-1. **Logical Topic Grouping**  
-   - Merged related concepts (e.g., all OOP topics under **I. Core Java Syntax & OOP**).  
-   - Separated "basic" and "advanced" questions under subheadings (e.g., **String Internals** includes both pool basics and advanced comparisons).  
-
-2. **Progressive Difficulty**  
-   - Basic concepts first (e.g., "What is a constructor?"), followed by advanced extensions (e.g., `this` keyword, single inheritance rationale).  
-   - Example: `equals()`/`hashCode()` starts with fundamentals, then dives into real-world consequences and utility classes.  
-
-3. **Eliminated Redundancy**  
-   - Removed duplicate section titles (e.g., no separate "Further Foundational Knowledge" section).  
-   - Combined overlapping topics (e.g., "Memory Management" now covers both basics *and* `static` storage).  
-
-4. **Clear Learning Path**  
-   - Flow: Syntax → Memory → Objects → Exceptions → GC → Methods → Control Flow → Testing.  
-   - New programmers can tackle sections in order without jumping between disconnected topics.  
-
-5. **Practical Clarity**  
-   - Grouped JUnit annotations into one cohesive testing section.  
-   - Clarified string splitting (`split("\\.")` vs `split(".")`) under **Arrays & Collections** where it’s most relevant.  
-
-This structure ensures learners build knowledge incrementally while keeping related concepts together—ideal for study guides, exams, or curriculum design.
