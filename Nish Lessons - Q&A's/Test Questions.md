@@ -1,102 +1,106 @@
 
-**Java Essentials: Concepts, Collections, and Concurrency - Key Questions**
+#### **I. Core Java Syntax & OOP Fundamentals**  
+**A. Basic Class Structure & OOP Pillars**  
+1. What are the three fundamental components that make up a Java class?  
+2. Beyond encapsulation, what are the other three main pillars of OOP supported by Java?  
+3. Briefly explain what encapsulation means in OOP.  
+4. What is the main purpose of a constructor in a Java class?  
+5. What is the specific purpose of the `this` keyword within a constructor/method?  
 
-**1. Core Java Class Components & OOP:**
+**B. Inheritance & Polymorphism**  
+6. How does inheritance simplify code reuse in Java?  
+7. What is the main difference between an `abstract class` and an `interface`?  
+8. Can a Java class inherit from multiple classes? Can it implement multiple interfaces?  
+9. Why does Java support *single inheritance* for classes (not multiple inheritance)?  
 
-- What are the core components of a Java class and how do they relate to Object-Oriented Programming (OOP) principles?
-- What is encapsulation and how is it supported by Java class components like fields and methods?
-- How do access modifiers (public, protected, private, default) control the visibility and accessibility of class members?
-- What are constructors used for, and how does constructor overloading provide flexibility in object creation?
-- Explain the purpose and usage of the `final` keyword in Java.
-- What does the `static` keyword signify when applied to members of a class?
-- When and why is the `this` keyword used within a constructor or method?
-- How do abstraction, inheritance, and polymorphism relate to Java class structure and the pillars of OOP?
+**C. Access Control & Keywords**  
+10. Explain the difference between `public` and `private` access modifiers.  
+11. What does the `static` keyword mean for class members?  
+12. What is the `final` keyword used for (e.g., with variables)?  
+13. How do you declare a constant variable? What is the naming convention?  
 
-**2. `equals()` and `hashCode()` Contract:**
+#### **II. Memory Management & Data Types**  
+**A. Memory Allocation**  
+14. What is the main difference in how primitives (e.g., `int`) and objects (e.g., `String`) are stored?  
+15. Briefly describe the purpose of **Stack memory**.  
+16. Briefly describe the purpose of **Heap memory**.  
+17. Where are `static` variables stored in modern JVMs?  
 
-- Explain the crucial contract between the `equals()` and `hashCode()` methods in Java and why it's vital for collections.
-- What is the default implementation of the `equals()` method, and when must it be overridden?
-- List and describe the specific mathematical properties (`Reflexive`, `Symmetric`, `Transitive`, `Consistent`, `Non-null`) that the `equals()` method must adhere to.
-- What is the primary purpose of the `hashCode()` method, and what are its key requirements?
-- Why is it important for `hashCode()` to ideally produce distinct integers for unequal objects?
-- What are the critical differences between the `==` operator and the `.equals()` method in Java?
-- Why does this `equals()`/`hashCode()` contract matter specifically in hash-based collections (e.g., `HashMap`, `HashSet`)?
-- What are the severe consequences of violating the `equals()` and `hashCode()` contract in collections, and what real-world bugs can it lead to?
-- What are common implementation mistakes to avoid when overriding `equals()` and `hashCode()`?
-- What best practices are recommended for implementing `equals()` and `hashCode()`, including the use of utility methods like `Objects.equals()` and `Objects.hash()`?
+**B. String Internals**  
+18. What is the Java String Pool?  
+19. What does it mean for `String` objects to be "immutable"?  
+20. Why is `String s = "hello";` more memory-efficient than `new String("hello")`?  
+21. If `String s1 = "hello";` and `String s2 = "hello";`, what is `s1 == s2`? Explain why.  
 
-**3. Memory Management: Primitive Types, Objects, Heap, and Stack:**
+#### **III. Object Comparison & Hashing**  
+1. What is the difference between `==` and `.equals()` when comparing objects?  
+2. Why must `equals()` and `hashCode()` be overridden together?  
+3. Name two properties the `equals()` method must follow (e.g., Reflexive, Symmetric).  
+4. Why do these methods matter in `HashMap`/`HashSet`?  
+5. What utility class (`java.util.Objects`) is recommended for robust `equals()`/`hashCode()`?  
+6. What happens if you use a custom object as a `HashMap` key without overriding both?  
 
-- How do Java's primitive types and objects differ in terms of memory storage and parameter passing?
-- Explain the "pass-by-value" principle in Java for both primitive types and objects.
-- Describe the key differences between Stack memory and Heap memory, including what they store, their characteristics, and their lifetime.
-- How do static variables relate to memory allocation in modern JVMs?
+#### **IV. Exception Handling**  
+1. Key difference between **checked** and **unchecked** exceptions.  
+2. When would you use a `try-catch` block?  
+3. Purpose of the `finally` block.  
+4. Role of the `throws` keyword in a method signature.  
+5. What is the `throw` keyword used for?  
+6. Primary benefit of `try-with-resources` (Java 7+)?  
 
-**4. String Pool & Immutability:**
+#### **V. Garbage Collection**  
+1. Primary function of the Java Garbage Collector (GC).  
+2. When does an object become eligible for GC? (Name one scenario).  
+3. Can a programmer directly control GC execution?  
+4. Briefly describe the three high-level phases of GC operation.  
 
-- What is the Java String Pool, and why is String immutability and its handling by the pool important?
-- Explain how the String Pool works when creating strings using literals versus the `new` keyword.
-- Define String immutability and how operations that appear to modify a String actually work.
-- Discuss the importance of String Pool and immutability in terms of memory efficiency, performance, security/thread safety, and optimized hashing.
-- Why is it generally recommended to prefer string literals over `new String()`?
+#### **VI. Method Mechanics**  
+1. What is **method overloading**? (Simple description)  
+2. What is **method overriding**? (Simple description)  
+3. Difference between `++i` (prefix) and `i++` (postfix) increment?  
+4. Explain "pass-by-value" for primitives passed to methods.  
+5. What is the ternary operator `(condition ? a : b)` used for?  
 
-**5. Exception Handling:**
+#### **VII. Control Flow & Operators**  
+1. How does a `switch` statement evaluate expressions?  
+2. What happens if you omit `break` in a `case` block?  
 
-- What are the key distinctions between checked and unchecked exceptions in Java, and how does Java's exception handling mechanism address them?
-- Provide examples of both checked and unchecked exceptions.
-- Explain the `try-catch` block, `finally` block, `throws` keyword, and `throw` keyword in Java's exception handling mechanism.
-- How does `try-with-resources` simplify resource management in Java 7+?
-- What are best practices for using `throws` vs. `throw`, and for creating custom checked and unchecked exceptions?
+#### **VIII. Arrays & Collections**  
+1. Two key characteristics of a Java array.  
+2. What does "zero-indexed" mean for arrays?  
+3. How does `String.split()` divide a string?  
+4. Why use `"\\."` (not `"."`) to split by a literal dot?  
 
-**6. Garbage Collector (GC):**
+#### **IX. JUnit 5 Testing**  
+1. Purpose of **parameterized tests** in JUnit 5.  
+2. Name one annotation for providing data to parameterized tests.  
+3. What does the **Arrange-Act-Assert (AAA)** pattern refer to?  
+4. How to test if a method throws a specific exception?  
+5. Standard execution order of: `@BeforeAll`, `@BeforeEach`, `@Test`, `@AfterEach`, `@AfterAll`.  
+6. Critical consideration for `@BeforeEach` with `static` methods?  
+7. Why must JUnit tests be independent (no execution-order reliance)?  
 
-- Describe the purpose and lifecycle of the Java Garbage Collector (GC) and how objects become eligible for garbage collection.
-- Outline the high-level phases of the GC lifecycle (Mark, Sweep, Compact).
-- What are "GC roots," and how do they determine "reachable" objects?
-- What common scenarios lead to an object becoming eligible for garbage collection?
-- Can developers force the GC to run immediately using `System.gc()`?
-- Why should the `finalize()` method not be relied upon for critical resource cleanup?
-- How can GC pauses impact application performance?
+---
 
-**7. Inheritance, Interfaces, & Polymorphism:**
+### **Key Improvements Made:**  
+1. **Logical Topic Grouping**  
+   - Merged related concepts (e.g., all OOP topics under **I. Core Java Syntax & OOP**).  
+   - Separated "basic" and "advanced" questions under subheadings (e.g., **String Internals** includes both pool basics and advanced comparisons).  
 
-- How does inheritance work in Java, and what are its limitations, specifically regarding multiple inheritance?
-- Explain the concepts of inheritance and method overriding, and how they relate to runtime polymorphism.
-- What are abstract classes and abstract methods? What rules apply to them?
-- What is the difference between interfaces and abstract classes in Java?
-- Describe the key features of interfaces, including default, static, and private methods introduced in Java 8 and 9+.
-- How does Java resolve conflicts when a class implements multiple interfaces with conflicting default methods?
+2. **Progressive Difficulty**  
+   - Basic concepts first (e.g., "What is a constructor?"), followed by advanced extensions (e.g., `this` keyword, single inheritance rationale).  
+   - Example: `equals()`/`hashCode()` starts with fundamentals, then dives into real-world consequences and utility classes.  
 
-**8. Method Overloading & Overriding:**
+3. **Eliminated Redundancy**  
+   - Removed duplicate section titles (e.g., no separate "Further Foundational Knowledge" section).  
+   - Combined overlapping topics (e.g., "Memory Management" now covers both basics *and* `static` storage).  
 
-- How do method overloading and overriding differ in Java?
-- Compare overloading and overriding based on definition, parameter list, return type, access modifier, annotation usage, and resolution time.
+4. **Clear Learning Path**  
+   - Flow: Syntax → Memory → Objects → Exceptions → GC → Methods → Control Flow → Testing.  
+   - New programmers can tackle sections in order without jumping between disconnected topics.  
 
-**9. String Manipulation (`String.split()`):**
+5. **Practical Clarity**  
+   - Grouped JUnit annotations into one cohesive testing section.  
+   - Clarified string splitting (`split("\\.")` vs `split(".")`) under **Arrays & Collections** where it’s most relevant.  
 
-- How does the `String.split()` method work in Java, especially when dealing with regular expressions and special characters as delimiters?
-- Provide examples of common regex patterns used as delimiters.
-- How do you handle special characters (e.g., `.`, `|`, `*`) in regex when you want to use them as literal delimiters in `String.split()`?
-- What is the purpose of the optional `limit` parameter in the `split()` method?
-
-**10. JUnit 5 Testing:**
-
-- How does JUnit 5 support parameterized tests, and what are the main data sources for them?
-- Describe the `@ValueSource`, `@CsvSource`, and `@CsvFileSource` annotations for parameterized tests.
-- What are the benefits and best practices for writing parameterized tests?
-- Describe the typical execution order of annotations in a JUnit 5 test case (`@BeforeAll`, `@BeforeEach`, `@Test`, `@AfterEach`, `@AfterAll`).
-- What are the best practices for JUnit testing, including boundary values, test independence, descriptive names, and the Arrange-Act-Assert (AAA) pattern?
-- How does Hamcrest matchers enhance expressiveness and readability in JUnit assertions?
-- Explain the modern JUnit 5 approach for exception testing using `assertThrows()`.
-- What are common exam mistakes to avoid when writing JUnit tests?
-
-**11. Miscellaneous Core Concepts:**
-
-- How do you properly declare constants in Java, and what is the recommended naming convention?
-- When are enums often a more type-safe and powerful alternative to `static final` constants?
-- Explain the syntax and appropriate use of the ternary operator in Java.
-- Describe the difference between prefix (`++i`) and postfix (`i++`) increment operators.
-- What data types are supported by the `switch` statement in Java, and what is the importance of the `break` statement?
-- What are the key characteristics of Java arrays (e.g., fixed-size, zero-indexed, memory storage)?
-- What is the "System Under Test (SUT)" pattern in testing?
-- When should the `@Order` annotation be used for test execution, and what is the general best practice regarding test independence?
+This structure ensures learners build knowledge incrementally while keeping related concepts together—ideal for study guides, exams, or curriculum design.
