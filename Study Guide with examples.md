@@ -136,26 +136,178 @@ Interfaces define a "can do" contract that implementing classes must fulfill.
 
 #### `equals()` and `hashCode()`
 
-These methods, inherited from the `Object` class, are crucial for proper object comparison and hash-based collections.
+## `equals()` and `hashCode()`
 
-**The Contract:**
-- If two objects are equal according to `equals()`, their `hashCode()` must return the same integer
-- `equals()` must be:
-  - **Reflexive**: `x.equals(x)` must return true
-  - **Symmetric**: `x.equals(y)` implies `y.equals(x)`
-  - **Transitive**: If `x.equals(y)` and `y.equals(z)`, then `x.equals(z)`
-  - **Consistent**: Multiple invocations return same result if objects don't change
-  - **Non-null**: `x.equals(null)` must return false
+### Understanding the Contract
+
+The `equals()` and `hashCode()` methods, inherited from the `Object` class, form a critical contract that must be properly implemented for your objects to work correctly with Java's collection framework, especially hash-based collections.
+
+**The Core Contract:**
+> [!WARNING]
+> **If two objects are equal according to `equals()`, they MUST return the same hash code from `hashCode()`.**  
+> The reverse is not required (different objects can have the same hash code), but having distinct hash codes for distinct objects improves performance in hash-based collections.
+
+### Key Principles
+
+#### `equals()` Method
+- Determines **logical equality** between objects (content-based comparison)
+- Default implementation uses reference equality (same as `==` operator)
+- Must be overridden to provide meaningful comparison of object contents
+- Follows specific mathematical properties:
+
+| Property | Definition | Example |
+|:---------|:-----------|:--------|
+| **Reflexive** | `x.equals(x)` must return `true` | An object must equal itself |
+| **Symmetric** | `x.equals(y)` implies `y.equals(x)` | If x equals y, then y must equal x |
+| **Transitive** | If `x.equals(y)` and `y.equals(z)`, then `x.equals(z)` | Equality must be consistent across comparisons |
+| **Consistent** | Multiple calls return same result if objects don't change | No random behavior in equality checks |
+| **Non-null** | `x.equals(null)` must return `false` | Objects are never equal to null |
+
+#### `hashCode()` Method
+- Returns an integer hash code used primarily by hash-based collections
+- Must produce the **same integer** for objects that are equal
+- Should produce **distinct integers** for unequal objects (as much as possible)
+- Must be consistent during a single execution (though can vary between executions)
+
+### Implementation Guidelines
+
+> [!TIP]
+> **Always override both methods together** - never implement just one without the other. They must use the **same fields** for comparison to maintain the contract.
+
+#### Example Implementation
+```java
+public class Person {
+    private String name;
+    private int age;
+    private String email;
+    
+    @Override
+    public boolean equals(Object o) {
+        // 1. Check if same reference
+        if (this == o) return true;
+        
+        // 2. Check for null and type mismatch
+        if (o == null || getClass() != o.getClass()) return false;
+        
+        // 3. Cast and compare relevant fields
+        Person person = (Person) o;
+        return age == person.age &&
+               Objects.equals(name, person.name) &&
+               Objects.equals(email, person.email);
+    }
+    
+    @Override
+    public int hashCode() {
+        // Use same fields as in equals()
+        return Objects.hash(name, age, email);
+    }
+}
+```
+
+#### Common Implementation Patterns
+
+**Using `Objects` Utility Class (Recommended):**
+```java
+@Override
+public int hashCode() {
+    return Objects.hash(field1, field2, field3);
+}
+```
+
+**Manual Implementation (for understanding):**
+```java
+@Override
+public int hashCode() {
+    int result = 17;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + age;
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    return result;
+}
+```
+
+### Critical Differences: `==` vs `.equals()`
+
+| Feature | `==` Operator | `.equals()` Method |
+|:--------|:--------------|:-------------------|
+| **Type** | Operator | Method |
+| **Comparison** | Reference equality (memory address) | Logical equality (object content) |
+| **Overridable** | No | Yes |
+| **Default Behavior** | Compares memory addresses | Same as `==` (reference equality) |
+| **Use Case** | Checking if two references point to same object | Checking if two objects have same content |
+
+> [!EXAMPLE]
+> ```java
+> String s1 = new String("hello");
+> String s2 = new String("hello");
+> 
+> System.out.println(s1 == s2);      // false (different objects)
+> System.out.println(s1.equals(s2)); // true (same content)
+> ```
+
+### Why This Matters in Collections
+
+**Hash-based collections (HashMap, HashSet, etc.) rely on this contract:**
+
+1. When you add an object to a `HashSet` or as a key in `HashMap`:
+   - The collection first computes the object's `hashCode()`
+   - Uses this hash to determine which "bucket" to store the object in
+   - When checking for duplicates, it only compares objects in the same bucket using `equals()`
+
+2. **If you violate the contract:**
+   - Objects might be stored in the wrong bucket
+   - `contains()`, `get()`, and other methods might fail to find objects
+   - Data can effectively "disappear" from collections
 
 > [!WARNING]
-> Always override both `equals()` and `hashCode()` together, using the same fields for comparison. Failing to maintain this contract will cause problems with hash-based collections like `HashMap` and `HashSet`.
+> **Real-world consequence:** If you use a custom object as a key in a `HashMap` without properly overriding `equals()` and `hashCode()`, you might not be able to retrieve values using what appears to be the same key.
 
-**Important Distinction:**
-- `==` operator compares object references (memory addresses)
-- `.equals()` method compares object content (logical equality)
+### Common Implementation Mistakes
 
+> [!WARNING]
+> **These are frequent exam questions and real-world bugs:**
+
+1. **Overriding only one method** - Implementing `equals()` without `hashCode()` (or vice versa)
+2. **Using different fields** - Using different fields in `equals()` and `hashCode()`
+3. **Inconsistent null handling** - Not properly handling null values in comparisons
+4. **Breaking symmetry** - Comparing with superclass objects incorrectly
+5. **Using mutable fields** - Using fields that can change after the object is added to a collection
+
+### Best Practices
+
+> [!TIP]
+> **For exam success and real-world coding:**
+
+- Always override both methods together
+- Use the same fields in both implementations
+- Prefer using `Objects.equals()` and `Objects.hash()` for null-safe comparisons
+- For immutable objects, consider caching the hash code for performance
+- Document your equality semantics clearly
+- Test your implementations thoroughly with edge cases
+- If using an IDE, leverage code generation features but review the generated code
+
+### Memory Diagram: How Hash Collections Work
+
+```
+HashMap Buckets (Array)
+┌─────────┐
+│ Bucket 0│ → [KeyA, ValueA] → [KeyD, ValueD]
+├─────────┤
+│ Bucket 1│ → [KeyB, ValueB]
+├─────────┤
+│ Bucket 2│ → [KeyC, ValueC]
+└─────────┘
+
+1. Calculate hashCode() for KeyX
+2. Determine bucket index = hashCode % number_of_buckets
+3. Search only within that bucket using equals()
+```
+
+> [!NOTE]
+> This is why proper `hashCode()` implementation is crucial - a poor implementation that sends all objects to the same bucket effectively turns a `HashMap` into a linked list, degrading performance from O(1) to O(n).
 ***
 
+***
 ### Data Types & Memory
 
 #### Primitive Types & Pass-by-Value
