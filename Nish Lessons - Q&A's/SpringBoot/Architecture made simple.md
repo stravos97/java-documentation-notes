@@ -102,7 +102,7 @@ Imagine you speak **only English** and your database speaks **only SQL**:
 
 ```mermaid
 flowchart LR
-    A[Customer.java] -->|@Entity| B[Hibernate]
+    A["Customer.java"] -->|"@Entity"| B[Hibernate]
     B -->|Creates| C[SQL Query]
     C -->|Executes| D[MySQL Database]
     D -->|Returns| E[Raw Data]
@@ -205,12 +205,12 @@ pie
 
 Imagine a restaurant menu system:
 
-| CRUD Action | Restaurant Example | Spring Data JPA Method | What It Does |
-|-------------|-------------------|------------------------|-------------|
-| **C**reate | Adding a new dish to the menu | `save()` | Adds new data to database |
-| **R**ead | Viewing the menu | `findAll()`, `findById()` | Retrieves data from database |
-| **U**pdate | Changing a dish's price | `save()` (with existing ID) | Modifies existing data |
-| **D**elete | Removing a dish from the menu | `delete()`, `deleteById()` | Removes data from database |
+| CRUD Action | Restaurant Example            | Spring Data JPA Method      | What It Does                 |
+|-------------|-------------------------------|-----------------------------|------------------------------|
+| **C**reate  | Adding a new dish to the menu | `save()`                    | Adds new data to database    |
+| **R**ead    | Viewing the menu              | `findAll()`, `findById()`   | Retrieves data from database |
+| **U**pdate  | Changing a dish's price       | `save()` (with existing ID) | Modifies existing data       |
+| **D**elete  | Removing a dish from the menu | `delete()`, `deleteById()`  | Removes data from database   |
 
 ### How CRUD Works in Your Northwind App
 
@@ -219,10 +219,10 @@ flowchart TD
     A[Your Code] -->|Calls| B[CRUD Methods]
     B --> C{Which Operation?}
     
-    C -->|Create| D[customerRepository.save(newCustomer)]
-    C -->|Read| E[customerRepository.findAll()]
-    C -->|Update| F[customerRepository.save(existingCustomer)]
-    C -->|Delete| G[customerRepository.deleteById("ALFKI")]
+    C -->|Create| D["customerRepository.save(newCustomer)"]
+    C -->|Read| E["customerRepository.findAll()"]
+    C -->|Update| F["customerRepository.save(existingCustomer)"]
+    C -->|Delete| G["customerRepository.deleteById('ALFKI')"]
     
     D --> H[Hibernate Creates INSERT SQL]
     E --> I[Hibernate Creates SELECT SQL]
@@ -445,14 +445,14 @@ flowchart TD
 
 ### The Big Picture in Simple Terms
 
-| Concept | What It Is | What It Does | Your Northwind Example |
-|---------|------------|--------------|------------------------|
-| **Spring Boot** | Construction company | Builds your app foundation | Creates everything needed to run your app |
-| **Beans** | Managed objects | Building blocks of your app | `CustomerRepository`, `Customer` objects |
-| **Hibernate ORM** | Translator | Converts Java ↔ SQL | Turns `findAll()` into `SELECT * FROM customers` |
-| **Tomcat** | Web server receptionist | Handles HTTP requests | Listens on port 8091 for web requests |
-| **CRUD** | Basic data operations | Create, Read, Update, Delete | `save()`, `findAll()`, `save()`, `delete()` |
-| **Naming Strategy** | Column name handler | Preserves exact column names | Makes `CustomerID` work instead of `customer_id` |
+| Concept             | What It Is              | What It Does                 | Your Northwind Example                           |
+|---------------------|-------------------------|------------------------------|--------------------------------------------------|
+| **Spring Boot**     | Construction company    | Builds your app foundation   | Creates everything needed to run your app        |
+| **Beans**           | Managed objects         | Building blocks of your app  | `CustomerRepository`, `Customer` objects         |
+| **Hibernate ORM**   | Translator              | Converts Java ↔ SQL          | Turns `findAll()` into `SELECT * FROM customers` |
+| **Tomcat**          | Web server receptionist | Handles HTTP requests        | Listens on port 8091 for web requests            |
+| **CRUD**            | Basic data operations   | Create, Read, Update, Delete | `save()`, `findAll()`, `save()`, `delete()`      |
+| **Naming Strategy** | Column name handler     | Preserves exact column names | Makes `CustomerID` work instead of `customer_id` |
 
 ### What You Need to Remember
 

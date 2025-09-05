@@ -109,13 +109,13 @@ pie
 
 ### How Each CRUD Operation Maps to Your Interface
 
-| CRUD Action | What It Does | Your Code | What Spring Does Behind the Scenes |
-|-------------|--------------|-----------|-----------------------------------|
-| **C**reate | Add new customer | `customerRepository.save(newCustomer)` | Generates `INSERT INTO customers...` SQL |
-| **R**ead | Get all customers | `customerRepository.findAll()` | Generates `SELECT * FROM customers` SQL |
-| **R**ead | Get one customer | `customerRepository.findById("ALFKI")` | Generates `SELECT * FROM customers WHERE CustomerID = 'ALFKI'` |
-| **U**pdate | Modify customer | `customerRepository.save(existingCustomer)` | Generates `UPDATE customers SET...` SQL |
-| **D**elete | Remove customer | `customerRepository.deleteById("ALFKI")` | Generates `DELETE FROM customers WHERE...` |
+| CRUD Action | What It Does      | Your Code                                   | What Spring Does Behind the Scenes                             |
+|-------------|-------------------|---------------------------------------------|----------------------------------------------------------------|
+| **C**reate  | Add new customer  | `customerRepository.save(newCustomer)`      | Generates `INSERT INTO customers...` SQL                       |
+| **R**ead    | Get all customers | `customerRepository.findAll()`              | Generates `SELECT * FROM customers` SQL                        |
+| **R**ead    | Get one customer  | `customerRepository.findById("ALFKI")`      | Generates `SELECT * FROM customers WHERE CustomerID = 'ALFKI'` |
+| **U**pdate  | Modify customer   | `customerRepository.save(existingCustomer)` | Generates `UPDATE customers SET...` SQL                        |
+| **D**elete  | Remove customer   | `customerRepository.deleteById("ALFKI")`    | Generates `DELETE FROM customers WHERE...`                     |
 
 ### Real Example with Your Northwind Data
 
@@ -243,13 +243,13 @@ This setting is what allows your interface methods to work correctly with your s
 
 ### Interface Basics for Your Northwind App
 
-| Concept | What It Is | Your Northwind Example |
-|---------|------------|------------------------|
-| **Interface** | Blueprint for data access | `CustomerRepository` |
-| **Proxy Implementation** | Runtime-generated code | Spring creates it automatically |
-| **CRUD Methods** | Basic data operations | `findAll()`, `save()`, `deleteById()` |
-| **ID Type** | Primary key data type | `String` (matches customerID field) |
-| **Naming Strategy** | Column name handler | `PhysicalNamingStrategyStandardImpl` |
+| Concept                  | What It Is                | Your Northwind Example                |
+|--------------------------|---------------------------|---------------------------------------|
+| **Interface**            | Blueprint for data access | `CustomerRepository`                  |
+| **Proxy Implementation** | Runtime-generated code    | Spring creates it automatically       |
+| **CRUD Methods**         | Basic data operations     | `findAll()`, `save()`, `deleteById()` |
+| **ID Type**              | Primary key data type     | `String` (matches customerID field)   |
+| **Naming Strategy**      | Column name handler       | `PhysicalNamingStrategyStandardImpl`  |
 
 ### What You Need to Remember
 

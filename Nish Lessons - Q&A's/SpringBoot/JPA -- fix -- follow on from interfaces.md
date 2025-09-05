@@ -88,14 +88,15 @@ pie
 ```
 
 #### Basic CRUD Operations (No Code Needed!)
-| Method          | What It Does                     | Your Northwind Example                |
-|-----------------|----------------------------------|---------------------------------------|
-| `save()`        | Create or update an entity       | `customerRepository.save(newCustomer)` |
-| `findAll()`     | Get all entities                 | `customerRepository.findAll()`        |
-| `findById(id)`  | Get one entity by ID             | `customerRepository.findById("ALFKI")` |
-| `delete()`      | Remove an entity                 | `customerRepository.delete(customer)` |
-| `existsById(id)`| Check if entity exists           | `customerRepository.existsById("ALFKI")` |
-| `count()`       | Count all entities               | `customerRepository.count()`          |
+
+| Method           | What It Does               | Your Northwind Example                   |
+|------------------|----------------------------|------------------------------------------|
+| `save()`         | Create or update an entity | `customerRepository.save(newCustomer)`   |
+| `findAll()`      | Get all entities           | `customerRepository.findAll()`           |
+| `findById(id)`   | Get one entity by ID       | `customerRepository.findById("ALFKI")`   |
+| `delete()`       | Remove an entity           | `customerRepository.delete(customer)`    |
+| `existsById(id)` | Check if entity exists     | `customerRepository.existsById("ALFKI")` |
+| `count()`        | Count all entities         | `customerRepository.count()`             |
 
 #### How These Methods Work Behind the Scenes
 ```mermaid
@@ -253,13 +254,14 @@ flowchart LR
 ```
 
 #### What JpaRepository Solves
-| Problem               | Traditional Approach                          | JpaRepository Solution                  |
-|-----------------------|-----------------------------------------------|-----------------------------------------|
-| Boilerplate Code      | Write repetitive DAO classes                  | Zero implementation code                |
-| SQL Knowledge         | Need to write and optimize SQL                 | Automatic SQL generation                |
-| Mapping Results       | Manual ResultSet processing                   | Automatic object mapping                |
-| Transaction Management| Manual begin/commit/rollback                   | Automatic transaction handling          |
-| Error Handling        | Custom exception handling                     | Standardized exception hierarchy        |
+
+| Problem                | Traditional Approach           | JpaRepository Solution           |
+|------------------------|--------------------------------|----------------------------------|
+| Boilerplate Code       | Write repetitive DAO classes   | Zero implementation code         |
+| SQL Knowledge          | Need to write and optimize SQL | Automatic SQL generation         |
+| Mapping Results        | Manual ResultSet processing    | Automatic object mapping         |
+| Transaction Management | Manual begin/commit/rollback   | Automatic transaction handling   |
+| Error Handling         | Custom exception handling      | Standardized exception hierarchy |
 
 > [!TIP] **For Complete Beginners**  
 > JpaRepository is like having a personal database assistant who:  
@@ -274,13 +276,14 @@ flowchart LR
 ## Summary Cheat Sheet
 
 ### JpaRepository Quick Reference
-| Concept              | What It Is                          | Your Northwind Example                  |
-|----------------------|-------------------------------------|-----------------------------------------|
-| JpaRepository        | Core interface for data access      | `CustomerRepository`                   |
-| Entity Type          | Which database table to use         | `Customer`                             |
-| ID Type              | Primary key data type               | `String` (matches `customerID`)        |
-| CRUD Methods         | Basic data operations               | `findAll()`, `save()`, `deleteById()`  |
-| Query Methods        | Custom queries by naming            | `findByCompanyName(String name)`       |
+
+| Concept       | What It Is                     | Your Northwind Example                |
+|---------------|--------------------------------|---------------------------------------|
+| JpaRepository | Core interface for data access | `CustomerRepository`                  |
+| Entity Type   | Which database table to use    | `Customer`                            |
+| ID Type       | Primary key data type          | `String` (matches `customerID`)       |
+| CRUD Methods  | Basic data operations          | `findAll()`, `save()`, `deleteById()` |
+| Query Methods | Custom queries by naming       | `findByCompanyName(String name)`      |
 
 > [!NOTE] **What You Need to Remember**  
 > - JpaRepository is an interface you extend, not implement  

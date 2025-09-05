@@ -12,7 +12,7 @@ topic: How Spring Data JPA Generates SQL Queries
 
 ```mermaid
 flowchart LR
-    A[Your Method Call] -->|customerRepository.findAll()| B[Method Name Parser]
+    A[Your Method Call] -->|"customerRepository.findAll()"| B[Method Name Parser]
     B --> C[Entity Metadata Lookup]
     C --> D[SQL Query Builder]
     D --> E[Generated SQL]
@@ -108,13 +108,13 @@ public class Customer {
 
 #### Critical Metadata Used:
 
-| Metadata | Your Northwind Example | Purpose |
-|----------|------------------------|---------|
-| `@Entity` | `@Entity` | Identifies this as a database-mapped class |
-| `@Table` | `@Table(name = "customers")` | Specifies the database table name |
-| `@Column` | `@Column(name = "CompanyName")` | Maps Java property to database column |
-| `@Id` | `@Id` on customerID | Identifies primary key column |
-| Naming Strategy | `PhysicalNamingStrategyStandardImpl` | Preserves exact column names |
+| Metadata        | Your Northwind Example               | Purpose                                    |
+|-----------------|--------------------------------------|--------------------------------------------|
+| `@Entity`       | `@Entity`                            | Identifies this as a database-mapped class |
+| `@Table`        | `@Table(name = "customers")`         | Specifies the database table name          |
+| `@Column`       | `@Column(name = "CompanyName")`      | Maps Java property to database column      |
+| `@Id`           | `@Id` on customerID                  | Identifies primary key column              |
+| Naming Strategy | `PhysicalNamingStrategyStandardImpl` | Preserves exact column names               |
 
 > [!TIP] Why Naming Strategy Matters
 > Without `PhysicalNamingStrategyStandardImpl`, Spring would look for `company_name` instead of `CompanyName`, causing errors with your Northwind database.
@@ -243,12 +243,12 @@ SELECT * FROM customers WHERE Country = ? ORDER BY CompanyName ASC
 
 ```mermaid
 flowchart TD
-    A[You call findAll()] --> B[Spring Data JPA]
+    A["You call findAll()"] --> B[Spring Data JPA]
     B --> C{Is standard method?}
     C -->|Yes| D[Use built-in implementation]
     D --> E[Get entity metadata]
     E --> F[Customer.class]
-    F --> G[Check @Entity annotations]
+    F --> G["Check @Entity annotations"]
     G --> H[Table: customers]
     G --> I[Columns: CustomerID, CompanyName, etc.]
     H --> J[Build SQL: SELECT * FROM customers]
@@ -257,7 +257,7 @@ flowchart TD
     K --> L[MySQL Database]
     L --> M[Return raw data]
     M --> N[Convert to Customer objects]
-    N --> O[Return List<Customer>]
+    N --> O["Return List<Customer>"]
     
     classDef you fill:#fff9c4,stroke:#f57f24;
     class A you;
@@ -396,14 +396,14 @@ pie
 
 ### Spring Data JPA Query Generation Rules
 
-| Method Name Pattern | Generated SQL | Your Northwind Example |
-|---------------------|---------------|------------------------|
-| `findAll()` | `SELECT * FROM customers` | Get all customers |
-| `findById(id)` | `SELECT * FROM customers WHERE CustomerID = ?` | Get customer by ID |
-| `findByCompanyName(name)` | `SELECT * FROM customers WHERE CompanyName = ?` | Find by company name |
-| `findByCityAndCountry(city, country)` | `WHERE City = ? AND Country = ?` | Multiple conditions |
-| `findByCompanyNameContaining(name)` | `WHERE CompanyName LIKE ?` | Partial matches |
-| `countByCountry(country)` | `SELECT COUNT(*) FROM customers WHERE Country = ?` | Count records |
+| Method Name Pattern                   | Generated SQL                                      | Your Northwind Example |
+|---------------------------------------|----------------------------------------------------|------------------------|
+| `findAll()`                           | `SELECT * FROM customers`                          | Get all customers      |
+| `findById(id)`                        | `SELECT * FROM customers WHERE CustomerID = ?`     | Get customer by ID     |
+| `findByCompanyName(name)`             | `SELECT * FROM customers WHERE CompanyName = ?`    | Find by company name   |
+| `findByCityAndCountry(city, country)` | `WHERE City = ? AND Country = ?`                   | Multiple conditions    |
+| `findByCompanyNameContaining(name)`   | `WHERE CompanyName LIKE ?`                         | Partial matches        |
+| `countByCountry(country)`             | `SELECT COUNT(*) FROM customers WHERE Country = ?` | Count records          |
 
 ### What You Need to Remember
 

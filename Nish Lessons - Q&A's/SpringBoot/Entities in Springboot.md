@@ -15,7 +15,7 @@ topic: What is an Entity in Spring Boot?
 flowchart LR
     A[Database Table] -->|Maps to| B[Java Class]
     B -->|Becomes| C[Entity]
-    C -->|Used in| D[customerRepository.findAll()]
+    C -->|Used in| D["customerRepository.findAll()"]
 ```
 
 ### Real-Life Analogy: Restaurant Menu
@@ -120,12 +120,12 @@ pie
 
 ### Key Differences
 
-| Feature | Regular Java Object | Entity |
-|---------|---------------------|--------|
-| **Annotations** | No special annotations | Has `@Entity`, `@Table`, `@Column` |
-| **Database Mapping** | Not connected to database | Maps directly to database table |
-| **Persistence** | Lives only in memory | Can be saved to/retrieved from database |
-| **Example** | `Person person = new Person();` | `Customer customer = customerRepository.findById("ALFKI").get();` |
+| Feature              | Regular Java Object             | Entity                                                            |
+|----------------------|---------------------------------|-------------------------------------------------------------------|
+| **Annotations**      | No special annotations          | Has `@Entity`, `@Table`, `@Column`                                |
+| **Database Mapping** | Not connected to database       | Maps directly to database table                                   |
+| **Persistence**      | Lives only in memory            | Can be saved to/retrieved from database                           |
+| **Example**          | `Person person = new Person();` | `Customer customer = customerRepository.findById("ALFKI").get();` |
 
 ### Your Customer Entity Code
 
@@ -155,10 +155,10 @@ public class Customer {
 
 ```mermaid
 flowchart LR
-    A[Create] -->|save(newCustomer)| B[New Entity]
-    C[Read] -->|findAll()| D[List of Entities]
-    E[Update] -->|save(existingCustomer)| F[Modified Entity]
-    G[Delete] -->|deleteById("ALFKI")| H[Removed Entity]
+    A[Create] -->|"save(newCustomer)"| B[New Entity]
+    C[Read] -->|"findAll()"| D[List of Entities]
+    E[Update] -->|"save(existingCustomer)"| F[Modified Entity]
+    G[Delete] -->|"deleteById('ALFKI')"| H[Removed Entity]
     
     classDef crud fill:#e8f5e9,stroke:#388e3c;
     class A,B,C,D,E,F,G,H crud;
@@ -198,7 +198,7 @@ flowchart TD
     A[MySQL Database] -->|Contains| B[customers table]
     B -->|Has| C[100 rows of customer data]
     
-    D[CustomerRepository] -->|Calls| E[findAll()]
+    D[CustomerRepository] -->|Calls| E["findAll()"]
     E -->|Hibernate generates| F[SELECT * FROM customers]
     F -->|Executes on| A
     
@@ -229,12 +229,12 @@ When someone says "findAll() returns all entities," they mean it returns **Java 
 
 ### Entity Quick Reference
 
-| Term | What It Is | Your Northwind Example |
-|------|------------|------------------------|
-| **Entity** | Java class representing a database table | `Customer.java` class |
-| **Entity Instance** | Java object representing a database row | `Customer customer = new Customer()` |
-| **findAll()** | Method that returns all entity instances | `List<Customer> = customerRepository.findAll()` |
-| **ID Field** | Unique identifier for an entity | `customerID` field in Customer |
+| Term                | What It Is                               | Your Northwind Example                          |
+|---------------------|------------------------------------------|-------------------------------------------------|
+| **Entity**          | Java class representing a database table | `Customer.java` class                           |
+| **Entity Instance** | Java object representing a database row  | `Customer customer = new Customer()`            |
+| **findAll()**       | Method that returns all entity instances | `List<Customer> = customerRepository.findAll()` |
+| **ID Field**        | Unique identifier for an entity          | `customerID` field in Customer                  |
 
 ### What You Need to Remember
 

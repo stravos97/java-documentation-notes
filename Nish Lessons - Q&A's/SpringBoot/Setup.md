@@ -19,13 +19,13 @@ Spring Initializr is the standard way to bootstrap a Spring Boot application wit
 
 ### Project Configuration Details
 
-| Property | Value | Purpose |
-|----------|-------|---------|
-| **Project Type** | Maven Project | Industry-standard build tool with excellent dependency management |
-| **Language** | Java | Primary language for Spring Boot development |
-| **Spring Boot Version** | 3.5.5 | Latest stable version with Jakarta EE 9+ support |
-| **Java Version** | 17 | Long-term support (LTS) version with modern features |
-| **Packaging** | Jar | Simplifies deployment with embedded Tomcat server |
+| Property                | Value         | Purpose                                                           |
+|-------------------------|---------------|-------------------------------------------------------------------|
+| **Project Type**        | Maven Project | Industry-standard build tool with excellent dependency management |
+| **Language**            | Java          | Primary language for Spring Boot development                      |
+| **Spring Boot Version** | 3.5.5         | Latest stable version with Jakarta EE 9+ support                  |
+| **Java Version**        | 17            | Long-term support (LTS) version with modern features              |
+| **Packaging**           | Jar           | Simplifies deployment with embedded Tomcat server                 |
 
 > [!TIP] Why These Choices?
 > - **Maven**: Preferred for enterprise projects due to robust dependency management
@@ -98,14 +98,14 @@ Spring Boot uses starter dependencies that bundle related libraries for specific
 
 ### Dependency Purpose Comparison
 
-| Dependency | Key Components | Primary Use Case |
-|------------|----------------|------------------|
-| **spring-boot-starter-web** | Tomcat, Spring MVC, Jackson | Building RESTful web services |
-| **spring-boot-starter-data-jpa** | Hibernate, Spring Data, HikariCP | Database persistence with ORM |
-| **mysql-connector-j** | JDBC Driver | MySQL database connectivity |
-| **spring-boot-starter-validation** | Hibernate Validator | Data validation with annotations |
-| **spring-boot-starter-actuator** | Health checks, metrics | Production monitoring |
-| **spring-boot-starter-data-rest** | Repository REST exposure | Automatic REST API generation |
+| Dependency                         | Key Components                   | Primary Use Case                 |
+|------------------------------------|----------------------------------|----------------------------------|
+| **spring-boot-starter-web**        | Tomcat, Spring MVC, Jackson      | Building RESTful web services    |
+| **spring-boot-starter-data-jpa**   | Hibernate, Spring Data, HikariCP | Database persistence with ORM    |
+| **mysql-connector-j**              | JDBC Driver                      | MySQL database connectivity      |
+| **spring-boot-starter-validation** | Hibernate Validator              | Data validation with annotations |
+| **spring-boot-starter-actuator**   | Health checks, metrics           | Production monitoring            |
+| **spring-boot-starter-data-rest**  | Repository REST exposure         | Automatic REST API generation    |
 
 > [!NOTE] Dependency Synergy
 > Spring Boot's auto-configuration detects these dependencies and configures beans automatically. For example, adding both `spring-boot-starter-data-jpa` and `mysql-connector-j` triggers automatic datasource configuration without manual setup.
@@ -145,12 +145,12 @@ The JDBC URL `jdbc:mysql://localhost:3306/northwind` consists of:
 
 ### Key Configuration Properties
 
-| Property | Purpose | Impact |
-|----------|---------|--------|
-| `spring.datasource.url` | JDBC connection string | Specifies MySQL server location and database name |
-| `spring.datasource.username/password` | Database credentials | Authentication for database access |
-| `server.port` | Application port | Changes from default 8080 to avoid conflicts |
-| `naming.physical-strategy` | Table/column naming | Preserves exact database names (case-sensitive) |
+| Property                              | Purpose                | Impact                                            |
+|---------------------------------------|------------------------|---------------------------------------------------|
+| `spring.datasource.url`               | JDBC connection string | Specifies MySQL server location and database name |
+| `spring.datasource.username/password` | Database credentials   | Authentication for database access                |
+| `server.port`                         | Application port       | Changes from default 8080 to avoid conflicts      |
+| `naming.physical-strategy`            | Table/column naming    | Preserves exact database names (case-sensitive)   |
 
 > [!WARNING] Security Consideration
 > Never commit real database credentials to version control. Use environment variables for production:
@@ -253,11 +253,11 @@ When generating entities from the Northwind database, these specific settings we
 
 #### Why These Settings Mattered
 
-| Setting | Purpose | Impact on Generated Code |
-|---------|---------|--------------------------|
-| **Migrate indexes** | Preserves database performance | Added `@Index` annotations to entity |
-| **Use table schema** | Maintains exact schema reference | Included `schema = "northwind"` in `@Table` |
-| **Generate toString()** | Improves debug readability | Limited to first 4 fields for concise output |
+| Setting                 | Purpose                          | Impact on Generated Code                     |
+|-------------------------|----------------------------------|----------------------------------------------|
+| **Migrate indexes**     | Preserves database performance   | Added `@Index` annotations to entity         |
+| **Use table schema**    | Maintains exact schema reference | Included `schema = "northwind"` in `@Table`  |
+| **Generate toString()** | Improves debug readability       | Limited to first 4 fields for concise output |
 
 ### The Naming Strategy Challenge - Real Experience
 
@@ -335,12 +335,12 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 
 ### Common Repository Methods
 
-| Method | Purpose | Example |
-|--------|---------|---------|
-| `findById()` | Retrieve by primary key | `customerRepository.findById("ALFKI")` |
-| `findAll()` | Get all entities | `customerRepository.findAll()` |
-| `save()` | Persist or update entity | `customerRepository.save(customer)` |
-| `delete()` | Remove entity | `customerRepository.delete(customer)` |
+| Method               | Purpose                  | Example                                           |
+|----------------------|--------------------------|---------------------------------------------------|
+| `findById()`         | Retrieve by primary key  | `customerRepository.findById("ALFKI")`            |
+| `findAll()`          | Get all entities         | `customerRepository.findAll()`                    |
+| `save()`             | Persist or update entity | `customerRepository.save(customer)`               |
+| `delete()`           | Remove entity            | `customerRepository.delete(customer)`             |
 | `findBy[Property]()` | Custom query by property | `customerRepository.findByCompanyName("Test Co")` |
 
 ## ## Understanding the Runtime Proxy Generation
@@ -561,11 +561,11 @@ class CustomerRepositoryTest {
 
 ### Testing Strategy Comparison
 
-| Approach | Use Case | Database Used | Speed | Best For |
-|----------|----------|---------------|-------|----------|
-| **@DataJpaTest** | Repository layer tests | In-memory H2 | Fast | Testing repository methods |
-| **@SpringBootTest** | Full application tests | Actual configured DB | Slower | End-to-end testing |
-| **Testcontainers** | Realistic integration tests | Docker container DB | Slowest | Production-like testing |
+| Approach            | Use Case                    | Database Used        | Speed   | Best For                   |
+|---------------------|-----------------------------|----------------------|---------|----------------------------|
+| **@DataJpaTest**    | Repository layer tests      | In-memory H2         | Fast    | Testing repository methods |
+| **@SpringBootTest** | Full application tests      | Actual configured DB | Slower  | End-to-end testing         |
+| **Testcontainers**  | Realistic integration tests | Docker container DB  | Slowest | Production-like testing    |
 
 > [!TIP] Testing Best Practice
 > For unit tests of repository methods, use `@DataJpaTest` with the in-memory H2 database. This is much faster than connecting to your actual MySQL database and ensures tests don't affect your development data.
@@ -629,12 +629,12 @@ public class CustomerController {
 
 ### Database Connection Problems
 
-| Issue | Solution |
-|-------|----------|
-| Connection refused | Verify MySQL is running on port 3306 |
-| Access denied | Check username/password credentials |
-| Unknown database | Create 'northwind' database first |
-| Time zone error | Add `?serverTimezone=UTC` to connection URL |
+| Issue              | Solution                                    |
+|--------------------|---------------------------------------------|
+| Connection refused | Verify MySQL is running on port 3306        |
+| Access denied      | Check username/password credentials         |
+| Unknown database   | Create 'northwind' database first           |
+| Time zone error    | Add `?serverTimezone=UTC` to connection URL |
 
 ### Entity Mapping Issues
 

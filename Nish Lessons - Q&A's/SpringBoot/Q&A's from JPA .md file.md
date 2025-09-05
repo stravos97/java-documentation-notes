@@ -132,22 +132,22 @@ sequenceDiagram
 
 ### Entity Type Options (First Parameter)
 
-| Entity Type | When to Use | Northwind Example |
-|-------------|-------------|-------------------|
-| `Customer` | Working with customers table | Your current implementation |
-| `Product` | Working with products table | `JpaRepository<Product, Integer>` |
-| `Order` | Working with orders table | `JpaRepository<Order, Integer>` |
+| Entity Type  | When to Use                  | Northwind Example                 |
+|--------------|------------------------------|-----------------------------------|
+| `Customer`   | Working with customers table | Your current implementation       |
+| `Product`    | Working with products table  | `JpaRepository<Product, Integer>` |
+| `Order`      | Working with orders table    | `JpaRepository<Order, Integer>`   |
 | `CustomType` | Working with custom entities | `JpaRepository<CustomType, UUID>` |
 
 ### ID Type Options (Second Parameter)
 
-| ID Type | Database Example | When to Use |
-|---------|------------------|-------------|
-| `String` | "ALFKI", "ANATR" | Text-based IDs (your Northwind customers) |
-| `Long` | 1, 2, 3 | Auto-increment numeric IDs |
-| `Integer` | 1, 2, 3 | Smaller numeric IDs |
-| `UUID` | "a1b2c3d4-..." | Universally unique identifiers |
-| `CustomId` | Composite keys | For tables with multiple-column primary keys |
+| ID Type    | Database Example | When to Use                                  |
+|------------|------------------|----------------------------------------------|
+| `String`   | "ALFKI", "ANATR" | Text-based IDs (your Northwind customers)    |
+| `Long`     | 1, 2, 3          | Auto-increment numeric IDs                   |
+| `Integer`  | 1, 2, 3          | Smaller numeric IDs                          |
+| `UUID`     | "a1b2c3d4-..."   | Universally unique identifiers               |
+| `CustomId` | Composite keys   | For tables with multiple-column primary keys |
 
 ### Real Examples from Your Project
 
@@ -291,11 +291,11 @@ Imagine you're in a library:
 
 ### When to Use Query by Example
 
-| Scenario | Traditional Approach | Query by Example |
-|----------|----------------------|------------------|
-| Simple search with multiple fields | Multiple custom methods | One generic method |
-| Dynamic search (user selects which fields to search) | Complex conditional logic | Simple object configuration |
-| When you don't know all search criteria at compile time | Hard to implement | Very easy to implement |
+| Scenario                                                | Traditional Approach      | Query by Example            |
+|---------------------------------------------------------|---------------------------|-----------------------------|
+| Simple search with multiple fields                      | Multiple custom methods   | One generic method          |
+| Dynamic search (user selects which fields to search)    | Complex conditional logic | Simple object configuration |
+| When you don't know all search criteria at compile time | Hard to implement         | Very easy to implement      |
 
 > [!TIP] For Your Northwind Project
 > If you want to find all customers in London, UK:
@@ -312,13 +312,13 @@ Imagine you're in a library:
 
 ### Spring Data JPA Key Concepts
 
-| Concept | What It Is | Your Northwind Example |
-|---------|------------|------------------------|
-| **`.class` in getBean** | Type token for bean retrieval | `CustomerRepository.class` |
-| **First Generic Parameter** | Entity type (database table) | `Customer` |
-| **Second Generic Parameter** | ID field data type | `String` (matches customerID) |
-| **Concrete Implementation** | Runtime-generated proxy class | Spring creates it automatically |
-| **Example Query** | Dynamic search by prototype | `Example.of(exampleCustomer)` |
+| Concept                      | What It Is                    | Your Northwind Example          |
+|------------------------------|-------------------------------|---------------------------------|
+| **`.class` in getBean**      | Type token for bean retrieval | `CustomerRepository.class`      |
+| **First Generic Parameter**  | Entity type (database table)  | `Customer`                      |
+| **Second Generic Parameter** | ID field data type            | `String` (matches customerID)   |
+| **Concrete Implementation**  | Runtime-generated proxy class | Spring creates it automatically |
+| **Example Query**            | Dynamic search by prototype   | `Example.of(exampleCustomer)`   |
 
 ### What You Need to Remember
 
