@@ -380,30 +380,30 @@ This diagram shows the full architecture of your Northwind application with all 
 
 ```mermaid
 flowchart TD
-    subgraph "Application Layer"
+    subgraph ApplicationLayer["Application Layer"]
         A[NorthwindApplication.java<br/>@SpringBootApplication]
     end
     
-    subgraph "Spring IoC Container"
+    subgraph SpringIoCContainer["Spring IoC Container"]
         B[ApplicationContext<br/>Bean Factory]
         C[Bean Creation & Management<br/>Dependency Injection]
     end
     
-    subgraph "Repository Layer"
+    subgraph RepositoryLayer["Repository Layer"]
         D[CustomerRepository Interface<br/>extends JpaRepository]
         E[Spring Data JPA Proxy<br/>Runtime Implementation]
     end
     
-    subgraph "Entity Layer"
+    subgraph EntityLayer["Entity Layer"]
         F[Customer Entity<br/>@Entity Annotated POJO]
     end
     
-    subgraph "Database Layer"
+    subgraph DatabaseLayer["Database Layer"]
         G[MySQL Database<br/>Northwind Schema]
         H[customers table]
     end
     
-    subgraph "Configuration"
+    subgraph Configuration["Configuration"]
         I[application.properties<br/>Database Connection]
     end
     
@@ -418,22 +418,22 @@ flowchart TD
     B -->|getBean()| E
     
     classDef app fill:#e1f5fe,stroke:#0288d1;
-    class A app;
+    class A,app;
     
     classDef container fill:#fff3e0,stroke:#ef6c00;
-    class B,C container;
+    class B,C,container;
     
     classDef repo fill:#f3e5f5,stroke:#7b1fa2;
-    class D,E repo;
+    class D,E,repo;
     
     classDef entity fill:#e8f5e9,stroke:#388e3c;
-    class F entity;
+    class F,entity;
     
     classDef db fill:#fce4ec,stroke:#c2185b;
-    class G,H db;
+    class G,H,db;
     
     classDef config fill:#fffde7,stroke:#f57c00;
-    class I config;
+    class I,config;
 ```
 
 ### How All Components Work Together

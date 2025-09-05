@@ -351,19 +351,19 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    subgraph "You (Developer)"
+    subgraph YouDeveloper["You (Developer)"]
         A[Write Code] --> B[Run Application]
         B --> C[Call Repository Methods]
     end
     
-    subgraph "Spring Boot"
+    subgraph SpringBoot["Spring Boot"]
         D[Spring Container] -->|Manages| E[Beans]
         E --> F[CustomerRepository]
         E --> G[Customer Entity]
         E --> H[Database Connection]
     end
     
-    subgraph "Hibernate ORM"
+    subgraph HibernateORM["Hibernate ORM"]
         I[Hibernate] -->|Translates| J[Java to SQL]
         J -->|Create| K[INSERT]
         J -->|Read| L[SELECT]
@@ -371,12 +371,12 @@ flowchart TD
         J -->|Delete| N[DELETE]
     end
     
-    subgraph "Tomcat"
+    subgraph TomcatServer["Tomcat"]
         O[Tomcat] -->|Handles| P[HTTP Requests]
         P -->|Routes to| Q[Controllers]
     end
     
-    subgraph "MySQL"
+    subgraph MySQLDatabase["MySQL"]
         R[MySQL Database] -->|Stores| S[customers table]
     end
     

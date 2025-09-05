@@ -34,7 +34,7 @@ When you say `customerRepository.findAll()`, you're asking for "all menu items" 
 
 ```mermaid
 flowchart LR
-    subgraph "MySQL Database"
+    subgraph MySQLDatabase["MySQL Database"]
         direction TB
         A[customers table] --> B[CustomerID]
         A --> C[CompanyName]
@@ -42,7 +42,7 @@ flowchart LR
         A --> E[ContactTitle]
     end
     
-    subgraph "Java Application"
+    subgraph JavaApplication["Java Application"]
         direction TB
         F[Customer Entity] --> G[customerID]
         F --> H[companyName]

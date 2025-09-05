@@ -258,7 +258,7 @@ List<Customer> results = customerRepository.findAll(example);
 
 ```mermaid
 flowchart LR
-    subgraph "Without Spring Data JPA"
+    subgraph WithoutSpringDataJPA["Without Spring Data JPA"]
         direction TB
         A[Write SQL queries] --> B[Handle database connections]
         B --> C[Process result sets]
@@ -267,7 +267,7 @@ flowchart LR
         E --> F[Error handling]
     end
     
-    subgraph "With JpaRepository"
+    subgraph WithJpaRepository["With JpaRepository"]
         direction TB
         G[Define repository interface] --> H[Use built-in methods]
     end

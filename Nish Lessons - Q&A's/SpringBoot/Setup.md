@@ -366,7 +366,7 @@ Here's what actually happens at runtime:
 
 ```mermaid
 graph LR
-    A[CustomerRepository Interface] -->|Spring detects at startup| B(Spring IoC Container)
+    A[CustomerRepository Interface] -->|Spring detects at startup| B[Spring IoC Container]
     B -->|Generates at runtime| C[Proxy Implementation Class]
     C -->|Implements| D[findAll()]
     C -->|Implements| E[findById()]
@@ -455,30 +455,30 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-    subgraph  "Application Layer"
+    subgraph ApplicationLayer["Application Layer"]
         A[NorthwindApplication.java<br/>@SpringBootApplication] 
     end
     
-    subgraph  "Spring IoC Container"
+    subgraph SpringIoCContainer["Spring IoC Container"]
         B[ApplicationContext<br/>Bean Factory]
         C[Bean Creation & Management<br/>Dependency Injection]
     end
     
-    subgraph  "Repository Layer"
+    subgraph RepositoryLayer["Repository Layer"]
         D[CustomerRepository Interface<br/>extends JpaRepository]
         E[Spring Data JPA Proxy<br/>Runtime Implementation]
     end
     
-    subgraph  "Entity Layer"
+    subgraph EntityLayer["Entity Layer"]
         F[Customer Entity<br/>@Entity Annotated POJO]
     end
     
-    subgraph  "Database Layer"
+    subgraph DatabaseLayer["Database Layer"]
         G[MySQL Database<br/>Northwind Schema]
         H[customers table]
     end
     
-    subgraph  "Configuration"
+    subgraph Configuration["Configuration"]
         I[application.properties<br/>Database Connection]
     end
     
