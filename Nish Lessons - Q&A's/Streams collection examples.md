@@ -1,3 +1,9 @@
+---
+tags: [java/streams, collections, list, set, map, queue]
+date: 2025-09-04
+topic: Stream Examples Across Collections
+---
+
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 # give me one example of a stream being used for each different collection type including an example for objects
@@ -164,4 +170,3 @@ See also: [[Java Collections]] [[Design Patterns]][^4][^2]
 [^11]: https://www.baeldung.com/java-17-new-features
 
 [^12]: https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/util/Map.Entry.html
-

@@ -1,3 +1,9 @@
+---
+tags: [java, practice, q-and-a, feedback]
+date: 2025-08-23
+topic: Practice Questions and Answers
+---
+
 ### Your Answers and My Feedback:
 
 

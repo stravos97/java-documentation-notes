@@ -1,3 +1,9 @@
+---
+tags: [java/static, methods, oop, bestpractices]
+date: 2025-08-23
+topic: Understanding static in Java
+---
+
 ## Understanding `static` in Java
 
 <!-- TOC -->
@@ -489,4 +495,3 @@ ______________________________________________________________________
 > [!TIP]
 > **Static variables are like whiteboards in a classroom—shared by everyone. Instance variables are individual
 > notebooks—private to each student. Use each where it makes sense!**
-

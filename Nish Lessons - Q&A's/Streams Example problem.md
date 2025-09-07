@@ -1,3 +1,9 @@
+---
+tags: [java/streams, walkthrough, strings, examples]
+date: 2025-09-04
+topic: Beatles Stream Example Deep Dive
+---
+
 # Deep Dive: The Beatles Stream Example
 
 Let me walk you through your Beatles example with the same level of detail we've been exploring. This is perfect because working with strings instead of numbers will help solidify your understanding that streams work with any type of data. I'll trace through exactly what happens at each stage, from the moment you call `.stream()` to when the results appear on your console.

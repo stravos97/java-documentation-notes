@@ -1,8 +1,8 @@
-***
+---
 tags: [rest, api, http, cheatsheet]
 date: 2025-09-04
 topic: RESTful API Fundamentals
-***
+---
 
 # RESTful API Visual Guide with Mermaid Diagrams
 

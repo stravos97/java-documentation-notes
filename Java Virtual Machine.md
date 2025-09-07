@@ -1,3 +1,9 @@
+---
+tags: [java/jvm, runtime, architecture]
+date: 2025-08-23
+topic: Java Virtual Machine (JVM) Overview
+---
+
 <!-- TOC -->
   * [Java Virtual Machine (JVM)](#java-virtual-machine-jvm)
   * [Key Purpose and Role](#key-purpose-and-role)

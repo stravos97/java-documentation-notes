@@ -1,10 +1,10 @@
-# How Spring Data JPA Generates SQL Queries: The Complete Logic
-
 ---
 tags: [java/springboot, java/jpa, crud, sql, beginner]
 date: 2025-09-05
 topic: How Spring Data JPA Generates SQL Queries
 ---
+
+# How Spring Data JPA Generates SQL Queries: The Complete Logic
 
 ## The Query Generation Process Explained
 

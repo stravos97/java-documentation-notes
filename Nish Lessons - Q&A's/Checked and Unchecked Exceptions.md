@@ -1,3 +1,9 @@
+---
+tags: [java/exceptions, checked, unchecked, beginners]
+date: 2025-09-04
+topic: Checked vs Unchecked Exceptions in Java
+---
+
 
 ## Java Exceptions for Beginners
 
@@ -164,4 +170,3 @@ Java Exception Hierarchy Diagram
 
 > [!EXAMPLE]
 > **Try**: Change the types of exceptions in the examples above. See what happens when you don’t handle a checked exception, or when your code crashes with an unchecked exception!
-

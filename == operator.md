@@ -1,3 +1,8 @@
+---
+tags: [java/operators, equality, primitives, objects]
+date: 2025-08-23
+topic: == Operator in Java
+---
 
 <!-- TOC -->
 - [Quick Reference](#quick-reference)

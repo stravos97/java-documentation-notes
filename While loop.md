@@ -1,3 +1,9 @@
+---
+tags: [java/loops, while, control-flow, examples]
+date: 2025-08-23
+topic: Java While Loop Examples
+---
+
 ## Java While Loop: Number Guessing Game
 
 <!-- TOC -->

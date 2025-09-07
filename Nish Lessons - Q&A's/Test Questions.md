@@ -1,3 +1,9 @@
+---
+tags: [java, quiz, practice, exam-prep]
+date: 2025-09-04
+topic: Java Test Questions
+---
+
 
 #### **I. Core Java Syntax & OOP Fundamentals**  
 **A. Basic Class Structure & OOP Pillars**  

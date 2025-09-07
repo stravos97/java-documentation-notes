@@ -1,11 +1,10 @@
-
-# Understanding Spring Boot Interfaces: The Magic Behind Your Northwind App
-
 ---
 tags: [java/springboot, beginner, visual, java/jpa, crud]
 date: 2025-09-05
 topic: Spring Boot Interfaces Explained Visually
 ---
+
+# Understanding Spring Boot Interfaces: The Magic Behind Your Northwind App
 
 ## What Are Interfaces in Spring Boot? (The Simple Truth)
 

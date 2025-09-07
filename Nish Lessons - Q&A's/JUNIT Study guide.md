@@ -1,18 +1,8 @@
-
-# JUnit Testing Study Guide
-
 ---
 tags: [java, junit, testing, study-guide, exam-prep]
 date: 2025-09-04
 topic: JUnit Test Preparation Guide
 ---
-
-## Quick Overview - What You Need to Know
-
-This study guide covers everything from your JUnit learning journey, organized for efficient test preparation.
-
----
-
 ## Part 1: Core JUnit 5 Annotations
 
 ### Essential Test Annotations

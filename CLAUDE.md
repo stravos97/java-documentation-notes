@@ -1,3 +1,9 @@
+---
+tags: [meta, docs, formatting, obsidian, markdown]
+date: 2025-08-29
+topic: Markdown Formatting Standards for Java Notes
+---
+
 # Markdown Formatting Standards for Educational Java Content
 
 This document establishes the definitive formatting standards for educational Java Q&A markdown files designed for optimal Obsidian compatibility. These standards ensure consistency, readability, and proper rendering across all files.

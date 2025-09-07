@@ -1,10 +1,10 @@
-# Spring Boot Northwind Application - Visual Architecture Guide
-
 ---
 tags: [java/springboot, architecture/visual, java/jpa, database/mysql]
 date: 2025-09-05
 topic: Spring Boot Application Visual Architecture Guide
 ---
+
+# Spring Boot Northwind Application - Visual Architecture Guide
 
 ## Application Startup Lifecycle
 

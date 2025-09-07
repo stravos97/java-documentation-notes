@@ -1,11 +1,10 @@
-
-# Spring Boot Northwind Application - Ultra Beginner's Visual Guide
-
 ---
 tags: [java/springboot, beginner, visual, java/jpa, database/mysql]
 date: 2025-09-05
 topic: Spring Boot Visual Guide for Absolute Beginners
 ---
+
+# Spring Boot Northwind Application - Ultra Beginner's Visual Guide
 
 ## Understanding the Absolute Basics: What Is Spring Boot?
 

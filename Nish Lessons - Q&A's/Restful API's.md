@@ -1,12 +1,10 @@
-
-## RESTful APIs: Understanding from Scratch
-
-
-***
+---
 tags: [java, rest, api, http, spring-boot, cheatsheet]
 date: 2025-09-04
 topic: RESTful API Fundamentals
-***
+---
+
+## RESTful APIs: Understanding from Scratch
 
 ### What is a REST API?
 
@@ -429,6 +427,5 @@ RESTful APIs provide a powerful, standardized way to build scalable web services
 [^31]: https://www.lonti.com/blog/understanding-http-methods-in-rest-api-development
 
 [^32]: https://restfulapi.net/http-methods/
-
 
 

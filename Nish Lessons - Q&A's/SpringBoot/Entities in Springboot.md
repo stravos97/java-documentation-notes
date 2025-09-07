@@ -1,11 +1,10 @@
-
-# Understanding Entities in Spring Boot - Simple Visual Guide
-
 ---
 tags: [java/springboot, beginner, visual, java/jpa, database/mysql]
 date: 2025-09-05
 topic: What is an Entity in Spring Boot?
 ---
+
+# Understanding Entities in Spring Boot - Simple Visual Guide
 
 ## What is an Entity? (The Simplest Explanation)
 

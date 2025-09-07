@@ -1,10 +1,10 @@
-# Spring Boot Application Setup & Architecture Guide - Verified Implementation
-
 ---
 tags: [java/springboot, java/jpa, database/mysql, architecture/patterns, tools/intellij]
 date: 2025-09-05
 topic: Spring Boot Application Setup and Architecture - Verified Implementation
 ---
+
+# Spring Boot Application Setup & Architecture Guide - Verified Implementation
 
 ## Introduction to Spring Boot Setup
 

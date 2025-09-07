@@ -1,3 +1,9 @@
+---
+tags: [java, quiz, week2, practice]
+date: 2025-09-04
+topic: Week 2 Java Test
+---
+
 
 Here's a **consolidated, organized, and clarified study list** combining all three sources. Duplicates are merged, ambiguities resolved, typos fixed (e.g., "Jwt" → **JUnit**, "Heap and s" → **Heap vs. Stack**), and topics grouped logically for efficient studying.  
 

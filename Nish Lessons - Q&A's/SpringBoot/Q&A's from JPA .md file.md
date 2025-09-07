@@ -1,10 +1,10 @@
-# Understanding Spring Data JPA: Deep Dive into Repositories and Generics
-
 ---
 tags: [java/springboot, java/jpa, beginner, crud, generics]
 date: 2025-09-05
 topic: Understanding Spring Data JPA Repositories and Generics
 ---
+
+# Understanding Spring Data JPA: Deep Dive into Repositories and Generics
 
 ## Why `CustomerRepository.class` in `context.getBean(CustomerRepository.class)`
 

@@ -1,3 +1,9 @@
+---
+tags: [java/streams, java/lambdas, method-references, java17]
+date: 2025-09-04
+topic: Java '::' Method References in Streams
+---
+
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 # go over these in streams: Go over what :: does in streams
@@ -197,4 +203,3 @@ See also: [[Java Collections]] [[Design Patterns]]
 [^8]: https://javatechonline.com/method-reference-in-java-8/
 
 [^9]: https://stackify.com/streams-guide-java-8/
-

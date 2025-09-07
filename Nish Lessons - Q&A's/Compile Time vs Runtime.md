@@ -1,3 +1,9 @@
+---
+tags: [java, compile-time, runtime, errors, fundamentals]
+date: 2025-08-29
+topic: Compile Time vs Runtime in Java
+---
+
 
 ### Code-Centric Explanation
 
@@ -176,4 +182,3 @@ myAnimal.sound(); // Outputs "Woof"
 ***
 
 **Always compile first, run second, and thoroughly test to catch both types of errors before deployment.**
-

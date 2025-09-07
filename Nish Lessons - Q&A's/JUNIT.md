@@ -1,25 +1,8 @@
-
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
-# Help me create notes for what is covered in terms of JUNIT testing. look at my code to understand what I covered and then research those areas, also give me a list of what was covered:
-
-[https://github.com/nishman89/JavaFullStack/tree/main/JavaFundamentals/src/test/java/com/sparta/nam](https://github.com/nishman89/JavaFullStack/tree/main/JavaFundamentals/src/test/java/com/sparta/nam)
-
-Now I'll create comprehensive JUnit testing notes based on the analysis of your code and the research I've conducted.
-
-## JUnit Testing - Comprehensive Study Notes
-
-
-***
+---
 tags: [java, testing, junit, cheatsheet, hamcrest, bestpractices]
 date: 2025-09-04
 topic: JUnit Testing Coverage Analysis
-***
-
-## Topics Covered in Your Testing Code
-
-Based on your repository analysis, here's what you've covered in your JUnit testing journey:[^1][^2][^3]
-
+---
 ### 1. **Core JUnit 5 Annotations**
 
 - `@Test` - Basic test method annotation
@@ -681,4 +664,3 @@ Your current foundation provides an excellent base for these advanced topics!
 [^45]: https://www.javaindeed.com/3-best-practices-to-test-a-code-that-calls-static-methods/
 
 [^46]: https://howtodoinjava.com/junit5/test-execution-order/
-

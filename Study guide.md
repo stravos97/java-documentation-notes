@@ -1,3 +1,8 @@
+---
+tags: [java, study-guide, overview, fundamentals]
+date: 2025-09-04
+topic: Java Core Concepts Study Guide
+---
 
 
 ### **I. Core Java Concepts**

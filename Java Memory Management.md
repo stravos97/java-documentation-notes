@@ -1,3 +1,8 @@
+---
+tags: [java/memory, stack-heap, garbage-collection, references]
+date: 2025-08-29
+topic: Java Memory Management
+---
 
 
 <!-- TOC -->

@@ -1,3 +1,9 @@
+---
+tags: [java/exceptions, examples, study-guide]
+date: 2025-09-04
+topic: Java Exceptions Study Guide with Examples
+---
+
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 # Java Exceptions Study Guide - Based on Your Course Examples
@@ -316,4 +322,3 @@ try {
 [^1]: Animal.java
 
 [^2]: App.java
-

@@ -1,3 +1,9 @@
+---
+tags: [java/oop, classes, methods, this-keyword, basics]
+date: 2025-08-23
+topic: Introduction to Classes and Objects in Java
+---
+
 ______________________________________________________________________
 
 # 🏎️ Introduction to Classes and Objects in Java
