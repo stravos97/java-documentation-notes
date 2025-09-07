@@ -49,7 +49,7 @@ topic: Java While Loop Examples
 > ```
 
 > Use them for interactive scenarios like **games** where user input determines when to
-> stop. [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
+> stop. [Oracle Docs](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html)
 
 Let's build a simple **number guessing game** using a while loop. The program generates a random number between 1 and
 100, and the user guesses until they get it right. We'll use `java.util.Random` for number generation and
@@ -194,7 +194,7 @@ while(guess !=targetNumber &&attempts< 10){...}
 > This example uses Java 8+ features. For older versions, import and usage remain similar.
 
 For more on loops,
-see \[[Java Loops]\]. [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html) [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
+see \[[Java Loops]\]. [Oracle Docs](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html) [Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) [Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
 
 
 #java #loops #while-loop #games #programming-example
@@ -219,7 +219,7 @@ ______________________________________________________________________
 
 - **Goal**: Display first `maxPrimes` primes
 - **Concepts**: \[[Java Loops]\], conditional statements, \[[Java Math]\] (`Math.sqrt()`), input
-  handling [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
+  handling [Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
 - **Efficiency**: O(√n) primality test, suitable for small–medium N
 - **Java Version**: Works with Java 8+, no special features
 
@@ -758,7 +758,7 @@ This checks multiples of 6 for faster sieving.
 
 
 For more on number algorithms, see \[[Java Math]\]
-or \[[Algorithms in Java]\]. [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
+or \[[Algorithms in Java]\]. [Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
 
 
 #java #basics #loops #while

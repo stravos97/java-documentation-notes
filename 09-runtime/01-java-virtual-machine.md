@@ -5,7 +5,7 @@ topic: Java Virtual Machine (JVM) Overview
 ---
 
 <!-- TOC -->
-  * [Java Virtual Machine (JVM)](#java-virtual-machine-jvm)
+  * [](JVM)](#java-virtual-machine-jvm|Java%20Virtual%20Machine%20(JVM))
   * [Key Purpose and Role](#key-purpose-and-role)
   * [JVM Architecture Breakdown](#jvm-architecture-breakdown)
   * [How JVM Works: Step-by-Step](#how-jvm-works-step-by-step)
@@ -51,13 +51,13 @@ recompilation.[wikipedia](https://en.wikipedia.org/wiki/Java_virtual_machine)
 ## JVM Architecture Breakdown
 
 The JVM consists of several key components, each with a specific role in program
-execution:[reddit](https://www.reddit.com/r/javahelp/comments/8cen3k/what_exactly_is_the_java_virtual_machine_and_how/)
+execution:[Reddit](https://www.reddit.com/r/javahelp/comments/8cen3k/what_exactly_is_the_java_virtual_machine_and_how/)
 
 
 | Component                   | Description                                                                                                                                                                                          |
 |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Class Loader**            | Loads, links, and initializes class files as they are referenced by the program[wikipedia](https://en.wikipedia.org/wiki/Java_virtual_machine).                                                      |
-| **Runtime Data Areas**      | Includes heap (objects), stack (method frames), method area (class metadata), and more[reddit](https://www.reddit.com/r/javahelp/comments/8cen3k/what_exactly_is_the_java_virtual_machine_and_how/). |
+| **Runtime Data Areas**      | Includes heap (objects), stack (method frames), method area (class metadata), and more[Reddit](https://www.reddit.com/r/javahelp/comments/8cen3k/what_exactly_is_the_java_virtual_machine_and_how/). |
 | **Execution Engine**        | Interprets bytecode or compiles it to native code using JIT[wikipedia](https://en.wikipedia.org/wiki/Java_virtual_machine).                                                                          |
 | **Garbage Collector**       | Automatically reclaims memory from unreachable objects, preventing leaks[wikipedia](https://en.wikipedia.org/wiki/Java_virtual_machine).                                                             |
 | **Native Method Interface** | Provides integration with non-Java code (e.g., via JNI)[tutorialspoint](https://www.tutorialspoint.com/java/java_jvm.htm).                                                                           |

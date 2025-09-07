@@ -8,11 +8,11 @@ topic: Stream Examples Across Collections
 
 # give me one example of a stream being used for each different collection type including an example for objects
 
-Here are concise, runnable stream examples for List, Set, Map, and Queue/Deque, plus an example using custom objects, all idiomatic for modern Java 17+. Streams are obtained from collections via the `Collection.stream()` default method, and many pipelines end with `toList()` (immutable in Java 16+) or collectors for specific targets.[^1][^2][^3]
+Here are concise, runnable stream examples for List, Set, Map, and Queue/Deque, plus an example using custom objects, all idiomatic for modern Java 17+. Streams are obtained from collections via the `Collection.stream()` default method, and many pipelines end with `toList()` (immutable in Java 16+) or collectors for specific targets.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)[Stack Overflow](https://stackoverflow.com/questions/65969919/differences-of-java-16s-stream-tolist-and-stream-collectcollectors-tolist)
 
 ## List example
 
-- Lists expose `stream()` to build pipelines like filter/map and then finish with a terminal operation such as `toList()` to produce results.[^2][^1]
+- Lists expose `stream()` to build pipelines like filter/map and then finish with a terminal operation such as `toList()` to produce results.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)
 
 ```java
 // List -> filter + map -> List (immutable result in Java 16+)
@@ -30,12 +30,12 @@ public class ListStreamDemo {
 }
 ```
 
-- `toList()` is a terminal method on `Stream` that creates an unmodifiable list, whereas `Collectors.toList()` typically returns a mutable implementation.[^3][^2]
+- `toList()` is a terminal method on `Stream` that creates an unmodifiable list, whereas `Collectors.toList()` typically returns a mutable implementation.[Stack Overflow](https://stackoverflow.com/questions/65969919/differences-of-java-16s-stream-tolist-and-stream-collectcollectors-tolist)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)
 
 
 ## Set example
 
-- Sets also inherit `stream()` from `Collection`, and results can be collected using collectors like `Collectors.toSet()` for a set target.[^4][^1]
+- Sets also inherit `stream()` from `Collection`, and results can be collected using collectors like `Collectors.toSet()` for a set target.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)
 
 ```java
 // Set -> filter -> Set
@@ -53,12 +53,12 @@ public class SetStreamDemo {
 }
 ```
 
-- Collectors live in `java.util.stream` and provide common mutable reductions like `toSet`, `toMap`, and `groupingBy` for stream results.[^4]
+- Collectors live in `java.util.stream` and provide common mutable reductions like `toSet`, `toMap`, and `groupingBy` for stream results.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html)
 
 
 ## Map example
 
-- Maps are not `Collection`s, but streaming is idiomatic via views like `entrySet()` or `values()`, e.g., `map.entrySet().stream()` with `Collectors.toMap(...)` to rebuild filtered maps.[^5][^4]
+- Maps are not `Collection`s, but streaming is idiomatic via views like `entrySet()` or `values()`, e.g., `map.entrySet().stream()` with `Collectors.toMap(...)` to rebuild filtered maps.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.Entry.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html)
 
 ```java
 // Map<K,V> -> filter entries -> Map<K,V>
@@ -76,12 +76,12 @@ public class MapStreamDemo {
 }
 ```
 
-- Oracle’s `Map.Entry` docs even show an API note with `map.entrySet().stream().map(Map.Entry::copyOf).toList()` to take a snapshot, reinforcing the entry-stream pattern.[^5]
+- Oracle’s `Map.Entry` docs even show an API note with `map.entrySet().stream().map(Map.Entry::copyOf).toList()` to take a snapshot, reinforcing the entry-stream pattern.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.Entry.html)
 
 
 ## Queue/Deque example
 
-- Queue/Deque types like `ArrayDeque` or `LinkedList` implement `Collection`, so they inherit `stream()`, and a common pattern is to collect into a `Deque` using `Collectors.toCollection(ArrayDeque::new)`.[^6][^1]
+- Queue/Deque types like `ArrayDeque` or `LinkedList` implement `Collection`, so they inherit `stream()`, and a common pattern is to collect into a `Deque` using `Collectors.toCollection(ArrayDeque::new)`.[Stack Overflow](https://stackoverflow.com/questions/50411630/collect-java8-intstream-into-deque-interface)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)
 
 ```java
 // Deque -> filter -> Deque
@@ -99,12 +99,12 @@ public class DequeStreamDemo {
 }
 ```
 
-- Because `Deque` is a `Collection`, the same pipeline patterns apply, and specialized collectors help target specific concrete types when needed.[^1][^6]
+- Because `Deque` is a `Collection`, the same pipeline patterns apply, and specialized collectors help target specific concrete types when needed.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)[Stack Overflow](https://stackoverflow.com/questions/50411630/collect-java8-intstream-into-deque-interface)
 
 
 ## Objects example (custom type)
 
-- Streams shine with domain objects by composing readable filters, mappings, and reductions on `List<Person>` or similar sources.[^2][^4]
+- Streams shine with domain objects by composing readable filters, mappings, and reductions on `List<Person>` or similar sources.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html)
 
 ```java
 // Filter objects, map fields, group results
@@ -136,37 +136,25 @@ public class ObjectStreamDemo {
 }
 ```
 
-- Pipelines use lazy intermediate operations (`filter`, `map`) and run only at a terminal step like `toList()` or `collect(...)`, consuming the stream once.[^2][^4]
+- Pipelines use lazy intermediate operations (`filter`, `map`) and run only at a terminal step like `toList()` or `collect(...)`, consuming the stream once.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html)
 
 > [!TIP]
-> All Java collections expose `stream()` via `Collection`, so the same pipeline style applies across Lists, Sets, and Deques/Queues, while Maps require streaming over `entrySet()`/`keySet()`/`values()` views first.[^1][^5]
+> All Java collections expose `stream()` via `Collection`, so the same pipeline style applies across Lists, Sets, and Deques/Queues, while Maps require streaming over `entrySet()`/`keySet()`/`values()` views first.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.Entry.html)
 
 Tags: \#java \#java/streams \#java/collections \#bestpractices
-See also: [[Java Collections]] [[Design Patterns]][^4][^2]
+See also: [Java Collections](Java%20Collections) [Design Patterns](Design%20Patterns)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)
 
 
-[^1]: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html
 
-[^2]: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html
 
-[^3]: https://stackoverflow.com/questions/65969919/differences-of-java-16s-stream-tolist-and-stream-collectcollectors-tolist
 
-[^4]: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html
 
-[^5]: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.Entry.html
 
-[^6]: https://stackoverflow.com/questions/50411630/collect-java8-intstream-into-deque-interface
 
-[^7]: https://www.baeldung.com/java-8-streams
 
-[^8]: https://bell-sw.com/blog/a-guide-to-java-stream-api/
 
-[^9]: https://mkyong.com/java8/java-8-filter-a-map-examples/
 
-[^10]: https://www.geeksforgeeks.org/java/deque-interface-java-example/
 
-[^11]: https://www.baeldung.com/java-17-new-features
 
-[^12]: https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/util/Map.Entry.html
 
 #java #streams #examples #collections

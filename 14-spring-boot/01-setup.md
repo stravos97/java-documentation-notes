@@ -341,7 +341,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 | `findAll()`          | Get all entities         | `customerRepository.findAll()`                    |
 | `save()`             | Persist or update entity | `customerRepository.save(customer)`               |
 | `delete()`           | Remove entity            | `customerRepository.delete(customer)`             |
-| `findBy[Property]()` | Custom query by property | `customerRepository.findByCompanyName("Test Co")` |
+| `findBy[Property](.md)` | Custom query by property | `customerRepository.findByCompanyName("Test Co")` |
 
 ## Understanding the Runtime Proxy Generation
 
@@ -668,6 +668,6 @@ This Spring Boot application demonstrates professional-grade setup with:
 The key insight is understanding how Spring Boot manages the lifecycle of your objects - creating implementations at runtime, managing dependencies, and handling database connections through configuration rather than explicit code.
 
 > [!NOTE] Further Learning
-> Explore [[Spring Security]], [[Spring REST Docs]], and [[Spring Cloud]] for extending this application with authentication, API documentation, and microservices capabilities.
+> Explore [Spring Security](Spring%20Security), [Spring REST Docs](Spring%20REST%20Docs), and [Spring Cloud](Spring%20Cloud) for extending this application with authentication, API documentation, and microservices capabilities.
 
 #java #spring-boot #setup #dependencies

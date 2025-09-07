@@ -37,7 +37,7 @@ ______________________________________________________________________
 ### For Primitives
 
 
-- Compares **actual values** [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
+- Compares **actual values** [Oracle Docs](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 - Example:
 
 
@@ -55,7 +55,7 @@ System.out.println(a == b); // true
 ### For Objects
 
 
-- Compares **references** (memory addresses) [baeldung](https://www.baeldung.com/java-equals-method-operator-difference)
+- Compares **references** (memory addresses) [Baeldung](https://www.baeldung.com/java-equals-method-operator-difference)
 - Returns `true` only if both references point to the **exact same object**
 - Does NOT compare object contents/values
 
@@ -77,7 +77,7 @@ System.out.println(s1 ==s3); // true
 
 
 - Strings with equal contents may not be the same
-  object: [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
+  object: [Oracle Docs](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 
 
 ```java

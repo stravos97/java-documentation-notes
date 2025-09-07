@@ -1656,10 +1656,10 @@ Remember: SOLID principles are **guidelines, not rules**. Apply them pragmatical
 
 ## Further Learning
 
-- [[Design Patterns]] - Patterns that often emerge from SOLID principles
-- [[Dependency Injection]] - Deep dive into DIP implementation
-- [[Clean Architecture]] - Architectural patterns built on SOLID
-- [[Test-Driven Development]] - How SOLID makes testing easier
+- [Design Patterns](Design%20Patterns) - Patterns that often emerge from SOLID principles
+- [Dependency Injection](Dependency%20Injection) - Deep dive into DIP implementation
+- [Clean Architecture](Clean%20Architecture) - Architectural patterns built on SOLID
+- [Test-Driven Development](Test-Driven%20Development) - How SOLID makes testing easier
 
 ---
 

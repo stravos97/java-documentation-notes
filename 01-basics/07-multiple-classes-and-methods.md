@@ -33,7 +33,7 @@ ______________________________________________________________________
   * [🚀 Summary](#-summary)
   * [**Understanding the `this` Keyword in Java**](#understanding-the-this-keyword-in-java)
     * [**Quick Reference**](#quick-reference)
-    * [1️⃣ Referring to Instance Variables (Shadowed by Parameters)](#1-referring-to-instance-variables-shadowed-by-parameters)
+    * [](Shadowed%20by%20Parameters)](#1-referring-to-instance-variables-shadowed-by-parameters|1️⃣%20Referring%20to%20Instance%20Variables%20(Shadowed%20by%20Parameters))
     * [2️⃣ Invoking Other Constructors in the Same Class](#2-invoking-other-constructors-in-the-same-class)
     * [3️⃣ Returning the Current Object](#3-returning-the-current-object)
     * [4️⃣ Passing the Current Object as a Parameter](#4-passing-the-current-object-as-a-parameter)
@@ -41,7 +41,7 @@ ______________________________________________________________________
     * [6️⃣ `this` in Getters and Setters](#6-this-in-getters-and-setters)
     * [🌟 Summary Table](#-summary-table)
     * [👉 Practical Tips](#-practical-tips)
-  * [Why `public static void main(String[] args)` Is in the Demo Class (Not the Car Class)](#why-public-static-void-mainstring-args-is-in-the-demo-class-not-the-car-class)
+  * [](String[]%20args)`%20Is%20in%20the%20Demo%20Class%20(Not%20the%20Car%20Class)](#why-public-static-void-mainstring-args-is-in-the-demo-class-not-the-car-class|Why%20`public%20static%20void%20main(String[)
     * [**Quick Reference**](#quick-reference-1)
     * [💡 Why Main Is in `CarDemo` Instead of `Car`](#-why-main-is-in-cardemo-instead-of-car)
       * [**Design Principle: Separate Logic from Data**](#design-principle-separate-logic-from-data)
@@ -331,7 +331,7 @@ public class Car {
 
 
 > [!NOTE]
-> `this()` must be the first statement in a constructor.[^5][^1]
+> `this()` must be the first statement in a constructor.[tutorialspoint](https://www.tutorialspoint.com/java-public-static-void-main-string-args)[digitalocean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method)
 
 ______________________________________________________________________
 
@@ -377,7 +377,7 @@ public class Car {
 
 
 > [!USE CASE]
-> Helpful for callback patterns or registration methods.[^1][^5]
+> Helpful for callback patterns or registration methods.[digitalocean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method)[tutorialspoint](https://www.tutorialspoint.com/java-public-static-void-main-string-args)
 
 ______________________________________________________________________
 
@@ -394,7 +394,7 @@ public void displayInfo() {
 ```
 
 
-- Not strictly required; using just `printHeader()` works the same.[^7][^5]
+- Not strictly required; using just `printHeader()` works the same.[YouTube](https://www.youtube.com/watch?v=P-_Nzi_mCRo)[tutorialspoint](https://www.tutorialspoint.com/java-public-static-void-main-string-args)
 
 
 ______________________________________________________________________
@@ -416,7 +416,7 @@ public String getModel() {
 
 
 > [!TIP]
-> Use `this` in setters, especially if parameter and field names overlap.[^2][^6][^5]
+> Use `this` in setters, especially if parameter and field names overlap.[GeeksforGeeks](https://www.geeksforgeeks.org/java/java-main-method-public-static-void-main-string-args/)[GeeksforGeeks](https://www.geeksforgeeks.org/java/understanding-static-in-public-static-void-main-in-java/)[tutorialspoint](https://www.tutorialspoint.com/java-public-static-void-main-string-args)
 
 ______________________________________________________________________
 
@@ -477,7 +477,7 @@ ______________________________________________________________________
 
 > [!TIP]
 > Putting `main` in a separate class (such as `CarDemo`, `Main`, or `App`) keeps your core **object logic clean and
-> reusable**. It separates **application startup code** from **data structures**.[^1][^5]
+> reusable**. It separates **application startup code** from **data structures**.[digitalocean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method)[tutorialspoint](https://www.tutorialspoint.com/java-public-static-void-main-string-args)
 
 ______________________________________________________________________
 
@@ -497,7 +497,7 @@ ______________________________________________________________________
 
 - You **can** put `main` into `Car`, but then `Car.java` is both a data model and an entry point.
 - This **mixes responsibilities** and is not recommended for real-world code.
-- For clarity, scalability, and good design, place `main` in a **dedicated launcher/demo class**.[^3][^5][^1]
+- For clarity, scalability, and good design, place `main` in a **dedicated launcher/demo class**.[Stack Overflow](https://stackoverflow.com/questions/24097806/where-should-i-put-the-public-static-void-mainstring-args-method)[tutorialspoint](https://www.tutorialspoint.com/java-public-static-void-main-string-args)[digitalocean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method)
 
 
 ______________________________________________________________________
@@ -543,7 +543,7 @@ public static void main(String[] args)
 
 > [!INFO]
 > Every Java application must have a class with a `public static void main(String[] args)` method as its entry
-> point.[^2][^5][^1]
+> point.[GeeksforGeeks](https://www.geeksforgeeks.org/java/java-main-method-public-static-void-main-string-args/)[tutorialspoint](https://www.tutorialspoint.com/java-public-static-void-main-string-args)[digitalocean](https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method)
 
 ______________________________________________________________________
 
@@ -562,20 +562,12 @@ Keep `public static void main(String[] args)` in a dedicated, top-level class li
 focused and your project organized and maintainable.
 
 
-[^1]: https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method
 
-[^3]: https://stackoverflow.com/questions/24097806/where-should-i-put-the-public-static-void-mainstring-args-method
 
-[^5]: https://www.tutorialspoint.com/java-public-static-void-main-string-args
 
-[^6]: https://www.geeksforgeeks.org/java/understanding-static-in-public-static-void-main-in-java/
 
-[^7]: https://www.youtube.com/watch?v=P-_Nzi_mCRo
 
-[^2]: https://www.geeksforgeeks.org/java/java-main-method-public-static-void-main-string-args/
 
-[^4]: https://www.reddit.com/r/learnprogramming/comments/5v810b/what_is_public_static_void_mainstring_args/
 
-[^8]: https://study.com/academy/lesson/what-is-public-static-void-main-in-java.html
 
 #java #basics #classes #methods

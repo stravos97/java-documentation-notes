@@ -8,14 +8,14 @@ topic: RESTful API Fundamentals
 
 ### What is a REST API?
 
-**REST** (Representational State Transfer) is an architectural style for building web services that allows different applications to communicate over the internet using standard HTTP protocols. A **RESTful API** follows these principles and provides a standardized way for clients (web browsers, mobile apps, other services) to interact with server resources.[^1][^2][^3]
+**REST** (Representational State Transfer) is an architectural style for building web services that allows different applications to communicate over the internet using standard HTTP protocols. A **RESTful API** follows these principles and provides a standardized way for clients (web browsers, mobile apps, other services) to interact with server resources.[amplication](https://amplication.com/blog/rest-apis-what-why-and-how)[Moesif](https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/)[AWS Docs](https://aws.amazon.com/what-is/restful-api/)
 
 > [!INFO] Key Concept
 > REST APIs treat data as **resources** that can be manipulated using standard HTTP methods, making them predictable and easy to use.
 
 ### The Six Core Principles of REST
 
-REST architecture is built on six fundamental constraints that ensure scalability, reliability, and maintainability:[^2][^4][^1]
+REST architecture is built on six fundamental constraints that ensure scalability, reliability, and maintainability:[Moesif](https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/)[restfulapi](https://restfulapi.net)[amplication](https://amplication.com/blog/rest-apis-what-why-and-how)
 
 #### 1. **Uniform Interface**
 
@@ -24,32 +24,32 @@ All resources follow consistent naming conventions and interaction patterns. Thi
 - **Resource Identification**: Each resource has a unique URI (e.g., `/users/123`)
 - **Resource Manipulation**: Use standard HTTP methods for operations
 - **Self-Descriptive Messages**: Responses contain enough information for processing
-- **HATEOAS**: Include links to related resources[^4][^1]
+- **HATEOAS**: Include links to related resources[restfulapi](https://restfulapi.net)[amplication](https://amplication.com/blog/rest-apis-what-why-and-how)
 
 
 #### 2. **Statelessness**
 
-Each request must contain all necessary information - the server doesn't store client session data between requests. This improves scalability and fault tolerance.[^5][^1][^2]
+Each request must contain all necessary information - the server doesn't store client session data between requests. This improves scalability and fault tolerance.[dreamfactory](https://blog.dreamfactory.com/rest-apis-an-overview-of-basic-principles)[amplication](https://amplication.com/blog/rest-apis-what-why-and-how)[Moesif](https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/)
 
 #### 3. **Client-Server Separation**
 
-Clear separation allows both sides to evolve independently as long as the interface remains consistent.[^2][^5]
+Clear separation allows both sides to evolve independently as long as the interface remains consistent.[Moesif](https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/)[dreamfactory](https://blog.dreamfactory.com/rest-apis-an-overview-of-basic-principles)
 
 #### 4. **Cacheability**
 
-Responses should be cacheable when possible to improve performance and reduce server load.[^1][^2]
+Responses should be cacheable when possible to improve performance and reduce server load.[amplication](https://amplication.com/blog/rest-apis-what-why-and-how)[Moesif](https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/)
 
 #### 5. **Layered System**
 
-Architecture can include multiple layers (load balancers, proxies, gateways) without affecting client-server communication.[^2]
+Architecture can include multiple layers (load balancers, proxies, gateways) without affecting client-server communication.[Moesif](https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/)
 
 #### 6. **Code on Demand** (Optional)
 
-Servers can send executable code to extend client functionality, though this is rarely used.[^2]
+Servers can send executable code to extend client functionality, though this is rarely used.[Moesif](https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/)
 
 ### HTTP Methods: The CRUD Operations
 
-REST APIs use standard HTTP methods to perform operations on resources. These map to CRUD (Create, Read, Update, Delete) operations:[^6][^7][^8][^9]
+REST APIs use standard HTTP methods to perform operations on resources. These map to CRUD (Create, Read, Update, Delete) operations:[linkedin](https://www.linkedin.com/pulse/http-methods-explained-understanding-get-post-put-delete-shaaban-nqyyf)[Apidog Blog](https://apidog.com/blog/http-methods/)[API7 Learning Center](https://api7.ai/learning-center/api-101/http-methods-in-apis)[Reddit](https://www.reddit.com/r/learnprogramming/comments/zrzyyu/understanding_crud_rest_api_get_put_post_delete/)
 
 
 | HTTP Method | CRUD Operation | Purpose | Idempotent |
@@ -114,7 +114,7 @@ public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
 
 ### HTTP Status Codes
 
-Status codes communicate the outcome of API requests:[^10][^11][^12][^13]
+Status codes communicate the outcome of API requests:[umbraco](https://umbraco.com/knowledge-base/http-status-codes/)[Moesif](https://www.moesif.com/blog/technical/api-design/Which-HTTP-Status-Code-To-Use-For-Every-CRUD-App/)[restfulapi](https://restfulapi.net/http-status-codes/)[OpenAPI](https://openapi.com/blog/status-codes-rest-api)
 
 #### Success Codes (2xx)
 
@@ -141,7 +141,7 @@ Status codes communicate the outcome of API requests:[^10][^11][^12][^13]
 
 ### Data Format: JSON
 
-REST APIs commonly use **JSON** (JavaScript Object Notation) for data exchange because it's lightweight, human-readable, and language-independent.[^14][^15][^16][^17]
+REST APIs commonly use **JSON** (JavaScript Object Notation) for data exchange because it's lightweight, human-readable, and language-independent.[hcl-software](https://help.hcl-software.com/onedb/2.0.1/rest/rest_011.html)[JSON:API](https://jsonapi.org)[stackoverflow](https://stackoverflow.blog/2022/06/02/a-beginners-guide-to-json-the-data-format-for-the-internet/)[JSON:API](https://jsonapi.org/examples/)
 
 **Example JSON Response:**
 
@@ -164,7 +164,7 @@ REST APIs commonly use **JSON** (JavaScript Object Notation) for data exchange b
 
 ### Authentication Methods
 
-REST APIs use various authentication mechanisms to secure endpoints:[^18][^19][^20]
+REST APIs use various authentication mechanisms to secure endpoints:[frugaltesting](https://www.frugaltesting.com/blog/handling-authentication-in-rest-assured-oauth-jwt-and-more)[Zuplo](https://zuplo.com/learning-center/top-7-api-authentication-methods-compared)[Knowi Blog](https://www.knowi.com/blog/4-ways-of-rest-api-authentication-methods/)
 
 #### 1. **API Keys**
 
@@ -194,11 +194,11 @@ public List<User> getUsers(@RequestHeader("Authorization") String token) {
 
 #### 3. **OAuth 2.0**
 
-Industry standard for secure authorization, especially for third-party integrations.[^19][^18]
+Industry standard for secure authorization, especially for third-party integrations.[Zuplo](https://zuplo.com/learning-center/top-7-api-authentication-methods-compared)[frugaltesting](https://www.frugaltesting.com/blog/handling-authentication-in-rest-assured-oauth-jwt-and-more)
 
 ### REST API Naming Conventions
 
-Following consistent naming conventions improves API usability and maintainability:[^21][^22][^23]
+Following consistent naming conventions improves API usability and maintainability:[dreamfactory](https://blog.dreamfactory.com/best-practices-for-naming-rest-api-endpoints)[Moesif](https://www.moesif.com/blog/technical/api-development/The-Ultimate-Guide-to-REST-API-Naming-Convention/)[TheServerSide](https://www.theserverside.com/video/Top-REST-API-URL-naming-convention-standards)
 
 #### Best Practices
 
@@ -220,7 +220,7 @@ Following consistent naming conventions improves API usability and maintainabili
 
 ### Complete Spring Boot Example
 
-Here's a practical REST API implementation using Spring Boot:[^24][^25][^26][^27]
+Here's a practical REST API implementation using Spring Boot:[GeeksforGeeks](https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/)[GeeksforGeeks](https://www.geeksforgeeks.org/springboot/spring-boot-rest-example/)[Spring Guides](https://spring.io/guides/gs/rest-service)[PW Skills](https://pwskills.com/blog/spring-boot-rest-api-tutorial-best-practices-and-examples/)
 
 ```java
 @RestController
@@ -278,17 +278,17 @@ public class UserController {
 ### REST API Best Practices
 
 > [!TIP] Performance Tips
-> - Use appropriate **caching headers** (ETag, Cache-Control)[^28][^29]
+> - Use appropriate **caching headers** (ETag, Cache-Control)[Dev.to](https://dev.to/mohamed_el_laithy/key-best-practices-for-api-design-in-java-44le)[JavaPro](https://javapro.io/2025/06/04/best-practices-for-api-design-in-java/)
 > - Implement **pagination** for large datasets
 > - Use **compression** (gzip) for responses
-> - Validate input using **@Valid** annotations[^28]
+> - Validate input using **@Valid** annotations[Dev.to](https://dev.to/mohamed_el_laithy/key-best-practices-for-api-design-in-java-44le)
 
 > [!WARNING] Security Considerations
 > - Always use **HTTPS** in production
 > - Implement proper **authentication and authorization**
 > - Validate and sanitize all inputs
 > - Use **rate limiting** to prevent abuse
-> - Never expose sensitive data in error messages[^29][^28]
+> - Never expose sensitive data in error messages[JavaPro](https://javapro.io/2025/06/04/best-practices-for-api-design-in-java/)[Dev.to](https://dev.to/mohamed_el_laithy/key-best-practices-for-api-design-in-java-44le)
 
 #### Error Handling
 
@@ -362,68 +362,36 @@ GET    /api/v1/orders/{id}/items     // Get items in specific order
 RESTful APIs provide a powerful, standardized way to build scalable web services. By following these principles and best practices, you'll create APIs that are intuitive, maintainable, and easy for other developers to consume.
 
 
-[^1]: https://amplication.com/blog/rest-apis-what-why-and-how
 
-[^2]: https://www.moesif.com/blog/technical/api-development/Rest-API-Tutorial-A-Complete-Beginners-Guide/
 
-[^3]: https://aws.amazon.com/what-is/restful-api/
 
-[^4]: https://restfulapi.net
 
-[^5]: https://blog.dreamfactory.com/rest-apis-an-overview-of-basic-principles
 
-[^6]: https://www.linkedin.com/pulse/http-methods-explained-understanding-get-post-put-delete-shaaban-nqyyf
 
-[^7]: https://apidog.com/blog/http-methods/
 
-[^8]: https://api7.ai/learning-center/api-101/http-methods-in-apis
 
-[^9]: https://www.reddit.com/r/learnprogramming/comments/zrzyyu/understanding_crud_rest_api_get_put_post_delete/
 
-[^10]: https://umbraco.com/knowledge-base/http-status-codes/
 
-[^11]: https://www.moesif.com/blog/technical/api-design/Which-HTTP-Status-Code-To-Use-For-Every-CRUD-App/
 
-[^12]: https://restfulapi.net/http-status-codes/
 
-[^13]: https://openapi.com/blog/status-codes-rest-api
 
-[^14]: https://help.hcl-software.com/onedb/2.0.1/rest/rest_011.html
 
-[^15]: https://jsonapi.org
 
-[^16]: https://stackoverflow.blog/2022/06/02/a-beginners-guide-to-json-the-data-format-for-the-internet/
 
-[^17]: https://jsonapi.org/examples/
 
-[^18]: https://www.frugaltesting.com/blog/handling-authentication-in-rest-assured-oauth-jwt-and-more
 
-[^19]: https://zuplo.com/learning-center/top-7-api-authentication-methods-compared
 
-[^20]: https://www.knowi.com/blog/4-ways-of-rest-api-authentication-methods/
 
-[^21]: https://blog.dreamfactory.com/best-practices-for-naming-rest-api-endpoints
 
-[^22]: https://www.moesif.com/blog/technical/api-development/The-Ultimate-Guide-to-REST-API-Naming-Convention/
 
-[^23]: https://www.theserverside.com/video/Top-REST-API-URL-naming-convention-standards
 
-[^24]: https://www.geeksforgeeks.org/advance-java/easiest-way-to-create-rest-api-using-spring-boot/
 
-[^25]: https://www.geeksforgeeks.org/springboot/spring-boot-rest-example/
 
-[^26]: https://spring.io/guides/gs/rest-service
 
-[^27]: https://pwskills.com/blog/spring-boot-rest-api-tutorial-best-practices-and-examples/
 
-[^28]: https://dev.to/mohamed_el_laithy/key-best-practices-for-api-design-in-java-44le
 
-[^29]: https://javapro.io/2025/06/04/best-practices-for-api-design-in-java/
 
-[^30]: https://www.youtube.com/watch?v=pJ83mmqcvoQ
 
-[^31]: https://www.lonti.com/blog/understanding-http-methods-in-rest-api-development
 
-[^32]: https://restfulapi.net/http-methods/
 
 #java #rest #api #http #principles

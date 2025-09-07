@@ -4,11 +4,9 @@ date: 2025-09-04
 topic: Java '::' Method References in Streams
 ---
 
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
+# Java '::' Method References in Streams
 
-# go over these in streams: Go over what :: does in streams
-
-[name of class]::[method being used ]
+Syntax: `ClassName::methodName`
 
 The :: operator in Java is a method reference: a compact way to pass an existing method (or constructor) wherever a functional interface is expected in streams, often replacing lambdas like x -> x.method() for clarity. In short, it says “use this existing method here,” letting the stream pipeline supply the arguments and handle invocation.
 
@@ -19,9 +17,9 @@ The :: operator in Java is a method reference: a compact way to pass an existing
 
 ```mermaid
 graph LR
-  A[Stream<T>] --> B[map(String::toUpperCase)]
-  B --> C[filter(Objects::nonNull)]
-  C --> D[forEach(System.out::println)]
+  A["Stream<T>"] --> B["map(String::toUpperCase)"]
+  B --> C["filter(Objects::nonNull)"]
+  C --> D["forEach(System.out::println)"]
 ```
 
 > [!NOTE]
@@ -76,7 +74,7 @@ Deque<String> dq = List.of("a", "b", "c").stream()
 record Person(String name, int age) {}
 List<Person> people = List.of("Ada:36", "Babbage:45").stream()
     .map(s -> s.split(":"))
-    .map(parts -> new Person(parts[^0], Integer.parseInt(parts[^1]))) // or Person::new if signature fits
+    .map(parts -> new Person(parts[0], Integer.parseInt(parts[1]))) // or Person::new if signature fits
     .toList();
 
 // Array constructor for toArray
@@ -84,7 +82,7 @@ Person[] array = people.stream().toArray(Person[]::new);
 ```
 
 
-## Reading the syntax [NameOfClass]::[method]
+## Reading the Syntax
 
 - If the left side is a class and the method is static, it maps to a static call: x -> Class.method(x).
 - If the left side is an instance (object), it binds that receiver: x -> instance.method(x).
@@ -149,15 +147,15 @@ public class StreamMethodRefExamples {
 ```
 
 
-## Argument binding rules (mental model)
+## Argument Binding Rules (Mental Model)
 
-- Static: Function<T,R> f = Class::staticMethod  ≈  (t) -> Class.staticMethod(t)
-- Unbound instance: BiFunction<T,U,R> f = T::instMethod  ≈  (t,u) -> t.instMethod(u)
-- Bound instance: Function<U,R> f = instance::instMethod  ≈  (u) -> instance.instMethod(u)
-- Constructor: Supplier<T> g = T::new  ≈  () -> new T()  and  IntFunction<T[]> h = T[]::new  ≈  (n) -> new T[n]
+- Static: `Function<T,R> f = Class::staticMethod` ≈ `(t) -> Class.staticMethod(t)`
+- Unbound instance: `BiFunction<T,U,R> f = T::instMethod` ≈ `(t,u) -> t.instMethod(u)`
+- Bound instance: `Function<U,R> f = instance::instMethod` ≈ `(u) -> instance.instMethod(u)`
+- Constructor: `Supplier<T> g = T::new` ≈ `() -> new T()` and `IntFunction<T[]> h = T[]::new` ≈ `(n) -> new T[n]`
 
 
-## When to use vs lambda
+## When to Use vs Lambda
 
 - Prefer a method reference when a lambda would only call an existing method—readability increases and intent is clearer.
 - Stick with a lambda when extra logic is needed (multiple method calls, conditions, local variables), or when overload resolution gets ambiguous and a cast would hurt clarity.
@@ -168,38 +166,22 @@ public class StreamMethodRefExamples {
 > [!WARNING]
 > A method reference inherits any checked exceptions from the referenced method; wrap or handle as needed in the stream pipeline.
 
-## Quick reference
+## Quick Reference
 
-markdown| Purpose | Method reference | Lambda equivalent
-|---|---|---|
-| Map strings to lengths | String::length | s -> s.length() |
-| Parse integers | Integer::parseInt | s -> Integer.parseInt(s) |
-| Print each element | System.out::println | x -> System.out.println(x) |
-| Sort with comparator | Person::compareByAge | (a,b) -> Person.compareByAge(a,b) |
-| Sum integers | Integer::sum | (a,b) -> Integer.sum(a,b) |
-| New collection in collector | ArrayDeque::new | () -> new ArrayDeque<>() |
-| To array | Person[]::new | n -> new Person[n] |
+| Purpose                     | Method reference       | Lambda equivalent                  |
+|-----------------------------|------------------------|------------------------------------|
+| Map strings to lengths      | `String::length`       | `s -> s.length()`                  |
+| Parse integers              | `Integer::parseInt`    | `s -> Integer.parseInt(s)`         |
+| Print each element          | `System.out::println`  | `x -> System.out.println(x)`       |
+| Sort with comparator        | `Person::compareByAge` | `(a,b) -> Person.compareByAge(a,b)`|
+| Sum integers                | `Integer::sum`         | `(a,b) -> Integer.sum(a,b)`        |
+| New collection in collector | `ArrayDeque::new`      | `() -> new ArrayDeque<>()`         |
+| To array                    | `Person[]::new`        | `n -> new Person[n]`               |
 
-Tags: \#java \#java/streams \#java/methodreferences \#bestpractices
-See also: [[Java Collections]] [[Design Patterns]]
+## See Also
 
+- [[Java Collections]]
+- [[Design Patterns]]
 
-[^1]: https://codefinity.com/courses/v2/190d2568-3d25-44d0-832f-da03468004c9/c0bcd017-ff39-46ec-bc93-acd569f3497d/f79fe204-c582-4430-9d5e-d6b6377d741e
-
-[^2]: https://www.baeldung.com/java-method-references
-
-[^3]: https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html
-
-[^4]: https://www.geeksforgeeks.org/java/java-method-references/
-
-[^5]: http://hackajob.com/talent/blog/using-method-references-in-java-8
-
-[^6]: https://dev.to/ggorantala/what-are-java-method-references-and-kinds-of-method-references-available-d34
-
-[^7]: https://stackoverflow.com/questions/38875031/mapping-java-8-stream-to-elements-method-reference
-
-[^8]: https://javatechonline.com/method-reference-in-java-8/
-
-[^9]: https://stackify.com/streams-guide-java-8/
 
 #java #streams #method-references

@@ -20,21 +20,21 @@ ______________________________________________________________________
     * [🚦 Best Practices](#-best-practices)
     * [👉 Summary](#-summary)
   * [How Does the `this` Keyword Call Another Constructor in the Same Class?](#how-does-the-this-keyword-call-another-constructor-in-the-same-class)
-    * [**Understanding Constructor Chaining with `this()`**](#understanding-constructor-chaining-with-this)
+    * []()`**](#understanding-constructor-chaining-with-this|**Understanding%20Constructor%20Chaining%20with%20`this()`**)
     * [🛠️ How It Works: Example](#-how-it-works-example)
     * [📖 Step-by-Step: What Happens?](#-step-by-step-what-happens)
     * [🎯 Why Use Constructor Chaining?](#-why-use-constructor-chaining)
     * [🚦 Key Rules](#-key-rules)
-  * [How Does `this()` Reference Another Constructor?](#how-does-this-reference-another-constructor)
-    * [**Key Point: `this()` Is an Explicit Constructor Call**](#key-point-this-is-an-explicit-constructor-call)
+  * []()`%20Reference%20Another%20Constructor?](#how-does-this-reference-another-constructor|How%20Does%20`this()`%20Reference%20Another%20Constructor?)
+    * []()`%20Is%20an%20Explicit%20Constructor%20Call**](#key-point-this-is-an-explicit-constructor-call|**Key%20Point:%20`this()`%20Is%20an%20Explicit%20Constructor%20Call**)
     * [📝 Example](#-example)
     * [🔎 What’s Actually Happening?](#-whats-actually-happening)
     * [📢 Why It Looks “Invisible”](#-why-it-looks-invisible)
     * [🚦 Rules Recap](#-rules-recap)
-  * [Difference Between a Class Constructor and the `public static void main(String[] args)` Method](#difference-between-a-class-constructor-and-the-public-static-void-mainstring-args-method)
+  * [](String[]%20args)`%20Method](#difference-between-a-class-constructor-and-the-public-static-void-mainstring-args-method|Difference%20Between%20a%20Class%20Constructor%20and%20the%20`public%20static%20void%20main(String[)
     * [**Quick Reference Table**](#quick-reference-table)
     * [🛠️ What Is a Constructor?](#-what-is-a-constructor)
-    * [🕹️ What Is `public static void main(String[] args)`?](#-what-is-public-static-void-mainstring-args)
+    * [](String[]%20args)`?](#-what-is-public-static-void-mainstring-args|🕹️%20What%20Is%20`public%20static%20void%20main(String[)
     * [🚦 Key Differences](#-key-differences)
 <!-- TOC -->
 
@@ -98,14 +98,14 @@ public class Car {
 
 
 - Sometimes constructors perform different setup routines—a class might be initialized from a file, a database, or with
-  default values.[^1]
+  default values.[GeeksforGeeks](https://www.geeksforgeeks.org/java/constructor-chaining-java-examples/)
 
 
 #### **4️⃣ Support for Frameworks/Tools**
 
 
 - Many Java frameworks (e.g., Hibernate) and tools require a **no-argument (default) constructor** for reflection or
-  serialization.[^7][^1]
+  serialization.[boardinfinity](https://www.boardinfinity.com/blog/constructor-chaining-in-java/)[GeeksforGeeks](https://www.geeksforgeeks.org/java/constructor-chaining-java-examples/)
 
 
 ______________________________________________________________________
@@ -149,7 +149,7 @@ ______________________________________________________________________
 
 - **Multiple constructors make classes easier and safer to use in different situations**.
 - This keeps code flexible, readable, and compatible with Java frameworks that might require a specific constructor
-  signature.[^6][^8][^7]
+  signature.[scientecheasy](https://www.scientecheasy.com/2020/06/java-constructor-chaining.html/)[beginnersbook](https://beginnersbook.com/2013/12/java-constructor-chaining-with-example/)[boardinfinity](https://www.boardinfinity.com/blog/constructor-chaining-in-java/)
 
 
 ______________________________________________________________________
@@ -174,7 +174,7 @@ ______________________________________________________________________
   fields).
 - The syntax **must appear as the first line** in the constructor.
 - This allows you to reuse initialization logic, avoid code duplication, and offer flexible ways to create
-  objects.[^1][^2][^6][^7]
+  objects.[GeeksforGeeks](https://www.geeksforgeeks.org/java/constructor-chaining-java-examples/)[Baeldung](https://www.baeldung.com/java-chain-constructors)[scientecheasy](https://www.scientecheasy.com/2020/06/java-constructor-chaining.html/)[boardinfinity](https://www.boardinfinity.com/blog/constructor-chaining-in-java/)
 
 
 ______________________________________________________________________
@@ -226,7 +226,7 @@ ______________________________________________________________________
 
 - **Centralizes** your initialization logic—reduces bugs and duplication
 - Allows you to provide **multiple ways to create** an object (flexibility)
-- Follows a "one place to initialize everything" principle, which is a good object-oriented practice[^2][^4][^6][^7][^1]
+- Follows a "one place to initialize everything" principle, which is a good object-oriented practice[Baeldung](https://www.baeldung.com/java-chain-constructors)[dzone](https://dzone.com/articles/constructor-chaining-java-guide)[scientecheasy](https://www.scientecheasy.com/2020/06/java-constructor-chaining.html/)[boardinfinity](https://www.boardinfinity.com/blog/constructor-chaining-in-java/)[GeeksforGeeks](https://www.geeksforgeeks.org/java/constructor-chaining-java-examples/)
 
 
 ______________________________________________________________________
@@ -331,7 +331,7 @@ ______________________________________________________________________
 
 > [!EXAMPLE]
 > If you write `this("foo")`, Java literally jumps to the constructor in the same class that accepts a single `String`
-> argument.[^1][^2][^3][^5][^6]
+> argument.[GeeksforGeeks](https://www.geeksforgeeks.org/java/constructor-chaining-java-examples/)[Baeldung](https://www.baeldung.com/java-chain-constructors)[scaler](https://www.scaler.com/topics/constructor-chaining-in-java/)[tutorialspoint](https://www.tutorialspoint.com/constructor-chaining-in-java-programming)[scientecheasy](https://www.scientecheasy.com/2020/06/java-constructor-chaining.html/)
 
 ______________________________________________________________________
 
@@ -421,7 +421,7 @@ ______________________________________________________________________
 - **main() method:**
 	- Runs *only once* when the program starts.
 	- Used to execute the *program logic or test/demo code*.
-	- Is static; not tied to object creation—no object required.[^1][^2][^3]
+	- Is static; not tied to object creation—no object required.[GeeksforGeeks](https://www.geeksforgeeks.org/java/constructor-chaining-java-examples/)[Baeldung](https://www.baeldung.com/java-chain-constructors)[scaler](https://www.scaler.com/topics/constructor-chaining-in-java/)
 
 
 ______________________________________________________________________
@@ -437,22 +437,13 @@ A **constructor** sets up an object when you create it. The **main** method is w
 program—it's not for objects but for launching application logic. Both serve essential—very different—roles in any Java
 application!
 
-[^1]: https://www.geeksforgeeks.org/java/constructor-chaining-java-examples/
 
-[^7]: https://www.boardinfinity.com/blog/constructor-chaining-in-java/
 
-[^6]: https://www.scientecheasy.com/2020/06/java-constructor-chaining.html/
 
-[^8]: https://beginnersbook.com/2013/12/java-constructor-chaining-with-example/
 
-[^2]: https://www.baeldung.com/java-chain-constructors
 
-[^3]: https://www.scaler.com/topics/constructor-chaining-in-java/
 
-[^4]: https://dzone.com/articles/constructor-chaining-java-guide
 
-[^5]: https://www.tutorialspoint.com/constructor-chaining-in-java-programming
 
-[^9]: https://neoquant.com/blog/what-is-constructor-chaining-in-java-2025-guide/
 
 #java #oop #constructors #overloading

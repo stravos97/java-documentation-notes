@@ -31,7 +31,7 @@ topic: Java Data Types, Wrapper Classes, and Basic Concepts
 
 ### Integer and Boolean Wrapper Classes (Expanded)
 
-**Integer** wraps the primitive `int` so you can use an integer where objects are needed—for example, in [[Java Collections]] like `List<Integer>`. It also provides useful static methods (`parseInt`, `toString`, `max`, `min`, `sum`) and constants (`MIN_VALUE`, `MAX_VALUE`).
+**Integer** wraps the primitive `int` so you can use an integer where objects are needed—for example, in [Java Collections](Java%20Collections) like `List<Integer>`. It also provides useful static methods (`parseInt`, `toString`, `max`, `min`, `sum`) and constants (`MIN_VALUE`, `MAX_VALUE`).
 
 ```java
 Integer age = Integer.valueOf(17);      // Best practice: use valueOf()
@@ -463,9 +463,9 @@ System.out.println(add(3, 4));
 
 ## Related Notes
 
-- [[Java Collections Framework]]
-- [[Design Patterns]]
-- [[Lambda and Streams]]
-- [[Error and Exception Handling]]
+- [Java Collections Framework](Java%20Collections%20Framework)
+- [Design Patterns](Design%20Patterns)
+- [Lambda and Streams](Lambda%20and%20Streams)
+- [Error and Exception Handling](Error%20and%20Exception%20Handling)
 
 #java #basics #data-types #primitives #wrappers

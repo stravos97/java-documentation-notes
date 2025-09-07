@@ -150,7 +150,7 @@ public class Example {
 ## Obsidian Compatibility Requirements
 
 ### Internal Linking
-- Use `[[Link Text]]` format for internal references
+- Use `[Link Text](Link%20Text)` format for internal references
 - Ensure linked files exist or are clearly identified as future content
 - Use descriptive link text
 
@@ -210,7 +210,7 @@ Before finalizing any educational Java markdown file:
 - [ ] Obsidian callouts use proper syntax
 - [ ] Tables have proper alignment and headers
 - [ ] Section separators use `***`
-- [ ] Internal links use `[[]]` format
+- [ ] Internal links use `[02-claude](.md)` format
 - [ ] Mermaid diagrams render correctly
 - [ ] All technical information is accurate
 - [ ] Content is educationally comprehensive

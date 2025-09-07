@@ -46,7 +46,7 @@ topic: Java, Keywords, Overview
 > [!NOTE]
 > **Java keywords** are reserved words with special meaning in the Java language. They cannot be used as identifiers
 > (like variable or method
-> names). [Oracle Java Language Specification](https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.9)
+> names). [](https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.9)
 > As of Java 21, there are 53 keywords, plus some reserved but unused and "literal" values.
 
 ______________________________________________________________________

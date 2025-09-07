@@ -284,20 +284,12 @@ class ReportTask extends Task {
 \#java \#java/oop \#java/abstraction \#abstract-class \#bestpractices
 
 
-[^1]: https://herovired.com/learning-hub/blogs/difference-between-abstract-class-and-interface/
 
-[^2]: https://www.geeksforgeeks.org/java/difference-between-abstract-class-and-interface-in-java/
 
-[^3]: https://stackoverflow.com/questions/18777989/how-should-i-have-explained-the-difference-between-an-interface-and-an-abstract
 
-[^4]: https://www.reddit.com/r/java/comments/2jgbzh/what_is_the_difference_between_an_interface_and/
 
-[^5]: https://www.digitalocean.com/community/tutorials/difference-between-abstract-class-and-interface-in-java
 
-[^6]: https://www.baeldung.com/java-interface-vs-abstract-class
 
-[^7]: https://www.theknowledgeacademy.com/blog/abstract-class-vs-interface-java/
 
-[^8]: https://www.youtube.com/watch?v=PPZ_vZcF2AU
 
 #java #oop #abstract-classes

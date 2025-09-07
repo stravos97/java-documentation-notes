@@ -48,7 +48,7 @@ topic: JUnit Testing Coverage Analysis
 
 #### `@Test`
 
-The fundamental annotation that marks a method as a test case.[^4][^5]
+The fundamental annotation that marks a method as a test case.[learnjavaskills](https://www.learnjavaskills.in/2023/10/ultimate-guide-to-JUnit-5-annotations.html)[dzone](https://dzone.com/articles/beginners-guide-to-junit-5)
 
 ```java
 @Test
@@ -60,7 +60,7 @@ void shouldCalculateCorrectSum() {
 
 #### `@DisplayName`
 
-Provides readable names for tests and test classes.[^6][^4]
+Provides readable names for tests and test classes.[devqa](https://devqa.io/junit-5-annotations/)[learnjavaskills](https://www.learnjavaskills.in/2023/10/ultimate-guide-to-JUnit-5-annotations.html)
 
 ```java
 @DisplayName("Calculator Operations")
@@ -81,7 +81,7 @@ class CalculatorTests {
 
 #### `@BeforeAll` / `@AfterAll`
 
-Execute **once** before/after **all** test methods in the class.[^7][^8][^5]
+Execute **once** before/after **all** test methods in the class.[HowToDoInJava](https://howtodoinjava.com/junit5/junit-5-test-lifecycle/)[arhohuttunen](https://www.arhohuttunen.com/junit-5-test-lifecycle/)[dzone](https://dzone.com/articles/beginners-guide-to-junit-5)
 
 ```java
 class DatabaseTests {
@@ -102,7 +102,7 @@ class DatabaseTests {
 
 #### `@BeforeEach` / `@AfterEach`
 
-Execute **before/after each** individual test method.[^8][^7][^6]
+Execute **before/after each** individual test method.[arhohuttunen](https://www.arhohuttunen.com/junit-5-test-lifecycle/)[HowToDoInJava](https://howtodoinjava.com/junit5/junit-5-test-lifecycle/)[devqa](https://devqa.io/junit-5-annotations/)
 
 ```java
 class UserServiceTests {
@@ -142,7 +142,7 @@ class UserServiceTests {
 
 #### `@ValueSource`
 
-Tests with single parameter values.[^9][^10][^11]
+Tests with single parameter values.[applitools](https://testautomationu.applitools.com/junit5-tutorial/chapter5.html)[petrikainulainen](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-parameterized-tests/)[reflectoring](https://reflectoring.io/tutorial-junit5-parameterized-tests/)
 
 ```java
 @ParameterizedTest
@@ -162,7 +162,7 @@ void shouldContainOnlyLetters(String word) {
 
 #### `@CsvSource`
 
-Tests with multiple parameters using CSV format.[^10][^12][^13][^9]
+Tests with multiple parameters using CSV format.[petrikainulainen](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-parameterized-tests/)[mikemybytes](https://mikemybytes.com/2021/10/19/parameterize-like-a-pro-with-junit-5-csvsource/)[arhohuttunen](https://www.arhohuttunen.com/junit-5-parameterized-tests/)[applitools](https://testautomationu.applitools.com/junit5-tutorial/chapter5.html)
 
 ```java
 @ParameterizedTest
@@ -189,7 +189,7 @@ void getGreeting_ReturnsAppropriateGreeting(String expected, int time) {
 ```
 
 > [!EXAMPLE] Your Code Pattern
-> From your `AppTest.java`, you effectively combined multiple approaches:[^3]
+> From your `AppTest.java`, you effectively combined multiple approaches:[GitHub](https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/oop/AnimalTests.java)
 > ```java > @ParameterizedTest > @CsvSource({ >     "Good evening!, 2", >     "Good morning!, 8",  >     "Good afternoon!, 15", >     "Good evening!, 21" > }) > void givenATime_Greeting_ReturnsAnAppropriateGreeting(String expected, int time) { >     Assertions.assertEquals(expected, App.getGreeting(time)); > } > ```
 
 ***
@@ -200,7 +200,7 @@ void getGreeting_ReturnsAppropriateGreeting(String expected, int time) {
 
 #### Using `assertThrows()`
 
-The modern JUnit 5 approach for exception testing.[^14][^15][^16][^17]
+The modern JUnit 5 approach for exception testing.[Codefinity](https://codefinity.com/courses/v2/455bd504-41cd-4fd0-98b7-9f3ee575d21a/7425cfcb-65fa-4ed7-b6b5-510ed254606b/a76141f4-e307-4716-b78b-43d70eeda46d)[junit](https://docs.junit.org/current/user-guide/)[digitalocean](https://www.digitalocean.com/community/tutorials/junit-assert-exception-expected)[Stack Overflow](https://stackoverflow.com/questions/40268446/junit-5-how-to-assert-an-exception-is-thrown)
 
 ```java
 @Test
@@ -245,7 +245,7 @@ void shouldHandleVariousExceptions() {
 
 ### Why Use Hamcrest?
 
-Hamcrest provides more **readable** and **expressive** assertions compared to standard JUnit assertions.[^18][^19][^20][^21]
+Hamcrest provides more **readable** and **expressive** assertions compared to standard JUnit assertions.[vogella](https://www.vogella.com/tutorials/Hamcrest/article.html)[Stack Overflow](https://stackoverflow.com/questions/27256429/is-org-junit-assert-assertthat-better-than-org-hamcrest-matcherassert-assertthat)[petrikainulainen](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-assertions-with-hamcrest/)[kloia](https://www.kloia.com/blog/better-unit-testing-with-hamcrest)
 
 #### Traditional JUnit vs Hamcrest
 
@@ -340,7 +340,7 @@ void combinedMatchers() {
 
 > [!INFO] Import Statement
 > Always use: `import static org.hamcrest.MatcherAssert.assertThat;`
-> JUnit 5 doesn't include its own `assertThat` method.[^20]
+> JUnit 5 doesn't include its own `assertThat` method.[petrikainulainen](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-assertions-with-hamcrest/)
 
 ***
 
@@ -348,7 +348,7 @@ void combinedMatchers() {
 
 ### Test Method Naming Conventions
 
-Based on industry practices, here are effective naming strategies:[^22][^23][^24]
+Based on industry practices, here are effective naming strategies:[jonasg](https://jonasg.io/posts/subtle-art-of-java-test-method-naming/)[dzone](https://dzone.com/articles/7-popular-unit-test-naming)[softwaretestingmagazine](https://www.softwaretestingmagazine.com/knowledge/how-to-choose-the-right-name-for-unit-tests/)
 
 #### **Convention 1: `MethodName_StateUnderTest_ExpectedBehavior`**
 
@@ -448,7 +448,7 @@ class DatabaseTests {
 ```
 
 > [!WARNING] Static State Issues
-> Static fields maintain state between tests, which can cause **test interference**. Use them only for expensive resources that truly need to be shared.[^25]
+> Static fields maintain state between tests, which can cause **test interference**. Use them only for expensive resources that truly need to be shared.[Stack Overflow](https://stackoverflow.com/questions/22677467/junit-do-static-classes-maintain-state-between-test-classes)
 
 ***
 
@@ -456,7 +456,7 @@ class DatabaseTests {
 
 ### System Under Test (SUT) Pattern
 
-Your code demonstrates the SUT pattern effectively:[^2][^1][^3]
+Your code demonstrates the SUT pattern effectively:[GitHub](https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/exceptions/AnimalTests.java)[GitHub](https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/controlflows/SelectionTests.java)[GitHub](https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/oop/AnimalTests.java)
 
 ```java
 class CalculatorTests {
@@ -547,7 +547,7 @@ import static org.hamcrest.Matchers.*;
 
 ## What You've Mastered
 
-Based on your code analysis, you've successfully demonstrated:[^1][^2][^3]
+Based on your code analysis, you've successfully demonstrated:[GitHub](https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/controlflows/SelectionTests.java)[GitHub](https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/exceptions/AnimalTests.java)[GitHub](https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/oop/AnimalTests.java)
 
 ✅ **Core JUnit 5 annotations and lifecycle management**
 ✅ **Parameterized testing with multiple data sources**
@@ -571,96 +571,50 @@ Consider expanding your testing knowledge with:
 Your current foundation provides an excellent base for these advanced topics!
 
 
-[^1]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/controlflows/SelectionTests.java
 
-[^2]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/exceptions/AnimalTests.java
 
-[^3]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/oop/AnimalTests.java
 
-[^4]: https://www.learnjavaskills.in/2023/10/ultimate-guide-to-JUnit-5-annotations.html
 
-[^5]: https://dzone.com/articles/beginners-guide-to-junit-5
 
-[^6]: https://devqa.io/junit-5-annotations/
 
-[^7]: https://howtodoinjava.com/junit5/junit-5-test-lifecycle/
 
-[^8]: https://www.arhohuttunen.com/junit-5-test-lifecycle/
 
-[^9]: https://testautomationu.applitools.com/junit5-tutorial/chapter5.html
 
-[^10]: https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-parameterized-tests/
 
-[^11]: https://reflectoring.io/tutorial-junit5-parameterized-tests/
 
-[^12]: https://mikemybytes.com/2021/10/19/parameterize-like-a-pro-with-junit-5-csvsource/
 
-[^13]: https://www.arhohuttunen.com/junit-5-parameterized-tests/
 
-[^14]: https://codefinity.com/courses/v2/455bd504-41cd-4fd0-98b7-9f3ee575d21a/7425cfcb-65fa-4ed7-b6b5-510ed254606b/a76141f4-e307-4716-b78b-43d70eeda46d
 
-[^15]: https://docs.junit.org/current/user-guide/
 
-[^16]: https://www.digitalocean.com/community/tutorials/junit-assert-exception-expected
 
-[^17]: https://stackoverflow.com/questions/40268446/junit-5-how-to-assert-an-exception-is-thrown
 
-[^18]: https://www.vogella.com/tutorials/Hamcrest/article.html
 
-[^19]: https://stackoverflow.com/questions/27256429/is-org-junit-assert-assertthat-better-than-org-hamcrest-matcherassert-assertthat
 
-[^20]: https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-assertions-with-hamcrest/
 
-[^21]: https://www.kloia.com/blog/better-unit-testing-with-hamcrest
 
-[^22]: https://jonasg.io/posts/subtle-art-of-java-test-method-naming/
 
-[^23]: https://dzone.com/articles/7-popular-unit-test-naming
 
-[^24]: https://www.softwaretestingmagazine.com/knowledge/how-to-choose-the-right-name-for-unit-tests/
 
-[^25]: https://stackoverflow.com/questions/22677467/junit-do-static-classes-maintain-state-between-test-classes
 
-[^26]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/oop/MemeberTests.java
 
-[^27]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/refactoring/AppTest.java
 
-[^28]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/collections/CountDigitTests.java
 
-[^29]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/collections/LongestWordListTests.java
 
-[^30]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/collections/MakeFiveSetTests.java
 
-[^31]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/hamcrest/CalculatorTests.java
 
-[^32]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/advancedjunit/CounterTests.java
 
-[^33]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/advancedjunit/ExampleTests.java
 
-[^34]: https://www.geeksforgeeks.org/software-testing/junit-5-test-lifecycle/
 
-[^35]: https://junit.org/junit5/docs/5.0.0/user-guide/
 
-[^36]: https://www.javacodegeeks.com/check-if-a-variable-is-null-using-hamcrest.html
 
-[^37]: https://www.reddit.com/r/learnjava/comments/pa5jdn/better_junit_assertions/
 
-[^38]: https://stackoverflow.com/questions/1701113/why-should-i-use-hamcrest-matcher-and-assertthat-instead-of-traditional-assert
 
-[^39]: https://hamcrest.org/JavaHamcrest/tutorial
 
-[^40]: https://sentry.io/answers/how-to-assert-that-a-certain-exception-is-thrown-in-junit-tests/
 
-[^41]: https://stackoverflow.com/questions/5569394/how-to-use-junit-and-hamcrest-together
 
-[^42]: https://www.geeksforgeeks.org/software-testing/junit-5-test-execution-order/
 
-[^43]: https://howtodoinjava.com/junit5/non-static-beforeall-afterall/
 
-[^44]: https://www.softwaretestinghelp.com/juni-test-execution-order/
 
-[^45]: https://www.javaindeed.com/3-best-practices-to-test-a-code-that-calls-static-methods/
 
-[^46]: https://howtodoinjava.com/junit5/test-execution-order/
 
 #java #testing #junit #notes

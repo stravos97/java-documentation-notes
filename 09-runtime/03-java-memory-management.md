@@ -14,7 +14,7 @@ topic: Java Memory Management
     * [Example: Stack \& Heap in Action](#example-stack--heap-in-action)
   * [Garbage Collection](#garbage-collection)
   * [Passing \& Modifying](#passing--modifying)
-    * [Example: Modifying Array (Reference Type)](#example-modifying-array-reference-type)
+    * [](Reference%20Type)](#example-modifying-array-reference-type|Example:%20Modifying%20Array%20(Reference%20Type))
   * [Why Two Types?](#why-two-types)
   * [Common Pitfalls](#common-pitfalls)
   * [Related Concepts](#related-concepts)
@@ -41,11 +41,11 @@ topic: Java Memory Management
   * [Java Stack & Heap Memory Model — Complete Interactive Example](#java-stack--heap-memory-model--complete-interactive-example)
   * [The Complete Java Code](#the-complete-java-code)
   * [Step-by-Step Memory State Diagrams](#step-by-step-memory-state-diagrams)
-    * [**Step 1: Initial Variables in main()**](#step-1-initial-variables-in-main)
+    * []()**](#step-1-initial-variables-in-main|**Step%201:%20Initial%20Variables%20in%20main()**)
     * [**Step 2: After Creating Person Object**](#step-2-after-creating-person-object)
     * [**Step 3: After Creating Team Array**](#step-3-after-creating-team-array)
-    * [**Step 4: Inside updateTeam() Method**](#step-4-inside-updateteam-method)
-    * [**Step 5: After updateTeam() Returns**](#step-5-after-updateteam-returns)
+    * []()%20Method**](#step-4-inside-updateteam-method|**Step%204:%20Inside%20updateTeam()%20Method**)
+    * []()%20Returns**](#step-5-after-updateteam-returns|**Step%205:%20After%20updateTeam()%20Returns**)
     * [**Step 6: Program Termination**](#step-6-program-termination)
   * [Key Memory Management Concepts](#key-memory-management-concepts)
     * [**Stack Memory Characteristics**](#stack-memory-characteristics)
@@ -805,6 +805,6 @@ method(obj);  // Copies reference to stack
 
 ### Related Topics
 
-[[Java Garbage Collection]] | [[Java Memory Leaks]] | [[JVM Tuning]] | [[Thread Memory Model]]
+[Java Garbage Collection](Java%20Garbage%20Collection) | [Java Memory Leaks](Java%20Memory%20Leaks) | [JVM Tuning](JVM%20Tuning) | [Thread Memory Model](Thread%20Memory%20Model)
 
 #java #runtime #jvm #memory-management

@@ -4,10 +4,6 @@ date: 2025-08-22
 topic: Java, Strings
 ---
 
-## How is a String an Object in Java?
-
-#java #strings #objects \[[Java Strings]\]
-
 <!-- TOC -->
   * [How is a String an Object in Java?](#how-is-a-string-an-object-in-java)
     * [Quick Reference](#quick-reference)
@@ -24,7 +20,7 @@ topic: Java, Strings
 - Strings are instances of the `java.lang.String` class, which extends `Object`.
 - Every string literal (`"hello"`) is automatically created as a `String` object by the Java compiler and runtime.
 - The `String` class stores a sequence of characters and provides many built-in methods for text
-  manipulation. [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) [geeksforgeeks](https://www.geeksforgeeks.org/java/java-string-is-immutable-what-exactly-is-the-meaning/)
+  manipulation. [Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) [GeeksforGeeks](https://www.geeksforgeeks.org/java/java-string-is-immutable-what-exactly-is-the-meaning/)
 
 
 ______________________________________________________________________
@@ -42,7 +38,7 @@ public final class String extends Object
 
 
 This signature means every Java String has all the properties of a Java object, like methods (`equals()`, `hashCode()`,
-etc.), and can be passed around as objects. [Oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
+etc.), and can be passed around as objects. [Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
 
 
 - **Creation:**
@@ -82,7 +78,7 @@ ______________________________________________________________________
 	- Passed by reference between methods
 - **Immutability**: Once created, a String object's value cannot change. Any operation that appears to modify a string
   returns a new String
-  object. [geeksforgeeks](https://www.geeksforgeeks.org/java/java-string-is-immutable-what-exactly-is-the-meaning/) [scaler](https://www.scaler.com/topics/java/string-pool-in-java/)
+  object. [GeeksforGeeks](https://www.geeksforgeeks.org/java/java-string-is-immutable-what-exactly-is-the-meaning/) [scaler](https://www.scaler.com/topics/java/string-pool-in-java/)
 
 
 ______________________________________________________________________

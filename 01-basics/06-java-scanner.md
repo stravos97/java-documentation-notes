@@ -29,10 +29,10 @@ programs.[w3schools](https://www.w3schools.com/java/java_user_input.asp)
 
 
 - **Import Statement**: `import java.util.Scanner;` (or `import java.util.*;` for broader
-  access).[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)
+  access).[TheServerSide](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)
 
 - **Creating Object**: `Scanner scanner = new Scanner(System.in);` to read from console
-  input.[stackoverflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)
+  input.[Stack Overflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)
 
 - **Closing Scanner**: Always close with `scanner.close();` to free resources, especially in larger
   applications.[programiz](https://www.programiz.com/java-programming/scanner)
@@ -41,7 +41,7 @@ programs.[w3schools](https://www.w3schools.com/java/java_user_input.asp)
 > [!TIP]  
 > Use a single Scanner instance for multiple inputs in a program to avoid resource
 
-leaks.[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)
+leaks.[TheServerSide](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)
 
 ## Common Scanner Methods
 
@@ -49,17 +49,17 @@ leaks.[theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-S
 | Method          | Description                       | Return Type | Example Usage                                                                                                                                                                                   |
 |-----------------|-----------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `nextLine()`    | Reads a full line of text         | String      | `String name = scanner.nextLine();` [w3schools](https://www.w3schools.com/java/java_user_input.asp)                                                                                             |
-| `next()`        | Reads the next token (word)       | String      | `String word = scanner.next();` [theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)        |
-| `nextInt()`     | Reads the next integer            | int         | `int age = scanner.nextInt();` [stackoverflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)                                                                   |
-| `nextDouble()`  | Reads the next double             | double      | `double price = scanner.nextDouble();` [theserverside](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char) |
+| `next()`        | Reads the next token (word)       | String      | `String word = scanner.next();` [TheServerSide](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char)        |
+| `nextInt()`     | Reads the next integer            | int         | `int age = scanner.nextInt();` [Stack Overflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)                                                                   |
+| `nextDouble()`  | Reads the next double             | double      | `double price = scanner.nextDouble();` [TheServerSide](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Scanner-User-Input-example-String-next-int-long-char) |
 | `nextBoolean()` | Reads the next boolean            | boolean     | `boolean flag = scanner.nextBoolean();` [programiz](https://www.programiz.com/java-programming/scanner)                                                                                         |
-| `hasNext()`     | Checks if more input is available | boolean     | `if (scanner.hasNext()) { ... }` [oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)                                                                                     |
+| `hasNext()`     | Checks if more input is available | boolean     | `if (scanner.hasNext()) { ... }` [Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)                                                                                     |
 
 
 > [!NOTE]  
 > Methods like `nextInt()` read until a delimiter (default is whitespace), while `nextLine()` reads until newline. For
 > Java 17+, these methods support enhanced pattern matching with regular
-> expressions.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+> expressions.[Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 ## Basic Example: Reading String Input
 
@@ -92,7 +92,7 @@ Hello, Alice![codecademy](https://www.codecademy.com/resources/docs/java/user-in
 ## Reading Multiple Inputs and Primitives
 
 Use a loop or sequential calls for multiple inputs. Handle mixed types carefully to avoid issues with leftover
-newlines.[baeldung](https://www.baeldung.com/java-scanner)
+newlines.[Baeldung](https://www.baeldung.com/java-scanner)
 
 
 ```java
@@ -121,7 +121,7 @@ public class MultiInputExample {
 
 > [!WARNING]  
 > Common pitfall: After `nextInt()`, a newline remains in the buffer, causing `nextLine()` to read an empty string. Fix
-> by adding `scanner.nextLine()` to consume it.[baeldung](https://www.baeldung.com/java-scanner)
+> by adding `scanner.nextLine()` to consume it.[Baeldung](https://www.baeldung.com/java-scanner)
 
 ## Advanced Usage: Reading from Files or Strings
 
@@ -136,19 +136,19 @@ public class MultiInputExample {
 > [!INFO]  
 > For performance in large inputs, consider BufferedReader as an alternative, but Scanner is simpler for beginners and
 > supports \[[Java Regex]\] for custom
-parsing.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+parsing.[Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 ## When to Use Scanner
 
 
 - **Use Cases**: Interactive CLI tools, simple games, or data entry
-  forms.[stackoverflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)
+  forms.[Stack Overflow](https://stackoverflow.com/questions/5287538/how-to-get-the-user-input-in-java)
 
 - **Alternatives**: For GUI apps, use `JOptionPane`; for high performance, prefer
-  `BufferedReader`.[baeldung](https://www.baeldung.com/java-scanner)
+  `BufferedReader`.[Baeldung](https://www.baeldung.com/java-scanner)
 
 - **Version Note**: Available since Java 5; Java 17+ adds better support for localized
-  input.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+  input.[Oracle Docs](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
 
 
 > [!TIP]  

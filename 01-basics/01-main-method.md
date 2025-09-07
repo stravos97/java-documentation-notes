@@ -4,18 +4,7 @@ date: 2025-08-21
 topic: Java, Main-Method, Explanation
 ---
 
-<!-- TOC -->
-  * [Java Main Method: public static void main(String[] args)](#java-main-method-public-static-void-mainstring-args)
-  * [Breakdown of the Method Signature](#breakdown-of-the-method-signature)
-  * [Why Is This Signature Required?](#why-is-this-signature-required)
-  * [Practical Example](#practical-example)
-  * [When to Use and Alternatives](#when-to-use-and-alternatives)
-  * [String[] args in Java Main Method](#string-args-in-java-main-method)
-  * [Purpose and Real-World Use](#purpose-and-real-world-use)
-  * [Syntax Variations](#syntax-variations)
-  * [Practical Example](#practical-example-1)
-  * [Advanced Notes](#advanced-notes)
-<!-- TOC -->
+
 
 ## Java Main Method: public static void main(String[] args)
 

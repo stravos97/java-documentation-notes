@@ -96,7 +96,7 @@ Authoring Guidelines (Obsidian-friendly, no HTML)
   - Include “Quick Reference” sections for syntax and common tasks.
 - Practical focus
   - Explain when to use something, trade-offs, and related alternatives.
-  - Include adjacent concepts (e.g., link [[Java Collections]] when relevant).
+  - Include adjacent concepts (e.g., link [Java Collections](Java%20Collections) when relevant).
 - No raw HTML, inline links only
   - Do not use raw HTML tags (e.g., `<details>`, `<div>`, `<span>`).
   - Use inline Markdown links like `[title](path-or-url)`; avoid reference-style links.
@@ -109,7 +109,7 @@ Authoring Guidelines (Obsidian-friendly, no HTML)
     - > [!EXAMPLE] practical examples
     - > [!INFO] extra context
   - Tags: include relevant hashtags (e.g., `#java`, `#java/streams`).
-  - Links: use double brackets for concepts (e.g., `[[Design Patterns]]`).
+  - Links: use double brackets for concepts (e.g., `[Design Patterns](Design%20Patterns)`).
   - Tables: use standard Markdown tables for comparisons.
 - Frontmatter (optional)
   - Use YAML frontmatter for metadata when helpful.

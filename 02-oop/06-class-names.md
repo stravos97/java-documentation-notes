@@ -24,7 +24,7 @@ Your statement about Java programs needing at least one class and matching filen
 it with precise details. This note serves as a quick reference for understanding these foundational rules—perfect for
 beginners building their first apps or experienced devs troubleshooting compilation issues. Feel free to explore the
 examples and expand your knowledge by experimenting in your
-IDE! [oracle](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) [geeksforgeeks](https://www.geeksforgeeks.org/g-fact-44-class-and-file-name-in-java/)
+IDE! [Oracle Docs](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) [GeeksforGeeks](https://www.geeksforgeeks.org/g-fact-44-class-and-file-name-in-java/)
 
 ## Quick Reference: Key Rules
 
@@ -61,7 +61,7 @@ IDE! [oracle](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) 
 
 > [!WARNING]  
 > Ignoring naming conventions can lead to confusing bugs in larger codebases. Always prioritize clarity—it's a hallmark
-> of Java \[[bestpractices]\]. [oracle](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
+> of Java \[](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
 
 
 - **Performance Notes**: These are compile-time rules; they don't impact runtime speed, but good organization aids
@@ -137,7 +137,7 @@ class WeatherHelper {
 
 
 - **How to Compile and Run**: Use `javac WeatherAdvisor.java` then
-  `java WeatherAdvisor`. [oracle](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html)
+  `java WeatherAdvisor`. [Oracle Docs](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html)
 
 - **Expected Output**:
 
@@ -192,7 +192,7 @@ class HelperClass {
 > ```
 >
 > Save this as a quick debug checklist for real
-> projects. [oracle](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
+> projects. [](https://docs.oracle.com/javase/specs/jls/se21/html/jls-7.html#jls-7.6)
 
 ## Comparisons: Public vs. Non-Public Classes
 
