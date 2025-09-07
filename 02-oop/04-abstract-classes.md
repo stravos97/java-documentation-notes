@@ -282,9 +282,7 @@ class ReportTask extends Task {
 ```
 
 \#java \#java/oop \#java/abstraction \#abstract-class \#bestpractices
-<span style="display:none">[^1][^2][^3][^4][^5][^6][^7][^8]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://herovired.com/learning-hub/blogs/difference-between-abstract-class-and-interface/
 
@@ -301,4 +299,6 @@ class ReportTask extends Task {
 [^7]: https://www.theknowledgeacademy.com/blog/abstract-class-vs-interface-java/
 
 [^8]: https://www.youtube.com/watch?v=PPZ_vZcF2AU
+
+
 

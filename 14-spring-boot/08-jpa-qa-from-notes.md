@@ -331,3 +331,5 @@ Imagine you're in a library:
 > This is the true power of Spring Data JPA!
 
 #java/springboot #java/jpa #crud #generics #beginner #query-by-example
+
+

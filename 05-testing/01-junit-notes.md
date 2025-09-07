@@ -569,9 +569,7 @@ Consider expanding your testing knowledge with:
 - **Dynamic tests** (`@TestFactory`)
 
 Your current foundation provides an excellent base for these advanced topics!
-<span style="display:none">[^26][^27][^28][^29][^30][^31][^32][^33][^34][^35][^36][^37][^38][^39][^40][^41][^42][^43][^44][^45][^46]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://github.com/nishman89/JavaFullStack/blob/main/JavaFundamentals/src/test/java/com/sparta/nam/controlflows/SelectionTests.java
 
@@ -664,3 +662,5 @@ Your current foundation provides an excellent base for these advanced topics!
 [^45]: https://www.javaindeed.com/3-best-practices-to-test-a-code-that-calls-static-methods/
 
 [^46]: https://howtodoinjava.com/junit5/test-execution-order/
+
+

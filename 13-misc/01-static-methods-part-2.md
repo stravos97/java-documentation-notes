@@ -495,3 +495,5 @@ ______________________________________________________________________
 > [!TIP]
 > **Static variables are like whiteboards in a classroom—shared by everyone. Instance variables are individual
 > notebooks—private to each student. Use each where it makes sense!**
+
+

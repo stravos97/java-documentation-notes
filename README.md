@@ -72,3 +72,59 @@ Conventions
 Tips
 - Searching: use your editor’s global search to find topics quickly.
 - Adding notes: place them in the most specific folder; if unsure, add to `13-misc/` and we can file them later.
+
+Authoring Guidelines (Obsidian-friendly, no HTML)
+- Clarity first
+  - Favor simple, accurate explanations with progressive depth.
+  - Lead with essentials; add details and edge cases after.
+- Code-centric
+  - Prefer modern Java (17+ LTS) and note version-specific features.
+  - Provide runnable, well-commented examples that follow best practices.
+  - Always format multi-line code with fenced blocks and a language hint.
+    
+    ```java
+    // Example: Basic entry point
+    public class Example {
+        public static void main(String[] args) {
+            System.out.println("Hello World");
+        }
+    }
+    ```
+- Structured information
+  - Use headers (`##`, `###`, `####`) for folding in Obsidian.
+  - Bullets for quick facts; add comparison tables where useful.
+  - Include “Quick Reference” sections for syntax and common tasks.
+- Practical focus
+  - Explain when to use something, trade-offs, and related alternatives.
+  - Include adjacent concepts (e.g., link [[Java Collections]] when relevant).
+- No raw HTML, inline links only
+  - Do not use raw HTML tags (e.g., `<details>`, `<div>`, `<span>`).
+  - Use inline Markdown links like `[title](path-or-url)`; avoid reference-style links.
+  - For Mermaid labels, use `\n` for line breaks instead of `<br/>`.
+- Obsidian formatting
+  - Callouts: use blockquotes
+    - > [!NOTE] general notes
+    - > [!TIP] best practices
+    - > [!WARNING] pitfalls
+    - > [!EXAMPLE] practical examples
+    - > [!INFO] extra context
+  - Tags: include relevant hashtags (e.g., `#java`, `#java/streams`).
+  - Links: use double brackets for concepts (e.g., `[[Design Patterns]]`).
+  - Tables: use standard Markdown tables for comparisons.
+- Frontmatter (optional)
+  - Use YAML frontmatter for metadata when helpful.
+
+    ---
+    tags: [java, streams, bestpractices]
+    date: 2025-09-07
+    topic: Java Streams Quick Reference
+    ---
+
+Special instructions
+- Cite sources with inline Markdown links: `[Title](https://example.com)`.
+- Syntax questions: show exact syntax first, then explain.
+- Error messages: explain cause and fixes with examples.
+- Design patterns: include practical implementations.
+- Comparisons: use concise tables or side-by-side snippets.
+
+

@@ -295,3 +295,5 @@ flowchart LR
 > When you see `customerRepository.findAll()`, remember you're not working with a database - you're working with Java objects. JpaRepository handles all the database interaction behind the scenes, so you can focus on your business logic. This is the true power of Spring Data JPA!
 
 #java/springboot #java/jpa #crud #beginner #interfaces
+
+

@@ -20,7 +20,7 @@ topic: Java, Strings
 ### Quick Reference
 
 
-- **A Java `String` is an ==object== and not a primitive!**
+- **A Java `String` is an **object** and not a primitive!**
 - Strings are instances of the `java.lang.String` class, which extends `Object`.
 - Every string literal (`"hello"`) is automatically created as a `String` object by the Java compiler and runtime.
 - The `String` class stores a sequence of characters and provides many built-in methods for text
@@ -74,13 +74,13 @@ ______________________________________________________________________
 ## Internals and Objects
 
 
-- Internally, a String holds a ==character array== (now a byte array since Java 9) and caches its hash code for quick
+- Internally, a String holds a **character array** (now a byte array since Java 9) and caches its hash code for quick
   use.
 - Being an object, a `String` can be
 	- Stored in collections: `List<String>`, `Map<String, Integer>`
 	- Used with all `Object` methods (`equals()`, `toString()`, etc.)
 	- Passed by reference between methods
-- ==Immutability==: Once created, a String object's value cannot change. Any operation that appears to modify a string
+- **Immutability**: Once created, a String object's value cannot change. Any operation that appears to modify a string
   returns a new String
   object. [geeksforgeeks](https://www.geeksforgeeks.org/java/java-string-is-immutable-what-exactly-is-the-meaning/) [scaler](https://www.scaler.com/topics/java/string-pool-in-java/)
 
@@ -121,10 +121,12 @@ ______________________________________________________________________
 ## When is This Important?
 
 
-- String objects ==can be compared== by `==` (reference) or `.equals()` (value).
+- String objects **can be compared** by `==` (reference) or `.equals()` (value).
 - Using String methods (e.g., `.substring()`, `.concat()`) is only possible because String is a class, not a primitive.
 
 
 ______________________________________________________________________
 
 #java/strings #java/objects #cheatsheets
+
+

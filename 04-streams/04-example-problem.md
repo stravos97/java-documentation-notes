@@ -179,7 +179,7 @@ Let me create a visual representation of the entire process:
 
 ```mermaid
 flowchart TD
-    Start[Beatles List:<br/>John, Paul, George, Ringo]
+    Start[Beatles List:\nJohn, Paul, George, Ringo]
     
     J1[Pull: 'John'] --> F1{Filter: starts with J?}
     F1 -->|YES| M1[Map: 'JOHN']
@@ -284,3 +284,5 @@ The names are still in their original form, proving that streams process data wi
 Your Beatles example beautifully demonstrates every concept we've discussed. The `.stream()` creates a smart controller, not a copy of your data. The filter lambda needs its parameter `name` to know what it's checking. The map lambda needs its parameter to know what to transform. And the entire pipeline doesn't execute until `forEach` triggers it, at which point each element makes its complete journey through the pipeline before the next element begins.
 
 The elegance of streams is that they let you express your intent clearly: "From these Beatles, filter those whose names start with J, convert them to uppercase, and print each one." The stream handles all the iteration and plumbing, letting you focus on describing the transformations you want.
+
+

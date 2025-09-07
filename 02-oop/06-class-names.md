@@ -29,7 +29,7 @@ IDE! [oracle](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) 
 ## Quick Reference: Key Rules
 
 
-- **Minimum Requirement**: Every standalone Java program must have at least ==one class== with a
+- **Minimum Requirement**: Every standalone Java program must have at least **one class** with a
   `public static void main(String[] args)` method as the entry point.
 
 - **Filename Matching**:
@@ -210,3 +210,5 @@ class HelperClass {
 > apps.
 
 #java #java/basics #java/classes #bestpractices
+
+

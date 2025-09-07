@@ -426,3 +426,5 @@ pie
 > - `And` combines the conditions
 
 #java/springboot #java/jpa #crud #sql #beginner #query-generation
+
+

@@ -44,7 +44,7 @@ topic: Java, Keywords, Overview
 <!-- TOC -->
 
 > [!NOTE]
-> ==Java keywords== are reserved words with special meaning in the Java language. They cannot be used as identifiers
+> **Java keywords** are reserved words with special meaning in the Java language. They cannot be used as identifiers
 > (like variable or method
 > names). [Oracle Java Language Specification](https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.9)
 > As of Java 21, there are 53 keywords, plus some reserved but unused and "literal" values.
@@ -116,9 +116,9 @@ ______________________________________________________________________
 ## Special Notes
 
 
-- **true, false, null:** Not keywords, but ==literals== (still can't use as identifiers).
+- **true, false, null:** Not keywords, but **literals** (still can't use as identifiers).
 - **const, goto:** Reserved, but not used.
-- **case-sensitive:** All keywords must be ==lowercase==.
+- **case-sensitive:** All keywords must be **lowercase**.
 - **static:** Denotes static variables/methods (shared across all instances).
 
 
@@ -154,7 +154,7 @@ ______________________________________________________________________
 #java #keywords #basics #beginners \[[Java Syntax]\]
 
 > [!NOTE]
-> **Java keywords** are ==reserved words== with special meanings that you **cannot** use as variable names, method
+> **Java keywords** are **reserved words** with special meanings that you **cannot** use as variable names, method
 > names, or class names. Java currently has about **67 keywords** (the number changes with new versions).
 
 ______________________________________________________________________
@@ -531,3 +531,5 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 #java/basics #java/keywords #programming #cheatsheets
+
+

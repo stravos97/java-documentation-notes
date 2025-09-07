@@ -209,9 +209,7 @@ sequenceDiagram
 ```
 
 \#java \#java/interfaces \#java/oop \#keywords \#bestpractices[^10][^3][^1][^2]
-<span style="display:none">[^13][^14][^15][^16][^17][^18][^19][^20][^21][^23][^24]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://www.geeksforgeeks.org/java/interfaces-in-java/
 
@@ -260,4 +258,6 @@ sequenceDiagram
 [^23]: https://stackoverflow.com/questions/23256406/conflicting-methods-on-interface-multiple-inheritance
 
 [^24]: https://stackoverflow.com/questions/10839131/implements-vs-extends-when-to-use-whats-the-difference
+
+
 

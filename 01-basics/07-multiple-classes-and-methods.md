@@ -31,8 +31,8 @@ ______________________________________________________________________
   * [🛠️ Compiling and Running Multiple Classes](#-compiling-and-running-multiple-classes)
   * [✅ Expected Output](#-expected-output)
   * [🚀 Summary](#-summary)
-  * [==Understanding the `this` Keyword in Java==](#understanding-the-this-keyword-in-java)
-    * [==Quick Reference==](#quick-reference)
+  * [**Understanding the `this` Keyword in Java**](#understanding-the-this-keyword-in-java)
+    * [**Quick Reference**](#quick-reference)
     * [1️⃣ Referring to Instance Variables (Shadowed by Parameters)](#1-referring-to-instance-variables-shadowed-by-parameters)
     * [2️⃣ Invoking Other Constructors in the Same Class](#2-invoking-other-constructors-in-the-same-class)
     * [3️⃣ Returning the Current Object](#3-returning-the-current-object)
@@ -42,7 +42,7 @@ ______________________________________________________________________
     * [🌟 Summary Table](#-summary-table)
     * [👉 Practical Tips](#-practical-tips)
   * [Why `public static void main(String[] args)` Is in the Demo Class (Not the Car Class)](#why-public-static-void-mainstring-args-is-in-the-demo-class-not-the-car-class)
-    * [==Quick Reference==](#quick-reference-1)
+    * [**Quick Reference**](#quick-reference-1)
     * [💡 Why Main Is in `CarDemo` Instead of `Car`](#-why-main-is-in-cardemo-instead-of-car)
       * [**Design Principle: Separate Logic from Data**](#design-principle-separate-logic-from-data)
     * [🕹️ Role of Each Class](#-role-of-each-class)
@@ -90,7 +90,7 @@ public class Car {
 	- `make` → Manufacturer name (e.g., Toyota)
 	- `model` → Car model (e.g., Corolla)
 	- `year` → Year of manufacture (e.g., 2022)
-- `private` keyword → Attributes are hidden from outside access (==Encapsulation==).
+- `private` keyword → Attributes are hidden from outside access (**Encapsulation**).
 
 
 ______________________________________________________________________
@@ -266,17 +266,17 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## ==Understanding the `this` Keyword in Java==
+## **Understanding the `this` Keyword in Java**
 
 tags: #java #oop #this #bestpractices
 date: 2025-08-22
 
 ______________________________________________________________________
 
-### ==Quick Reference==
+### **Quick Reference**
 
 
-- **`this`** refers to the ==current object== (the object whose method or constructor is being executed)
+- **`this`** refers to the **current object** (the object whose method or constructor is being executed)
 - Common uses:
 	- Distinguish between fields and parameters with the same name
 	- Call another constructor in the same class
@@ -452,7 +452,7 @@ date: 2025-08-22
 
 ______________________________________________________________________
 
-### ==Quick Reference==
+### **Quick Reference**
 
 
 - **`public static void main(String[] args)`** is the **entry point** of any standalone Java application.
@@ -467,17 +467,17 @@ ______________________________________________________________________
 #### **Design Principle: Separate Logic from Data**
 
 
-- `Car` represents a ==blueprint/data model== for car objects.
+- `Car` represents a **blueprint/data model** for car objects.
 	- It holds data (`make`, `model`, `year`).
 	- Defines how a `Car` behaves (methods like `displayInfo()`).
-- `CarDemo` represents ==the code that “drives” or tests the cars==.
+- `CarDemo` represents **the code that “drives” or tests the cars**.
 	- Contains the main routine—what happens first.
 	- Creates `Car` objects and calls their methods.
 
 
 > [!TIP]
 > Putting `main` in a separate class (such as `CarDemo`, `Main`, or `App`) keeps your core **object logic clean and
-> reusable**. It separates ==application startup code== from ==data structures==.[^1][^5]
+> reusable**. It separates **application startup code** from **data structures**.[^1][^5]
 
 ______________________________________________________________________
 
@@ -560,9 +560,7 @@ ______________________________________________________________________
 **Summary:**
 Keep `public static void main(String[] args)` in a dedicated, top-level class like `CarDemo` to keep your model classes
 focused and your project organized and maintainable.
-<span style="display:none">[^4][^6][^7][^8]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://www.digitalocean.com/community/tutorials/public-static-void-main-string-args-java-main-method
 
@@ -579,3 +577,5 @@ focused and your project organized and maintainable.
 [^4]: https://www.reddit.com/r/learnprogramming/comments/5v810b/what_is_public_static_void_mainstring_args/
 
 [^8]: https://study.com/academy/lesson/what-is-public-static-void-main-in-java.html
+
+

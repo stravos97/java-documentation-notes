@@ -202,30 +202,30 @@ Here's how Java determines which method to call in different polymorphic scenari
 
 ```mermaid
 flowchart TD
-    START["Method Call: obj.methodName(args)"] --> COMPILE_TIME{Compile Time<br/>Analysis}
+    START["Method Call: obj.methodName(args)"] --> COMPILE_TIME{Compile Time\nAnalysis}
     
-    COMPILE_TIME --> CHECK_OVERLOAD{Multiple methods<br/>with same name<br/>but different params?}
+    COMPILE_TIME --> CHECK_OVERLOAD{Multiple methods\nwith same name\nbut different params?}
     
-    CHECK_OVERLOAD -->|Yes| OVERLOAD_RESOLVE["Static Polymorphism<br/>(Method Overloading)"]
+    CHECK_OVERLOAD -->|Yes| OVERLOAD_RESOLVE["Static Polymorphism\n(Method Overloading)"]
     CHECK_OVERLOAD -->|No| SINGLE_METHOD["Single method signature"]
     
-    OVERLOAD_RESOLVE --> PARAM_MATCH{Find exact<br/>parameter match?}
+    OVERLOAD_RESOLVE --> PARAM_MATCH{Find exact\nparameter match?}
     PARAM_MATCH -->|Yes| EXACT_MATCH["Use exact match"]
-    PARAM_MATCH -->|No| WIDENING["Apply widening conversions<br/>Find best match"]
+    PARAM_MATCH -->|No| WIDENING["Apply widening conversions\nFind best match"]
     WIDENING --> COMPILE_SUCCESS["Compile-time resolution complete"]
     EXACT_MATCH --> COMPILE_SUCCESS
     
     SINGLE_METHOD --> COMPILE_SUCCESS
-    COMPILE_SUCCESS --> RUNTIME{"Runtime<br/>Execution"}
+    COMPILE_SUCCESS --> RUNTIME{"Runtime\nExecution"}
     
-    RUNTIME --> INHERITANCE_CHECK{Method overridden<br/>in subclass?}
+    RUNTIME --> INHERITANCE_CHECK{Method overridden\nin subclass?}
     
-    INHERITANCE_CHECK -->|Yes| DYNAMIC_RESOLVE["Dynamic Polymorphism<br/>(Method Overriding)"]
+    INHERITANCE_CHECK -->|Yes| DYNAMIC_RESOLVE["Dynamic Polymorphism\n(Method Overriding)"]
     INHERITANCE_CHECK -->|No| STATIC_CALL["Direct method call"]
     
-    DYNAMIC_RESOLVE --> VTABLE["Check Virtual Method Table<br/>(V-Table)"]
-    VTABLE --> ACTUAL_TYPE["Find actual object type<br/>at runtime"]
-    ACTUAL_TYPE --> OVERRIDE_CALL["Call overridden method<br/>in actual class"]
+    DYNAMIC_RESOLVE --> VTABLE["Check Virtual Method Table\n(V-Table)"]
+    VTABLE --> ACTUAL_TYPE["Find actual object type\nat runtime"]
+    ACTUAL_TYPE --> OVERRIDE_CALL["Call overridden method\nin actual class"]
     
     STATIC_CALL --> DIRECT_EXEC["Execute method directly"]
     OVERRIDE_CALL --> DIRECT_EXEC
@@ -242,9 +242,9 @@ flowchart TD
 ```mermaid
 graph LR
     subgraph "Overloading (Compile-Time)"
-        OL1["calc.add(5, 3)"] --> OL2["Compiler sees:<br/>add(int, int)"]
-        OL3["calc.add(5.0, 3.0)"] --> OL4["Compiler sees:<br/>add(double, double)"]
-        OL5["calc.add(5, 3, 2)"] --> OL6["Compiler sees:<br/>add(int, int, int)"]
+        OL1["calc.add(5, 3)"] --> OL2["Compiler sees:\nadd(int, int)"]
+        OL3["calc.add(5.0, 3.0)"] --> OL4["Compiler sees:\nadd(double, double)"]
+        OL5["calc.add(5, 3, 2)"] --> OL6["Compiler sees:\nadd(int, int, int)"]
         
         OL2 --> OL7["Returns: 8 (int)"]
         OL4 --> OL8["Returns: 8.0 (double)"]
@@ -252,13 +252,13 @@ graph LR
     end
     
     subgraph "Overriding (Runtime)"
-        OR1["Animal a = new Dog();<br/>a.sound();"] --> OR2["Compile: Checks Animal.sound()<br/>exists and is accessible"]
-        OR2 --> OR3["Runtime: JVM sees actual<br/>object is Dog instance"]
-        OR3 --> OR4["Calls Dog.sound()<br/>Output: 'Woof!'"]
+        OR1["Animal a = new Dog();\na.sound();"] --> OR2["Compile: Checks Animal.sound()\nexists and is accessible"]
+        OR2 --> OR3["Runtime: JVM sees actual\nobject is Dog instance"]
+        OR3 --> OR4["Calls Dog.sound()\nOutput: 'Woof!'"]
         
-        OR5["Animal a = new Cat();<br/>a.sound();"] --> OR6["Compile: Checks Animal.sound()<br/>exists and is accessible"]
-        OR6 --> OR7["Runtime: JVM sees actual<br/>object is Cat instance"]
-        OR7 --> OR8["Calls Cat.sound()<br/>Output: 'Meow!'"]
+        OR5["Animal a = new Cat();\na.sound();"] --> OR6["Compile: Checks Animal.sound()\nexists and is accessible"]
+        OR6 --> OR7["Runtime: JVM sees actual\nobject is Cat instance"]
+        OR7 --> OR8["Calls Cat.sound()\nOutput: 'Meow!'"]
     end
     
     style OL1 fill:#fff3e0
@@ -508,7 +508,7 @@ classDiagram
 ```mermaid
 graph TD
     subgraph "Single Inheritance Model"
-        Object["java.lang.Object<br/>(Root of all classes)"]
+        Object["java.lang.Object\n(Root of all classes)"]
         
         subgraph "Interface Layer"
             I1["interface Serializable"]
@@ -558,18 +558,18 @@ graph TD
 flowchart TD
     START["Animal animal = new Dog();"] --> CALL["animal.makeSound()"]
     CALL --> CHECK["JVM checks actual object type"]
-    CHECK --> RUNTIME{"Runtime Type<br/>Determination"}
+    CHECK --> RUNTIME{"Runtime Type\nDetermination"}
     
-    RUNTIME -->|Dog instance| DOG_METHOD["Calls Dog.makeSound()<br/>Output: 'Woof!'"]
-    RUNTIME -->|Cat instance| CAT_METHOD["Calls Cat.makeSound()<br/>Output: 'Meow!'"]
-    RUNTIME -->|Bird instance| BIRD_METHOD["Calls Bird.makeSound()<br/>Output: 'Tweet!'"]
+    RUNTIME -->|Dog instance| DOG_METHOD["Calls Dog.makeSound()\nOutput: 'Woof!'"]
+    RUNTIME -->|Cat instance| CAT_METHOD["Calls Cat.makeSound()\nOutput: 'Meow!'"]
+    RUNTIME -->|Bird instance| BIRD_METHOD["Calls Bird.makeSound()\nOutput: 'Tweet!'"]
     
     subgraph "Compile Time"
-        COMPILE["Compiler sees Animal reference<br/>Verifies makeSound() exists in Animal"]
+        COMPILE["Compiler sees Animal reference\nVerifies makeSound() exists in Animal"]
     end
     
     subgraph "Runtime"
-        RESOLVE["JVM resolves to actual implementation<br/>Based on object's real type"]
+        RESOLVE["JVM resolves to actual implementation\nBased on object's real type"]
     end
     
     style START fill:#e3f2fd
@@ -607,3 +607,5 @@ flowchart TD
 - \[[Object-Oriented Design]\]
 - \[[Functional Interfaces]\]
 - \[[Unit Testing Java]\]
+
+

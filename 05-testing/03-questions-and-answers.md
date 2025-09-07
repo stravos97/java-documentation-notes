@@ -40,7 +40,7 @@ topic: Practice Questions and Answers
 1. **In Java, is a`String`considered a primitive type or an object?**
 
 	- **Your Answer:**"string is an object"
-	- \*\*Feedback:\*\***Exactly right!**A Java`String`is an**==object== and not a primitive**. Strings are instances of
+	- \*\*Feedback:\*\***Exactly right!**A Java`String`is an****object** and not a primitive**. Strings are instances of
 	  the
 	  `java.lang.String`class, which extends`Object`. Even when you use a string literal like`"hello"`, it's
 	  automatically created as a`String`object by the Java compiler and runtime. Being an object,`String`provides many
@@ -89,3 +89,5 @@ topic: Practice Questions and Answers
 	- **`String[] args`**: This is a parameter that accepts an**array of strings**. It's used for passing**command-line
 	  arguments**to the program when it's executed (e.g.,`java MyProgram arg1 arg2`). These arguments allow users to
 	  provide input or configuration options directly when running the program.
+
+

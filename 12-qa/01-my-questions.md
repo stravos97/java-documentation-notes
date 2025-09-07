@@ -120,3 +120,5 @@ topic: Java Study Questions List
 - What happens to objects when they go out of scope?
 - What three things does the garbage collector do?
 - How are memory addresses different for objects with the same values?
+
+

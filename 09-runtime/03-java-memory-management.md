@@ -172,9 +172,9 @@ static void modifyArray(int[] a) {
 
 ## Common Pitfalls
 
-- ==Shared state==: Multiple variables referencing the same object can lead to unintended side effects.
-- ==Null references==: Accessing `null` references causes `NullPointerException`.
-- ==Immutability==: Some reference types (e.g., `String`) are immutable—their state cannot be changed, only replaced.
+- **Shared state**: Multiple variables referencing the same object can lead to unintended side effects.
+- **Null references**: Accessing `null` references causes `NullPointerException`.
+- **Immutability**: Some reference types (e.g., `String`) are immutable—their state cannot be changed, only replaced.
 
 ***
 
@@ -221,8 +221,8 @@ This shows how objects can form a web of interconnected references and values.
 
 ```mermaid
 graph TD
-    Stack[Stack<br/>local variables<br/>primitives & references] 
-    Heap[Heap<br/>Objects, arrays<br/>actual data]
+    Stack[Stack\nlocal variables\nprimitives & references] 
+    Heap[Heap\nObjects, arrays\nactual data]
     NullRef[null references]
     
     Stack -.->|points to| Heap
@@ -474,7 +474,7 @@ After declaring `age` and `name`:
 ```mermaid
 graph TB
     subgraph Stack["Stack Memory"]
-        age["age = 25<br/>(primitive)"]
+        age["age = 25\n(primitive)"]
         name["name (reference)"]
     end
     
@@ -506,7 +506,7 @@ graph TB
     
     subgraph Heap["Heap Memory"]
         str1["String: 'Alice'"]
-        p1["Person<br/>name: Alice<br/>age: 25"]
+        p1["Person\nname: Alice\nage: 25"]
     end
     
     name -.->|points to| str1
@@ -533,9 +533,9 @@ graph TB
     subgraph Heap["Heap Memory"]
         str1["String: 'Alice'"]
         str2["String: 'Bob'"]
-        p1["Person<br/>name: Alice<br/>age: 25"]
-        p2["Person<br/>name: Bob<br/>age: 30"]
-        arr["Person Array<br/>[0] [1]"]
+        p1["Person\nname: Alice\nage: 25"]
+        p2["Person\nname: Bob\nage: 30"]
+        arr["Person Array\n[0] [1]"]
     end
     
     name -.->|points to| str1
@@ -571,9 +571,9 @@ graph TB
         str1["String: 'Alice (Leader)'"]
         str2["String: 'Bob'"]
         str3["String: 'David'"]
-        p1["Alice Person<br/>age: 25"]
-        p2["Bob Person (unreachable)<br/>age: 30"]
-        p3["David Person<br/>age: 35"]
+        p1["Alice Person\nage: 25"]
+        p2["Bob Person (unreachable)\nage: 30"]
+        p3["David Person\nage: 35"]
         arr["Person Array"]
     end
     
@@ -612,9 +612,9 @@ graph TB
         str1["String: 'Alice (Leader)'"]
         str3["String: 'David'"]
         str4["String: 'Charlie'"]
-        p1["Alice Person<br/>age: 25"]
-        p3["David Person<br/>age: 35"]
-        p4["Charlie Person<br/>age: 35"]
+        p1["Alice Person\nage: 25"]
+        p3["David Person\nage: 35"]
+        p4["Charlie Person\nage: 35"]
         arr["Person Array"]
     end
     
@@ -806,3 +806,5 @@ method(obj);  // Copies reference to stack
 ### Related Topics
 
 [[Java Garbage Collection]] | [[Java Memory Leaks]] | [[JVM Tuning]] | [[Thread Memory Model]]
+
+

@@ -111,3 +111,5 @@ execution:[reddit](https://www.reddit.com/r/javahelp/comments/8cen3k/what_exactl
 > JVM.[lenovo](https://www.lenovo.com/gb/en/glossary/jvm/)
 
 #java #jvm #architecture #bestpractices
+
+

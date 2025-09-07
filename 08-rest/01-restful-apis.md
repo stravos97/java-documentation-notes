@@ -360,9 +360,7 @@ GET    /api/v1/orders/{id}/items     // Get items in specific order
 > - ✅ Test thoroughly with tools like Postman or REST Assured
 
 RESTful APIs provide a powerful, standardized way to build scalable web services. By following these principles and best practices, you'll create APIs that are intuitive, maintainable, and easy for other developers to consume.
-<span style="display:none">[^30][^31][^32]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://amplication.com/blog/rest-apis-what-why-and-how
 
@@ -427,5 +425,7 @@ RESTful APIs provide a powerful, standardized way to build scalable web services
 [^31]: https://www.lonti.com/blog/understanding-http-methods-in-rest-api-development
 
 [^32]: https://restfulapi.net/http-methods/
+
+
 
 

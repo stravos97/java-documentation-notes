@@ -20,28 +20,28 @@ ______________________________________________________________________
     * [🚦 Best Practices](#-best-practices)
     * [👉 Summary](#-summary)
   * [How Does the `this` Keyword Call Another Constructor in the Same Class?](#how-does-the-this-keyword-call-another-constructor-in-the-same-class)
-    * [==Understanding Constructor Chaining with `this()`==](#understanding-constructor-chaining-with-this)
+    * [**Understanding Constructor Chaining with `this()`**](#understanding-constructor-chaining-with-this)
     * [🛠️ How It Works: Example](#-how-it-works-example)
     * [📖 Step-by-Step: What Happens?](#-step-by-step-what-happens)
     * [🎯 Why Use Constructor Chaining?](#-why-use-constructor-chaining)
     * [🚦 Key Rules](#-key-rules)
   * [How Does `this()` Reference Another Constructor?](#how-does-this-reference-another-constructor)
-    * [==Key Point: `this()` Is an Explicit Constructor Call==](#key-point-this-is-an-explicit-constructor-call)
+    * [**Key Point: `this()` Is an Explicit Constructor Call**](#key-point-this-is-an-explicit-constructor-call)
     * [📝 Example](#-example)
     * [🔎 What’s Actually Happening?](#-whats-actually-happening)
     * [📢 Why It Looks “Invisible”](#-why-it-looks-invisible)
     * [🚦 Rules Recap](#-rules-recap)
   * [Difference Between a Class Constructor and the `public static void main(String[] args)` Method](#difference-between-a-class-constructor-and-the-public-static-void-mainstring-args-method)
-    * [==Quick Reference Table==](#quick-reference-table)
+    * [**Quick Reference Table**](#quick-reference-table)
     * [🛠️ What Is a Constructor?](#-what-is-a-constructor)
     * [🕹️ What Is `public static void main(String[] args)`?](#-what-is-public-static-void-mainstring-args)
     * [🚦 Key Differences](#-key-differences)
 <!-- TOC -->
 
-==Quick Reference==
+**Quick Reference**
 
 
-- Having **multiple constructors** is called ==constructor overloading==.
+- Having **multiple constructors** is called **constructor overloading**.
 - It allows you to create objects in **different ways**, offering flexibility for initialization.
 - Each constructor has a **different parameter list** (signature).
 
@@ -104,7 +104,7 @@ public class Car {
 #### **4️⃣ Support for Frameworks/Tools**
 
 
-- Many Java frameworks (e.g., Hibernate) and tools require a ==no-argument (default) constructor== for reflection or
+- Many Java frameworks (e.g., Hibernate) and tools require a **no-argument (default) constructor** for reflection or
   serialization.[^7][^1]
 
 
@@ -167,7 +167,7 @@ date: 2025-08-22
 
 ______________________________________________________________________
 
-### ==Understanding Constructor Chaining with `this()`==
+### **Understanding Constructor Chaining with `this()`**
 
 
 - **`this(…)`** is a special syntax in Java for calling **another constructor in the same class** (not just referring to
@@ -250,9 +250,7 @@ ______________________________________________________________________
 **Summary:**
 `this(…)` lets you call another constructor in the same class, making object creation flexible, consistent, and DRY (
 Don't Repeat Yourself)!
-<span style="display:none">[^3][^5][^8][^9]</span>
 
-<div style="text-align: center">⁂</div>
 
 ______________________________________________________________________
 
@@ -263,7 +261,7 @@ date: 2025-08-22
 
 ______________________________________________________________________
 
-### ==Key Point: `this()` Is an Explicit Constructor Call==
+### **Key Point: `this()` Is an Explicit Constructor Call**
 
 
 - **`this()`** is *not* just a reference—it's an *explicit call* to another constructor, chosen by its parameter list.
@@ -340,9 +338,7 @@ ______________________________________________________________________
 **Summary:**
 `this(...)` is a direct, explicit command to invoke another constructor in the same class using the parameter types you
 provide. It creates a chain of constructor calls without ever referencing the constructor by name—only by its signature!
-<span style="display:none">[^4][^7][^8][^9]</span>
 
-<div style="text-align: center">⁂</div>
 
 ______________________________________________________________________
 
@@ -353,7 +349,7 @@ date: 2025-08-22
 
 ______________________________________________________________________
 
-### ==Quick Reference Table==
+### **Quick Reference Table**
 
 
 | Feature                 | Constructor                        | `public static void main(String[] args)` |
@@ -458,3 +454,5 @@ application!
 [^5]: https://www.tutorialspoint.com/constructor-chaining-in-java-programming
 
 [^9]: https://neoquant.com/blog/what-is-constructor-chaining-in-java-2025-guide/
+
+

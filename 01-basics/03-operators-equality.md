@@ -37,7 +37,7 @@ ______________________________________________________________________
 ### For Primitives
 
 
-- Compares ==actual values== [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
+- Compares **actual values** [oracle](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html)
 - Example:
 
 
@@ -49,14 +49,14 @@ System.out.println(a == b); // true
 
 
 - Works for: `int`, `float`, `char`, `boolean`, etc.
-- ==Best practice==: Always use `==` to compare primitive values
+- **Best practice**: Always use `==` to compare primitive values
 
 
 ### For Objects
 
 
-- Compares ==references== (memory addresses) [baeldung](https://www.baeldung.com/java-equals-method-operator-difference)
-- Returns `true` only if both references point to the ==exact same object==
+- Compares **references** (memory addresses) [baeldung](https://www.baeldung.com/java-equals-method-operator-difference)
+- Returns `true` only if both references point to the **exact same object**
 - Does NOT compare object contents/values
 
 
@@ -70,7 +70,7 @@ System.out.println(s1 ==s3); // true
 ```
 
 
-- ==Use cases==: Identity checks (is this literally the same object?)
+- **Use cases**: Identity checks (is this literally the same object?)
 
 
 ### For Strings
@@ -89,7 +89,7 @@ System.out.println(s1 == s3); // false (different objects)
 ```
 
 
-- To compare ==contents==, use `equals()`:
+- To compare **contents**, use `equals()`:
 
 
 ```java
@@ -143,8 +143,8 @@ ______________________________________________________________________
 ## Common Pitfalls
 
 
-- ==Using `==` for strings==: Compares reference, not value! (`"abc" == new String("abc")` is `false`)
-- ==Comparing objects of incompatible types==: Compile-time error
+- **Using `==` for strings**: Compares reference, not value! (`"abc" == new String("abc")` is `false`)
+- **Comparing objects of incompatible types**: Compile-time error
 
 
 ```java
@@ -159,7 +159,7 @@ ______________________________________________________________________
 ## Performance
 
 
-- ==Fast==: Single memory/address or value check
+- **Fast**: Single memory/address or value check
 - No function call overhead
 
 
@@ -179,3 +179,4 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 #java #operators #bestpractices #cheatsheets
+

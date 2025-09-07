@@ -202,8 +202,8 @@ Think of the stream as an assembly line where each number takes a journey throug
 graph TD
     subgraph "Stream Pipeline"
         S[Source: 1,2,3,4,5,6,7,8] 
-        F[Filter Station<br/>Is it even?]
-        P[Print Station<br/>System.out.println]
+        F[Filter Station\nIs it even?]
+        P[Print Station\nSystem.out.println]
     end
     
     S --> F
@@ -796,3 +796,5 @@ Think of it like a vacuum cleaner. The vacuum (terminal operation) creates sucti
 Understanding what `.stream()` actually does helps explain many stream behaviors that might otherwise seem mysterious. For example, now you understand why you can't reuse a stream (once the internal iterator has walked through the source, it needs to be reset), why operations are lazy (they're just being recorded, not executed), and why streams can be so memory efficient (they're not copying your data).
 
 The next time you write `list.stream()`, picture it as creating a smart, lightweight controller that sits next to your data, ready to orchestrate a series of operations when triggered, but doing absolutely nothing until that trigger arrives. It's not magic; it's just a very clever design pattern that gives you powerful data processing capabilities with minimal overhead.
+
+

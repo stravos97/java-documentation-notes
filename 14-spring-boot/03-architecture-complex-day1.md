@@ -502,7 +502,7 @@ flowchart TD
 |---------|---------|------------|
 | **Spring Creates Implementations at Runtime** | You define interfaces, Spring provides implementations | Eliminates boilerplate code |
 | **Naming Strategy is Critical for Legacy Databases** | Without `PhysicalNamingStrategyStandardImpl`, queries would fail | Essential for Northwind compatibility |
-| **ID Type Must Match Exactly** | `Customer` entity has `String customerID`<br>Repository must use `JpaRepository<Customer, String>` | Prevents runtime errors |
+| **ID Type Must Match Exactly** | `Customer` entity has `String customerID` — Repository must use `JpaRepository<Customer, String>` | Prevents runtime errors |
 | **Connection Pooling is Automatic** | HikariCP manages database connections | Improves performance and resource usage |
 | **Complete Separation of Concerns** | Each layer has a specific responsibility | Makes application maintainable, testable, and scalable |
 
@@ -510,3 +510,5 @@ flowchart TD
 > Keep these diagrams in mind as you work with your application. When you see `customerRepository.findAll()`, visualize the entire flow from your code through the proxy implementation, to the SQL query, and back to your Java objects. Understanding this flow will help you troubleshoot issues and design better applications.
 
 #java/springboot #architecture/visual #java/jpa #database/mysql #tools/intellij
+
+

@@ -85,3 +85,5 @@ topic: Java Test Questions
 5. Standard execution order of: `@BeforeAll`, `@BeforeEach`, `@Test`, `@AfterEach`, `@AfterAll`.  
 6. Critical consideration for `@BeforeEach` with `static` methods?  
 7. Why must JUnit tests be independent (no execution-order reliance)?  
+
+

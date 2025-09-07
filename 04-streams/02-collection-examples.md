@@ -143,9 +143,7 @@ public class ObjectStreamDemo {
 
 Tags: \#java \#java/streams \#java/collections \#bestpractices
 See also: [[Java Collections]] [[Design Patterns]][^4][^2]
-<span style="display:none">[^10][^11][^12][^7][^8][^9]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html
 
@@ -170,3 +168,5 @@ See also: [[Java Collections]] [[Design Patterns]][^4][^2]
 [^11]: https://www.baeldung.com/java-17-new-features
 
 [^12]: https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/util/Map.Entry.html
+
+

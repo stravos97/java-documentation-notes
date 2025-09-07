@@ -328,10 +328,10 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 
 ### Repository Capabilities
 
-- ==CRUD operations== without writing SQL
-- ==Pagination and sorting== capabilities
-- ==Query derivation== from method names
-- ==Automatic transaction management==
+- **CRUD operations** without writing SQL
+- **Pagination and sorting** capabilities
+- **Query derivation** from method names
+- **Automatic transaction management**
 
 ### Common Repository Methods
 
@@ -648,22 +648,22 @@ public class CustomerController {
 
 ### Production Readiness Checklist
 
-- [x] ==Externalize== database credentials (use environment variables)
-- [ ] ==Enable HTTPS== for REST endpoints
-- [ ] ==Implement authentication/authorization== (Spring Security)
-- [x] ==Add input validation== on all endpoints
-- [ ] ==Configure CORS== appropriately
-- [x] ==Enable SQL injection protection== (via parameterized queries)
-- [ ] ==Implement audit logging==
+- [x] **Externalize** database credentials (use environment variables)
+- [ ] **Enable HTTPS** for REST endpoints
+- [ ] **Implement authentication/authorization** (Spring Security)
+- [x] **Add input validation** on all endpoints
+- [ ] **Configure CORS** appropriately
+- [x] **Enable SQL injection protection** (via parameterized queries)
+- [ ] **Implement audit logging**
 
 ## Summary
 
 This Spring Boot application demonstrates professional-grade setup with:
 
-- ==Proper dependency management== through Maven
-- ==Database-first development== using JPA Buddy
-- ==Clean architecture== with repository pattern
-- ==Production-ready configuration== options
+- **Proper dependency management** through Maven
+- **Database-first development** using JPA Buddy
+- **Clean architecture** with repository pattern
+- **Production-ready configuration** options
 
 The key insight is understanding how Spring Boot manages the lifecycle of your objects - creating implementations at runtime, managing dependencies, and handling database connections through configuration rather than explicit code.
 
@@ -671,3 +671,5 @@ The key insight is understanding how Spring Boot manages the lifecycle of your o
 > Explore [[Spring Security]], [[Spring REST Docs]], and [[Spring Cloud]] for extending this application with authentication, API documentation, and microservices capabilities.
 
 #java/springboot #java/jpa #database/mysql #architecture/patterns #tools/intellij #java/dependency-injection
+
+

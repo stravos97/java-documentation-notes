@@ -182,9 +182,7 @@ markdown| Purpose | Method reference | Lambda equivalent
 
 Tags: \#java \#java/streams \#java/methodreferences \#bestpractices
 See also: [[Java Collections]] [[Design Patterns]]
-<span style="display:none">[^2][^3][^4][^5][^6][^7][^8][^9]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: https://codefinity.com/courses/v2/190d2568-3d25-44d0-832f-da03468004c9/c0bcd017-ff39-46ec-bc93-acd569f3497d/f79fe204-c582-4430-9d5e-d6b6377d741e
 
@@ -203,3 +201,5 @@ See also: [[Java Collections]] [[Design Patterns]]
 [^8]: https://javatechonline.com/method-reference-in-java-8/
 
 [^9]: https://stackify.com/streams-guide-java-8/
+
+

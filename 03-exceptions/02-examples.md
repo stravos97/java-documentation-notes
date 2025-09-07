@@ -315,10 +315,10 @@ try {
 > Try modifying the Animal constructor to validate the name parameter and throw appropriate exceptions. Then update App.java to handle all possible exceptions!
 
 **Good luck on your test!** 🍀
-<span style="display:none">[^1][^2]</span>
 
-<div style="text-align: center">⁂</div>
 
 [^1]: Animal.java
 
 [^2]: App.java
+
+

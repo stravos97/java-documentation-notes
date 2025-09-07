@@ -124,25 +124,25 @@ sequenceDiagram
     participant DB as Database
     
     Note over C: User clicks "Create Post"
-    C->>Auth: POST /api/posts<br/>Authorization: Bearer abc123xyz<br/>Body: {title: "My Post", content: "..."}
+    C->>Auth: POST /api/posts\nAuthorization: Bearer abc123xyz\nBody: {title: "My Post", content: "..."}
     
-    Auth->>Auth: Decode JWT token<br/>Check expiration<br/>Verify signature
+    Auth->>Auth: Decode JWT token\nCheck expiration\nVerify signature
     
     alt Token Invalid or Expired
-        Auth-->>C: 401 Unauthorized<br/>"Please login again"
+        Auth-->>C: 401 Unauthorized\n"Please login again"
     else Token Valid
         Auth->>Validate: Forward with user info
-        Validate->>Validate: Check title not empty<br/>Check content length<br/>Sanitize input
+        Validate->>Validate: Check title not empty\nCheck content length\nSanitize input
         
         alt Validation Fails
-            Validate-->>C: 400 Bad Request<br/>"Title is required"
+            Validate-->>C: 400 Bad Request\n"Title is required"
         else Validation Passes
             Validate->>Controller: Process request
             Controller->>Service: CreatePost(userId, data)
-            Service->>DB: BEGIN TRANSACTION<br/>INSERT INTO posts...<br/>UPDATE user_stats...<br/>COMMIT
+            Service->>DB: BEGIN TRANSACTION\nINSERT INTO posts...\nUPDATE user_stats...\nCOMMIT
             DB-->>Service: Post created with ID: 999
             Service-->>Controller: Format response
-            Controller-->>C: 201 Created<br/>{id: 999, title: "My Post", created_at: "..."}
+            Controller-->>C: 201 Created\n{id: 999, title: "My Post", created_at: "..."}
         end
     end
 ```
@@ -165,25 +165,25 @@ Finally, the validated request reaches the business logic layer, which orchestra
 flowchart TD
     Start[Client Request Arrives] --> CheckFormat{Request Format OK?}
     
-    CheckFormat -->|Malformed JSON| Code400[400 Bad Request<br/>Your request has syntax errors]
+    CheckFormat -->|Malformed JSON| Code400[400 Bad Request\nYour request has syntax errors]
     CheckFormat -->|Valid Format| CheckAuth{Has Valid Token?}
     
-    CheckAuth -->|No Token| Code401[401 Unauthorized<br/>Please provide credentials]
+    CheckAuth -->|No Token| Code401[401 Unauthorized\nPlease provide credentials]
     CheckAuth -->|Token Present| CheckPerms{Has Permission?}
     
-    CheckPerms -->|Insufficient Rights| Code403[403 Forbidden<br/>You cannot access this]
+    CheckPerms -->|Insufficient Rights| Code403[403 Forbidden\nYou cannot access this]
     CheckPerms -->|Authorized| CheckResource{Resource Exists?}
     
-    CheckResource -->|Not Found| Code404[404 Not Found<br/>This item doesn't exist]
+    CheckResource -->|Not Found| Code404[404 Not Found\nThis item doesn't exist]
     CheckResource -->|Exists| CheckMethod{Method Allowed?}
     
-    CheckMethod -->|Method Not Allowed| Code405[405 Method Not Allowed<br/>Can't DELETE a collection]
+    CheckMethod -->|Method Not Allowed| Code405[405 Method Not Allowed\nCan't DELETE a collection]
     CheckMethod -->|Allowed| Process[Process Request]
     
-    Process -->|Return Data| Code200[200 OK<br/>Here's your data]
-    Process -->|Created Resource| Code201[201 Created<br/>New item created]
-    Process -->|Deleted Resource| Code204[204 No Content<br/>Successfully deleted]
-    Process -->|Server Crashed| Code500[500 Internal Server Error<br/>Something went wrong on our end]
+    Process -->|Return Data| Code200[200 OK\nHere's your data]
+    Process -->|Created Resource| Code201[201 Created\nNew item created]
+    Process -->|Deleted Resource| Code204[204 No Content\nSuccessfully deleted]
+    Process -->|Server Crashed| Code500[500 Internal Server Error\nSomething went wrong on our end]
     
     style Code200 fill:#90EE90
     style Code201 fill:#90EE90
@@ -232,11 +232,11 @@ sequenceDiagram
     Server->>Database: Verify credentials
     Database-->>Server: Credentials valid
     Server-->>Client: Here's your token: xyz789
-    Client->>Server: GET /profile<br/>Authorization: Bearer xyz789
+    Client->>Server: GET /profile\nAuthorization: Bearer xyz789
     Server->>Server: Decode token: "This is John"
     Server-->>Client: John's profile data
     Note over Server: Server crashes and restarts!
-    Client->>Server: GET /orders<br/>Authorization: Bearer xyz789
+    Client->>Server: GET /orders\nAuthorization: Bearer xyz789
     Server->>Server: Decode token: "This is John"
     Server-->>Client: John's orders
 ```
@@ -253,7 +253,7 @@ The stateless approach solves these issues. Every request carries its own authen
 flowchart TB
     subgraph "JWT Token Authentication Flow"
         J1[Client Login] -->|Send Credentials| J2[Server Validates]
-        J2 -->|Generate JWT| J3[JWT Contains:<br/>- User ID<br/>- Permissions<br/>- Expiration<br/>- Signature]
+        J2 -->|Generate JWT| J3[JWT Contains:\n- User ID\n- Permissions\n- Expiration\n- Signature]
         J3 -->|Return Token| J4[Client Stores Token]
         J4 -->|Future Requests| J5[Include Token in Header]
         J5 -->|Server Validates| J6[Decode Without DB Call]
@@ -290,15 +290,15 @@ sequenceDiagram
     
     Note over Browser: User visits products page
     Browser->>API: GET /products?page=1&limit=20
-    API->>DB: SELECT * FROM products<br/>ORDER BY created_at DESC<br/>LIMIT 20 OFFSET 0
+    API->>DB: SELECT * FROM products\nORDER BY created_at DESC\nLIMIT 20 OFFSET 0
     DB-->>API: Products 1-20 of 500 total
-    API-->>Browser: {<br/>  "data": [20 products],<br/>  "pagination": {<br/>    "current_page": 1,<br/>    "total_pages": 25,<br/>    "total_items": 500,<br/>    "has_next": true,<br/>    "has_previous": false<br/>  }<br/>}
+    API-->>Browser: {\n  "data": [20 products],\n  "pagination": {\n    "current_page": 1,\n    "total_pages": 25,\n    "total_items": 500,\n    "has_next": true,\n    "has_previous": false\n  }\n}
     
     Note over Browser: User clicks "Next Page"
     Browser->>API: GET /products?page=2&limit=20
-    API->>DB: SELECT * FROM products<br/>ORDER BY created_at DESC<br/>LIMIT 20 OFFSET 20
+    API->>DB: SELECT * FROM products\nORDER BY created_at DESC\nLIMIT 20 OFFSET 20
     DB-->>API: Products 21-40 of 500 total
-    API-->>Browser: {<br/>  "data": [20 products],<br/>  "pagination": {<br/>    "current_page": 2,<br/>    "total_pages": 25,<br/>    "total_items": 500,<br/>    "has_next": true,<br/>    "has_previous": true<br/>  }<br/>}
+    API-->>Browser: {\n  "data": [20 products],\n  "pagination": {\n    "current_page": 2,\n    "total_pages": 25,\n    "total_items": 500,\n    "has_next": true,\n    "has_previous": true\n  }\n}
 ```
 
 ### How Pagination Works in Practice:
@@ -320,20 +320,20 @@ sequenceDiagram
     participant Email as Email Service
     
     Note over User: User clicks "Buy Now"
-    User->>API: POST /orders<br/>Token: xyz<br/>Body: {items: [...], address: {...}}
+    User->>API: POST /orders\nToken: xyz\nBody: {items: [...], address: {...}}
     API->>DB: BEGIN TRANSACTION
     API->>DB: Check inventory levels
     DB-->>API: Items available
-    API->>DB: INSERT INTO orders<br/>Status: 'pending'
+    API->>DB: INSERT INTO orders\nStatus: 'pending'
     DB-->>API: Order ID: 12345
-    API->>DB: UPDATE inventory<br/>Reserve items
+    API->>DB: UPDATE inventory\nReserve items
     API->>DB: COMMIT TRANSACTION
     API-->>User: {order_id: 12345, status: "pending"}
     
-    User->>API: POST /payments<br/>Token: xyz<br/>Body: {order_id: 12345, card: {...}}
+    User->>API: POST /payments\nToken: xyz\nBody: {order_id: 12345, card: {...}}
     API->>Payment: Process payment
     Payment-->>API: Payment successful
-    API->>DB: UPDATE orders<br/>SET status = 'paid'
+    API->>DB: UPDATE orders\nSET status = 'paid'
     API->>Email: Send confirmation email
     API-->>User: {status: "success", receipt: {...}}
 ```
@@ -354,8 +354,8 @@ graph TD
         URLDesc[Most visible and clear approach]
         URL1[api.site.com/v1/users]
         URL2[api.site.com/v2/users]
-        URLPro[✓ Clear in logs<br/>✓ Easy to route<br/>✓ Cache friendly]
-        URLCon[✗ URL pollution<br/>✗ Forces version on all endpoints]
+        URLPro[✓ Clear in logs\n✓ Easy to route\n✓ Cache friendly]
+        URLCon[✗ URL pollution\n✗ Forces version on all endpoints]
         URLDesc --> URL1
         URLDesc --> URL2
         URL1 --> URLPro
@@ -364,10 +364,10 @@ graph TD
     
     subgraph "Header Versioning"
         HeaderDesc[Version in custom header]
-        Header1[GET /users<br/>API-Version: 1.0]
-        Header2[GET /users<br/>API-Version: 2.0]
-        HeaderPro[✓ Clean URLs<br/>✓ Version per request]
-        HeaderCon[✗ Hidden from URL<br/>✗ Harder to test in browser]
+        Header1[GET /users\nAPI-Version: 1.0]
+        Header2[GET /users\nAPI-Version: 2.0]
+        HeaderPro[✓ Clean URLs\n✓ Version per request]
+        HeaderCon[✗ Hidden from URL\n✗ Harder to test in browser]
         HeaderDesc --> Header1
         HeaderDesc --> Header2
         Header1 --> HeaderPro
@@ -378,8 +378,8 @@ graph TD
         QueryDesc[Version as URL parameter]
         Query1[api.site.com/users?version=1]
         Query2[api.site.com/users?version=2]
-        QueryPro[✓ Optional parameter<br/>✓ Easy to implement]
-        QueryCon[✗ Can conflict with filters<br/>✗ Not RESTful pure]
+        QueryPro[✓ Optional parameter\n✓ Easy to implement]
+        QueryCon[✗ Can conflict with filters\n✗ Not RESTful pure]
         QueryDesc --> Query1
         QueryDesc --> Query2
         Query1 --> QueryPro
@@ -388,10 +388,10 @@ graph TD
     
     subgraph "Accept Header Versioning"
         AcceptDesc[Version in Accept header]
-        Accept1[GET /users<br/>Accept: application/vnd.api+json;version=1]
-        Accept2[GET /users<br/>Accept: application/vnd.api+json;version=2]
-        AcceptPro[✓ Proper HTTP semantics<br/>✓ Content negotiation]
-        AcceptCon[✗ Complex to implement<br/>✗ Hard to debug]
+        Accept1[GET /users\nAccept: application/vnd.api+json;version=1]
+        Accept2[GET /users\nAccept: application/vnd.api+json;version=2]
+        AcceptPro[✓ Proper HTTP semantics\n✓ Content negotiation]
+        AcceptCon[✗ Complex to implement\n✗ Hard to debug]
         AcceptDesc --> Accept1
         AcceptDesc --> Accept2
         Accept1 --> AcceptPro
@@ -420,15 +420,15 @@ flowchart TD
     Request[API Request] --> TryCatch{Execute Request}
     
     TryCatch -->|Success| Process[Process Business Logic]
-    Process --> Response[200 OK<br/>Return requested data]
+    Process --> Response[200 OK\nReturn requested data]
     
     TryCatch -->|Exception Caught| ErrorType{Identify Error Type}
     
-    ErrorType -->|Validation Failed| VError[400 Bad Request<br/>Invalid input data]
-    ErrorType -->|Not Found| NError[404 Not Found<br/>Resource doesn't exist]
-    ErrorType -->|Auth Failed| AError[401 Unauthorized<br/>Invalid or missing token]
-    ErrorType -->|No Permission| PError[403 Forbidden<br/>Not allowed to access]
-    ErrorType -->|Server Error| SError[500 Internal Server<br/>Unexpected error]
+    ErrorType -->|Validation Failed| VError[400 Bad Request\nInvalid input data]
+    ErrorType -->|Not Found| NError[404 Not Found\nResource doesn't exist]
+    ErrorType -->|Auth Failed| AError[401 Unauthorized\nInvalid or missing token]
+    ErrorType -->|No Permission| PError[403 Forbidden\nNot allowed to access]
+    ErrorType -->|Server Error| SError[500 Internal Server\nUnexpected error]
     
     VError --> FormatError[Create Error Response]
     NError --> FormatError
@@ -436,7 +436,7 @@ flowchart TD
     PError --> FormatError
     SError --> FormatError
     
-    FormatError --> JSONError[Return JSON Error<br/>with code, message, and details]
+    FormatError --> JSONError[Return JSON Error\nwith code, message, and details]
 ```
 
 ### How Error Handling Protects Your API:
@@ -529,3 +529,5 @@ Here are the essential concepts that make REST APIs work:
 **E-commerce Purchase Flow:** When buying something online, clicking "Purchase" triggers a cascade of REST API calls: POST to create the order, PUT to update inventory, POST to process payment, and possibly more to send emails or update shipping. Each call is authenticated, validated, and processed independently, but together they complete the purchase.
 
 Remember, REST APIs are essentially web services that follow specific conventions to make them predictable, scalable, and easy to use. They're the reason modern web applications can separate their frontend and backend, support multiple client types, and scale to millions of users.
+
+

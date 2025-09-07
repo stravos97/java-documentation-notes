@@ -398,7 +398,7 @@ sequenceDiagram
     Note over Employee: Initialize Employee fields
     Employee-->>Client: Employee object created
     
-    Note over Client,Person: Execution Order:<br/>1. super() or this() call (if any)<br/>2. Instance variable initialization<br/>3. Constructor body execution
+    Note over Client,Person: Execution Order:\n1. super() or this() call (if any)\n2. Instance variable initialization\n3. Constructor body execution
 ```
 
 **Constructor Chaining Rules and Examples:**
@@ -406,18 +406,18 @@ sequenceDiagram
 ```mermaid
 graph LR
     subgraph "Chaining Rules"
-        RULE1["this() or super() must be<br/>FIRST statement in constructor"]
-        RULE2["Cannot use both this() and super()<br/>in same constructor"]
-        RULE3["If no explicit super() call,<br/>Java adds implicit super()"]
-        RULE4["this() chains within same class<br/>super() chains to parent class"]
+        RULE1["this() or super() must be\nFIRST statement in constructor"]
+        RULE2["Cannot use both this() and super()\nin same constructor"]
+        RULE3["If no explicit super() call,\nJava adds implicit super()"]
+        RULE4["this() chains within same class\nsuper() chains to parent class"]
     end
     
     subgraph "Example: Valid Chaining"
-        V1["class Student extends Person {<br/>  Student() { this('Unknown', 0); }<br/>  Student(String n, int a) {<br/>    super(n); age = a;<br/>  }<br/>}"]
+        V1["class Student extends Person {\n  Student() { this('Unknown', 0); }\n  Student(String n, int a) {\n    super(n); age = a;\n  }\n}"]
     end
     
     subgraph "Example: Invalid Chaining"
-        I1["class Student {<br/>  Student() {<br/>    age = 18; // Error!<br/>    this('Unknown'); // Must be first<br/>  }<br/>}"]
+        I1["class Student {\n  Student() {\n    age = 18; // Error!\n    this('Unknown'); // Must be first\n  }\n}"]
     end
     
     style V1 fill:#d4edda
@@ -454,11 +454,11 @@ flowchart TD
     
     subgraph "Object Creation Phase"
         NEW["new Keyword Invoked"] --> MEM["JVM allocates memory on heap"]
-        MEM --> INIT["Initialize fields to default values<br/>(0, null, false)"]
-        INIT --> INSTANCE["Instance initializers run<br/>(init blocks, field initializers)"]
+        MEM --> INIT["Initialize fields to default values\n(0, null, false)"]
+        INIT --> INSTANCE["Instance initializers run\n(init blocks, field initializers)"]
         INSTANCE --> CONSTRUCTOR["Constructor execution"]
         
-        CONSTRUCTOR --> CHAIN_CHECK{Constructor<br/>chaining?}
+        CONSTRUCTOR --> CHAIN_CHECK{Constructor\nchaining?}
         CHAIN_CHECK -->|Yes| PARENT_CONST["Call parent/this() constructor"]
         CHAIN_CHECK -->|No| FIELD_INIT["Initialize instance fields"]
         PARENT_CONST --> FIELD_INIT
@@ -470,7 +470,7 @@ flowchart TD
         REF_RETURN --> ASSIGNED["Reference assigned to variable"]
         ASSIGNED --> METHOD_CALLS["Method calls & field access"]
         METHOD_CALLS --> STATE_CHANGES["Object state changes"]
-        STATE_CHANGES --> MORE_REFS{More references<br/>created?}
+        STATE_CHANGES --> MORE_REFS{More references\ncreated?}
         MORE_REFS -->|Yes| ASSIGNED
         MORE_REFS -->|No| USAGE_DONE["Usage complete"]
     end
@@ -485,7 +485,7 @@ flowchart TD
         NO_REFS --> GC_ELIGIBLE["Object eligible for GC"]
         GC_ELIGIBLE --> GC_TRIGGER["GC triggered by JVM"]
         GC_TRIGGER --> MARK["Mark: Trace reachable objects"]
-        MARK --> UNREACHABLE{Object<br/>unreachable?}
+        MARK --> UNREACHABLE{Object\nunreachable?}
         UNREACHABLE -->|Yes| SWEEP["Sweep: Mark for deletion"]
         UNREACHABLE -->|No| STAY_ALIVE["Object survives GC cycle"]
         SWEEP --> FINALIZE["finalize() called (if overridden)"]
@@ -513,7 +513,7 @@ flowchart LR
         THIS1 --> MATCH2["Matches: Student(String, int)"]
         MATCH2 --> THIS2["Calls: this('Alice', 18, 'UNKNOWN')"]
         THIS2 --> MATCH3["Matches: Student(String, int, String)"]
-        MATCH3 --> EXEC["Executes final constructor:<br/>this.name = 'Alice'<br/>this.age = 18<br/>this.id = 'UNKNOWN'"]
+        MATCH3 --> EXEC["Executes final constructor:\nthis.name = 'Alice'\nthis.age = 18\nthis.id = 'UNKNOWN'"]
         EXEC --> COMPLETE["Object fully initialized"]
     end
     
@@ -678,10 +678,10 @@ Here's how different access modifiers control visibility across packages and inh
 graph TB
     subgraph "Package A (com.example.base)"
         subgraph "BaseClass"
-            PRIV["🔒 private field<br/>❌ Not accessible outside class"]
-            PKG["📦 package field<br/>✅ Same package only"]
-            PROT["🛡️ protected field<br/>✅ Same package + subclasses"]
-            PUB["🌐 public field<br/>✅ Accessible everywhere"]
+            PRIV["🔒 private field\n❌ Not accessible outside class"]
+            PKG["📦 package field\n✅ Same package only"]
+            PROT["🛡️ protected field\n✅ Same package + subclasses"]
+            PUB["🌐 public field\n✅ Accessible everywhere"]
         end
         
         subgraph "SamePackageClass"
@@ -696,7 +696,7 @@ graph TB
         subgraph "SubClass extends BaseClass"
             SUB_PRIV["❌ Can't access private"]
             SUB_PKG["❌ Can't access package"]
-            SUB_PROT["✅ Can access protected<br/>(inherited only)"]
+            SUB_PROT["✅ Can access protected\n(inherited only)"]
             SUB_PUB["✅ Can access public"]
         end
         
@@ -734,22 +734,22 @@ graph TB
 
 ```mermaid
 flowchart TD
-    START["Choosing Access Modifier"] --> QUESTION1{Should this be accessible<br/>from outside the class?}
+    START["Choosing Access Modifier"] --> QUESTION1{Should this be accessible\nfrom outside the class?}
     
-    QUESTION1 -->|No| PRIVATE["Use PRIVATE<br/>🔒 Maximum encapsulation"]
+    QUESTION1 -->|No| PRIVATE["Use PRIVATE\n🔒 Maximum encapsulation"]
     
-    QUESTION1 -->|Yes| QUESTION2{Should this be accessible<br/>from other packages?}
+    QUESTION1 -->|Yes| QUESTION2{Should this be accessible\nfrom other packages?}
     
-    QUESTION2 -->|No| QUESTION3{Should subclasses in<br/>other packages access this?}
-    QUESTION3 -->|No| PACKAGE["Use PACKAGE (default)<br/>📦 Same package only"]
-    QUESTION3 -->|Yes| PROTECTED["Use PROTECTED<br/>🛡️ Same package + subclasses"]
+    QUESTION2 -->|No| QUESTION3{Should subclasses in\nother packages access this?}
+    QUESTION3 -->|No| PACKAGE["Use PACKAGE (default)\n📦 Same package only"]
+    QUESTION3 -->|Yes| PROTECTED["Use PROTECTED\n🛡️ Same package + subclasses"]
     
-    QUESTION2 -->|Yes| PUBLIC["Use PUBLIC<br/>🌐 Universal access"]
+    QUESTION2 -->|Yes| PUBLIC["Use PUBLIC\n🌐 Universal access"]
     
-    PRIVATE --> USE_CASE1["• Internal implementation<br/>• Sensitive data<br/>• Helper methods"]
-    PACKAGE --> USE_CASE2["• Package-internal utilities<br/>• Collaboration between classes<br/>• Internal APIs"]
-    PROTECTED --> USE_CASE3["• Framework extension points<br/>• Template method pattern<br/>• Inherited behavior"]
-    PUBLIC --> USE_CASE4["• Public APIs<br/>• Main functionality<br/>• Library interfaces"]
+    PRIVATE --> USE_CASE1["• Internal implementation\n• Sensitive data\n• Helper methods"]
+    PACKAGE --> USE_CASE2["• Package-internal utilities\n• Collaboration between classes\n• Internal APIs"]
+    PROTECTED --> USE_CASE3["• Framework extension points\n• Template method pattern\n• Inherited behavior"]
+    PUBLIC --> USE_CASE4["• Public APIs\n• Main functionality\n• Library interfaces"]
     
     style PRIVATE fill:#ffcdd2
     style PACKAGE fill:#fff3e0
@@ -793,10 +793,10 @@ classDiagram
     BankingSystem ..> BankAccount : same package
     ExternalAuditor ..> BankAccount : different package
     
-    note for BankAccount "Private: balance, accountNumber, validateAmount()<br/>Protected: branchCode, getBranchCode()<br/>Public: customerName, deposit(), withdraw(), getBalance()"
-    note for SavingsAccount "Can access protected branchCode<br/>Cannot access private balance directly"
-    note for BankingSystem "Can access package methods<br/>Same package privileges"
-    note for ExternalAuditor "Only public methods accessible<br/>Limited external access"
+    note for BankAccount "Private: balance, accountNumber, validateAmount()\nProtected: branchCode, getBranchCode()\nPublic: customerName, deposit(), withdraw(), getBalance()"
+    note for SavingsAccount "Can access protected branchCode\nCannot access private balance directly"
+    note for BankingSystem "Can access package methods\nSame package privileges"
+    note for ExternalAuditor "Only public methods accessible\nLimited external access"
 ```
 
 **Access Control Summary Table:**
@@ -891,3 +891,5 @@ car.start(); // "Tesla starts silently."
 - \[[Object-Oriented Design Patterns]\]
 - \[[Effective Java Best Practices]\]
 - \[[Unit Testing in Java]\]
+
+

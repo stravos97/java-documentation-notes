@@ -71,7 +71,7 @@ ______________________________________________________________________
 
 
 > [!TIP]
-> While loops are great for ==user-driven interactions==.
+> While loops are great for **user-driven interactions**.
 > Always include an exit condition to avoid infinite loops.
 
 ______________________________________________________________________
@@ -225,7 +225,7 @@ ______________________________________________________________________
 
 
 > [!TIP]
-> For generating many primes, use the ==Sieve of Eratosthenes==.
+> For generating many primes, use the **Sieve of Eratosthenes**.
 
 ______________________________________________________________________
 
@@ -762,3 +762,5 @@ or \[[Algorithms in Java]\]. [oracle](https://docs.oracle.com/javase/8/docs/api/
 
 
 #java #loops #prime-numbers #algorithms #programming-example
+
+

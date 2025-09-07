@@ -247,3 +247,5 @@ When someone says "findAll() returns all entities," they mean it returns **Java 
 > When you see `Customer customer = customerRepository.findById("ALFKI").get();`, you're getting a **Java object** (an entity instance) that represents the customer with ID "ALFKI" from your database. You can call `customer.getCompanyName()` just like any other Java object - no SQL needed!
 
 #java/springboot #beginner #java/jpa #entity #crud #database/mysql
+
+

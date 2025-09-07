@@ -96,7 +96,7 @@ public class RetailOrder {
 ```mermaid
 graph TB
     subgraph "VIOLATES SRP"
-        A[RetailOrder Class<br/>TOO MANY RESPONSIBILITIES]
+        A[RetailOrder Class\nTOO MANY RESPONSIBILITIES]
         A --> B[Order Management]
         A --> C[Price Calculation]
         A --> D[Payment Processing]
@@ -106,12 +106,12 @@ graph TB
     end
     
     subgraph "FOLLOWS SRP"
-        H[Order<br/>Data Only]
-        I[PriceCalculator<br/>Calculations]
-        J[PaymentProcessor<br/>Payments]
-        K[EmailService<br/>Notifications]
-        L[InventoryManager<br/>Stock Management]
-        M[InvoiceService<br/>Document Generation]
+        H[Order\nData Only]
+        I[PriceCalculator\nCalculations]
+        J[PaymentProcessor\nPayments]
+        K[EmailService\nNotifications]
+        L[InventoryManager\nStock Management]
+        M[InvoiceService\nDocument Generation]
     end
     
     style A fill:#ffcccc,stroke:#ff0000,stroke-width:3px
@@ -434,7 +434,7 @@ classDiagram
         +getPaymentType(): String
         +calculateFees(amount): double
     }
-    PaymentMethod <|.. FuturePayment : can add without<br/>changing existing code
+    PaymentMethod <|.. FuturePayment : can add without\nchanging existing code
 ```
 
 > [!NOTE] Key Insight The `CheckoutSystem` class is **closed for modification** (we never change it) but **open for extension** (we can add new payment methods anytime).
@@ -630,8 +630,8 @@ classDiagram
     Product <|-- DigitalProduct
     ShoppingCart --> Product : works with any Product
     
-    note for Product "All subclasses must implement<br/>these methods consistently"
-    note for ShoppingCart "Can use PhysicalProduct or<br/>DigitalProduct interchangeably<br/>without breaking"
+    note for Product "All subclasses must implement\nthese methods consistently"
+    note for ShoppingCart "Can use PhysicalProduct or\nDigitalProduct interchangeably\nwithout breaking"
 ```
 
 ### How LSP Enables Seamless Cart Operations
@@ -642,8 +642,8 @@ flowchart TD
     B --> C[product.isAvailable call]
     
     subgraph "Works with ANY Product Type"
-        D[PhysicalProduct<br/>checks stockQuantity]
-        E[DigitalProduct<br/>checks isCurrentlyAvailable]
+        D[PhysicalProduct\nchecks stockQuantity]
+        E[DigitalProduct\nchecks isCurrentlyAvailable]
     end
     
     C --> D
@@ -656,8 +656,8 @@ flowchart TD
     F -->|No| H[Show unavailable message]
     
     subgraph "Consistent Reserve Behavior"
-        I[PhysicalProduct<br/>reduces stockQuantity]
-        J[DigitalProduct<br/>logs license reservation]
+        I[PhysicalProduct\nreduces stockQuantity]
+        J[DigitalProduct\nlogs license reservation]
     end
     
     G --> I
@@ -665,7 +665,7 @@ flowchart TD
     
     I --> K[Add to cart items]
     J --> K
-    K --> L[Calculate total using<br/>product.calculatePrice]
+    K --> L[Calculate total using\nproduct.calculatePrice]
     
     style B fill:#e3f2fd
     style C fill:#f3e5f5
@@ -761,12 +761,12 @@ public abstract class Product {
 ```mermaid
 graph LR
     subgraph "OCP: EXTENSION Focus"
-        A1[PaymentMethod Interface<br/>STABLE - Never Changes]
-        A2[CreditCardPayment<br/>Existing Implementation]
-        A3[PayPalPayment<br/>Existing Implementation]
-        A4[ApplePayPayment<br/>NEW - Added via Extension]
-        A5[GooglePayPayment<br/>FUTURE - Can add anytime]
-        A6[CheckoutSystem<br/>Uses PaymentMethod<br/>NEVER CHANGES]
+        A1[PaymentMethod Interface\nSTABLE - Never Changes]
+        A2[CreditCardPayment\nExisting Implementation]
+        A3[PayPalPayment\nExisting Implementation]
+        A4[ApplePayPayment\nNEW - Added via Extension]
+        A5[GooglePayPayment\nFUTURE - Can add anytime]
+        A6[CheckoutSystem\nUses PaymentMethod\nNEVER CHANGES]
         
         A1 -.-> A2
         A1 -.-> A3
@@ -780,10 +780,10 @@ graph LR
     end
     
     subgraph "LSP: SUBSTITUTION Focus"
-        B1[Product Base Class<br/>Defines Contract]
-        B2[PhysicalProduct<br/>Implementation A]
-        B3[DigitalProduct<br/>Implementation B]
-        B4[ShoppingCart<br/>Works with ANY Product<br/>No type checking needed]
+        B1[Product Base Class\nDefines Contract]
+        B2[PhysicalProduct\nImplementation A]
+        B3[DigitalProduct\nImplementation B]
+        B4[ShoppingCart\nWorks with ANY Product\nNo type checking needed]
         
         B1 --> B2
         B1 --> B3
@@ -802,8 +802,8 @@ graph LR
         style B4 fill:#e8f5e8,stroke:#4caf50,stroke-width:3px
     end
     
-    C1[OCP Goal:<br/>Add new payment methods<br/>without changing checkout]
-    C2[LSP Goal:<br/>Use different products<br/>interchangeably in cart]
+    C1[OCP Goal:\nAdd new payment methods\nwithout changing checkout]
+    C2[LSP Goal:\nUse different products\ninterchangeably in cart]
     
     C1 -.-> A4
     C2 -.-> B4
@@ -908,19 +908,19 @@ public class Cashier implements RetailEmployee {
 ```mermaid
 graph TD
     subgraph "VIOLATES ISP - Fat Interface"
-        A[RetailEmployee Interface<br/>14 Methods Total]
-        A --> B[Cashier Implementation<br/>Forces unused methods]
-        A --> C[Manager Implementation<br/>Forces unused methods]
-        A --> D[Warehouse Worker Implementation<br/>Forces unused methods]
+        A[RetailEmployee Interface\n14 Methods Total]
+        A --> B[Cashier Implementation\nForces unused methods]
+        A --> C[Manager Implementation\nForces unused methods]
+        A --> D[Warehouse Worker Implementation\nForces unused methods]
         
-        B --> E[scanItem ✓<br/>processPayment ✓<br/>generateSalesReport ✗<br/>approveRefund ✗<br/>scheduleEmployees ✗<br/>updateInventory ✗<br/>orderStock ✗<br/>arrangeShipment ✗<br/>handleReturn ✗<br/>answerCustomerQuery ✗<br/>escalateComplaint ✗]
+        B --> E[scanItem ✓\nprocessPayment ✓\ngenerateSalesReport ✗\napproveRefund ✗\nscheduleEmployees ✗\nupdateInventory ✗\norderStock ✗\narrangeShipment ✗\nhandleReturn ✗\nanswerCustomerQuery ✗\nescalateComplaint ✗]
     end
     
     subgraph "FOLLOWS ISP - Segregated Interfaces"
-        F[CashierOperations<br/>5 Methods]
-        G[ManagerOperations<br/>4 Methods] 
-        H[WarehouseOperations<br/>4 Methods]
-        I[CustomerServiceOperations<br/>4 Methods]
+        F[CashierOperations\n5 Methods]
+        G[ManagerOperations\n4 Methods] 
+        H[WarehouseOperations\n4 Methods]
+        I[CustomerServiceOperations\n4 Methods]
         
         J[Cashier] --> F
         K[Manager] --> F
@@ -1101,7 +1101,7 @@ classDiagram
     WarehouseOperations <|.. WarehouseWorker
     CustomerServiceOperations <|.. CustomerServiceRep
     
-    note for StoreManager "Can implement multiple interfaces<br/>as managers have broader access"
+    note for StoreManager "Can implement multiple interfaces\nas managers have broader access"
     note for Cashier "Only implements what cashiers need"
 ```
 
@@ -1147,10 +1147,10 @@ public class OrderFulfillmentSystem {
 ```mermaid
 graph TD
     subgraph "VIOLATES DIP - Concrete Dependencies"
-        A[OrderFulfillmentSystem<br/>High-Level Business Logic]
-        A --> B[FedExShipping<br/>Low-Level Implementation]
-        A --> C[MySQLInventory<br/>Low-Level Implementation]
-        A --> D[GmailEmailSender<br/>Low-Level Implementation]
+        A[OrderFulfillmentSystem\nHigh-Level Business Logic]
+        A --> B[FedExShipping\nLow-Level Implementation]
+        A --> C[MySQLInventory\nLow-Level Implementation]
+        A --> D[GmailEmailSender\nLow-Level Implementation]
         
         style A fill:#ffcccc,stroke:#ff0000,stroke-width:3px
         style B fill:#ffcccc,stroke:#ff0000,stroke-width:2px
@@ -1159,16 +1159,16 @@ graph TD
     end
     
     subgraph "FOLLOWS DIP - Abstract Dependencies"
-        E[OrderFulfillmentSystem<br/>High-Level Business Logic]
-        F[ShippingService<br/>Abstraction]
-        G[InventoryService<br/>Abstraction] 
-        H[NotificationService<br/>Abstraction]
+        E[OrderFulfillmentSystem\nHigh-Level Business Logic]
+        F[ShippingService\nAbstraction]
+        G[InventoryService\nAbstraction] 
+        H[NotificationService\nAbstraction]
         
-        I[FedExShippingService<br/>Implementation]
-        J[UPSShippingService<br/>Implementation]
-        K[DatabaseInventoryService<br/>Implementation]
-        L[EmailNotificationService<br/>Implementation]
-        M[SMSNotificationService<br/>Implementation]
+        I[FedExShippingService\nImplementation]
+        J[UPSShippingService\nImplementation]
+        K[DatabaseInventoryService\nImplementation]
+        L[EmailNotificationService\nImplementation]
+        M[SMSNotificationService\nImplementation]
         
         E --> F
         E --> G
@@ -1186,8 +1186,8 @@ graph TD
         style H fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     end
     
-    N[Problem: High-level depends on low-level<br/>Change UPS → Rewrite business logic] -.-> A
-    O[Solution: Both depend on abstractions<br/>Swap implementations easily] -.-> E
+    N[Problem: High-level depends on low-level\nChange UPS → Rewrite business logic] -.-> A
+    O[Solution: Both depend on abstractions\nSwap implementations easily] -.-> E
 ```
 
 ### The Solution: Applying DIP
@@ -1349,14 +1349,14 @@ public class RetailApplication {
 ```mermaid
 graph TB
     subgraph "High-Level Policy Layer"
-        A[OrderFulfillmentSystem<br/>Business Logic]
-        B[RetailApplication<br/>Configuration & Coordination]
+        A[OrderFulfillmentSystem\nBusiness Logic]
+        B[RetailApplication\nConfiguration & Coordination]
     end
     
     subgraph "Abstraction Layer"
-        C[ShippingService<br/>Interface]
-        D[InventoryService<br/>Interface]
-        E[NotificationService<br/>Interface]
+        C[ShippingService\nInterface]
+        D[InventoryService\nInterface]
+        E[NotificationService\nInterface]
     end
     
     subgraph "Implementation Layer"
@@ -1521,9 +1521,9 @@ graph TB
     end
     
     subgraph "Service Layer - SRP Applied"
-        B[CheckoutService<br/>Orchestration Only]
-        C[PriceCalculator<br/>Calculations Only]
-        D[OrderService<br/>Order Management Only]
+        B[CheckoutService\nOrchestration Only]
+        C[PriceCalculator\nCalculations Only]
+        D[OrderService\nOrder Management Only]
     end
     
     subgraph "Strategy Pattern - OCP Applied"
@@ -1592,11 +1592,11 @@ graph TB
     class N,O,P ispClass
     class Q,R,S,T,U dipClass
     
-    note1[SRP: Each service has<br/>one responsibility]
-    note2[OCP: Easy to add new<br/>payment methods]
-    note3[LSP: All products work<br/>consistently in system]
-    note4[ISP: Focused interfaces<br/>for each concern]
-    note5[DIP: High-level modules<br/>depend on abstractions]
+    note1[SRP: Each service has\none responsibility]
+    note2[OCP: Easy to add new\npayment methods]
+    note3[LSP: All products work\nconsistently in system]
+    note4[ISP: Focused interfaces\nfor each concern]
+    note5[DIP: High-level modules\ndepend on abstractions]
 ```
 
 ## Common Pitfalls and How to Avoid Them
@@ -1664,3 +1664,5 @@ Remember: SOLID principles are **guidelines, not rules**. Apply them pragmatical
 ---
 
 #java #solid #design-principles #oop #retail #architecture #best-practices
+
+
