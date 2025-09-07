@@ -171,4 +171,4 @@ Java Exception Hierarchy Diagram
 > [!EXAMPLE]
 > **Try**: Change the types of exceptions in the examples above. See what happens when you don’t handle a checked exception, or when your code crashes with an unchecked exception!
 
-
+#java #exceptions #checked #unchecked

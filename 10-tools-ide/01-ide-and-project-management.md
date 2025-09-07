@@ -597,4 +597,4 @@ This expanded cheatsheet gives you **better examples, explanations, and visual a
 - \[[Project Structure]\]
 - \[[Effective Java Practices]\]
 
-
+#java #tools #ide #project-management

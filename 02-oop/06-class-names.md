@@ -209,6 +209,4 @@ class HelperClass {
 > This table highlights why public classes enforce stricter rules—it's about accessibility and organization in larger
 > apps.
 
-#java #java/basics #java/classes #bestpractices
-
-
+#java #oop #naming #conventions

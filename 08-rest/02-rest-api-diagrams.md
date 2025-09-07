@@ -530,4 +530,4 @@ Here are the essential concepts that make REST APIs work:
 
 Remember, REST APIs are essentially web services that follow specific conventions to make them predictable, scalable, and easy to use. They're the reason modern web applications can separate their frontend and backend, support multiple client types, and scale to millions of users.
 
-
+#java #rest #api #http #diagrams

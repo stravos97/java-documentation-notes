@@ -685,4 +685,4 @@ flowchart LR
 - \[[Java Collections Memory Impact]\]
 - \[[Effective Resource Management]\]
 
-
+#java #runtime #jvm #memory-management

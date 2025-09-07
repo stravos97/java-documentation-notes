@@ -761,6 +761,4 @@ For more on number algorithms, see \[[Java Math]\]
 or \[[Algorithms in Java]\]. [oracle](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html)
 
 
-#java #loops #prime-numbers #algorithms #programming-example
-
-
+#java #basics #loops #while

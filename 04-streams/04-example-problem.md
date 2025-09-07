@@ -285,4 +285,4 @@ Your Beatles example beautifully demonstrates every concept we've discussed. The
 
 The elegance of streams is that they let you express your intent clearly: "From these Beatles, filter those whose names start with J, convert them to uppercase, and print each one." The stream handles all the iteration and plumbing, letting you focus on describing the transformations you want.
 
-
+#java #streams #practice

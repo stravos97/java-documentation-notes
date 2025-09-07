@@ -425,6 +425,4 @@ pie
 > - `Country` maps to `Country` column
 > - `And` combines the conditions
 
-#java/springboot #java/jpa #crud #sql #beginner #query-generation
-
-
+#java #spring-boot #jpa #queries

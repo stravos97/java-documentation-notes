@@ -578,4 +578,4 @@ focused and your project organized and maintainable.
 
 [^8]: https://study.com/academy/lesson/what-is-public-static-void-main-in-java.html
 
-
+#java #basics #classes #methods

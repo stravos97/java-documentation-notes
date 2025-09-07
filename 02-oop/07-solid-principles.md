@@ -1663,6 +1663,4 @@ Remember: SOLID principles are **guidelines, not rules**. Apply them pragmatical
 
 ---
 
-#java #solid #design-principles #oop #retail #architecture #best-practices
-
-
+#java #oop #solid #bestpractices

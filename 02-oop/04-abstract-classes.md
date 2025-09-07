@@ -300,5 +300,4 @@ class ReportTask extends Task {
 
 [^8]: https://www.youtube.com/watch?v=PPZ_vZcF2AU
 
-
-
+#java #oop #abstract-classes

@@ -169,4 +169,4 @@ See also: [[Java Collections]] [[Design Patterns]][^4][^2]
 
 [^12]: https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/util/Map.Entry.html
 
-
+#java #streams #examples #collections

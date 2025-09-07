@@ -264,6 +264,4 @@ This setting is what allows your interface methods to work correctly with your s
 > [!TIP] Final Beginner Insight
 > When you call `customerRepository.findAll()`, you're not working with a database - you're working with **Java objects**. Spring handles all the database interaction behind the scenes, so you can focus on your business logic. This is the true power of Spring Data JPA interfaces!
 
-#java/springboot #beginner #java/jpa #crud #interfaces #visual
-
-
+#java #spring-boot #interfaces

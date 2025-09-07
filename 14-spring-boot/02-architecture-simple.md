@@ -464,6 +464,4 @@ flowchart TD
 > [!NOTE] Final Beginner Insight
 > The power of Spring Boot is that **you focus on what makes your application unique** (your business logic), while Spring handles all the repetitive infrastructure code. You define *what* you want to do (get all customers), and Spring figures out *how* to do it (generate SQL, connect to database, map results).
 
-#java/springboot #beginner #crud #java/jpa #database/mysql #architecture/visual
-
-
+#java #spring-boot #architecture

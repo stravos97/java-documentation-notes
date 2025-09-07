@@ -110,6 +110,4 @@ execution:[reddit](https://www.reddit.com/r/javahelp/comments/8cen3k/what_exactl
 > The JVM is not limited to Java—other languages like Kotlin, Scala, and Groovy also compile to bytecode and run on the
 > JVM.[lenovo](https://www.lenovo.com/gb/en/glossary/jvm/)
 
-#java #jvm #architecture #bestpractices
-
-
+#java #runtime #jvm #memory-management

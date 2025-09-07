@@ -1116,4 +1116,4 @@ public int countWords(String text) {
 > [!NOTE]
 > The regex `\\s+` matches one or more whitespace characters, handling multiple spaces between words correctly.
 
-
+#java #study-guide #examples

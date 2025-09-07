@@ -569,4 +569,4 @@ assertThat(list, hasSize(3));
 assertThat(list, hasItem("value"));
 ```
 
-
+#java #testing #junit #study-guide

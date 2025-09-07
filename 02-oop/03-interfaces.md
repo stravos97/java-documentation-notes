@@ -259,5 +259,4 @@ sequenceDiagram
 
 [^24]: https://stackoverflow.com/questions/10839131/implements-vs-extends-when-to-use-whats-the-difference
 
-
-
+#java #oop #interfaces

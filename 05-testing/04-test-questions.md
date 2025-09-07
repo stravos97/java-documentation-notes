@@ -86,4 +86,4 @@ topic: Java Test Questions
 6. Critical consideration for `@BeforeEach` with `static` methods?  
 7. Why must JUnit tests be independent (no execution-order reliance)?  
 
-
+#java #testing #junit #questions

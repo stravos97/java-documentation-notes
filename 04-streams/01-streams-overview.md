@@ -797,4 +797,4 @@ Understanding what `.stream()` actually does helps explain many stream behaviors
 
 The next time you write `list.stream()`, picture it as creating a smart, lightweight controller that sits next to your data, ready to orchestrate a series of operations when triggered, but doing absolutely nothing until that trigger arrives. It's not magic; it's just a very clever design pattern that gives you powerful data processing capabilities with minimal overhead.
 
-
+#java #streams #overview

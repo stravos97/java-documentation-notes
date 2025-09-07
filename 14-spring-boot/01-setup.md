@@ -670,6 +670,4 @@ The key insight is understanding how Spring Boot manages the lifecycle of your o
 > [!NOTE] Further Learning
 > Explore [[Spring Security]], [[Spring REST Docs]], and [[Spring Cloud]] for extending this application with authentication, API documentation, and microservices capabilities.
 
-#java/springboot #java/jpa #database/mysql #architecture/patterns #tools/intellij #java/dependency-injection
-
-
+#java #spring-boot #setup #dependencies

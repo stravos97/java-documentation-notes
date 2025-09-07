@@ -509,6 +509,4 @@ flowchart TD
 > [!TIP] For Visual Learners  
 > Keep these diagrams in mind as you work with your application. When you see `customerRepository.findAll()`, visualize the entire flow from your code through the proxy implementation, to the SQL query, and back to your Java objects. Understanding this flow will help you troubleshoot issues and design better applications.
 
-#java/springboot #architecture/visual #java/jpa #database/mysql #tools/intellij
-
-
+#java #spring-boot #architecture

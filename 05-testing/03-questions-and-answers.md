@@ -90,4 +90,4 @@ topic: Practice Questions and Answers
 	  arguments**to the program when it's executed (e.g.,`java MyProgram arg1 arg2`). These arguments allow users to
 	  provide input or configuration options directly when running the program.
 
-
+#java #testing #junit #questions #practice

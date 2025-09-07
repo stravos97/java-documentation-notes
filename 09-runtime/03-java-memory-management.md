@@ -807,4 +807,4 @@ method(obj);  // Copies reference to stack
 
 [[Java Garbage Collection]] | [[Java Memory Leaks]] | [[JVM Tuning]] | [[Thread Memory Model]]
 
-
+#java #runtime #jvm #memory-management

@@ -121,4 +121,4 @@ topic: Java Study Questions List
 - What three things does the garbage collector do?
 - How are memory addresses different for objects with the same values?
 
-
+#java #qa #questions

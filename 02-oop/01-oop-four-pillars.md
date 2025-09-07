@@ -892,4 +892,4 @@ car.start(); // "Tesla starts silently."
 - \[[Effective Java Best Practices]\]
 - \[[Unit Testing in Java]\]
 
-
+#java #oop #four-pillars

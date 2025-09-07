@@ -426,6 +426,4 @@ RESTful APIs provide a powerful, standardized way to build scalable web services
 
 [^32]: https://restfulapi.net/http-methods/
 
-
-
-
+#java #rest #api #http #principles

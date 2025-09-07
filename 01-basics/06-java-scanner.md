@@ -176,6 +176,4 @@ parsing.[ Oracle](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.ht
 > }
 > ```
 
-#java #scanner #userinput #bestpractices #java/io
-
-
+#java #basics #io #scanner

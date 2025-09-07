@@ -202,4 +202,4 @@ See also: [[Java Collections]] [[Design Patterns]]
 
 [^9]: https://stackify.com/streams-guide-java-8/
 
-
+#java #streams #method-references
