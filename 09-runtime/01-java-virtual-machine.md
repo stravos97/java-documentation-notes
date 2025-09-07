@@ -4,14 +4,6 @@ date: 2025-08-23
 topic: Java Virtual Machine (JVM) Overview
 ---
 
-<!-- TOC -->
-  * [](JVM)](#java-virtual-machine-jvm|Java%20Virtual%20Machine%20(JVM))
-  * [Key Purpose and Role](#key-purpose-and-role)
-  * [JVM Architecture Breakdown](#jvm-architecture-breakdown)
-  * [How JVM Works: Step-by-Step](#how-jvm-works-step-by-step)
-  * [Practical Considerations](#practical-considerations)
-<!-- TOC -->
-
 ## Java Virtual Machine (JVM)
 
 The **Java Virtual Machine (JVM)** is a virtual machine that provides a runtime environment for executing Java bytecode,

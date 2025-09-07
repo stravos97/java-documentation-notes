@@ -5,10 +5,6 @@ topic: Week 2 Java Test
 ---
 
 
-Here's a **consolidated, organized, and clarified study list** combining all three sources. Duplicates are merged, ambiguities resolved, typos fixed (e.g., "Jwt" → **JUnit**, "Heap and s" → **Heap vs. Stack**), and topics grouped logically for efficient studying.  
-
----
-
 ### **I. Core Java Concepts**  
 #### **A. OOP Fundamentals**  
 1. **Class Structure**  

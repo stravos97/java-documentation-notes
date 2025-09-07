@@ -3,13 +3,6 @@ tags: [java/streams, collections, list, set, map, queue]
 date: 2025-09-04
 topic: Stream Examples Across Collections
 ---
-
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
-# give me one example of a stream being used for each different collection type including an example for objects
-
-Here are concise, runnable stream examples for List, Set, Map, and Queue/Deque, plus an example using custom objects, all idiomatic for modern Java 17+. Streams are obtained from collections via the `Collection.stream()` default method, and many pipelines end with `toList()` (immutable in Java 16+) or collectors for specific targets.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)[Stack Overflow](https://stackoverflow.com/questions/65969919/differences-of-java-16s-stream-tolist-and-stream-collectcollectors-tolist)
-
 ## List example
 
 - Lists expose `stream()` to build pipelines like filter/map and then finish with a terminal operation such as `toList()` to produce results.[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)[Oracle Docs](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html)
