@@ -678,33 +678,33 @@ Here's how different access modifiers control visibility across packages and inh
 graph TB
     subgraph "Package A (com.example.base)"
         subgraph "BaseClass"
-            PRIV["🔒 private field\n❌ Not accessible outside class"]
-            PKG["📦 package field\n✅ Same package only"]
-            PROT["🛡️ protected field\n✅ Same package + subclasses"]
-            PUB["🌐 public field\n✅ Accessible everywhere"]
+            PRIV["private field\nNot accessible outside class"]
+            PKG["package field\nSame package only"]
+            PROT["protected field\nSame package + subclasses"]
+            PUB["public field\nAccessible everywhere"]
         end
         
         subgraph "SamePackageClass"
-            SP_PRIV["❌ Can't access private"]
-            SP_PKG["✅ Can access package"]
-            SP_PROT["✅ Can access protected"]
-            SP_PUB["✅ Can access public"]
+            SP_PRIV["Can't access private"]
+            SP_PKG["Can access package"]
+            SP_PROT["Can access protected"]
+            SP_PUB["Can access public"]
         end
     end
     
     subgraph "Package B (com.example.other)"
         subgraph "SubClass extends BaseClass"
-            SUB_PRIV["❌ Can't access private"]
-            SUB_PKG["❌ Can't access package"]
-            SUB_PROT["✅ Can access protected\n(inherited only)"]
-            SUB_PUB["✅ Can access public"]
+            SUB_PRIV["Can't access private"]
+            SUB_PKG["Can't access package"]
+            SUB_PROT["Can access protected\n(inherited only)"]
+            SUB_PUB["Can access public"]
         end
         
         subgraph "UnrelatedClass"
-            UN_PRIV["❌ Can't access private"]
-            UN_PKG["❌ Can't access package"]
-            UN_PROT["❌ Can't access protected"]
-            UN_PUB["✅ Can access public"]
+            UN_PRIV["Can't access private"]
+            UN_PKG["Can't access package"]
+            UN_PROT["Can't access protected"]
+            UN_PUB["Can access public"]
         end
     end
     
@@ -736,15 +736,15 @@ graph TB
 flowchart TD
     START["Choosing Access Modifier"] --> QUESTION1{Should this be accessible\nfrom outside the class?}
     
-    QUESTION1 -->|No| PRIVATE["Use PRIVATE\n🔒 Maximum encapsulation"]
+    QUESTION1 -->|No| PRIVATE["Use PRIVATE\nMaximum encapsulation"]
     
     QUESTION1 -->|Yes| QUESTION2{Should this be accessible\nfrom other packages?}
     
     QUESTION2 -->|No| QUESTION3{Should subclasses in\nother packages access this?}
-    QUESTION3 -->|No| PACKAGE["Use PACKAGE (default)\n📦 Same package only"]
-    QUESTION3 -->|Yes| PROTECTED["Use PROTECTED\n🛡️ Same package + subclasses"]
+    QUESTION3 -->|No| PACKAGE["Use PACKAGE (default)\nSame package only"]
+    QUESTION3 -->|Yes| PROTECTED["Use PROTECTED\nSame package + subclasses"]
     
-    QUESTION2 -->|Yes| PUBLIC["Use PUBLIC\n🌐 Universal access"]
+    QUESTION2 -->|Yes| PUBLIC["Use PUBLIC\nUniversal access"]
     
     PRIVATE --> USE_CASE1["• Internal implementation\n• Sensitive data\n• Helper methods"]
     PACKAGE --> USE_CASE2["• Package-internal utilities\n• Collaboration between classes\n• Internal APIs"]
@@ -803,10 +803,10 @@ classDiagram
 
 | Access Level | Same Class | Same Package | Subclass (Different Package) | Different Package (Unrelated) |
 |:-------------|:----------:|:------------:|:----------------------------:|:-----------------------------:|
-| `private` | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| *default* (package) | ✅ Yes | ✅ Yes | ❌ No | ❌ No |
-| `protected` | ✅ Yes | ✅ Yes | ✅ Yes (inherited only) | ❌ No |
-| `public` | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
+| `private` | Yes | No | No | No |
+| *default* (package) | Yes | Yes | No | No |
+| `protected` | Yes | Yes | Yes (inherited only) | No |
+| `public` | Yes | Yes | Yes | Yes |
 
 ***
 

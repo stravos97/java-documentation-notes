@@ -273,7 +273,7 @@ public int hashCode() {
 4. **Breaking symmetry** - Comparing with superclass objects incorrectly
 5. **Using mutable fields** - Using fields that can change after the object is added to a collection
 
-### Best Practices
+### Recommended Approach
 
 > [!TIP]
 > **For exam success and real-world coding:**
@@ -284,7 +284,7 @@ public int hashCode() {
 - For immutable objects, consider caching the hash code for performance
 - Document your equality semantics clearly
 - Test your implementations thoroughly with edge cases
-- If using an IDE, leverage code generation features but review the generated code
+- If using an IDE, use code generation features but review the generated code
 
 ### Memory Diagram: How Hash Collections Work
 
@@ -581,7 +581,7 @@ public void validateAge(int age) {
 > ```
 
 > [!TIP]
-> **Best Practices for Exception Handling:**
+> **Recommended Approach for Exception Handling:**
 > - Use `throws` to declare checked exceptions that the method doesn't handle itself
 > - Use `throw` to explicitly signal exceptional conditions in your code
 > - For custom exceptions, extend appropriate base classes:
@@ -609,7 +609,7 @@ try {
 }
 ```
 
-**Best Practices:**
+**Recommended Approach:**
 - Catch specific exceptions before general ones
 - Use `finally` for resource cleanup (closing files, database connections)
 - Use `throws` to declare checked exceptions a method might throw

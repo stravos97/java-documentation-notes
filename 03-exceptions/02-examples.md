@@ -8,11 +8,11 @@ topic: Java Exceptions Study Guide with Examples
 
 # Java Exceptions Study Guide - Based on Your Course Examples
 
-**Perfect for Test Prep** 🎯
+**Perfect for Test Prep**
 
 ***
 
-## 📋 **Quick Reference from Your Code**
+## Quick Reference from Your Code
 
 ### **Animal Class Exception Types**
 
@@ -37,7 +37,7 @@ graph TD
 
 ***
 
-## 🔴 **Checked Exceptions (From Your Code)**
+## Checked Exceptions (From Your Code)
 
 ### **1. ParseException - Date Parsing**
 
@@ -52,7 +52,7 @@ public Animal(String name, int age, String vaccinationDate) throws ParseExceptio
 // Method that throws ParseException
 public void setVaccinationDate(String dateString) throws ParseException {
     vaccinationDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateString);
-    // ⚠️ parse() method throws ParseException - CHECKED!
+    // WARNING: parse() method throws ParseException - CHECKED!
 }
 ```
 
@@ -63,9 +63,9 @@ public void setVaccinationDate(String dateString) throws ParseException {
 
 ```java
 try {
-    myCat.setVaccinationDate("10-05-2015");     // ✅ Correct format
-    myDog.setVaccinationDate("10-05-2015");     // ✅ Correct format
-    // myDog.setVaccinationDate("15 June, 2018"); // ❌ Wrong format = ParseException
+    myCat.setVaccinationDate("10-05-2015");     // Correct format
+    myDog.setVaccinationDate("10-05-2015");     // Correct format
+    // myDog.setVaccinationDate("15 June, 2018"); // Wrong format = ParseException
 } catch (ParseException e) {
     System.out.println("Invalid date format, should be \"dd-MM-yyyy\"");
 } finally {
@@ -78,7 +78,7 @@ try {
 
 ***
 
-## 🟢 **Unchecked Exceptions (From Your Code)**
+## Unchecked Exceptions (From Your Code)
 
 ### **1. NullPointerException - Null Name**
 
@@ -144,7 +144,7 @@ int a = 1 / 0; // ArithmeticException - UNCHECKED!
 
 ***
 
-## 🛠️ **Exception Handling Patterns from Your Code**
+## Exception Handling Patterns from Your Code
 
 ### **Pattern 1: Multi-Catch Block (Your App.java)**
 
@@ -198,31 +198,31 @@ try {
 
 ***
 
-## 📊 **Your Code Examples Summary Table**
+## Your Code Examples Summary Table
 
 | **Exception Type** | **Class** | **Checked?** | **When Thrown** | **Must Handle?** |
 | :-- | :-- | :-- | :-- | :-- |
-| `ParseException` | Animal | ✅ **YES** | Invalid date format | **YES** - try/catch or throws |
-| `NullPointerException` | Animal | ❌ **NO** | Name is null | **NO** - but should fix code |
-| `IllegalArgumentException` | Animal | ❌ **NO** | Negative age | **NO** - but should validate input |
-| `ArrayIndexOutOfBoundsException` | App | ❌ **NO** | Array index > length | **NO** - but should check bounds |
-| `ArithmeticException` | App | ❌ **NO** | Division by zero | **NO** - but should check divisor |
+| `ParseException` | Animal | YES | Invalid date format | YES - try/catch or throws |
+| `NullPointerException` | Animal | NO | Name is null | NO - but should fix code |
+| `IllegalArgumentException` | Animal | NO | Negative age | NO - but should validate input |
+| `ArrayIndexOutOfBoundsException` | App | NO | Array index > length | NO - but should check bounds |
+| `ArithmeticException` | App | NO | Division by zero | NO - but should check divisor |
 
 
 ***
 
-## 🎯 **Test Questions Based on Your Code**
+## Test Questions Based on Your Code
 
 ### **Question 1: Compilation**
 
 ```java
 // Will this compile?
 public void testAnimal() {
-    Animal dog = new Animal("Rex", 5, "15-08-2023");  // ❌ NO!
+    Animal dog = new Animal("Rex", 5, "15-08-2023");  // NO!
 }
 ```
 
-**Answer**: ❌ **Compilation Error** - `ParseException` is checked and not handled
+**Answer**: Compilation error - `ParseException` is checked and not handled
 
 **Fixed versions**:
 
@@ -250,7 +250,7 @@ Animal cat = new Animal();  // name is null
 cat.getName();  // What happens?
 ```
 
-**Answer**: ✅ **Compiles fine**, throws `NullPointerException` at **runtime**
+**Answer**: Compiles fine, throws `NullPointerException` at runtime
 
 ### **Question 3: Exception Order**
 
@@ -260,14 +260,14 @@ cat.getName();  // What happens?
 try {
     animal.setAge(-5);
 } catch (RuntimeException e) { /* Block 1 */ }
-  catch (IllegalArgumentException e) { /* Block 2 */ }  // ❌ Unreachable!
+  catch (IllegalArgumentException e) { /* Block 2 */ }  // Unreachable!
 ```
 
 **Answer**: **Block 1** - `IllegalArgumentException` extends `RuntimeException`, so the first catch block handles it. Block 2 is unreachable code!
 
 ***
 
-## 💡 **Memory Tricks from Your Examples**
+## Memory Tricks from Your Examples
 
 ### **CHECKED = "Parse Problems"**
 
@@ -292,29 +292,29 @@ try {
 
 ***
 
-## ✅ **Quick Self-Test with Your Code**
+## Quick Self-Test with Your Code
 
 1. **What exception does `new SimpleDateFormat("dd-MM-yyyy").parse("bad date")` throw?**
-    - ✅ `ParseException` (checked)
+    - `ParseException` (checked)
 2. **What happens if you call `getName()` on an Animal with null name?**
-    - ✅ Throws `NullPointerException` (unchecked)
+    - Throws `NullPointerException` (unchecked)
 3. **Must you handle the exception from `setAge(-1)`?**
-    - ❌ No - `IllegalArgumentException` is unchecked
+    - No - `IllegalArgumentException` is unchecked
 4. **Which runs even if an exception occurs?**
-    - ✅ `finally` block
+    - `finally` block
 5. **Can you catch `IllegalArgumentException` after `RuntimeException`?**
-    - ❌ No - unreachable code compilation error
+    - No - unreachable code compilation error
 
 ***
 
-## 🏷️ **Study Tags**
+## Study Tags
 
 \#java/exceptions \#java/parseexception \#java/nullpointerexception \#java/illegalargumentexception \#java/animal-class \#sparta-training
 
 > [!EXAMPLE] **Practice Exercise**
 > Try modifying the Animal constructor to validate the name parameter and throw appropriate exceptions. Then update App.java to handle all possible exceptions!
 
-**Good luck on your test!** 🍀
+**Good luck on your test!**
 
 
 [^1]: Animal.java

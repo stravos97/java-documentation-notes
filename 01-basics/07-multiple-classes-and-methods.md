@@ -6,7 +6,7 @@ topic: Introduction to Classes and Objects in Java
 
 ______________________________________________________________________
 
-# 🏎️ Introduction to Classes and Objects in Java
+# Introduction to Classes and Objects in Java
 
 tags: #java #oop #classes #objects #fundamentals
 date: 2025-08-22
@@ -14,45 +14,45 @@ date: 2025-08-22
 ______________________________________________________________________
 
 <!-- TOC -->
-* [🏎️ Introduction to Classes and Objects in Java](#-introduction-to-classes-and-objects-in-java)
-  * [🔑 Core Concepts](#-core-concepts)
-  * [📝 Example: Car.java](#-example-carjava)
+* [Introduction to Classes and Objects in Java](#introduction-to-classes-and-objects-in-java)
+  * [Core Concepts](#core-concepts)
+  * [Example: Car.java](#example-carjava)
     * [Step 1: Defining a Class with Attributes](#step-1-defining-a-class-with-attributes)
     * [Explain Code](#explain-code)
     * [Step 2: Adding a Constructor](#step-2-adding-a-constructor)
     * [Explain Code](#explain-code-1)
     * [Step 3: Adding a Method](#step-3-adding-a-method)
     * [Explain Code](#explain-code-2)
-  * [📝 Example: CarDemo.java](#-example-cardemojava)
+  * [Example: CarDemo.java](#example-cardemojava)
     * [Step 1: Setting Up a Driver Class](#step-1-setting-up-a-driver-class)
     * [Explain Code](#explain-code-3)
     * [Step 2: Creating and Using Objects](#step-2-creating-and-using-objects)
     * [Explain Code](#explain-code-4)
-  * [🛠️ Compiling and Running Multiple Classes](#-compiling-and-running-multiple-classes)
-  * [✅ Expected Output](#-expected-output)
-  * [🚀 Summary](#-summary)
+  * [Compiling and Running Multiple Classes](#compiling-and-running-multiple-classes)
+  * [Expected Output](#expected-output)
+  * [Summary](#summary)
   * [**Understanding the `this` Keyword in Java**](#understanding-the-this-keyword-in-java)
     * [**Quick Reference**](#quick-reference)
-    * [](Shadowed%20by%20Parameters)](#1-referring-to-instance-variables-shadowed-by-parameters|1️⃣%20Referring%20to%20Instance%20Variables%20(Shadowed%20by%20Parameters))
-    * [2️⃣ Invoking Other Constructors in the Same Class](#2-invoking-other-constructors-in-the-same-class)
-    * [3️⃣ Returning the Current Object](#3-returning-the-current-object)
-    * [4️⃣ Passing the Current Object as a Parameter](#4-passing-the-current-object-as-a-parameter)
-    * [5️⃣ Invoking Another Method on the Same Object](#5-invoking-another-method-on-the-same-object)
-    * [6️⃣ `this` in Getters and Setters](#6-this-in-getters-and-setters)
-    * [🌟 Summary Table](#-summary-table)
-    * [👉 Practical Tips](#-practical-tips)
+    * [Referring to Instance Variables (Shadowed by Parameters)](#referring-to-instance-variables-shadowed-by-parameters)
+    * [Invoking Other Constructors in the Same Class](#invoking-other-constructors-in-the-same-class)
+    * [Returning the Current Object](#returning-the-current-object)
+    * [Passing the Current Object as a Parameter](#passing-the-current-object-as-a-parameter)
+    * [Invoking Another Method on the Same Object](#invoking-another-method-on-the-same-object)
+    * [`this` in Getters and Setters](#this-in-getters-and-setters)
+    * [Summary Table](#summary-table)
+    * [Practical Tips](#practical-tips)
   * [](String[]%20args)`%20Is%20in%20the%20Demo%20Class%20(Not%20the%20Car%20Class)](#why-public-static-void-mainstring-args-is-in-the-demo-class-not-the-car-class|Why%20`public%20static%20void%20main(String[)
     * [**Quick Reference**](#quick-reference-1)
-    * [💡 Why Main Is in `CarDemo` Instead of `Car`](#-why-main-is-in-cardemo-instead-of-car)
+    * [Why Main Is in `CarDemo` Instead of `Car`](#why-main-is-in-cardemo-instead-of-car)
       * [**Design Principle: Separate Logic from Data**](#design-principle-separate-logic-from-data)
-    * [🕹️ Role of Each Class](#-role-of-each-class)
-    * [📢 What Happens If You Put `main` in the Model Class?](#-what-happens-if-you-put-main-in-the-model-class)
-    * [🚀 How the JVM Launches Your Program](#-how-the-jvm-launches-your-program)
-    * [📝 Main Method Recap](#-main-method-recap)
-    * [🗂️ Related Reading in Your Vault](#-related-reading-in-your-vault)
+    * [Role of Each Class](#role-of-each-class)
+    * [What Happens If You Put `main` in the Model Class?](#what-happens-if-you-put-main-in-the-model-class)
+    * [How the JVM Launches Your Program](#how-the-jvm-launches-your-program)
+    * [Main Method Recap](#main-method-recap)
+    * [Related Reading in Your Vault](#related-reading-in-your-vault)
 <!-- TOC -->
 
-## 🔑 Core Concepts
+## Core Concepts
 
 
 - **Class**: A blueprint/template for creating objects.
@@ -67,7 +67,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## 📝 Example: Car.java
+## Example: Car.java
 
 ### Step 1: Defining a Class with Attributes
 
@@ -146,7 +146,7 @@ public void displayInfo() {
 
 ______________________________________________________________________
 
-## 📝 Example: CarDemo.java
+## Example: CarDemo.java
 
 ### Step 1: Setting Up a Driver Class
 
@@ -199,7 +199,7 @@ public class CarDemo {
 
 ______________________________________________________________________
 
-## 🛠️ Compiling and Running Multiple Classes
+## Compiling and Running Multiple Classes
 
 If **both files are in the same directory**:
 
@@ -228,7 +228,7 @@ java -cp ~/project CarDemo
 
 ______________________________________________________________________
 
-## ✅ Expected Output
+## Expected Output
 
 
 ```
@@ -245,7 +245,7 @@ Year: 2023
 
 ______________________________________________________________________
 
-## 🚀 Summary
+## Summary
 
 
 - **Class = blueprint**, **Object = instance**
@@ -287,7 +287,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-### 1️⃣ Referring to Instance Variables (Shadowed by Parameters)
+### Referring to Instance Variables (Shadowed by Parameters)
 
 When a method or constructor parameter has the same name as a class field, `this` disambiguates between them:
 
@@ -308,7 +308,7 @@ public class Car {
 
 ______________________________________________________________________
 
-### 2️⃣ Invoking Other Constructors in the Same Class
+### Invoking Other Constructors in the Same Class
 
 Use `this()` to call a different constructor in the same class (constructor chaining):
 
@@ -335,7 +335,7 @@ public class Car {
 
 ______________________________________________________________________
 
-### 3️⃣ Returning the Current Object
+### Returning the Current Object
 
 Useful in method chaining patterns (e.g., builder pattern):
 
@@ -360,7 +360,7 @@ Car c = new Car().setMake("Toyota");
 
 ______________________________________________________________________
 
-### 4️⃣ Passing the Current Object as a Parameter
+### Passing the Current Object as a Parameter
 
 You can send `this` as an argument to another method or constructor:
 
@@ -381,7 +381,7 @@ public class Car {
 
 ______________________________________________________________________
 
-### 5️⃣ Invoking Another Method on the Same Object
+### Invoking Another Method on the Same Object
 
 Explicitly calling a method of the same object (optional, but clarifies intent):
 
@@ -399,7 +399,7 @@ public void displayInfo() {
 
 ______________________________________________________________________
 
-### 6️⃣ `this` in Getters and Setters
+### `this` in Getters and Setters
 
 Common in setter methods to avoid shadowing:
 
@@ -420,7 +420,7 @@ public String getModel() {
 
 ______________________________________________________________________
 
-### 🌟 Summary Table
+### Summary Table
 
 
 | Use Case                   | Example Syntax        | Typical Context                   |
@@ -434,7 +434,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-### 👉 Practical Tips
+### Practical Tips
 
 
 - Use `this` whenever **local/parameter names shadow fields**.
@@ -462,7 +462,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-### 💡 Why Main Is in `CarDemo` Instead of `Car`
+### Why Main Is in `CarDemo` Instead of `Car`
 
 #### **Design Principle: Separate Logic from Data**
 
@@ -481,18 +481,18 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-### 🕹️ Role of Each Class
+### Role of Each Class
 
 
 | Class     | Purpose                          | Contains `main()`? |
 |:----------|:---------------------------------|:-------------------|
-| `Car`     | Blueprint/model for car objects  | ❌ (NO)             |
-| `CarDemo` | Program entry point, test driver | ✅ (YES)            |
+| `Car`     | Blueprint/model for car objects  | No             |
+| `CarDemo` | Program entry point, test driver | Yes            |
 
 
 ______________________________________________________________________
 
-### 📢 What Happens If You Put `main` in the Model Class?
+### What Happens If You Put `main` in the Model Class?
 
 
 - You **can** put `main` into `Car`, but then `Car.java` is both a data model and an entry point.
@@ -502,7 +502,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-### 🚀 How the JVM Launches Your Program
+### How the JVM Launches Your Program
 
 
 1. You run:
@@ -526,7 +526,7 @@ public static void main(String[] args)
 
 ______________________________________________________________________
 
-### 📝 Main Method Recap
+### Main Method Recap
 
 
 ```java
@@ -547,7 +547,7 @@ public static void main(String[] args)
 
 ______________________________________________________________________
 
-### 🗂️ Related Reading in Your Vault
+### Related Reading in Your Vault
 
 
 - \[[Project Structure Best Practices]\]

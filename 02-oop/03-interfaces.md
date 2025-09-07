@@ -181,7 +181,7 @@ classDiagram
 | Obligation | Subclass may override some methods; not all required [GeeksforGeeks](https://www.geeksforgeeks.org/java/extends-vs-implements-in-java/) | Must implement all abstract methods unless class is abstract [GeeksforGeeks](https://www.geeksforgeeks.org/java/extends-vs-implements-in-java/) |
 | Syntax order | class C extends Base { } [GeeksforGeeks](https://www.geeksforgeeks.org/java/extends-vs-implements-in-java/) | class C extends Base implements A,B { } [Oracle Docs](https://docs.oracle.com/javase/tutorial/java/IandI/usinginterface.html) |
 
-## Best practices and pitfalls
+## Recommended Approach and Pitfalls
 
 - Always use @Override and keep implementations public to satisfy the interface’s public contract.[GeeksforGeeks](https://www.geeksforgeeks.org/java/interfaces-in-java/)
 - Name capability interfaces by ability (e.g., Drivable, Measurable), and keep them small for interface segregation and easy testing.[Baeldung](https://www.baeldung.com/java-implements-vs-extends)[Oracle Docs](https://docs.oracle.com/javase/tutorial/java/IandI/usinginterface.html)

@@ -570,7 +570,7 @@ class CustomerRepositoryTest {
 > [!TIP] Testing Best Practice
 > For unit tests of repository methods, use `@DataJpaTest` with the in-memory H2 database. This is much faster than connecting to your actual MySQL database and ensures tests don't affect your development data.
 
-## Best Practices for Moving Forward
+## Recommended Approach for Moving Forward
 
 ### Service Layer Implementation
 
@@ -644,7 +644,7 @@ public class CustomerController {
 > - **Lazy loading**: Be aware of N+1 query problems with relationships
 > - **Validation constraints**: Ensure entity annotations match database constraints
 
-## Security Best Practices
+## Security Recommended Approach
 
 ### Production Readiness Checklist
 

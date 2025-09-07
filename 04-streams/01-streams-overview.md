@@ -223,7 +223,7 @@ Let me trace through what happens with each number. This is where the magic beco
 ```mermaid
 flowchart LR
     N1[1] -->|enters| F1{Filter: 1 % 2 == 0?}
-    F1 -->|FALSE| X1[❌ Discarded]
+    F1 -->|FALSE| X1[Discarded]
     
     style N1 fill:#ffebee
     style X1 fill:#ffcdd2
@@ -250,7 +250,7 @@ The number 2 enters the pipeline. At the filter station: is 2 even? Yes! (2 % 2 
 ```mermaid
 flowchart LR
     N3[3] -->|enters| F3{Filter: 3 % 2 == 0?}
-    F3 -->|FALSE| X3[❌ Discarded]
+    F3 -->|FALSE| X3[Discarded]
     
     style N3 fill:#ffebee
     style X3 fill:#ffcdd2

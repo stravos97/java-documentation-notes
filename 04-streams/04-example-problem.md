@@ -186,13 +186,13 @@ flowchart TD
     M1 --> P1[Print: JOHN]
     
     J2[Pull: 'Paul'] --> F2{Filter: starts with J?}
-    F2 -->|NO| X2[❌ Discard]
+    F2 -->|NO| X2[Discard]
     
     J3[Pull: 'George'] --> F3{Filter: starts with J?}
-    F3 -->|NO| X3[❌ Discard]
+    F3 -->|NO| X3[Discard]
     
     J4[Pull: 'Ringo'] --> F4{Filter: starts with J?}
-    F4 -->|NO| X4[❌ Discard]
+    F4 -->|NO| X4[Discard]
     
     P1 --> End[Stream Complete]
     X2 --> End

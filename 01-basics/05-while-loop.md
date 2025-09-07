@@ -115,7 +115,7 @@ public class NumberGuessingGame {
                 System.out.println("Too high! Try again.");
 
             } else {
-                System.out.println("🎉 Correct! You guessed it in " + attempts + " attempts.");
+                System.out.println("Correct! You guessed it in " + attempts + " attempts.");
             }
         }
 
@@ -141,7 +141,7 @@ ______________________________________________________________________
 > Enter your guess: 75
 > Too high! Try again.
 > Enter your guess: 62
-> 🎉 Correct! You guessed it in 3 attempts.
+> Correct! You guessed it in 3 attempts.
 > ```
 
 ______________________________________________________________________

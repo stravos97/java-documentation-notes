@@ -286,7 +286,7 @@ assertDoesNotThrow(() -> methodCall());
 
 ---
 
-## Part 8: Best Practices & Common Patterns
+## Part 8: Recommended Approach & Common Patterns
 
 ### Test Method Naming
 1. **`methodName_stateUnderTest_expectedBehavior`**
@@ -441,14 +441,14 @@ void given2And6_Add_Returns8Pt0() {
 
 ## Part 11: Common Exam Mistakes to Avoid
 
-### ❌ **Mistake 1**: Wrong Static Usage
+### Mistake 1: Wrong Static Usage
 ```java
 // WRONG - @BeforeEach with static
 @BeforeEach
 static void setUp() { } // Compilation error!
 ```
 
-### ❌ **Mistake 2**: Parameter Order Confusion
+### Mistake 2: Parameter Order Confusion
 ```java
 // WRONG - expected vs actual confusion
 assertEquals(actual, expected); // backwards!
@@ -457,7 +457,7 @@ assertEquals(actual, expected); // backwards!
 assertEquals(expected, actual);
 ```
 
-### ❌ **Mistake 3**: Missing Lambda in assertThrows
+### Mistake 3: Missing Lambda in assertThrows
 ```java
 // WRONG
 assertThrows(Exception.class, methodCall()); // Direct call!
@@ -466,7 +466,7 @@ assertThrows(Exception.class, methodCall()); // Direct call!
 assertThrows(Exception.class, () -> methodCall()); // Lambda
 ```
 
-### ❌ **Mistake 4**: Forgetting @ParameterizedTest
+### Mistake 4: Forgetting @ParameterizedTest
 ```java
 // WRONG
 @Test // Should be @ParameterizedTest
@@ -474,7 +474,7 @@ assertThrows(Exception.class, () -> methodCall()); // Lambda
 void testNumbers(int number) { }
 ```
 
-### ❌ **Mistake 5**: Wrong Hamcrest Import
+### Mistake 5: Wrong Hamcrest Import
 ```java
 // WRONG - JUnit 5 doesn't have assertThat
 import static org.junit.jupiter.api.Assertions.assertThat;
@@ -489,29 +489,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 Before your test, make sure you can:
 
-### ✅ Core Concepts
+### Core Concepts
 - [ ] Explain the purpose of each lifecycle annotation
 - [ ] Recite the execution order from memory
 - [ ] Identify when to use static vs instance methods
 - [ ] Write basic `@Test` methods
 
-### ✅ Parameterized Testing
+### Parameterized Testing
 - [ ] Use `@ValueSource` for single parameters
 - [ ] Use `@CsvSource` for multiple parameters
 - [ ] Map parameters to method arguments correctly
 
-### ✅ Exception Testing
+### Exception Testing
 - [ ] Write `assertThrows()` with proper lambda syntax
 - [ ] Verify exception messages
 - [ ] Understand return value of `assertThrows()`
 
-### ✅ Hamcrest Matchers
+### Hamcrest Matchers
 - [ ] Use basic matchers (`is`, `equalTo`, `not`)
 - [ ] Apply string matchers (`startsWith`, `contains`)
 - [ ] Apply collection matchers (`hasSize`, `hasItem`)
 - [ ] Combine matchers with `allOf`/`anyOf`
 
-### ✅ Best Practices
+### Recommended Approach
 - [ ] Use proper test naming conventions
 - [ ] Apply Arrange-Act-Assert pattern
 - [ ] Identify test independence issues

@@ -200,23 +200,23 @@ Industry standard for secure authorization, especially for third-party integrati
 
 Following consistent naming conventions improves API usability and maintainability:[dreamfactory](https://blog.dreamfactory.com/best-practices-for-naming-rest-api-endpoints)[Moesif](https://www.moesif.com/blog/technical/api-development/The-Ultimate-Guide-to-REST-API-Naming-Convention/)[TheServerSide](https://www.theserverside.com/video/Top-REST-API-URL-naming-convention-standards)
 
-#### Best Practices
+#### Recommended Approach
 
 1. **Use Nouns, Not Verbs**
-    - ✅ `GET /users`
-    - ❌ `GET /getUsers`
+    - Example: `GET /users`
+    - Avoid: `GET /getUsers`
 2. **Use Plural Nouns for Collections**
-    - ✅ `/users`, `/products`, `/orders`
-    - ❌ `/user`, `/product`, `/order`
+    - Example: `/users`, `/products`, `/orders`
+    - Avoid: `/user`, `/product`, `/order`
 3. **Use Lowercase with Hyphens**
-    - ✅ `/user-profiles`
-    - ❌ `/userProfiles` or `/user_profiles`
+    - Example: `/user-profiles`
+    - Avoid: `/userProfiles` or `/user_profiles`
 4. **Create Logical Hierarchies**
-    - ✅ `/users/{id}/addresses/{addressId}`
-    - ❌ Deeply nested URLs
+    - Example: `/users/{id}/addresses/{addressId}`
+    - Avoid: deeply nested URLs
 5. **Use Query Parameters for Filtering**
-    - ✅ `/users?status=active&page=1&limit=10`
-    - ❌ `/users/active/page/1/limit/10`
+    - Example: `/users?status=active&page=1&limit=10`
+    - Avoid: `/users/active/page/1/limit/10`
 
 ### Complete Spring Boot Example
 
@@ -275,7 +275,7 @@ public class UserController {
 ```
 
 
-### REST API Best Practices
+### Recommended Approach for REST APIs
 
 > [!TIP] Performance Tips
 > - Use appropriate **caching headers** (ETag, Cache-Control)[Dev.to](https://dev.to/mohamed_el_laithy/key-best-practices-for-api-design-in-java-44le)[JavaPro](https://javapro.io/2025/06/04/best-practices-for-api-design-in-java/)
@@ -349,17 +349,17 @@ GET    /api/v1/orders/{id}/items     // Get items in specific order
 ### Quick Reference Summary
 
 > [!NOTE] REST API Checklist
-> - ✅ Use appropriate HTTP methods (GET, POST, PUT, DELETE)
-> - ✅ Return meaningful HTTP status codes
-> - ✅ Use JSON for data exchange
-> - ✅ Follow consistent naming conventions (nouns, plural, lowercase)
-> - ✅ Implement proper error handling
-> - ✅ Use authentication and authorization
-> - ✅ Version your APIs
-> - ✅ Document your endpoints
-> - ✅ Test thoroughly with tools like Postman or REST Assured
+> - Use appropriate HTTP methods (GET, POST, PUT, DELETE)
+> - Return meaningful HTTP status codes
+> - Use JSON for data exchange
+> - Follow consistent naming conventions (nouns, plural, lowercase)
+> - Implement proper error handling
+> - Use authentication and authorization
+> - Version your APIs
+> - Document your endpoints
+> - Test thoroughly with tools like Postman or REST Assured
 
-RESTful APIs provide a powerful, standardized way to build scalable web services. By following these principles and best practices, you'll create APIs that are intuitive, maintainable, and easy for other developers to consume.
+RESTful APIs provide a powerful, standardized way to build scalable web services. By following these principles and the recommended approach, you'll create APIs that are intuitive, maintainable, and easy for other developers to consume.
 
 
 

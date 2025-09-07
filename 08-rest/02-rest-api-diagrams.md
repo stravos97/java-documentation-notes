@@ -8,7 +8,7 @@ topic: RESTful API Fundamentals
 
 ## Understanding REST APIs: The Middle Layer
 
-Before we dive into the diagrams, let's establish what REST APIs really are. Think of a REST API as a translator and gatekeeper between your application's frontend (what users see) and your database (where data lives). When you browse Amazon and click "Add to Cart," your browser doesn't directly talk to Amazon's database. Instead, it sends a request to their REST API, which validates your request, checks permissions, and then translates it into SQL queries that the database understands.
+Before we explore the diagrams, let's establish what REST APIs really are. Think of a REST API as a translator and gatekeeper between your application's frontend (what users see) and your database (where data lives). When you browse Amazon and click "Add to Cart," your browser doesn't directly talk to Amazon's database. Instead, it sends a request to their REST API, which validates your request, checks permissions, and then translates it into SQL queries that the database understands.
 
 ## 1. Basic REST API Communication Flow
 
@@ -214,7 +214,7 @@ sequenceDiagram
     participant Server
     participant Database
     
-    Note over Client,Database: ❌ WRONG WAY: Server Remembers You (Stateful)
+    Note over Client,Database: WRONG WAY: Server Remembers You (Stateful)
     Client->>Server: Login with username/password
     Server->>Database: Store session: user123 = John
     Database-->>Server: Session saved
@@ -227,7 +227,7 @@ sequenceDiagram
     Client->>Server: GET /orders
     Server-->>Client: 401 Who are you?
     
-    Note over Client,Database: ✅ RIGHT WAY: Token-Based (Stateless)
+    Note over Client,Database: RIGHT WAY: Token-Based (Stateless)
     Client->>Server: Login with username/password
     Server->>Database: Verify credentials
     Database-->>Server: Credentials valid
@@ -504,7 +504,7 @@ mindmap
       404 for missing resources
       500 for server errors
     
-    Best Practices
+    Recommended Approach
       Always Use HTTPS
       Implement Rate Limiting
       Validate All Input

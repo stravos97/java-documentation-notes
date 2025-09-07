@@ -45,7 +45,7 @@ Imagine a retail store where one employee tries to be the cashier, inventory man
 Let's begin with a problematic design that violates SRP:
 
 ```java
-// ❌ BAD: This class is trying to do everything
+// BAD: This class is trying to do everything
 public class RetailOrder {
     private String orderId;
     private List<String> items;
@@ -135,7 +135,7 @@ graph TB
 Now let's refactor using SRP, where each class has one responsibility:
 
 ```java
-// ✅ GOOD: Each class has ONE job
+// GOOD: Each class has ONE job
 
 // 1. Order class only manages order data
 public class Order {
@@ -261,7 +261,7 @@ Think of a retail store's payment system. When Apple Pay was introduced, stores 
 Here's a payment system that violates OCP:
 
 ```java
-// ❌ BAD: Adding new payment types requires modifying this class
+// BAD: Adding new payment types requires modifying this class
 public class PaymentHandler {
     public void handlePayment(String type, double amount) {
         if (type.equals("CREDIT_CARD")) {
@@ -277,7 +277,7 @@ public class PaymentHandler {
             System.out.println("Processing cash payment: $" + amount);
             // Open cash register...
         }
-        // To add Apple Pay, we must modify this class! ❌
+        // To add Apple Pay, we must modify this class!
     }
 }
 ```
@@ -287,7 +287,7 @@ public class PaymentHandler {
 Let's redesign to follow OCP using interfaces:
 
 ```java
-// ✅ GOOD: Define a payment interface
+// GOOD: Define a payment interface
 public interface PaymentMethod {
     boolean processPayment(double amount);
     String getPaymentType();
@@ -345,7 +345,7 @@ public class PayPalPayment implements PaymentMethod {
     }
 }
 
-// ✅ NEW: Add Apple Pay without modifying existing code!
+// NEW: Add Apple Pay without modifying existing code!
 public class ApplePayPayment implements PaymentMethod {
     private String deviceId;
     
@@ -452,7 +452,7 @@ In a retail context, whether you're buying a book, a laptop, or a digital downlo
 Here's a common violation of LSP:
 
 ```java
-// ❌ BAD: Subclass changes expected behavior
+// BAD: Subclass changes expected behavior
 public class Product {
     protected String name;
     protected double price;
@@ -487,7 +487,7 @@ public class DigitalProduct extends Product {
 Let's redesign to respect LSP:
 
 ```java
-// ✅ GOOD: Design with proper abstractions
+// GOOD: Design with proper abstractions
 public abstract class Product {
     protected String name;
     protected double basePrice;
@@ -863,7 +863,7 @@ Imagine if every retail employee had to use the same massive computer system wit
 ### Starting Simple: The Problem
 
 ```java
-// ❌ BAD: One giant interface for all employees
+// BAD: One giant interface for all employees
 public interface RetailEmployee {
     // Cashier functions
     void scanItem(String itemCode);
@@ -942,7 +942,7 @@ graph TD
 Let's segregate interfaces by role:
 
 ```java
-// ✅ GOOD: Separate interfaces for different responsibilities
+// GOOD: Separate interfaces for different responsibilities
 
 // Cashier responsibilities
 public interface CashierOperations {
@@ -1123,7 +1123,7 @@ Think of how a retail store handles shipping. The order fulfillment system (high
 ### Starting Simple: The Problem
 
 ```java
-// ❌ BAD: High-level class directly depends on specific implementations
+// BAD: High-level class directly depends on specific implementations
 public class OrderFulfillmentSystem {
     private FedExShipping fedex = new FedExShipping();
     private MySQLInventory inventory = new MySQLInventory();
@@ -1195,7 +1195,7 @@ graph TD
 Let's invert the dependencies using abstractions:
 
 ```java
-// ✅ GOOD: Define abstractions (interfaces) for services
+// GOOD: Define abstractions (interfaces) for services
 
 // Shipping abstraction
 public interface ShippingService {
@@ -1657,7 +1657,7 @@ Remember: SOLID principles are **guidelines, not rules**. Apply them pragmatical
 ## Further Learning
 
 - [Design Patterns](Design%20Patterns) - Patterns that often emerge from SOLID principles
-- [Dependency Injection](Dependency%20Injection) - Deep dive into DIP implementation
+- [Dependency Injection](Dependency%20Injection) - Explore DIP implementation
 - [Clean Architecture](Clean%20Architecture) - Architectural patterns built on SOLID
 - [Test-Driven Development](Test-Driven%20Development) - How SOLID makes testing easier
 

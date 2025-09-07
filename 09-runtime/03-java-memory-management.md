@@ -198,7 +198,7 @@ static void modifyArray(int[] a) {
 ## Further Reading
 
 - **Java Garbage Collection Basics**: For full details on GC algorithms and tuning.
-- **Parameter Passing in Java**: Deep dive into why Java is always pass-by-value, even for references.
+- **Parameter Passing in Java**: Explore why Java is always pass-by-value, even for references.
 
 ***
 
@@ -685,9 +685,9 @@ graph TB
 
 ---
 
-## Common Memory Pitfalls & Best Practices
+## Common Memory Pitfalls & Recommended Approach
 
-> [!TIP] Best Practices
+> [!TIP] Recommended Approach
 > 
 > - **Minimize object creation in loops** - reuse objects when possible
 > - **Use primitives over wrapper classes** when you don't need null values

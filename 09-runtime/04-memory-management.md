@@ -219,10 +219,10 @@ root.next.next = new Node("C");
 Node orphan = new Node("X");      // Not reachable from any GC root
 
 // Mark phase result:
-// ✅ Node("A") - marked (reachable from root)
-// ✅ Node("B") - marked (reachable from A)
-// ✅ Node("C") - marked (reachable from B)
-// ❌ Node("X") - unmarked (unreachable)
+// Node("A") - marked (reachable from root)
+// Node("B") - marked (reachable from A)
+// Node("C") - marked (reachable from B)
+// Node("X") - unmarked (unreachable)
 ```
 
 ### Phase 2: Sweep - Memory Deallocation
@@ -239,10 +239,10 @@ The **Sweep phase** deallocates memory for all unmarked (unreachable) objects, m
 **Before/After Sweep:**
 ```
 Before Sweep (Heap Layout):
-[Node A✅] [Node B✅] [Node X❌] [Node C✅] [Other Object❌] [...]
+[Node A] [Node B] [Node X] [Node C] [Other Object] [...]
 
 After Sweep (Memory Reclaimed):
-[Node A✅] [Node B✅] [FREE   ] [Node C✅] [FREE        ] [...]
+[Node A] [Node B] [FREE   ] [Node C] [FREE        ] [...]
            Memory available for new allocations
 ```
 
@@ -296,7 +296,7 @@ public class GCPhaseExample {
 }
 
 // GC Phase Analysis:
-// MARK: globalCache (root) -> important (✅) -> temp1 (✅), temp2 (❌ unreachable)
+// MARK: globalCache (root) -> important (reachable) -> temp1 (reachable), temp2 (unreachable)
 // SWEEP: Deallocate temp2, keep important and temp1
 // COMPACT: Move important and temp1 together, create large free space
 ```
@@ -508,7 +508,7 @@ System.out.println("Map without equals size: " + mapNoEquals.size());    // 2 (i
 System.out.println("Map with equals size: " + mapWithEquals.size());     // 1 (content-based)
 ```
 
-### Memory Address Best Practices
+### Memory Address Recommended Approach
 
 | Scenario | Use `==` | Use `.equals()` | Notes |
 |:---------|:--------|:---------------|:------|
@@ -635,7 +635,7 @@ flowchart LR
 
 ***
 
-## Best Practices and Common Pitfalls
+## Recommended Approach and Common Pitfalls
 
 > [!TIP]
 > - **Prefer local variables** for small, short-lived data.

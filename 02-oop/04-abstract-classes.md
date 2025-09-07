@@ -218,7 +218,7 @@ class Demo {
 | Defaults/Statics | Yes (Java 8+ defaults/static) |  |
 | Sealed support | Sealed interfaces (Java 17) |  |
 
-## Best practices
+## Recommended Approach
 
 - Favor composition and interfaces for cross-cutting “can do” roles; use an abstract base when sharing state and behavior in a tight hierarchy.
 - Keep the abstract surface small and cohesive; expose protected hooks judiciously and document invariants clearly.

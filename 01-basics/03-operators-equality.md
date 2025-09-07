@@ -11,7 +11,7 @@ topic: == Operator in Java
   - [For Objects](#for-objects)
   - [For Strings](#for-strings)
 - [Operator Table](#operator-table)
-- [Use Cases & Best Practices](#use-cases-best-practices)
+- [Use Cases & Recommended Approach](#use-cases-recommended-approach)
 - [Common Pitfalls](#common-pitfalls)
 - [Performance](#performance)
 - [Related Concepts](#related-concepts)
@@ -117,7 +117,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## Use Cases & Best Practices
+## Use Cases & Recommended Approach
 
 > [!TIP]
 > Use `==` for:

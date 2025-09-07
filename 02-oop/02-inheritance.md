@@ -496,12 +496,12 @@ classDiagram
     Shape <|-- Triangle : extends
     
     %% Method overriding indicators
-    Circle : ⭐ Overrides draw()
-    Circle : ⭐ Implements area()
-    Rectangle : ⭐ Overrides draw()
-    Rectangle : ⭐ Implements area()
-    Triangle : ⭐ Overrides draw()
-    Triangle : ⭐ Implements area()
+    Circle : Overrides draw()
+    Circle : Implements area()
+    Rectangle : Overrides draw()
+    Rectangle : Implements area()
+    Triangle : Overrides draw()
+    Triangle : Implements area()
 ```
 
 **Java Inheritance Types Diagram:**

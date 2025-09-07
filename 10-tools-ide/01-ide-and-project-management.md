@@ -553,7 +553,7 @@ graph TD
 
 ***
 
-## Callouts for Best Practices
+## Callouts for Recommended Approach
 
 > [!TIP]
 > **Extract methods early**—avoid duplicated logic.
