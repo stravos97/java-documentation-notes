@@ -1,9 +1,8 @@
-Here's the corrected version of your markdown file with syntax fixes and improved formatting:
-
-
 ---
 tags: [java/springboot, java/jpa, beginner, crud]
 date: 2025-09-05
+topic: Understanding JpaRepository in Spring Data JPA
+---
 
 # Understanding JpaRepository - The Heart of Spring Data JPA
 
@@ -52,7 +51,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 #### The Two Critical Type Parameters
 ```mermaid
 flowchart LR
-    A[JpaRepository<Entity, ID>] --> B[Entity Type]
+    A[JpaRepository - Entity, ID] --> B[Entity Type]
     A --> C[ID Type]
     
     B -->|What table?| D[Customer]
@@ -232,7 +231,7 @@ JpaRepository gives you more than just basic operations:
 ### The Before and After Comparison
 ```mermaid
 flowchart LR
-    subgraph WithoutSpringDataJPA["Without Spring Data JPA"]
+    subgraph WithoutSpringDataJPA[Without Spring Data JPA]
         direction TB
         A[Write SQL queries] --> B[Handle database connections]
         B --> C[Process result sets]
@@ -241,7 +240,7 @@ flowchart LR
         E --> F[Error handling]
     end
     
-    subgraph WithJpaRepository["With JpaRepository"]
+    subgraph WithJpaRepository[With JpaRepository]
         direction TB
         G[Define repository interface] --> H[Use built-in methods]
     end

@@ -7,7 +7,7 @@ date: 2025-09-05
 topic: What is an Entity in Spring Boot?
 ---
 
-## ## What is an Entity? (The Simplest Explanation)
+## What is an Entity? (The Simplest Explanation)
 
 ### Entity = Java Class + Database Table
 
@@ -15,7 +15,7 @@ topic: What is an Entity in Spring Boot?
 flowchart LR
     A[Database Table] -->|Maps to| B[Java Class]
     B -->|Becomes| C[Entity]
-    C -->|Used in| D["customerRepository.findAll()"]
+    C -->|Used in| D[findAll]
 ```
 
 ### Real-Life Analogy: Restaurant Menu
@@ -28,13 +28,13 @@ Imagine a restaurant menu:
 
 When you say `customerRepository.findAll()`, you're asking for "all menu items" (all customer records), and Spring returns them as Java objects you can work with.
 
-## ## Your Customer Entity Explained Visually
+## Your Customer Entity Explained Visually
 
 ### Database Table vs Java Entity
 
 ```mermaid
 flowchart LR
-    subgraph MySQLDatabase["MySQL Database"]
+    subgraph MySQLDatabase[MySQL Database]
         direction TB
         A[customers table] --> B[CustomerID]
         A --> C[CompanyName]
@@ -42,7 +42,7 @@ flowchart LR
         A --> E[ContactTitle]
     end
     
-    subgraph JavaApplication["Java Application"]
+    subgraph JavaApplication[Java Application]
         direction TB
         F[Customer Entity] --> G[customerID]
         F --> H[companyName]
@@ -69,7 +69,7 @@ flowchart LR
 - Each **COLUMN** in your table becomes a **FIELD** in your Java class
 - When you call `findAll()`, you get a **LIST OF JAVA OBJECTS** (entities)
 
-## ## What Happens When You Call findAll()
+## What Happens When You Call findAll()
 
 ### Step-by-Step Visual Explanation
 
@@ -107,7 +107,7 @@ Customer{customerID='ANATR', companyName='Ana Trujillo Emparedados y helados', c
 
 Each of these is a **Customer entity** - a Java object representing one row from your database.
 
-## ## Entity vs Regular Java Object
+## Entity vs Regular Java Object
 
 ### What Makes an Entity Special
 
@@ -155,10 +155,10 @@ public class Customer {
 
 ```mermaid
 flowchart LR
-    A[Create] -->|"save(newCustomer)"| B[New Entity]
-    C[Read] -->|"findAll()"| D[List of Entities]
-    E[Update] -->|"save(existingCustomer)"| F[Modified Entity]
-    G[Delete] -->|"deleteById('ALFKI')"| H[Removed Entity]
+    A[Create] -->|save newCustomer| B[New Entity]
+    C[Read] -->|findAll| D[List of Entities]
+    E[Update] -->|save existingCustomer| F[Modified Entity]
+    G[Delete] -->|deleteById ALFKI| H[Removed Entity]
     
     classDef crud fill:#e8f5e9,stroke:#388e3c;
     class A,B,C,D,E,F,G,H crud;
@@ -189,7 +189,7 @@ customerRepository.deleteById("VALON");  // Deletes the entity from database
 > [!NOTE] Key Insight
 > An entity is **both** a Java object **and** a representation of database data. When you modify an entity object, you're effectively modifying the database record it represents.
 
-## ## Why "findAll() Returns All Entities" Makes Sense
+## Why "findAll() Returns All Entities" Makes Sense
 
 ### The Complete Picture
 
@@ -198,7 +198,7 @@ flowchart TD
     A[MySQL Database] -->|Contains| B[customers table]
     B -->|Has| C[100 rows of customer data]
     
-    D[CustomerRepository] -->|Calls| E["findAll()"]
+    D[CustomerRepository] -->|Calls| E[findAll]
     E -->|Hibernate generates| F[SELECT * FROM customers]
     F -->|Executes on| A
     

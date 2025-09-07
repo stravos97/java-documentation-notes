@@ -26,7 +26,7 @@ This lets you focus on **what makes your house unique** (your business logic) in
 > [!TIP] For Complete Beginners
 > Spring Boot is a framework that helps you build Java applications **faster** by providing ready-made components for common tasks like connecting to databases and creating web services.
 
-## ## What Are Beans? (The Simplest Explanation)
+## What Are Beans? (The Simplest Explanation)
 
 ### Beans = Spring's Building Blocks
 
@@ -76,7 +76,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 > [!NOTE] Key Insight for Beginners
 > A "bean" is just a fancy name for **an object that Spring manages for you**. You don't create these objects with `new` - Spring creates and manages them.
 
-## ## What is Hibernate ORM? (The Translator Between Java and Database)
+## What is Hibernate ORM? (The Translator Between Java and Database)
 
 ### The Language Barrier Problem
 
@@ -102,7 +102,7 @@ Imagine you speak **only English** and your database speaks **only SQL**:
 
 ```mermaid
 flowchart LR
-    A["Customer.java"] -->|"@Entity"| B[Hibernate]
+    A[Customer.java] -->|@Entity| B[Hibernate]
     B -->|Creates| C[SQL Query]
     C -->|Executes| D[MySQL Database]
     D -->|Returns| E[Raw Data]
@@ -152,7 +152,7 @@ No need to write SQL! Hibernate does it for you.
 > ```
 > With Hibernate, you just call `customerRepository.findAll()` and get Java objects!
 
-## ## What is Tomcat? (Your Application's Front Desk)
+## What is Tomcat? (Your Application's Front Desk)
 
 ### Tomcat = Web Server Receptionist
 
@@ -186,7 +186,7 @@ In your Spring Boot app:
 > [!NOTE] Why You Need Tomcat
 > Without Tomcat (or another web server), your application would be like a store with no front door - nobody could access it over the internet!
 
-## ## CRUD Operations: The Four Basic Actions
+## CRUD Operations: The Four Basic Actions
 
 CRUD stands for **Create, Read, Update, Delete** - the four fundamental operations for working with data.
 
@@ -219,10 +219,10 @@ flowchart TD
     A[Your Code] -->|Calls| B[CRUD Methods]
     B --> C{Which Operation?}
     
-    C -->|Create| D["customerRepository.save(newCustomer)"]
-    C -->|Read| E["customerRepository.findAll()"]
-    C -->|Update| F["customerRepository.save(existingCustomer)"]
-    C -->|Delete| G["customerRepository.deleteById('ALFKI')"]
+    C -->|Create| D[save newCustomer]
+    C -->|Read| E[findAll]
+    C -->|Update| F[save existingCustomer]
+    C -->|Delete| G[deleteById ALFKI]
     
     D --> H[Hibernate Creates INSERT SQL]
     E --> I[Hibernate Creates SELECT SQL]
@@ -275,7 +275,7 @@ customerRepository.deleteById("VALON");  // Hibernate generates DELETE SQL
 > - The method names (`findAll()`, `save()`, etc.)
 > - The ID type (`String` in your Customer entity)
 
-## ## Your Complete Northwind Application Flow
+## Your Complete Northwind Application Flow
 
 ### Step-by-Step Visual Guide
 
@@ -351,19 +351,19 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    subgraph YouDeveloper["You (Developer)"]
+    subgraph YouDeveloper[You - Developer]
         A[Write Code] --> B[Run Application]
         B --> C[Call Repository Methods]
     end
     
-    subgraph SpringBoot["Spring Boot"]
+    subgraph SpringBoot[Spring Boot]
         D[Spring Container] -->|Manages| E[Beans]
         E --> F[CustomerRepository]
         E --> G[Customer Entity]
         E --> H[Database Connection]
     end
     
-    subgraph HibernateORM["Hibernate ORM"]
+    subgraph HibernateORM[Hibernate ORM]
         I[Hibernate] -->|Translates| J[Java to SQL]
         J -->|Create| K[INSERT]
         J -->|Read| L[SELECT]
@@ -371,12 +371,12 @@ flowchart TD
         J -->|Delete| N[DELETE]
     end
     
-    subgraph TomcatServer["Tomcat"]
+    subgraph TomcatServer[Tomcat]
         O[Tomcat] -->|Handles| P[HTTP Requests]
         P -->|Routes to| Q[Controllers]
     end
     
-    subgraph MySQLDatabase["MySQL"]
+    subgraph MySQLDatabase[MySQL]
         R[MySQL Database] -->|Stores| S[customers table]
     end
     

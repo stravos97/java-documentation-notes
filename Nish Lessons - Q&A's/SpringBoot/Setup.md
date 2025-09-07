@@ -6,14 +6,14 @@ date: 2025-09-05
 topic: Spring Boot Application Setup and Architecture - Verified Implementation
 ---
 
-## ## Introduction to Spring Boot Setup
+## Introduction to Spring Boot Setup
 
 Spring Boot simplifies Java application development by providing auto-configuration, embedded servers, and opinionated defaults. This guide walks through setting up a Spring Boot application connected to the Northwind MySQL database, explaining both the "how" and "why" behind each step, with verified implementation details.
 
 > [!NOTE] Spring Boot vs Traditional Spring
 > Spring Boot removes much of the boilerplate configuration required in traditional Spring applications. It follows the "convention over configuration" principle, allowing developers to focus on business logic rather than infrastructure setup.
 
-## ## Project Creation with Spring Initializr
+## Project Creation with Spring Initializr
 
 Spring Initializr is the standard way to bootstrap a Spring Boot application with all necessary dependencies pre-configured.
 
@@ -44,7 +44,7 @@ Package Name: com.sparta.northwind
 
 This follows the reverse domain naming convention to ensure uniqueness in the Maven ecosystem. The package structure was simplified from `com.sparta.northwind.northwind` to `com.sparta.northwind` during development to avoid redundant naming.
 
-## ## Maven Dependencies Analysis
+## Maven Dependencies Analysis
 
 Spring Boot uses starter dependencies that bundle related libraries for specific functionality.
 
@@ -110,7 +110,7 @@ Spring Boot uses starter dependencies that bundle related libraries for specific
 > [!NOTE] Dependency Synergy
 > Spring Boot's auto-configuration detects these dependencies and configures beans automatically. For example, adding both `spring-boot-starter-data-jpa` and `mysql-connector-j` triggers automatic datasource configuration without manual setup.
 
-## ## Database Configuration
+## Database Configuration
 
 The `application.properties` file contains critical configuration for your application.
 
@@ -158,7 +158,7 @@ The JDBC URL `jdbc:mysql://localhost:3306/northwind` consists of:
 > spring.datasource.password=${DB_PASSWORD}
 > ```
 
-## ## Understanding POJOs vs JPA Entities
+## Understanding POJOs vs JPA Entities
 
 Before diving into entity generation, it's crucial to understand the relationship between POJOs and JPA Entities.
 
@@ -237,7 +237,7 @@ public class Customer {
 > [!TIP] Entity Generation Practical Detail
 > Notice the `toString()` method was configured to include only the first four fields. This is a practical decision to balance completeness with readability - showing all fields in a large entity would create verbose output that's hard to read in logs or console output.
 
-## ## Entity Generation with JPA Buddy - Real Experience
+## Entity Generation with JPA Buddy - Real Experience
 
 JPA Buddy is an IntelliJ IDEA plugin that accelerates JPA development through intelligent code generation.
 
@@ -292,7 +292,7 @@ spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.Ph
 > [!TIP] Naming Strategy Best Practice
 > When working with legacy databases that don't follow Java naming conventions, always set the physical naming strategy to preserve exact column names. This is critical for databases like Northwind that use PascalCase for column names.
 
-## ## Repository Pattern Implementation - Verified Correct Implementation
+## Repository Pattern Implementation - Verified Correct Implementation
 
 Spring Data JPA provides repository abstractions that eliminate the need for boilerplate data access code.
 
@@ -343,7 +343,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 | `delete()`           | Remove entity            | `customerRepository.delete(customer)`             |
 | `findBy[Property]()` | Custom query by property | `customerRepository.findByCompanyName("Test Co")` |
 
-## ## Understanding the Runtime Proxy Generation
+## Understanding the Runtime Proxy Generation
 
 This is a crucial concept that explains how Spring Data JPA works its "magic."
 
@@ -365,21 +365,21 @@ Here's what actually happens at runtime:
 ### Visualizing the Proxy Generation
 
 ```mermaid
-graph LR
+flowchart LR
     A[CustomerRepository Interface] -->|Spring detects at startup| B[Spring IoC Container]
     B -->|Generates at runtime| C[Proxy Implementation Class]
-    C -->|Implements| D[findAll()]
-    C -->|Implements| E[findById()]
-    C -->|Implements| F[save()]
-    C -->|Implements| G[Custom Query Methods]
-    H[Your Application Code] -->|Calls| I[customerRepository.findAll()]
+    C -->|Implements| D[findAll]
+    C -->|Implements| E[findById]
+    C -->|Implements| F[save]
+    C -->|Implements| G[custom query methods]
+    H[Your Application Code] -->|Calls| I[findAll]
     I -->|Delegated to| D
 ```
 
 > [!NOTE] Key Insight
 > Spring doesn't give you the interface; it gives you a dynamically generated proxy class that implements your interface. This is why you can call methods like `findAll()` without ever writing the implementation. The framework interprets method names and generates the appropriate SQL queries at runtime.
 
-## ## Application Bootstrap Process
+## Application Bootstrap Process
 
 The main application class serves as the entry point for your Spring Boot application.
 
@@ -449,40 +449,40 @@ sequenceDiagram
     User->>User: Prints customers to console
 ```
 
-## ## Architecture Diagram and Runtime Behavior
+## Architecture Diagram and Runtime Behavior
 
 ### Application Architecture Diagram
 
 ```mermaid
-graph TD
-    subgraph ApplicationLayer["Application Layer"]
-        A[NorthwindApplication.java<br/>@SpringBootApplication] 
+flowchart TD
+    subgraph ApplicationLayer[Application Layer]
+        A[NorthwindApplication.java @SpringBootApplication]
     end
     
-    subgraph SpringIoCContainer["Spring IoC Container"]
-        B[ApplicationContext<br/>Bean Factory]
-        C[Bean Creation & Management<br/>Dependency Injection]
+    subgraph SpringIoCContainer[Spring IoC Container]
+        B[ApplicationContext - Bean Factory]
+        C[Bean Creation and Management - Dependency Injection]
     end
     
-    subgraph RepositoryLayer["Repository Layer"]
-        D[CustomerRepository Interface<br/>extends JpaRepository]
-        E[Spring Data JPA Proxy<br/>Runtime Implementation]
+    subgraph RepositoryLayer[Repository Layer]
+        D[CustomerRepository Interface - extends JpaRepository]
+        E[Spring Data JPA Proxy - Runtime Implementation]
     end
     
-    subgraph EntityLayer["Entity Layer"]
-        F[Customer Entity<br/>@Entity Annotated POJO]
+    subgraph EntityLayer[Entity Layer]
+        F[Customer Entity - Entity Annotated POJO]
     end
     
-    subgraph DatabaseLayer["Database Layer"]
-        G[MySQL Database<br/>Northwind Schema]
+    subgraph DatabaseLayer[Database Layer]
+        G[MySQL Database - Northwind Schema]
         H[customers table]
     end
     
-    subgraph Configuration["Configuration"]
-        I[application.properties<br/>Database Connection]
+    subgraph Configuration[Configuration]
+        I[application.properties - Database Connection]
     end
     
-    A -->|SpringApplication.run()| B
+    A -->|SpringApplication.run| B
     B -->|Creates & Manages| C
     C -->|Generates Proxy for| D
     D -->|Implemented by| E
@@ -490,7 +490,7 @@ graph TD
     F -->|Hibernate ORM| H
     H -->|Part of| G
     I -->|Configures| B
-    B -->|getBean()| E
+    B -->|getBean| E
 ```
 
 ### Object Creation Lifecycle
@@ -508,7 +508,7 @@ graph TD
 > ```
 > Spring provides the proxy implementation it created at runtime. You're asking for an interface, and Spring provides the concrete implementation.
 
-## ## Testing Strategies - Practical Approach
+## Testing Strategies - Practical Approach
 
 ### Repository Testing with Explanation
 
@@ -570,7 +570,7 @@ class CustomerRepositoryTest {
 > [!TIP] Testing Best Practice
 > For unit tests of repository methods, use `@DataJpaTest` with the in-memory H2 database. This is much faster than connecting to your actual MySQL database and ensures tests don't affect your development data.
 
-## ## Best Practices for Moving Forward
+## Best Practices for Moving Forward
 
 ### Service Layer Implementation
 
@@ -625,7 +625,7 @@ public class CustomerController {
 }
 ```
 
-## ## Troubleshooting Common Issues
+## Troubleshooting Common Issues
 
 ### Database Connection Problems
 
@@ -644,7 +644,7 @@ public class CustomerController {
 > - **Lazy loading**: Be aware of N+1 query problems with relationships
 > - **Validation constraints**: Ensure entity annotations match database constraints
 
-## ## Security Best Practices
+## Security Best Practices
 
 ### Production Readiness Checklist
 
@@ -656,7 +656,7 @@ public class CustomerController {
 - [x] ==Enable SQL injection protection== (via parameterized queries)
 - [ ] ==Implement audit logging==
 
-## ## Summary
+## Summary
 
 This Spring Boot application demonstrates professional-grade setup with:
 

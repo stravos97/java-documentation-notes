@@ -6,7 +6,7 @@ date: 2025-09-05
 topic: Understanding Spring Data JPA Repositories and Generics
 ---
 
-## ## Why `CustomerRepository.class` in `context.getBean(CustomerRepository.class)`
+## Why `CustomerRepository.class` in `context.getBean(CustomerRepository.class)`
 
 ### The Interface Retrieval Mechanism
 
@@ -58,13 +58,13 @@ CustomerRepository customerRepository = context.getBean(CustomerRepository.class
 > [!TIP] For Absolute Beginners
 > Think of `.class` as giving Spring a **blueprint** of what you want. Spring then builds the actual house (the implementation) based on that blueprint.
 
-## ## Understanding `<Customer, String>` Generics
+## Understanding `<Customer, String>` Generics
 
 ### What These Angle Brackets Mean
 
 ```mermaid
 flowchart LR
-    A[JpaRepository<Entity, ID>] --> B[Entity Type]
+    A[JpaRepository - Entity, ID] --> B[Entity Type]
     A --> C[ID Type]
     
     B -->|What table?| D[Customer]
@@ -128,7 +128,7 @@ sequenceDiagram
 > ```
 > Using `Integer` would cause runtime errors because Spring would look for numeric IDs.
 
-## ## What Can Go in the Generic Parameters?
+## What Can Go in the Generic Parameters?
 
 ### Entity Type Options (First Parameter)
 
@@ -171,7 +171,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> { }
 > ```
 > The data type of this field determines your repository's ID parameter.
 
-## ## Understanding the Concrete Implementation
+## Understanding the Concrete Implementation
 
 ### What Spring Creates Behind the Scenes
 
@@ -179,19 +179,10 @@ public interface ProductRepository extends JpaRepository<Product, UUID> { }
 flowchart LR
     A[Your Empty Interface] -->|Spring detects| B[Spring Data JPA]
     B -->|Creates at Runtime| C[Proxy Implementation]
-    C --> D[findAll() Method]
-    C --> E[findById() Method]
-    C --> F[save() Method]
-    C --> G[delete() Method]
-    
-    classDef interface fill:#ede7f6,stroke:#673ab7;
-    class A interface;
-    
-    classDef proxy fill:#e3f2fd,stroke:#1976d2;
-    class B,C proxy;
-    
-    classDef method fill:#e8f5e9,stroke:#388e3c;
-    class D,E,F,G method;
+    C --> D[findAll]
+    C --> E[findById]
+    C --> F[save]
+    C --> G[delete]
 ```
 
 ### What Spring Data JPA Does NOT Do
@@ -239,7 +230,7 @@ sequenceDiagram
 >
 > **You never see the database interaction - it's completely hidden!**
 
-## ## What is `Example<Customer>` Doing?
+## What is `Example<Customer>` Doing?
 
 ### Query by Example: The Simple Search
 
@@ -308,7 +299,7 @@ Imagine you're in a library:
 > ```
 > This is much simpler than creating a custom method like `findByCityAndCountry()`!
 
-## ## Summary Cheat Sheet
+## Summary Cheat Sheet
 
 ### Spring Data JPA Key Concepts
 
@@ -340,4 +331,3 @@ Imagine you're in a library:
 > This is the true power of Spring Data JPA!
 
 #java/springboot #java/jpa #crud #generics #beginner #query-by-example
-

@@ -130,18 +130,18 @@ This diagram shows how Spring Data JPA creates repository implementations at run
 
 ```mermaid
 flowchart LR
-    A["CustomerRepository Interface"] -->|Detected by Spring| B[Spring Data JPA]
+    A[CustomerRepository Interface] -->|Detected by Spring| B[Spring Data JPA]
     B -->|Analyzes| C[Method Names]
     B -->|Analyzes| D[JpaRepository Methods]
     B -->|Analyzes| E[Custom Query Methods]
     
     B --> F[Proxy Class Generation]
-    F --> G["findAll() Implementation"]
-    F --> H["findById() Implementation"]
-    F --> I["save() Implementation"]
+    F --> G[findAll Implementation]
+    F --> H[findById Implementation]
+    F --> I[save Implementation]
     F --> J[Custom Query Methods]
     
-    K[Your Application] -->|Calls| L["customerRepository.findAll()"]
+    K[Your Application] -->|Calls| L[findAll]
     L -->|Delegated to| G
     
     classDef interface fill:#ede7f6,stroke:#673ab7;
@@ -258,10 +258,10 @@ This diagram shows how your Java entities map to database tables.
 
 ```mermaid
 flowchart LR
-    A["Customer.java"] -->|"@Entity"| B[Entity Metadata]
-    A -->|"@Id"| C[Primary Key]
-    A -->|"@Column"| D[Column Mapping]
-    A -->|"@Size"| E[Validation]
+    A[Customer.java] -->|@Entity| B[Entity Metadata]
+    A -->|@Id| C[Primary Key]
+    A -->|@Column| D[Column Mapping]
+    A -->|@Size| E[Validation]
     
     B --> F[JPA Metamodel]
     C --> F
@@ -401,34 +401,34 @@ This diagram shows the full architecture of your Northwind application with all 
 
 ```mermaid
 flowchart TD
-    subgraph ApplicationLayer["Application Layer"]
-        A["NorthwindApplication.java (@SpringBootApplication)"]
+    subgraph ApplicationLayer[Application Layer]
+        A[NorthwindApplication.java - SpringBootApplication]
     end
     
-    subgraph SpringIoCContainer["Spring IoC Container"]
-        B["ApplicationContext (Bean Factory)"]
-        C["Bean Creation & Management (Dependency Injection)"]
+    subgraph SpringIoCContainer[Spring IoC Container]
+        B[ApplicationContext - Bean Factory]
+        C[Bean Creation and Management - Dependency Injection]
     end
     
-    subgraph RepositoryLayer["Repository Layer"]
-        D["CustomerRepository Interface (extends JpaRepository)"]
-        E["Spring Data JPA Proxy (Runtime Implementation)"]
+    subgraph RepositoryLayer[Repository Layer]
+        D[CustomerRepository Interface - extends JpaRepository]
+        E[Spring Data JPA Proxy - Runtime Implementation]
     end
     
-    subgraph EntityLayer["Entity Layer"]
-        F["Customer Entity (@Entity Annotated POJO)"]
+    subgraph EntityLayer[Entity Layer]
+        F[Customer Entity - Entity Annotated POJO]
     end
     
-    subgraph DatabaseLayer["Database Layer"]
-        G["MySQL Database (Northwind Schema)"]
+    subgraph DatabaseLayer[Database Layer]
+        G[MySQL Database - Northwind Schema]
         H[customers table]
     end
     
-    subgraph Configuration["Configuration"]
-        I["application.properties (Database Connection)"]
+    subgraph Configuration[Configuration]
+        I[application.properties - Database Connection]
     end
     
-    A -->|"SpringApplication.run() "| B
+    A -->|SpringApplication.run| B
     B -->|Creates & Manages| C
     C -->|Generates Proxy for| D
     D -->|Implemented by| E
@@ -436,7 +436,7 @@ flowchart TD
     F -->|Hibernate ORM| H
     H -->|Part of| G
     I -->|Configures| B
-    B -->|"getBean() "| E
+    B -->|getBean| E
     
     classDef app fill:#e1f5fe,stroke:#0288d1;
     class A app;

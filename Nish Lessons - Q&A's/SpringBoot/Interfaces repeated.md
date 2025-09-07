@@ -7,7 +7,7 @@ date: 2025-09-05
 topic: Spring Boot Interfaces Explained Visually
 ---
 
-## ## What Are Interfaces in Spring Boot? (The Simple Truth)
+## What Are Interfaces in Spring Boot? (The Simple Truth)
 
 ### Interfaces = Your Blueprint for Data Access
 
@@ -36,7 +36,7 @@ In your Northwind app:
 > [!TIP] For Absolute Beginners
 > An interface is like a **promise** of what methods will exist, but it doesn't contain the actual code to make those methods work. Spring fulfills that promise for you behind the scenes.
 
-## ## Your CustomerRepository Interface Explained
+## Your CustomerRepository Interface Explained
 
 ### What You Write (The Blueprint)
 
@@ -57,19 +57,10 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 flowchart LR
     A[CustomerRepository Interface] -->|Spring detects| B[Spring Data JPA]
     B -->|Creates| C[Proxy Implementation]
-    C --> D[findAll() Method]
-    C --> E[findById() Method]
-    C --> F[save() Method]
-    C --> G[delete() Method]
-    
-    classDef interface fill:#ede7f6,stroke:#673ab7;
-    class A interface;
-    
-    classDef proxy fill:#e3f2fd,stroke:#1976d2;
-    class B,C proxy;
-    
-    classDef method fill:#e8f5e9,stroke:#388e3c;
-    class D,E,F,G method;
+    C --> D[findAll]
+    C --> E[findById]
+    C --> F[save]
+    C --> G[delete]
 ```
 
 ### The Critical Detail You Need to Understand
@@ -77,7 +68,7 @@ flowchart LR
 ```mermaid
 flowchart LR
     A[Customer Entity] -->|Has ID field| B[customerID String]
-    B -->|Must match| C[JpaRepository<Customer, String>]
+    B -->|Must match| C[JpaRepository - Customer, String]
     C -->|Defines| D[Repository ID Type]
     
     classDef entity fill:#e8f5e9,stroke:#388e3c;
@@ -94,7 +85,7 @@ flowchart LR
 > [!WARNING] Common Beginner Mistake
 > The second type parameter in `JpaRepository<Customer, String>` **must exactly match** the type of your `@Id` field. In your Northwind database, customer IDs are text (like "ALFKI"), not numbers!
 
-## ## How CRUD Operations Work with Your Interface
+## How CRUD Operations Work with Your Interface
 
 ### CRUD = Your 4 Basic Data Operations
 
@@ -131,7 +122,7 @@ String sql = "SELECT * FROM customers";
 > [!NOTE] The Magic You Don't See
 > When you call `customerRepository.findAll()`, you're not writing SQL or handling database connections - Spring does all that for you! You get back Java objects you can work with directly.
 
-## ## The Complete Flow: From Interface Call to Database
+## The Complete Flow: From Interface Call to Database
 
 ### What Happens When You Call customerRepository.findAll()
 
@@ -195,7 +186,7 @@ sequenceDiagram
 >
 > **You never see the database interaction - it's completely hidden!**
 
-## ## Why This Matters for Your Northwind Project
+## Why This Matters for Your Northwind Project
 
 ### The Special Case of Your Database
 
@@ -239,7 +230,7 @@ This setting is what allows your interface methods to work correctly with your s
 > 4. Hibernate generates correct SQL for your Northwind database
 > 5. You get back properly mapped Customer objects
 
-## ## Summary Cheat Sheet
+## Summary Cheat Sheet
 
 ### Interface Basics for Your Northwind App
 
@@ -275,4 +266,3 @@ This setting is what allows your interface methods to work correctly with your s
 > When you call `customerRepository.findAll()`, you're not working with a database - you're working with **Java objects**. Spring handles all the database interaction behind the scenes, so you can focus on your business logic. This is the true power of Spring Data JPA interfaces!
 
 #java/springboot #beginner #java/jpa #crud #interfaces #visual
-

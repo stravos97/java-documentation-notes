@@ -6,13 +6,13 @@ date: 2025-09-05
 topic: How Spring Data JPA Generates SQL Queries
 ---
 
-## ## The Query Generation Process Explained
+## The Query Generation Process Explained
 
 ### How Spring Data JPA Turns Method Names into SQL
 
 ```mermaid
 flowchart LR
-    A[Your Method Call] -->|"customerRepository.findAll()"| B[Method Name Parser]
+    A[Your Method Call] -->|findAll| B[Method Name Parser]
     B --> C[Entity Metadata Lookup]
     C --> D[SQL Query Builder]
     D --> E[Generated SQL]
@@ -44,7 +44,7 @@ Imagine you're at a restaurant where:
 
 When you order "All customers" (call `findAll()`), the kitchen staff knows exactly what ingredients (table/columns) to use and how to prepare the dish (generate SQL) based on the menu.
 
-## ## The 4-Step Query Generation Logic
+## The 4-Step Query Generation Logic
 
 ### 1. Method Name Parsing
 
@@ -166,7 +166,7 @@ sequenceDiagram
     Repo->>You: List<Customer>
 ```
 
-## ## Real Examples from Your Northwind Project
+## Real Examples from Your Northwind Project
 
 ### 1. Basic CRUD Methods
 
@@ -237,18 +237,18 @@ List<Customer> findByCountryOrderByCompanyName(String country);
 SELECT * FROM customers WHERE Country = ? ORDER BY CompanyName ASC
 ```
 
-## ## The Complete Logic Flow for Your Project
+## The Complete Logic Flow for Your Project
 
 ### How `customerRepository.findAll()` Works in Your Northwind App
 
 ```mermaid
 flowchart TD
-    A["You call findAll()"] --> B[Spring Data JPA]
+    A[You call findAll] --> B[Spring Data JPA]
     B --> C{Is standard method?}
     C -->|Yes| D[Use built-in implementation]
     D --> E[Get entity metadata]
     E --> F[Customer.class]
-    F --> G["Check @Entity annotations"]
+    F --> G[Check @Entity annotations]
     G --> H[Table: customers]
     G --> I[Columns: CustomerID, CompanyName, etc.]
     H --> J[Build SQL: SELECT * FROM customers]
@@ -257,7 +257,7 @@ flowchart TD
     K --> L[MySQL Database]
     L --> M[Return raw data]
     M --> N[Convert to Customer objects]
-    N --> O["Return List<Customer>"]
+    N --> O[Return List of Customer]
     
     classDef you fill:#fff9c4,stroke:#f57f24;
     class A you;
@@ -312,7 +312,7 @@ flowchart TD
 > ```
 > This would fail because your Northwind database uses PascalCase column names!
 
-## ## Advanced Query Generation Logic
+## Advanced Query Generation Logic
 
 ### How Spring Handles Complex Queries
 
@@ -361,7 +361,7 @@ List<CustomerSummary> findByCountry(String country);
 SELECT CustomerID, CompanyName FROM customers WHERE Country = ?
 ```
 
-## ## What Spring Data JPA Does NOT Do
+## What Spring Data JPA Does NOT Do
 
 ### Common Misconceptions
 
@@ -392,7 +392,7 @@ pie
    - Very complex queries might require custom `@Query` annotations
    - Example: Subqueries, complex joins, or database-specific functions
 
-## ## Summary Cheat Sheet
+## Summary Cheat Sheet
 
 ### Spring Data JPA Query Generation Rules
 
