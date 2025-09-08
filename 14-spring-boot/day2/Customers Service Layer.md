@@ -3,6 +3,11 @@ tags: [java/springboot, architecture/layers, testing/mockito, patterns/service]
 date: 2025-09-06
 topic: Service Layer Implementation with Business Logic and Testing
 ---
+---
+tags: [java/springboot, architecture/layers, testing/mockito, patterns/service]
+date: 2025-09-06
+topic: Service Layer Implementation with Business Logic and Testing
+---
 
 # Service Layer in Spring Boot - Adding Business Logic to Your Northwind App
 
@@ -104,11 +109,11 @@ flowchart TD
 ### 1. READ Operations (Safe & Simple)
 
 ```java
-public List<Customer> getAllCustomers() {
+public List<Customer> getAllCustomer() {
     return customerRepository.findAll();
 }
 
-public Customer getCustomerById(String id) {
+public Customer getCustomerByID(String id) {
     if (id.length() > 5) {
         throw new IllegalArgumentException("Can't have ID longer than 5 characters");
     } else {
@@ -154,12 +159,11 @@ public Customer saveCustomer(Customer customer) {
 ### 3. UPDATE Operation (With Existence Check)
 
 ```java
-public Customer updateCustomerById(String id, Customer updatedCustomer) {
-    if (customerRepository.existsById(id)) {
-        updatedCustomer.setCustomerID(id); // Ensure the ID matches
-        return customerRepository.save(updatedCustomer);
+public Customer updateCustomer(Customer customer) {
+    if (customerRepository.existsById(customer.getCustomerID())) {
+        return customerRepository.save(customer);
     } else {
-        throw new IllegalArgumentException("Can't update Customer with ID " + id);
+        throw new IllegalArgumentException("Customer with ID " + customer.getCustomerID() + " does not exist.");
     }
 }
 ```
@@ -173,13 +177,13 @@ sequenceDiagram
     participant Repo as CustomerRepository
     participant DB as MySQL Database
     
-    Main->>Service: updateCustomerById("TEST1", customer)
-    Service->>Repo: existsById("TEST1")
+    Main->>Service: updateCustomer(testCustomer)
+    Service->>Repo: existsById(TEST1)
     Repo->>DB: SELECT COUNT(*) WHERE CustomerID = 'TEST1'
     DB-->>Repo: 0 (not found)
     Repo-->>Service: false
     Service->>Service: Throw IllegalArgumentException
-    Service-->>Main: Exception: "Can't update Customer with ID TEST1"
+    Service-->>Main: Exception: "Customer with ID TEST1 does not exist."
     
     Note over Service: Business rule: Can't update non-existent customers
 ```
@@ -187,22 +191,18 @@ sequenceDiagram
 ### 4. DELETE Operation (With Safety Check)
 
 ```java
-public void deleteCustomerById(String id) {
+public boolean deleteCustomerById(String id) {
     if (customerRepository.existsById(id)) {
         customerRepository.deleteById(id);
+        return true;
     } else {
-        throw new IllegalArgumentException("Can't delete Customer with ID " + id);
+        return false;
     }
 }
 ```
 
 > [!WARNING] Why This Validation Matters  
-> Without this check, calling `deleteById()` on a non-existent ID would either:
-> 
-> - Silently do nothing (confusing!)
-> - Throw a generic Spring exception (not user-friendly)
-> 
-> Your service layer provides clear, business-specific error messages!
+> Unlike previous implementations that threw exceptions, this approach returns a boolean result. This gives callers more flexibility to handle the "not found" case without exception handling, while still validating that the customer exists before attempting deletion.
 
 ## Testing Your Service Layer with Mockito
 
@@ -261,17 +261,18 @@ class CustomerServiceTest {
 
 ```java
 @Test
-void testUpdateCustomerById_NotFound() {
-    // Arrange: Tell mock to return false for existsById
+void testUpdateCustomer_NotFound() {
+    // Arrange
+    testCustomer.setCustomerID("DUMMY");
     when(customerRepository.existsById("DUMMY")).thenReturn(false);
-    
-    // Act & Assert: Verify exception is thrown
+
+    // Act & Assert
     IllegalArgumentException exception = assertThrows(
         IllegalArgumentException.class,
-        () -> customerService.updateCustomerById("DUMMY", testCustomer)
+        () -> customerService.updateCustomer(testCustomer)
     );
-    
-    assertEquals("Can't update Customer with ID DUMMY", exception.getMessage());
+
+    assertEquals("Customer with ID DUMMY does not exist.", exception.getMessage());
     
     // Verify repository was checked but save was never called
     verify(customerRepository).existsById("DUMMY");
@@ -284,7 +285,7 @@ void testUpdateCustomerById_NotFound() {
 ```mermaid
 flowchart LR
     A[Test Starts] --> B[Mock Setup]
-    B -->|existsById returns false| C[Call updateCustomerById]
+    B -->|existsById returns false| C[Call updateCustomer]
     C --> D{Service Logic}
     D -->|ID doesn't exist| E[Throw Exception]
     E --> F[Test Catches Exception]
@@ -334,7 +335,7 @@ testCustomer.setCustomerID("TEST1");
 testCustomer.setCompanyName("Test Company");
 
 try {
-    customerService.updateCustomerById("TEST1", testCustomer);
+    customerService.updateCustomer(testCustomer);
     System.out.println("Update successful");
 } catch (IllegalArgumentException e) {
     System.out.println("Expected error for non-existent customer: " + e.getMessage());
@@ -422,7 +423,7 @@ sequenceDiagram
     participant JPA as Spring Data JPA
     participant DB as MySQL Database
     
-    User->>Service: getAllCustomers()
+    User->>Service: getAllCustomer()
     
     rect rgb(240, 248, 255)
         Note over Service: Business Logic Layer
