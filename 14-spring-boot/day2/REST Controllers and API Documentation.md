@@ -52,14 +52,19 @@ package com.sparta.northwind.controllers;
 import com.sparta.northwind.entities.Customer;
 import com.sparta.northwind.services.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @RestController // This combines @Controller and @ResponseBody
 @RequestMapping("/customers") // Base URL for all methods in this controller
+@Validated // Enables validation for path variables and request parameters
 public class CustomerController {
 
     private final CustomerService service;
@@ -78,20 +83,50 @@ public class CustomerController {
 
     @Operation(summary = "Get customer by ID", description = "Retrieve a customer from the database using their unique ID")
     @GetMapping("/{id}") // Maps to GET /customers/ALFKI
-    public ResponseEntity<Customer> getCustomerById(@PathVariable String id) {
+    public ResponseEntity<Customer> getCustomerById(
+            @Size(min = 1, max = 5) @PathVariable String id) {
         Customer customer = service.getCustomerByID(id);
-        if (customer != null) {
-            return ResponseEntity.ok(customer); // 200 OK with customer data
-        } else {
-            return ResponseEntity.notFound().build(); // 404 Not Found
-        }
+        return customer != null ? ResponseEntity.ok(customer) : ResponseEntity.notFound().build();
     }
 
     @Operation(summary = "Add a new customer", description = "Create a new customer in the database")
     @PostMapping // Maps to POST /customers
-    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
-        Customer savedCustomer = service.saveCustomer(customer);
+    public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
+        Customer savedCustomer = service.createCustomer(customer); // Updated method name
         return ResponseEntity.status(201).body(savedCustomer); // 201 Created
+    }
+    
+    @Operation(summary = "Update a customer", description = "Update an existing customer record in the database")
+    @PutMapping("/{id}") // Maps to PUT /customers/ALFKI
+    public ResponseEntity<Customer> updateCustomerById(
+            @Valid @RequestBody Customer customer, 
+            @Size(min = 1, max = 5) @PathVariable String id) {
+        // Ensure ID from URL is used, regardless of what's in request body
+        customer.setCustomerID(id);
+        Customer updatedCustomer = service.updateCustomer(customer);
+        return updatedCustomer != null ? ResponseEntity.ok(updatedCustomer) : ResponseEntity.notFound().build();
+    }
+    
+    @Operation(summary = "Delete a customer", description = "Delete a customer from the database")
+    @DeleteMapping("/{id}") // Maps to DELETE /customers/ALFKI
+    public ResponseEntity<Void> deleteCustomer(
+            @Size(min = 1, max = 5) @PathVariable String id) {
+        if (service.deleteCustomerById(id)) {
+            return ResponseEntity.noContent().build(); // 204 No Content
+        } else {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+    }
+    
+    // Exception handlers for validation errors
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+    
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> handleConstraintViolation(ConstraintViolationException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }
 ```
@@ -113,18 +148,32 @@ flowchart TD
     I[@PostMapping] --> J[Handles HTTP POST requests]
     I --> K[Create operations]
     
+    I2[@PutMapping] --> J2[Handles HTTP PUT requests]
+    I2 --> K2[Update operations]
+    
+    I3[@DeleteMapping] --> J3[Handles HTTP DELETE requests]
+    I3 --> K3[Delete operations]
+    
     L[@PathVariable] --> M[Extracts values from URL]
     
     N[@RequestBody] --> O[Converts JSON to Java object]
     
+    P[@Valid] --> Q[Validates request body fields]
+    
+    R[@Size] --> S[Validates parameter length]
+    
+    T[@Validated] --> U[Enables class-level validation]
+    
     classDef annotation fill:#e3f2fd,stroke:#1976d2;
-    class A,D,F,I,L,N annotation;
+    class A,D,F,I,I2,I3,L,N,P,R,T annotation;
     
     classDef description fill:#e8f5e9,stroke:#388e3c;
-    class B,C,E,G,H,J,K,M,O description;
+    class B,C,E,G,H,J,K,J2,K2,J3,K3,M,O,Q,S,U description;
 ```
 
 The `@RestController` annotation is particularly important. It tells Spring that this class will handle HTTP requests and automatically convert the return values to JSON. Without it, you'd need to annotate each method with `@ResponseBody` to get the same effect.
+
+The `@Validated` annotation enables Spring's validation engine for method parameters like `@PathVariable` annotated with `@Size`. This provides automatic validation before your method is even called.
 
 > [!NOTE] REST vs Traditional Controllers  
 > `@RestController` = Returns data (JSON/XML) for APIs  
@@ -462,10 +511,11 @@ GET http://localhost:8091/customers/ALFKI
   "contactTitle": "Sales Representative"
 }
 
-# Get non-existent customer
-GET http://localhost:8091/customers/NONE
+# Get customer with invalid ID (too long)
+GET http://localhost:8091/customers/TOOLONG123
 
-# Response: 404 Not Found
+# Response: 400 Bad Request
+"getCustomerById.id: size must be between 1 and 5"
 
 # Create new customer
 POST http://localhost:8091/customers
@@ -483,6 +533,44 @@ Content-Type: application/json
   "companyName": "Test Company",
   "contactName": "Test User"
 }
+
+# Try to create duplicate customer
+POST http://localhost:8091/customers
+Content-Type: application/json
+
+{
+  "customerID": "ALFKI",  # Existing customer
+  "companyName": "Another Company"
+}
+
+# Response: 409 Conflict
+"Customer already exists"
+
+# Update existing customer
+PUT http://localhost:8091/customers/ALFKI
+Content-Type: application/json
+
+{
+  "companyName": "Updated Company Name",
+  "contactName": "Updated Contact"
+}
+
+# Response: 200 OK
+{
+  "customerID": "ALFKI",  # ID from URL, not request body
+  "companyName": "Updated Company Name",
+  "contactName": "Updated Contact"
+}
+
+# Delete customer
+DELETE http://localhost:8091/customers/TEST1
+
+# Response: 204 No Content
+
+# Try to delete non-existent customer
+DELETE http://localhost:8091/customers/NONEXISTENT
+
+# Response: 404 Not Found
 ```
 
 ## Key Patterns and Best Practices You're Using
@@ -509,11 +597,13 @@ This creates a clean dependency chain: Controller → Service → Repository, wh
 
 Your controller returns appropriate status codes:
 
-- **200 OK** - Successful GET requests
-- **201 Created** - Successful POST requests
+- **200 OK** - Successful GET and PUT requests
+- **201 Created** - Successful POST requests that create new resources
+- **204 No Content** - Successful DELETE requests
+- **400 Bad Request** - Validation errors (handled by exception handlers)
 - **404 Not Found** - When a resource doesn't exist
-- **400 Bad Request** - Would be used for validation errors
-- **500 Internal Server Error** - Spring handles this automatically for exceptions
+- **409 Conflict** - When trying to create duplicate resources
+- **500 Internal Server Error** - Spring handles this automatically for unhandled exceptions
 
 ### 3. RESTful URL Design
 
@@ -522,10 +612,12 @@ Your URLs follow REST conventions:
 - `GET /customers/` - Collection of resources
 - `GET /customers/{id}` - Specific resource
 - `POST /customers` - Create new resource
-- `PUT /customers/{id}` - Would update a resource
-- `DELETE /customers/{id}` - Would delete a resource
+- `PUT /customers/{id}` - Update a specific resource
+- `DELETE /customers/{id}` - Delete a specific resource
 
-### 4. Clear Documentation
+Notice how the PUT endpoint uses the ID from the URL path as the definitive identifier, ensuring RESTful consistency even if the request body contains a different ID.
+
+### 4. Clear Documentation and Validation
 
 Using `@Operation` annotations makes your API self-documenting:
 
@@ -538,13 +630,24 @@ Using `@Operation` annotations makes your API self-documenting:
 
 This appears in Swagger UI, helping developers understand exactly what each endpoint does.
 
+Additionally, validation annotations provide both runtime protection and documentation:
+
+```java
+@Size(min = 1, max = 5) @PathVariable String id  // Documents that IDs must be 1-5 characters
+@Valid @RequestBody Customer customer              // Documents that request body will be validated
+```
+
+These constraints appear in the generated OpenAPI specification, making your validation rules visible to API consumers.
+
 ## Summary Cheat Sheet
 
 ### What You've Built
 
 | Component | Purpose | Key Features |
 |-----------|---------|--------------|
-| **CustomerController** | HTTP endpoint handler | `@RestController`, `@GetMapping`, `@PostMapping` |
+| **CustomerController** | HTTP endpoint handler | `@RestController`, `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping` |
+| **Validation Annotations** | Request validation | `@Valid`, `@Size`, `@Validated` with automatic error handling |
+| **Exception Handlers** | Error response formatting | `@ExceptionHandler` for consistent error messages |
 | **ResponseEntity** | HTTP response wrapper | Status codes, headers, body |
 | **OpenApiConfig** | Swagger documentation setup | API title, version, description |
 | **HomeController** | Root URL redirect | Redirects to Swagger UI |
@@ -554,10 +657,10 @@ This appears in Swagger UI, helping developers understand exactly what each endp
 ### The Complete Request Flow
 
 1. **Client makes HTTP request** → `GET /customers/ALFKI`
-2. **Controller receives request** → Extracts ID from URL
-3. **Controller calls service** → `service.getCustomerByID("ALFKI")`
-4. **Service applies business logic** → Validates ID length
-5. **Service calls repository** → `repository.findById("ALFKI")`
+2. **Spring validates request** → Checks `@Size(min = 1, max = 5)` on path variable
+3. **Controller receives request** → Extracts validated ID from URL
+4. **Controller calls service** → `service.getCustomerByID("ALFKI")`
+5. **Service calls repository** → `repository.findById("ALFKI")` (no business validation needed)
 6. **Repository queries database** → SQL executed
 7. **Data flows back up** → Database → Repository → Service → Controller
 8. **Controller sends HTTP response** → 200 OK with JSON or 404 Not Found
@@ -567,21 +670,32 @@ This appears in Swagger UI, helping developers understand exactly what each endp
 Your application now demonstrates professional REST API development patterns:
 
 1. **Clean architecture** - Clear separation between HTTP handling (controllers) and business logic (services)
-2. **Self-documenting API** - Swagger UI provides live, interactive documentation
-3. **Proper HTTP semantics** - Correct status codes and HTTP methods
-4. **Security by design** - Repository endpoints are not exposed directly
-5. **Developer-friendly** - Automatic redirect to documentation, clear error messages
-6. **Testable** - Can test via Swagger UI, Postman, or automated tests
+2. **Comprehensive validation** - Request validation at the controller level with meaningful error messages
+3. **Full CRUD operations** - Complete Create, Read, Update, Delete functionality
+4. **Self-documenting API** - Swagger UI provides live, interactive documentation
+5. **Proper HTTP semantics** - Correct status codes and HTTP methods for all operations
+6. **Conflict prevention** - Duplicate customer prevention with appropriate HTTP status codes
+7. **Security by design** - Repository endpoints are not exposed directly
+8. **Developer-friendly** - Automatic redirect to documentation, clear error messages
+9. **Robust error handling** - Exception handlers provide consistent error responses
+10. **RESTful consistency** - URL path parameters take precedence over request body IDs
 
-> [!NOTE] Next Steps  
-> With your REST API complete, you could enhance it by:
+> [!NOTE] Current Implementation Features  
+> Your REST API already includes:
 > 
-> - Adding PUT and DELETE endpoints for full CRUD operations
-> - Implementing validation with `@Valid` annotations
-> - Adding exception handling with `@ControllerAdvice`
+> ✅ **Full CRUD operations** - GET, POST, PUT, DELETE endpoints
+> ✅ **Comprehensive validation** - `@Valid`, `@Size`, and `@Validated` annotations
+> ✅ **Exception handling** - `@ExceptionHandler` methods for consistent error responses
+> ✅ **Conflict detection** - Duplicate customer prevention in create operations
+> ✅ **RESTful design** - Proper HTTP status codes and URL conventions
+> 
+> **Future enhancements you could add:**
+> - Global exception handling with `@ControllerAdvice`
 > - Implementing pagination for large result sets
 > - Adding authentication and authorization with Spring Security
 > - Creating DTOs (Data Transfer Objects) to control what data is exposed
+> - Adding PATCH endpoints for partial updates
+> - Implementing API versioning
 
 > [!TIP] Final Insight  
 > You've successfully transformed your Spring Boot application from a console application into a full-fledged REST API with professional documentation. Any developer can now interact with your Northwind database through clean, well-documented HTTP endpoints. The combination of Spring Boot's conventions, your clean architecture, and Swagger's documentation makes this a production-ready API that other developers will enjoy using!

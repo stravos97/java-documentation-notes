@@ -120,12 +120,12 @@ Notice how the controller doesn't validate the ID length, doesn't access the dat
 | **Response Formatting** | Wraps data in ResponseEntity with proper status codes | Directly access database |
 | **Orchestration** | Calls service methods with extracted parameters | Validate business rules |
 | **Error Handling** | Returns appropriate HTTP status codes for errors | Implement domain-specific logic |
-| **Input Validation** | Basic validation of request structure | Domain-specific validation |
+| **Input Validation** | HTTP-level validation (@Valid, @Size, etc.) | Complex domain-specific business validation |
 
 > [!NOTE] Separation of Concerns  
 > Each layer has a specific job:
-> - **Controller**: HTTP concerns (status codes, headers, routing)
-> - **Service**: Business logic, validation, transaction management
+> - **Controller**: HTTP concerns (status codes, headers, routing) and HTTP-level validation (@Valid, @Size)
+> - **Service**: Business logic, conflict detection, existence checking, transaction management
 > - **Repository**: Data access only (no business logic)
 
 ## Understanding ResponseEntity in Depth
@@ -294,7 +294,7 @@ And here's the opposite direction:
 @PostMapping
 public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
     // @RequestBody tells Spring to convert incoming JSON to a Customer object
-    Customer savedCustomer = service.saveCustomer(customer);
+    Customer savedCustomer = service.createCustomer(customer);
     return ResponseEntity.status(201).body(savedCustomer);
 }
 
