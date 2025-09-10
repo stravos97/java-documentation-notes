@@ -91,7 +91,7 @@ The service layer is **critical** because it:
 
 1. **Centralizes Business Logic**  
    - Without it, business rules would be scattered across controllers
-   - Example: Conflict detection and existence checking should happen in one place
+   - Example: Customer ID validation should happen in one place
 
 2. **Enables Proper Transaction Management**  
    - Transactions should begin and end at the service level
@@ -113,32 +113,31 @@ The service layer is **critical** because it:
 Without service layer (BAD):
 ```java
 // In controller - business logic leaks into presentation layer
-@PostMapping("/customers")
-public Customer createCustomer(@RequestBody Customer customer) {
-    if (customerRepository.existsById(customer.getCustomerID())) {
-        throw new IllegalArgumentException("Customer already exists");
+@GetMapping("/customers/{id}")
+public Customer getCustomer(@PathVariable String id) {
+    if (id.length() > 5) {
+        throw new IllegalArgumentException("ID too long");
     }
-    return customerRepository.save(customer);
+    return customerRepository.findById(id).orElse(null);
 }
 ```
 
 With service layer (GOOD):
 ```java
-// Controller remains clean - handles validation only
-@PostMapping("/customers")
-public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer) {
-    Customer savedCustomer = customerService.createCustomer(customer);
-    return ResponseEntity.status(201).body(savedCustomer);
+// Controller remains clean
+@GetMapping("/customers/{id}")
+public Customer getCustomer(@PathVariable String id) {
+    return customerService.getCustomerById(id);
 }
 
 // Service contains business logic
 @Service
 public class CustomerService {
-    public Customer createCustomer(Customer customer) {
-        if (customerRepository.existsById(customer.getCustomerID())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Customer already exists");
+    public Customer getCustomerById(String id) {
+        if (id.length() > 5) {
+            throw new IllegalArgumentException("ID too long");
         }
-        return customerRepository.save(customer);
+        return customerRepository.findById(id).orElse(null);
     }
 }
 ```
@@ -561,8 +560,7 @@ flowchart LR
 | `@Table(name="...")` | Custom table name | Overrides default table name |
 | `@Id` | Primary Key | Identifies unique record |
 | `@Column(name="...")` | Column name | Maps field to specific column |
-| `@NotBlank(message="...")` | Validation | Ensures field is not null or empty |
-| `@Size(max=...)` | Validation | Enforces length constraints |
+| `@Size(max=...)` | Validation | Enforces data constraints |
 
 ### How Entity Mapping Works
 
@@ -573,7 +571,6 @@ flowchart LR
 public class Customer {
     @Id
     @Column(name = "CustomerID", nullable = false)
-    @NotBlank(message = "Customer ID cannot be null or empty")
     private String customerID;
 
     // Other fields...
@@ -591,11 +588,9 @@ public class Customer {
 - Object properties map to database columns
 
 #### Validation Enforcement
-- Controller-level validation with `@Size(max = 5)` on path variables
-- Entity-level validation with `@NotBlank` on required fields
-- Request body validation with `@Valid` annotation
-- Prevents invalid data from being processed or saved to the database
-- Works with Spring's comprehensive validation system
+- Annotations like `@Size(max = 5)` are enforced
+- Prevents invalid data from being saved to the database
+- Works with Spring's validation system
 
 > [!NOTE] Key Insight  
 > The `@Column(name = "CustomerID")` annotation is critical - it tells Hibernate to use the exact column name from your database rather than converting to snake_case.
@@ -751,7 +746,7 @@ flowchart TD
 
 #### Service Layer
 - Your `CustomerService` class with business logic
-- Handles conflict detection, existence checking, and transactions
+- Handles validation, transactions, and complex operations
 - Coordinates between repositories for multi-step operations
 
 #### Repository Layer
@@ -790,7 +785,7 @@ flowchart TD
 | **ID Type Must Match Exactly** | `Customer` entity has `String customerID`<br>Repository must use `JpaRepository<Customer, String>` | Prevents runtime errors |
 | **Connection Pooling is Automatic** | HikariCP manages database connections | Improves performance and resource usage |
 | **Complete Separation of Concerns** | Each layer has a specific responsibility | Makes application maintainable, testable, and scalable |
-| **Service Layer is Business Brain** | Centralizes business rules and conflict detection | Prevents business logic leakage into controllers |
+| **Service Layer is Business Brain** | Centralizes business rules and validation | Prevents logic leakage into controllers |
 | **Optional Handles Missing Data** | Explicit way to handle "not found" cases | Prevents NullPointerExceptions |
 
 > [!TIP] For Visual Learners  

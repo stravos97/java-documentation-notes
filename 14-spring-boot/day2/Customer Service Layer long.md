@@ -302,14 +302,11 @@ package com.sparta.northwind.services;
 import com.sparta.northwind.entities.Customer;
 import com.sparta.northwind.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.http.HttpStatus;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
@@ -321,30 +318,14 @@ class CustomerServiceTest {
     private CustomerService customerService;
     
     @Test
-    @DisplayName("Get all customers returns list of all customers from repository")
     void testGetAllCustomers() {
         // The customerService has the mock repository injected
         // No database needed for testing!
         when(customerRepository.findAll()).thenReturn(testCustomers);
         
-        List<Customer> result = customerService.getAllCustomer();
+        List<Customer> result = customerService.getAllCustomers();
         
         assertEquals(2, result.size());
-    }
-    
-    @Test
-    @DisplayName("Create customer throws conflict when customer already exists")
-    void testCreateCustomer_Conflict() {
-        // Test the conflict detection business logic
-        when(customerRepository.existsById("TEST1")).thenReturn(true);
-        
-        ResponseStatusException exception = assertThrows(
-            ResponseStatusException.class,
-            () -> customerService.createCustomer(testCustomer)
-        );
-        
-        assertEquals(HttpStatus.CONFLICT, exception.getStatusCode());
-        assertEquals("Customer already exists", exception.getReason());
     }
 }
 ```
@@ -733,20 +714,21 @@ class CustomerServiceTest {
     }
 
     @Test
-    void testUpdateCustomer_Success() {
-        // Arrange - no existence check needed in service
+    void testUpdateCustomerById_Success() {
+        // Arrange
+        when(customerRepository.existsById("TEST1")).thenReturn(true);
         when(customerRepository.save(testCustomer)).thenReturn(testCustomer);
 
         // Act
-        Customer result = customerService.updateCustomer(testCustomer);
+        Customer result = customerService.updateCustomerById("TEST1", testCustomer);
 
         // Assert
         assertNotNull(result);
         assertEquals("TEST1", result.getCustomerID());
         
-        // Verify only save method was called (no existence check)
+        // Verify both repository methods were called
+        verify(customerRepository).existsById("TEST1");
         verify(customerRepository).save(testCustomer);
-        verify(customerRepository, never()).existsById(anyString());
     }
 
     @Test
@@ -754,11 +736,13 @@ class CustomerServiceTest {
         // Arrange
         when(customerRepository.existsById("DUMMY")).thenReturn(false);
 
-        // Act
-        boolean result = customerService.deleteCustomerById("DUMMY");
+        // Act & Assert
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> customerService.deleteCustomerById("DUMMY")
+        );
 
-        // Assert
-        assertFalse(result); // Should return false, not throw exception
+        assertEquals("Can't delete Customer with ID DUMMY", exception.getMessage());
         
         // Verify existence was checked but delete was not called
         verify(customerRepository).existsById("DUMMY");

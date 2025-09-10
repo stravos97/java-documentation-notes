@@ -114,8 +114,11 @@ public List<Customer> getAllCustomer() {
 }
 
 public Customer getCustomerByID(String id) {
-    // No validation needed - controller handles ID format validation
-    return customerRepository.findById(id).orElse(null);
+    if (id.length() > 5) {
+        throw new IllegalArgumentException("Can't have ID longer than 5 characters");
+    } else {
+        return customerRepository.findById(id).orElse(null);
+    }
 }
 ```
 
@@ -137,29 +140,21 @@ flowchart LR
 
 The service layer adds **validation** that the repository doesn't care about. This is business logic!
 
-### 2. CREATE Operation (With Business Logic)
+### 2. CREATE Operation (Simple Pass-Through)
 
 ```java
-public Customer createCustomer(Customer customer) {
-    // Business logic: Check for duplicates before creating
-    if (customerRepository.existsById(customer.getCustomerID())) {
-        throw new ResponseStatusException(HttpStatus.CONFLICT, "Customer already exists");
-    }
+public Customer saveCustomer(Customer customer) {
     return customerRepository.save(customer);
 }
 ```
 
-> [!TIP] Business Logic Implemented  
-> The createCustomer method now includes:
+> [!TIP] Room for Enhancement  
+> Even though this is a simple pass-through now, you could add:
 > 
-> ✅ **Duplicate prevention** - Checks for existing customer IDs
-> ✅ **Appropriate exceptions** - Uses ResponseStatusException for HTTP-aware errors
-> ✅ **Clear business rules** - Prevents data integrity issues
-> 
-> **Future enhancements you could add:**
-> - Audit logging for customer creation
-> - Additional business validations
-> - Event publishing for customer lifecycle
+> - Validation that required fields are present
+> - Check for duplicate customer IDs
+> - Format phone numbers consistently
+> - Audit logging
 
 ### 3. UPDATE Operation (With Existence Check)
 
@@ -467,20 +462,17 @@ sequenceDiagram
 | **Service Layer** | Business logic container | `CustomerService.java` |
 | **@Service** | Marks class as service bean | Spring manages lifecycle |
 | **Constructor Injection** | Dependency injection pattern | `public CustomerService(repo)` |
-| **Business Logic** | Domain rules and conflict prevention | Duplicate prevention, existence checking |
-| **HTTP-Aware Exceptions** | Spring-specific exception handling | `ResponseStatusException` |
+| **Business Validation** | Rules before data access | ID length check, existence check |
 | **Mockito Testing** | Unit testing without database | `@Mock`, `@InjectMocks` |
 | **Safe Testing** | Non-destructive verification | Use TEST1, DUMMY IDs |
 
 ### What You Accomplished Today
 
 1. **Created a proper service layer** with business logic separation
-2. **Added conflict prevention** for customer creation
-3. **Implemented clean error handling** with appropriate HTTP status codes
-4. **Used constructor injection** (professional pattern)
-5. **Built comprehensive unit tests** with Mockito
-6. **Made main method testing safe** (no real data modification)
-7. **Separated validation concerns** between controller and service layers
+2. **Added validation** for all CRUD operations
+3. **Implemented constructor injection** (professional pattern)
+4. **Built comprehensive unit tests** with Mockito
+5. **Made main method testing safe** (no real data modification)
 
 ### Key Patterns You Learned
 
